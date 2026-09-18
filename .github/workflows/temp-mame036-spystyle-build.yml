@@ -32,7 +32,7 @@ jobs:
             curl -L --fail --retry 3 "$BASE/$f" -o "kit/$f"
           done
           curl -L --fail --retry 3 "$MBASE/mame036s.zip" -o kit/mame036s.zip
-          curl -L --fail --retry 3 "https://xcp-ng.fagskolen.gjovik.no/pub/djgpp/current/v2misc/csdpmi5b.zip" -o kit/csdpmi5b.zip
+          # CWSDPMI r5 (2000): use independent mirrors so one archive outage does not kill the build\n          curl -L --fail --connect-timeout 15 --retry 2 "https://djgpp.mirror.garr.it/current/v2misc/csdpmi5b.zip" -o kit/csdpmi5b.zip || \\\n            curl -L --fail --connect-timeout 15 --retry 2 "https://ftp.zx.net.nz/pub/archive/ftp.delorie.com/pub/djgpp/current/v2misc/csdpmi5b.zip" -o kit/csdpmi5b.zip
 
       - name: Assemble period DOS development drive
         shell: bash
