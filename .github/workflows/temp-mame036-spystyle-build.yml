@@ -94,7 +94,12 @@ jobs:
           if old not in s:
               raise SystemExit("Expected MAME 0.36 startup block not found")
           (root / "src" / "mame_original.c").write_text(s, encoding="latin1")
-          p.write_text(s.replace(old, new), encoding="latin1")
+          patched = s.replace(old, new)
+          patched = patched.replace(
+              "\\nuserquit:\\n",
+              "\\n#ifndef SPYSTYLE_NONAG\\nuserquit:\\n#endif\\n"
+          )
+          p.write_text(patched, encoding="latin1")
 
           mk = root / "makefile"
           t = mk.read_text(encoding="latin1")
