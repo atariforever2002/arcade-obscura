@@ -96,8 +96,8 @@ jobs:
           (root / "src" / "mame_original.c").write_text(s, encoding="latin1")
           patched = s.replace(old, new)
           patched = patched.replace(
-              "\\nuserquit:\\n",
-              "\\n#ifndef SPYSTYLE_NONAG\\nuserquit:\\n#endif\\n"
+              "\nuserquit:\n",
+              "\n#ifndef SPYSTYLE_NONAG\nuserquit:\n#endif\n"
           )
           p.write_text(patched, encoding="latin1")
 
