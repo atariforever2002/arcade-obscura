@@ -110,6 +110,8 @@ jobs:
 
           mk = root / "makefile"
           t = mk.read_text(encoding="latin1")
+          # Use MAME 0.36's supplied DOS NASM path instead of the default Win32 nasmw path.
+          t = t.replace("#ASM = @nasm\nASM = @nasmw", "ASM = @nasm\n#ASM = @nasmw")
           t = t.replace(
               "ifdef I686\nEMULATOR_EXE = mameppro.exe\nARCH = -march=pentiumpro",
               "ifdef I686\nEMULATOR_EXE = mamenn.exe\nARCH = -march=pentiumpro"
