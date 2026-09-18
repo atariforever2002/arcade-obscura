@@ -148,8 +148,7 @@ jobs:
           copy zconf.h C:\\DJGPP\\INCLUDE\\ >> C:\\BUILD.LOG
           echo === MAME 0.36 SpyStyle NoNag V.1 Pentium Pro === >> C:\\BUILD.LOG
           cd \\DJGPP\\MAME
-          make I686=1 >> C:\\BUILD.LOG
-          make I686=1 >> C:\\BUILD.LOG
+          make I686=1 > C:\\MAMEOUT.LOG 2> C:\\MAMEERR.LOG
           exit
           EOF
           SDL_AUDIODRIVER=dummy xvfb-run -a dosbox -conf build.conf -exit || true
@@ -160,6 +159,8 @@ jobs:
         run: |
           mkdir -p artifact
           cp dosroot/BUILD.LOG artifact/BUILD.LOG 2>/dev/null || true
+          cp dosroot/MAMEOUT.LOG artifact/MAMEOUT.LOG 2>/dev/null || true
+          cp dosroot/MAMEERR.LOG artifact/MAMEERR.LOG 2>/dev/null || true
           cp dosroot/djgpp/mame/mamenn.exe artifact/MAMENN.EXE 2>/dev/null || true
           cp dosroot/djgpp/mame/src/mame.c artifact/mame.c 2>/dev/null || true
           cp dosroot/djgpp/mame/src/mame_original.c artifact/mame_original.c 2>/dev/null || true
