@@ -47,7 +47,7 @@ jobs:
           unzip -q kit/mak3781b.zip -d dosroot/djgpp
           unzip -q kit/all3932.zip -d dosroot/djgpp
           unzip -q kit/mameseal.zip -d dosroot/djgpp
-          unzip -q -j kit/nasm098.zip nasmw.exe -d dosroot/djgpp/bin
+          unzip -q -j kit/nasm098.zip nasm.exe -d dosroot/djgpp/bin
           unzip -q -j kit/upx101w.zip upx.exe -d dosroot/djgpp/bin
           unzip -q -j kit/csdpmi5b.zip -d dosroot/djgpp/bin
           unzip -q kit/zlib113.zip -d dosroot/djgpp/zlib
