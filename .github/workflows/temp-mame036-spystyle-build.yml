@@ -47,7 +47,7 @@ jobs:
           unzip -q kit/mameseal.zip -d dosroot/djgpp
           unzip -q -j kit/nasm098.zip nasmw.exe -d dosroot/djgpp/bin
           unzip -q -j kit/upx101w.zip upx.exe -d dosroot/djgpp/bin
-          unzip -q -j kit/csdpmi5b.zip cwsdpmi.exe -d dosroot/djgpp/bin
+          unzip -q -j kit/csdpmi5b.zip -d dosroot/djgpp/bin
           unzip -q kit/zlib113.zip -d dosroot/djgpp/zlib
           unzip -q kit/mame036s.zip -d dosroot/djgpp/mame
           INNER=$(find dosroot/djgpp/mame -maxdepth 1 -iname 'mame.zip' -print -quit)
