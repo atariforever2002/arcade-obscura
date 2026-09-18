@@ -28,10 +28,12 @@ jobs:
           BASE='https://arcarc.xmission.com/Web%20Archives/ionpool.net%20%28Dec-31-2020%29/arcade/mame/zips/compilefinal'
           MBASE='https://arcarc.xmission.com/Web%20Archives/ionpool.net%20%28Dec-31-2020%29/arcade/mame/zips'
           mkdir -p kit
-          for f in djdev203.zip bnu281b.zip gcc2952b.zip mak3781b.zip all3932.zip zlib113.zip mameseal.zip nasm098.zip upx101w.zip; do
+          for f in djdev203.zip bnu281b.zip gcc2952b.zip mak3781b.zip all3932.zip zlib113.zip mameseal.zip upx101w.zip; do
             curl -L --fail --retry 3 "$BASE/$f" -o "kit/$f"
           done
           curl -L --fail --retry 3 "$MBASE/mame036s.zip" -o kit/mame036s.zip
+          # NASM 0.98 protected-mode DOS binary, compiled with DJGPP (period archive, 1999)
+          curl -L --fail --retry 3 "https://apajalista.net/tiedostot/PC/Ohjelmointi/DOS-ohjelmointi_Assembler/NASM098P.ZIP" -o kit/nasm098p.zip
           # CWSDPMI r5 (2000): use independent mirrors so one archive outage does not kill the build
           curl -L --fail --connect-timeout 15 --retry 2 "https://djgpp.mirror.garr.it/current/v2misc/csdpmi5b.zip" -o kit/csdpmi5b.zip || \
             curl -L --fail --connect-timeout 15 --retry 2 "https://ftp.zx.net.nz/pub/archive/ftp.delorie.com/pub/djgpp/current/v2misc/csdpmi5b.zip" -o kit/csdpmi5b.zip
@@ -48,7 +50,7 @@ jobs:
           unzip -q kit/all3932.zip -d dosroot/djgpp
           unzip -q kit/mameseal.zip -d dosroot/djgpp
           mkdir -p nasm_tmp
-          unzip -q kit/nasm098.zip -d nasm_tmp
+          unzip -q kit/nasm098p.zip -d nasm_tmp
           NASM_DOS=$(find nasm_tmp -type f -iname 'nasm.exe' -print -quit)
           test -n "$NASM_DOS"
           cp "$NASM_DOS" dosroot/djgpp/bin/nasm.exe
