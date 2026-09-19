@@ -238,8 +238,8 @@ jobs:
               1
           )
           patched = patched.replace(
-              '\t\t\tif (sound_start() == 0) /* start the audio hardware */\n\t\t\t{',
-              '\t\t\tif (sound_start() == 0) /* start the audio hardware */\n\t\t\t{\n\t\t\t\tsp_profile_mark("sound_start complete");',
+              '\t\t\tif (sound_start() == 0) /* start the audio hardware */\n\t\t\t{\n\t\t\t\tint\tregion;\n',
+              '\t\t\tif (sound_start() == 0) /* start the audio hardware */\n\t\t\t{\n\t\t\t\tint\tregion;\n\t\t\t\tsp_profile_mark("sound_start complete");\n',
               1
           )
           patched = patched.replace(
