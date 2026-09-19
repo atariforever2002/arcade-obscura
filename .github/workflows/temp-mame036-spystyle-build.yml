@@ -28,10 +28,10 @@ jobs:
           BASE='https://arcarc.xmission.com/Web%20Archives/ionpool.net%20%28Dec-31-2020%29/arcade/mame/zips/compilefinal'
           MBASE='https://arcarc.xmission.com/Web%20Archives/ionpool.net%20%28Dec-31-2020%29/arcade/mame/zips'
           mkdir -p kit
-          for f in djdev203.zip bnu281b.zip gcc2952b.zip mak3781b.zip all3932.zip zlib113.zip mameseal.zip; do
+          for f in djdev203.zip bnu281b.zip gcc2952b.zip mak3781b.zip all3932.zip zlib113.zip mameseal.zip upx101w.zip; do
             curl -L --fail --retry 3 "$BASE/$f" -o "kit/$f"
           done
-          curl -L --fail --retry 3 "$MBASE/mame036s.zip" -o kit/mame036s.zip\n          # UPX 1.01 DOS build from period archive\n          curl -L --fail --retry 3 "https://ftp.elf.stuba.sk/pub/pc/pack/upx101d.zip" -o kit/upx101d.zip
+          curl -L --fail --retry 3 "$MBASE/mame036s.zip" -o kit/mame036s.zip
           # NASM 0.98 protected-mode DOS binary, compiled with DJGPP (period archive, 1999)
           curl -L --fail --retry 3 "https://apajalista.net/tiedostot/PC/Ohjelmointi/DOS-ohjelmointi_Assembler/NASM098P.ZIP" -o kit/nasm098p.zip
           # CWSDPMI r5 (2000): use independent mirrors so one archive outage does not kill the build
@@ -55,7 +55,7 @@ jobs:
           test -n "$NASM_DOS"
           cp "$NASM_DOS" dosroot/djgpp/bin/nasm.exe
           file dosroot/djgpp/bin/nasm.exe
-          mkdir -p upx_tmp\n          unzip -q kit/upx101d.zip -d upx_tmp\n          UPX_DOS=$(find upx_tmp -type f -iname 'upx.exe' -print -quit)\n          test -n \"$UPX_DOS\"\n          cp \"$UPX_DOS\" dosroot/djgpp/bin/upx.exe\n          file dosroot/djgpp/bin/upx.exe
+          unzip -q -j kit/upx101w.zip upx.exe -d dosroot/djgpp/bin
           unzip -q -j kit/csdpmi5b.zip -d dosroot/djgpp/bin
           unzip -q kit/zlib113.zip -d dosroot/djgpp/zlib
           unzip -q kit/mame036s.zip -d dosroot/djgpp/mame
@@ -114,6 +114,10 @@ jobs:
           t = t.replace("#ASM = @nasm\nASM = @nasmw", "ASM = @nasm\n#ASM = @nasmw")
           # UPX is size-only; skip packing so the linked DOS EXE can be directly validated.
           t = t.replace("\n\tupx $(EMULATOR_EXE)\n", "\n\t@echo UPX skipped - validation build\n")
+          t = t.replace(
+              "\n\t$(EMULATOR_EXE) -gamelistheader -noclones > gamelist.txt\n\t$(EMULATOR_EXE) -gamelist -noclones | sort >> gamelist.txt\n\t$(EMULATOR_EXE) -gamelistfooter >> gamelist.txt\n",
+              "\n\t@echo Gamelist generation skipped - validate on target Pentium Pro\n"
+          )
           t = t.replace(
               "ifdef I686\nEMULATOR_EXE = mameppro.exe\nARCH = -march=pentiumpro",
               "ifdef I686\nEMULATOR_EXE = mamenn.exe\nARCH = -march=pentiumpro"
