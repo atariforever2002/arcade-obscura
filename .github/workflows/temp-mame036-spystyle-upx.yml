@@ -34,16 +34,10 @@ jobs:
           set -euxo pipefail
           sudo apt-get update
           sudo apt-get install -y dosbox xvfb unzip curl
-          curl -L --fail --retry 3 "https://downloads.sourceforge.net/project/upx/OldFiles/upx-1.04-bin.tar.gz" -o upx104.tar.gz
+          curl -L --fail --retry 3 "https://downloads.sourceforge.net/project/upx/upx/1.20/upx120d.zip" -o upx120d.zip
           mkdir -p upx doswork output
-          tar -xzf upx104.tar.gz -C upx
-          UPX_DOS=""
-          while IFS= read -r candidate; do
-            if file "$candidate" | grep -qiE 'MS-DOS|DOS executable'; then
-              UPX_DOS="$candidate"
-              break
-            fi
-          done < <(find upx -type f -iname '*.exe' -print)
+          unzip -q upx120d.zip -d upx
+          UPX_DOS=$(find upx -type f -iname 'upx.exe' -print -quit)
           test -n "$UPX_DOS"
           cp "$UPX_DOS" doswork/UPX.EXE
           cp input/MAMENN.EXE doswork/MAMENN.EXE
