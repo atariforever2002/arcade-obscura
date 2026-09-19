@@ -1,0 +1,85 @@
+name: Temporary MAME NoNag UPX compression test
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - temp-mame036-spystyle-build
+    paths:
+      - ".github/workflows/temp-mame036-spystyle-upx.yml"
+
+jobs:
+  compress:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    permissions:
+      actions: read
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download known-good Run 19 artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: MAME036-SPYSTYLE-NONAG-V1
+          path: input
+          repository: atariforever2002/arcade-obscura
+          run-id: 35445632921
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install DOSBox and fetch period DOS UPX 1.01
+        shell: bash
+        run: |
+          set -euxo pipefail
+          sudo apt-get update
+          sudo apt-get install -y dosbox xvfb unzip curl
+          curl -L --fail --retry 3 "https://ftp.elf.stuba.sk/pub/pc/pack/upx101d.zip" -o upx101d.zip
+          mkdir -p upx doswork output
+          unzip -q upx101d.zip -d upx
+          UPX_DOS=$(find upx -type f -iname 'upx.exe' -print -quit)
+          test -n "$UPX_DOS"
+          cp "$UPX_DOS" doswork/UPX.EXE
+          cp input/MAMENN.EXE doswork/MAMENN.EXE
+          cp input/MAMENN.EXE output/MAMENN_UNCOMPRESSED.EXE
+          file doswork/UPX.EXE
+          sha256sum doswork/MAMENN.EXE | tee output/BEFORE_SHA256.txt
+          stat -c '%s' doswork/MAMENN.EXE | tee output/BEFORE_SIZE.txt
+
+      - name: Compress with period DOS UPX 1.01
+        shell: bash
+        run: |
+          cat > upx.conf <<EOF
+          [sdl]
+          fullscreen=false
+          output=surface
+
+          [dosbox]
+          memsize=63
+
+          [cpu]
+          core=dynamic
+          cycles=max
+
+          [mixer]
+          nosound=true
+
+          [autoexec]
+          mount c "$GITHUB_WORKSPACE/doswork"
+          c:
+          upx mamenn.exe > C:\\UPX.LOG
+          exit
+          EOF
+          SDL_AUDIODRIVER=dummy xvfb-run -a dosbox -conf upx.conf -exit
+          cp doswork/MAMENN.EXE output/MAMENN_UPX.EXE
+          cp doswork/UPX.LOG output/UPX.LOG 2>/dev/null || true
+          sha256sum output/MAMENN_UPX.EXE | tee output/AFTER_SHA256.txt
+          stat -c '%s' output/MAMENN_UPX.EXE | tee output/AFTER_SIZE.txt
+          file output/MAMENN_UPX.EXE | tee output/FILETYPE.txt
+
+      - name: Upload compressed test artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: MAME036-SPYSTYLE-NONAG-V1-UPX-TEST
+          path: output/
+          if-no-files-found: error
