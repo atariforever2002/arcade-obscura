@@ -112,6 +112,8 @@ jobs:
           t = mk.read_text(encoding="latin1")
           # Use MAME 0.36's supplied DOS NASM path instead of the default Win32 nasmw path.
           t = t.replace("#ASM = @nasm\nASM = @nasmw", "ASM = @nasm\n#ASM = @nasmw")
+          # UPX is size-only; skip packing so the linked DOS EXE can be directly validated.
+          t = t.replace("\n\tupx $(EMULATOR_EXE)\n", "\n\t@echo UPX skipped - validation build\n")
           t = t.replace(
               "ifdef I686\nEMULATOR_EXE = mameppro.exe\nARCH = -march=pentiumpro",
               "ifdef I686\nEMULATOR_EXE = mamenn.exe\nARCH = -march=pentiumpro"
@@ -179,6 +181,9 @@ jobs:
           cp dosroot/djgpp/mame/mamenn.exe artifact/MAMENN.EXE 2>/dev/null || true
           cp dosroot/djgpp/mame/src/mame.c artifact/mame.c 2>/dev/null || true
           cp dosroot/djgpp/mame/src/mame_original.c artifact/mame_original.c 2>/dev/null || true
+          cp dosroot/djgpp/mame/makefile artifact/makefile 2>/dev/null || true
+          cp dosroot/djgpp/mame/src/version.c artifact/version.c 2>/dev/null || true
+          cp dosroot/djgpp/mame/gamelist.txt artifact/gamelist.txt 2>/dev/null || true
           if [ -f artifact/MAMENN.EXE ]; then
             sha256sum artifact/MAMENN.EXE | tee artifact/MAMENN_SHA256.txt
             file artifact/MAMENN.EXE | tee artifact/MAMENN_FILETYPE.txt
