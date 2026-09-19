@@ -67,6 +67,7 @@ jobs:
         shell: python
         run: |
           from pathlib import Path
+          from textwrap import dedent
 
           root = Path("dosroot/djgpp/mame")
           p = root / "src" / "mame.c"
@@ -110,63 +111,63 @@ jobs:
           # Diagnostic-only startup profiler.  It records clock ticks in RAM during
           # startup and writes STARTUP.LOG only after cpu_run() returns, so CF writes
           # do not distort the startup measurements.
-          helper = r'''
-#include <time.h>
-
-#ifdef SPYSTYLE_PROFILE
-#define SP_PROFILE_MAX 32
-struct sp_profile_entry
-{
-    const char *label;
-    clock_t ticks;
-};
-static struct sp_profile_entry sp_profile_entries[SP_PROFILE_MAX];
-static int sp_profile_count;
-static clock_t sp_profile_start;
-
-static void sp_profile_begin(void)
-{
-    sp_profile_count = 0;
-    sp_profile_start = clock();
-}
-
-static void sp_profile_mark(const char *label)
-{
-    if (sp_profile_count < SP_PROFILE_MAX)
-    {
-        sp_profile_entries[sp_profile_count].label = label;
-        sp_profile_entries[sp_profile_count].ticks = clock() - sp_profile_start;
-        sp_profile_count++;
-    }
-}
-
-static void sp_profile_write(void)
-{
-    FILE *f;
-    int i;
-
-    f = fopen("STARTUP.LOG","w");
-    if (!f) return;
-
-    fprintf(f,"MAME 0.36 SpyStyle startup profile\\n");
-    fprintf(f,"Times are relative to run_game() entry.\\n");
-    fprintf(f,"External stopwatch time may be longer because EXE load occurs before this point.\\n\\n");
-
-    for (i = 0; i < sp_profile_count; i++)
-    {
-        long ms = (long)((sp_profile_entries[i].ticks * 1000L) / CLOCKS_PER_SEC);
-        fprintf(f,"%ld.%03ld  %s\\n", ms / 1000L, ms % 1000L,
-                sp_profile_entries[i].label);
-    }
-
-    fclose(f);
-}
-#else
-#define sp_profile_begin()
-#define sp_profile_mark(x)
-#define sp_profile_write()
-#endif
-'''
+          helper = dedent(r'''
+          #include <time.h>
+          
+          #ifdef SPYSTYLE_PROFILE
+          #define SP_PROFILE_MAX 32
+          struct sp_profile_entry
+          {
+              const char *label;
+              clock_t ticks;
+          };
+          static struct sp_profile_entry sp_profile_entries[SP_PROFILE_MAX];
+          static int sp_profile_count;
+          static clock_t sp_profile_start;
+          
+          static void sp_profile_begin(void)
+          {
+              sp_profile_count = 0;
+              sp_profile_start = clock();
+          }
+          
+          static void sp_profile_mark(const char *label)
+          {
+              if (sp_profile_count < SP_PROFILE_MAX)
+              {
+                  sp_profile_entries[sp_profile_count].label = label;
+                  sp_profile_entries[sp_profile_count].ticks = clock() - sp_profile_start;
+                  sp_profile_count++;
+              }
+          }
+          
+          static void sp_profile_write(void)
+          {
+              FILE *f;
+              int i;
+          
+              f = fopen("STARTUP.LOG","w");
+              if (!f) return;
+          
+              fprintf(f,"MAME 0.36 SpyStyle startup profile\\n");
+              fprintf(f,"Times are relative to run_game() entry.\\n");
+              fprintf(f,"External stopwatch time may be longer because EXE load occurs before this point.\\n\\n");
+          
+              for (i = 0; i < sp_profile_count; i++)
+              {
+                  long ms = (long)((sp_profile_entries[i].ticks * 1000L) / CLOCKS_PER_SEC);
+                  fprintf(f,"%ld.%03ld  %s\\n", ms / 1000L, ms % 1000L,
+                          sp_profile_entries[i].label);
+              }
+          
+              fclose(f);
+          }
+          #else
+          #define sp_profile_begin()
+          #define sp_profile_mark(x)
+          #define sp_profile_write()
+          #endif
+          ''')
 
           patched = patched.replace(
               '#include <ctype.h>\n',
