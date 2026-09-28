@@ -850,9 +850,9 @@ footer strong{color:#dce2e5;font-family:Georgia,serif;font-size:16px}
 <div class="collection-note"><strong>The people behind the machines</strong>The company histories identify programmers, engineers, artists, executives, salespeople and operators through credits, period documents and firsthand accounts. Where someone’s contribution is uncertain, the article explains what is known.</div><div class="collection-note"><strong>Names in the company histories</strong>Read about Brian D. Semler, Bernie Stolar and Philip Lieberman in <a href="#pacific-full">Pacific Novelty</a>, and Andre Dubel, Steven Suwinski and Joyce DeVries in <a href="#elcon-full">Elcon Industries</a>. Their roles and the evidence for each are discussed in those histories.</div></section>
 <div class="section-head" id="research">
 <h2>Featured Histories</h2>
-<p>Selected subjects from the collection</p>
+<p>Weekly selections from the collection</p>
 </div>
-<section class="showcase">
+<section class="showcase" id="weekly-featured-histories">
 <article class="feature">
 <div class="oversized">PACIFIC<br/>NOVELTY</div>
 <div class="type">Company history</div>
@@ -10567,5 +10567,83 @@ Secondary/preservation cross-check for Threshold developer attribution, Taito/Ta
     </div>
 </div>
 </footer>
-<dialog id="archive-image-viewer" style="width:min(96vw,1400px);max-width:96vw;max-height:95vh;background:#101820;color:white;border:1px solid #ab8040;padding:14px"><button style="position:sticky;top:0;float:right;background:#f0c57e;padding:12px;cursor:pointer" type="button">Close ×</button><p></p><img alt="" style="display:block;max-width:100%;height:auto;margin:auto"/></dialog><script>const av=document.getElementById('archive-image-viewer');window.openArchiveImage=(src,alt)=>{av.querySelector('img').src=src;av.querySelector('img').alt=alt;av.querySelector('p').textContent=alt;av.showModal()};av.querySelector('button').onclick=()=>av.close();av.onclick=e=>{if(e.target===av)av.close()};</script></body>
+<dialog id="archive-image-viewer" style="width:min(96vw,1400px);max-width:96vw;max-height:95vh;background:#101820;color:white;border:1px solid #ab8040;padding:14px"><button style="position:sticky;top:0;float:right;background:#f0c57e;padding:12px;cursor:pointer" type="button">Close ×</button><p></p><img alt="" style="display:block;max-width:100%;height:auto;margin:auto"/></dialog><script>const av=document.getElementById('archive-image-viewer');window.openArchiveImage=(src,alt)=>{av.querySelector('img').src=src;av.querySelector('img').alt=alt;av.querySelector('p').textContent=alt;av.showModal()};av.querySelector('button').onclick=()=>av.close();av.onclick=e=>{if(e.target===av)av.close()};</script>
+<script id="arcade-side-b-weekly-featured">
+(function(){
+  const showcase=document.getElementById('weekly-featured-histories');
+  if(!showcase) return;
+
+  function cleanType(v){
+    return String(v||'').split('·')[0].trim();
+  }
+  function esc(v){
+    return String(v||'')
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+      .replace(/"/g,'&quot;').replace(/'/g,'&#039;');
+  }
+  function candidateFromCard(card){
+    const kind=card.querySelector('.kind');
+    const title=card.querySelector('h3');
+    const desc=card.querySelector('p');
+    const href=card.getAttribute('href')||'';
+    if(!kind||!title||!desc||!href) return null;
+    const type=cleanType(kind.textContent);
+    if(type!=='Company history' && type!=='Game history') return null;
+    return {
+      type:type,
+      title:title.textContent.trim(),
+      desc:desc.textContent.trim(),
+      href:href
+    };
+  }
+
+  const candidates=Array.from(document.querySelectorAll('a.collection-card[href$="-full"]'))
+    .map(candidateFromCard).filter(Boolean);
+  const companies=candidates.filter(function(x){return x.type==='Company history';});
+  if(!companies.length || candidates.length<4) return;
+
+  // Calendar-week rotation. Adding 3 makes the boundary Monday in UTC.
+  const day=Math.floor(Date.now()/86400000);
+  const week=Math.floor((day+3)/7);
+
+  const hero=companies[((week%companies.length)+companies.length)%companies.length];
+  const others=candidates.filter(function(x){return x.href!==hero.href;});
+  const start=((week*3)%others.length+others.length)%others.length;
+  const sides=[];
+  for(let i=0;i<others.length && sides.length<3;i++){
+    const item=others[(start+i)%others.length];
+    if(!sides.some(function(x){return x.href===item.href;})) sides.push(item);
+  }
+  if(sides.length<3) return;
+
+  const heroWords=hero.title.toUpperCase().split(/\s+/);
+  const heroOversized=heroWords.length>1
+    ? esc(heroWords[0])+'<br/>'+esc(heroWords.slice(1).join(' '))
+    : esc(hero.title.toUpperCase());
+
+  const heroHtml=
+    '<article class="feature">'+
+      '<div class="oversized">'+heroOversized+'</div>'+
+      '<div class="type">'+esc(hero.type)+'</div>'+
+      '<h3>'+esc(hero.title)+'</h3>'+
+      '<p>'+esc(hero.desc)+'</p>'+
+      '<div class="badges"><span class="badge complete">History &amp; sources</span></div>'+
+      '<div style="margin-top:22px"><a class="btn secondary" href="'+esc(hero.href)+'">Read '+esc(hero.title)+' →</a></div>'+
+    '</article>';
+
+  const sideHtml=sides.map(function(item){
+    return '<article class="small-feature">'+
+      '<div class="type">'+esc(item.type)+'</div>'+
+      '<h3>'+esc(item.title)+'</h3>'+
+      '<p>'+esc(item.desc)+'</p>'+
+      '<span class="badge living">History &amp; sources</span>'+
+      '<div style="margin-top:12px"><a class="btn secondary" href="'+esc(item.href)+'">Read '+esc(item.title)+' →</a></div>'+
+    '</article>';
+  }).join('');
+
+  showcase.innerHTML=heroHtml+'<div class="side-stack">'+sideHtml+'</div>';
+})();
+</script>
+
+</body>
 </html>
