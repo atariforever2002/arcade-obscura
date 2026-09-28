@@ -678,7 +678,7 @@ footer strong{color:#dce2e5;font-family:Georgia,serif;font-size:16px}
 </div>
 <div class="ephemera-art">
 <div class="ephemera-board">
-<div aria-label="Research highlights rotate weekly" class="wall-grid">
+<div aria-label="Four different research topics rotate weekly" class="wall-grid">
 <a aria-label="Open Pacific Novelty missing-games research" class="wall-slot slot-clip" data-wall-slot="clip" href="#pacific-full">
 <div class="clipping wall-card">
 <span class="tiny">Pacific Novelty · May 1, 1981</span>
@@ -694,11 +694,11 @@ footer strong{color:#dce2e5;font-family:Georgia,serif;font-size:16px}
 <div class="starburst" data-mark="1980"></div>
 </div>
 </a>
-<a aria-label="Contribute information to Arcade Side B" class="wall-slot slot-contribute" href="#contribute">
+<a aria-label="Open rotating research highlight" class="wall-slot slot-contribute" data-wall-slot="ticket" href="#questions">
 <div class="ticket wall-card">
-<span class="tiny">Arcade Side B · Living Research</span>
-<strong>Have a flyer, manual, photograph, memory, or correction?</strong>
-<p>Help strengthen the record. Useful contributions are reviewed and credited with permission.</p>
+<span class="tiny">Open research question</span>
+<strong>Which people can still be identified?</strong>
+<p>Open questions in arcade history guide the next archival search.</p>
 </div>
 </a>
 <a aria-label="Open Atari Theatre Kiosk research" class="wall-slot slot-theatre" data-wall-slot="manual" href="#hardware">
@@ -10622,69 +10622,114 @@ Secondary/preservation cross-check for Threshold developer attribution, Taito/Ta
     .map(function(card,index){return candidateFromCard(card,index,currentWeek);})
     .filter(Boolean);
 
-  // The Research Wall has its own weekly, no-repeat deck. It draws from the same
-  // eligible company/game histories while leaving the contribution card pinned.
+  // Research Wall rotation: four distinct site topics each week. The topic
+  // categories advance in order, while entries within each category cycle with
+  // no repeats until that category's current deck has been shown.
   const wallSlots=Array.from(document.querySelectorAll('.wall-slot[data-wall-slot]'));
-  if(wallSlots.length && candidates.length){
-    let wallPool=[];
-    let wallUnseen=[];
-    let wallCycle=0;
-    let wallSelection=[];
-    function beginWallCycle(){
-      const seed=wallCycle++;
-      wallUnseen=wallPool.slice().sort(function(a,b){
-        const ah=hashString(a.href+'|research-wall|'+seed);
-        const bh=hashString(b.href+'|research-wall|'+seed);
-        return ah===bh ? a.order-b.order : ah-bh;
-      });
+  const wallTopics=['Company history','Game history','Hardware / cabinets','People','Open question'];
+  const wallCandidates=candidates.map(function(item){
+    return Object.assign({},item,{topic:item.type});
+  });
+  const wallStartWeek=ROTATION_START_WEEK;
+  function addWallTopic(topic,title,desc,href,year){
+    wallCandidates.push({
+      type:topic,title:title,desc:desc,href:href,year:year||'',
+      addedWeek:wallStartWeek,order:wallCandidates.length,topic:topic
+    });
+  }
+  // Hardware and cabinet subjects represented across the site, including
+  // factory documentation and cabinet work documented in company histories.
+  addWallTopic('Hardware / cabinets','Atari Theatre / Kiosk',
+    'Atari’s 1976 factory instructions describe modular groups of two, three or six machines.','#hardware','1976');
+  addWallTopic('Hardware / cabinets','Elcon Six Pack',
+    'A multi-game cabinet installation documented in the Elcon Industries history.','#elcon-full','');
+  addWallTopic('Hardware / cabinets','Elcon Magic Trolley',
+    'A mobile arcade cabinet concept covered among Elcon’s unusual hardware projects.','#elcon-full','');
+  addWallTopic('Hardware / cabinets','Elcon wall-mounted games',
+    'Space-saving arcade installations documented in the Elcon Industries history.','#elcon-full','');
+  // People are surfaced as a distinct topic; each card points to the history
+  // containing the underlying credits and evidence without assigning a role here.
+  [
+    ['Brian D. Semler','#pacific-full','Named in the Pacific Novelty history; the article distinguishes contemporary evidence from later recollection.'],
+    ['Bernie Stolar','#pacific-full','Named in the Pacific Novelty history; consult the article for the documented context and its limits.'],
+    ['Philip Lieberman','#pacific-full','Named in the Pacific Novelty history; consult the article for the documented context and its limits.'],
+    ['Andre Dubel','#elcon-full','Named in the Elcon Industries history; consult the article for the documented context and its limits.'],
+    ['Steven Suwinski','#elcon-full','Named in the Elcon Industries history; consult the article for the documented context and its limits.'],
+    ['Joyce DeVries','#elcon-full','Named in the Elcon Industries history; consult the article for the documented context and its limits.']
+  ].forEach(function(person){addWallTopic('People',person[0],person[2],person[1],'');});
+  const openQuestionList=Array.from(document.querySelectorAll('#questions .list'))
+    .find(function(list){return /open research questions/i.test((list.querySelector('.list-title')||{}).textContent||'');});
+  if(openQuestionList){
+    Array.from(openQuestionList.querySelectorAll('.row')).forEach(function(row){
+      const title=row.querySelector('strong');
+      if(!title) return;
+      const topicLabel=(row.querySelector('span')||{}).textContent||'';
+      addWallTopic('Open question',title.textContent.trim(),
+        'Open research question · '+topicLabel.trim()+'.','#questions','');
+    });
+  }
+
+  function wallEntryFromCategory(topic,pool,unseen,cycles){
+    if(!pool.length) return null;
+    if(!unseen.length){
+      const cycle=cycles.value++;
+      unseen.push.apply(unseen,pool.slice().sort(function(a,b){
+        const ah=hashString(a.href+'|'+a.title+'|'+topic+'|wall|'+cycle);
+        const bh=hashString(b.href+'|'+b.title+'|'+topic+'|wall|'+cycle);
+        return ah===bh?a.order-b.order:ah-bh;
+      }));
     }
-    for(let week=ROTATION_START_WEEK;week<=currentWeek;week++){
-      const newcomers=candidates.filter(function(x){return x.addedWeek===week;})
-        .sort(function(a,b){return a.order-b.order;});
-      newcomers.forEach(function(item){
-        if(!wallPool.some(function(x){return x.href===item.href;})){
-          wallPool.push(item);
-          if(wallUnseen.length) wallUnseen.push(item);
+    return unseen.shift()||null;
+  }
+  if(wallSlots.length && wallCandidates.length){
+    const poolByTopic={};
+    const unseenByTopic={};
+    const cyclesByTopic={};
+    wallTopics.forEach(function(topic){poolByTopic[topic]=[];unseenByTopic[topic]=[];cyclesByTopic[topic]={value:0};});
+    let wallSelection=[];
+    const firstWallWeek=Math.min.apply(null,wallCandidates.map(function(x){return x.addedWeek;}));
+    for(let week=firstWallWeek;week<=currentWeek;week++){
+      wallCandidates.filter(function(item){return item.addedWeek===week;}).forEach(function(item){
+        const pool=poolByTopic[item.topic];
+        if(pool && !pool.some(function(existing){return existing.href===item.href && existing.title===item.title;})){
+          pool.push(item);
+          if(unseenByTopic[item.topic].length) unseenByTopic[item.topic].push(item);
         }
       });
-      candidates.filter(function(x){return x.addedWeek<ROTATION_START_WEEK;}).forEach(function(item){
-        if(!wallPool.some(function(x){return x.href===item.href;})) wallPool.push(item);
-      });
-      const chosen=[];
-      const chosenIds=new Set();
-      while(chosen.length<wallSlots.length && wallPool.length){
-        if(!wallUnseen.length) beginWallCycle();
-        if(!wallUnseen.length) break;
-        const item=wallUnseen.shift();
-        if(chosenIds.has(item.href)){wallUnseen.push(item);continue;}
-        chosen.push(item);
-        chosenIds.add(item.href);
-      }
-      if(week===currentWeek) wallSelection=chosen;
+      const phase=((week-wallStartWeek)%wallTopics.length+wallTopics.length)%wallTopics.length;
+      const thisWeekTopics=[];
+      for(let i=0;i<wallSlots.length;i++) thisWeekTopics.push(wallTopics[(phase+i)%wallTopics.length]);
+      const selected=thisWeekTopics.map(function(topic){
+        return wallEntryFromCategory(topic,poolByTopic[topic],unseenByTopic[topic],cyclesByTopic[topic]);
+      }).filter(Boolean);
+      if(week===currentWeek) wallSelection=selected;
     }
     wallSelection.forEach(function(item,index){
       const slot=wallSlots[index];
       if(!slot) return;
       slot.href=item.href;
-      slot.setAttribute('aria-label','Open '+item.title+' research');
-      const kind=item.type+(item.year?' · '+item.year:'');
-      const title=item.title;
-      const desc=item.desc;
+      slot.setAttribute('aria-label','Open '+item.topic+': '+item.title);
+      const kind=item.topic+(item.year?' · '+item.year:'');
       const star=slot.querySelector('.starburst');
       if(star) star.setAttribute('data-mark',item.year||'SIDE B');
       if(slot.dataset.wallSlot==='clip'){
         const card=slot.querySelector('.wall-card');
         card.querySelector('.tiny').textContent=kind;
-        card.querySelector('strong').textContent=title;
-        card.querySelector('p').textContent=desc;
+        card.querySelector('strong').textContent=item.title;
+        card.querySelector('p').textContent=item.desc;
       }else if(slot.dataset.wallSlot==='deep'){
         slot.querySelector('.flyer-head').textContent=kind+' · ARCADE SIDE B';
-        slot.querySelector('.flyer-title').textContent=title.toUpperCase();
-        slot.querySelector('.flyer-sub').textContent=desc;
+        slot.querySelector('.flyer-title').textContent=item.title.toUpperCase();
+        slot.querySelector('.flyer-sub').textContent=item.desc;
+      }else if(slot.dataset.wallSlot==='ticket'){
+        const card=slot.querySelector('.wall-card');
+        card.querySelector('.tiny').textContent=kind;
+        card.querySelector('strong').textContent=item.title;
+        card.querySelector('p').textContent=item.desc;
       }else if(slot.dataset.wallSlot==='manual'){
         slot.querySelector('.small').textContent=kind;
-        slot.querySelector('strong').textContent=title;
-        slot.querySelector('.manual-note').textContent=desc;
+        slot.querySelector('strong').textContent=item.title;
+        slot.querySelector('.manual-note').textContent=item.desc;
       }
     });
   }
