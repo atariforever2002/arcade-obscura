@@ -139,7 +139,7 @@ nav a:hover,nav a:focus{border-color:var(--line);color:white}
   box-shadow:0 26px 40px rgba(0,0,0,.34);
 }
 .ephemera-board:before{
-  content:"ARCADE SIDE B / RESEARCH WALL";
+  content:"ARCADE SIDE B / THIS WEEK’S RESEARCH WALL";
   position:absolute;
   left:18px;
   top:14px;
@@ -219,11 +219,12 @@ nav a:hover,nav a:focus{border-color:var(--line);color:white}
 }
 .flyer-title{
   padding:11px 12px 5px;
-  font:900 28px/1 Arial,sans-serif;
+  font:900 clamp(18px,2.6vw,28px)/1 Arial,sans-serif;
+  overflow-wrap:anywhere;
   letter-spacing:-.03em;
 }
 .flyer-sub{
-  padding:0 12px 12px;
+  padding:0 82px 12px 12px;
   color:#5d625f;
   font:700 8px/1.35 Arial,sans-serif;
   letter-spacing:.05em;
@@ -238,7 +239,7 @@ nav a:hover,nav a:focus{border-color:var(--line);color:white}
   opacity:.88;
 }
 .starburst:after{
-  content:"1980";
+  content:attr(data-mark);
   position:absolute;inset:0;
   display:grid;place-items:center;
   color:#15191c;
@@ -290,6 +291,7 @@ nav a:hover,nav a:focus{border-color:var(--line);color:white}
   color:#536168;
   font:700 9px/1.4 Arial,sans-serif;
   letter-spacing:.03em;
+  padding-right:72px;
   text-transform:uppercase;
 }
 .manual-lines{
@@ -676,20 +678,20 @@ footer strong{color:#dce2e5;font-family:Georgia,serif;font-size:16px}
 </div>
 <div class="ephemera-art">
 <div class="ephemera-board">
-<div class="wall-grid">
-<a aria-label="Open Pacific Novelty missing-games research" class="wall-slot slot-clip" href="#pacific-full">
+<div aria-label="Research highlights rotate weekly" class="wall-grid">
+<a aria-label="Open Pacific Novelty missing-games research" class="wall-slot slot-clip" data-wall-slot="clip" href="#pacific-full">
 <div class="clipping wall-card">
 <span class="tiny">Pacific Novelty · May 1, 1981</span>
 <strong>Seven more games were planned.</strong>
 <p>Brian D. Semler said the company expected seven more games that year. Their identities and fates remain unresolved.</p>
 </div>
 </a>
-<a aria-label="Open Pacific Novelty Deep Death and Shark Attack research" class="wall-slot slot-deep" href="#pacific-full">
+<a aria-label="Open Pacific Novelty Deep Death and Shark Attack research" class="wall-slot slot-deep" data-wall-slot="deep" href="#pacific-full">
 <div class="flyer wall-card">
 <div class="flyer-head">Pacific Novelty · AMOA 1980</div>
 <div class="flyer-title">DEEP<br/>DEATH</div>
 <div class="flyer-sub">Prototype name at AMOA. Shark Attack was already the commercial identity by late 1980.</div>
-<div class="starburst"></div>
+<div class="starburst" data-mark="1980"></div>
 </div>
 </a>
 <a aria-label="Contribute information to Arcade Side B" class="wall-slot slot-contribute" href="#contribute">
@@ -699,7 +701,7 @@ footer strong{color:#dce2e5;font-family:Georgia,serif;font-size:16px}
 <p>Help strengthen the record. Useful contributions are reviewed and credited with permission.</p>
 </div>
 </a>
-<a aria-label="Open Atari Theatre Kiosk research" class="wall-slot slot-theatre" href="#hardware">
+<a aria-label="Open Atari Theatre Kiosk research" class="wall-slot slot-theatre" data-wall-slot="manual" href="#hardware">
 <div class="manual wall-card">
 <span class="small">Atari · 1976 · TM-076</span>
 <strong>THEATRE KIOSK<br/>Operation &amp; Maintenance Supplement</strong>
@@ -10606,6 +10608,7 @@ Secondary/preservation cross-check for Threshold developer attribution, Taito/Ta
     const rawWeek=parseInt(card.getAttribute('data-feature-added-week')||'',10);
     return {
       type:type==='company history'?'Company history':'Game history',
+      year:(kind.textContent.match(/\b(?:19|20)\d{2}\b/)||[])[0]||'',
       title:title.textContent.trim(),
       desc:desc.textContent.trim(),
       href:href,
@@ -10618,6 +10621,73 @@ Secondary/preservation cross-check for Threshold developer attribution, Taito/Ta
   const candidates=Array.from(document.querySelectorAll('a.collection-card[href$="-full"]'))
     .map(function(card,index){return candidateFromCard(card,index,currentWeek);})
     .filter(Boolean);
+
+  // The Research Wall has its own weekly, no-repeat deck. It draws from the same
+  // eligible company/game histories while leaving the contribution card pinned.
+  const wallSlots=Array.from(document.querySelectorAll('.wall-slot[data-wall-slot]'));
+  if(wallSlots.length && candidates.length){
+    let wallPool=[];
+    let wallUnseen=[];
+    let wallCycle=0;
+    let wallSelection=[];
+    function beginWallCycle(){
+      const seed=wallCycle++;
+      wallUnseen=wallPool.slice().sort(function(a,b){
+        const ah=hashString(a.href+'|research-wall|'+seed);
+        const bh=hashString(b.href+'|research-wall|'+seed);
+        return ah===bh ? a.order-b.order : ah-bh;
+      });
+    }
+    for(let week=ROTATION_START_WEEK;week<=currentWeek;week++){
+      const newcomers=candidates.filter(function(x){return x.addedWeek===week;})
+        .sort(function(a,b){return a.order-b.order;});
+      newcomers.forEach(function(item){
+        if(!wallPool.some(function(x){return x.href===item.href;})){
+          wallPool.push(item);
+          if(wallUnseen.length) wallUnseen.push(item);
+        }
+      });
+      candidates.filter(function(x){return x.addedWeek<ROTATION_START_WEEK;}).forEach(function(item){
+        if(!wallPool.some(function(x){return x.href===item.href;})) wallPool.push(item);
+      });
+      const chosen=[];
+      const chosenIds=new Set();
+      while(chosen.length<wallSlots.length && wallPool.length){
+        if(!wallUnseen.length) beginWallCycle();
+        if(!wallUnseen.length) break;
+        const item=wallUnseen.shift();
+        if(chosenIds.has(item.href)){wallUnseen.push(item);continue;}
+        chosen.push(item);
+        chosenIds.add(item.href);
+      }
+      if(week===currentWeek) wallSelection=chosen;
+    }
+    wallSelection.forEach(function(item,index){
+      const slot=wallSlots[index];
+      if(!slot) return;
+      slot.href=item.href;
+      slot.setAttribute('aria-label','Open '+item.title+' research');
+      const kind=item.type+(item.year?' · '+item.year:'');
+      const title=item.title;
+      const desc=item.desc;
+      const star=slot.querySelector('.starburst');
+      if(star) star.setAttribute('data-mark',item.year||'SIDE B');
+      if(slot.dataset.wallSlot==='clip'){
+        const card=slot.querySelector('.wall-card');
+        card.querySelector('.tiny').textContent=kind;
+        card.querySelector('strong').textContent=title;
+        card.querySelector('p').textContent=desc;
+      }else if(slot.dataset.wallSlot==='deep'){
+        slot.querySelector('.flyer-head').textContent=kind+' · ARCADE SIDE B';
+        slot.querySelector('.flyer-title').textContent=title.toUpperCase();
+        slot.querySelector('.flyer-sub').textContent=desc;
+      }else if(slot.dataset.wallSlot==='manual'){
+        slot.querySelector('.small').textContent=kind;
+        slot.querySelector('strong').textContent=title;
+        slot.querySelector('.manual-note').textContent=desc;
+      }
+    });
+  }
 
   if(candidates.length<4) return;
 
