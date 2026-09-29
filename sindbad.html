@@ -1,0 +1,895 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Sindbad Mystery | Arcade Side B</title><style>
+:root{
+  --bg:#090d12;
+  --bg2:#0f1720;
+  --card:#eee7d8;
+  --card2:#f4ede1;
+  --ink:#222a2f;
+  --muted:#687174;
+  --line:#c8beab;
+  --navy:#13202a;
+  --navy2:#1b2b36;
+  --bronze:#c28a32;
+  --bronze2:#d8b36b;
+  --green:#486756;
+  --green-soft:#e3eee6;
+  --amber:#8a6532;
+  --amber-soft:#f5ead3;
+  --red:#86504b;
+  --red-soft:#f2e3e0;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:Georgia,"Times New Roman",serif;
+  background:
+    radial-gradient(circle at 80% 8%,rgba(112,164,184,.08),transparent 24%),
+    linear-gradient(rgba(255,255,255,.012) 1px,transparent 1px),
+    var(--bg);
+  background-size:auto,100% 4px,auto;
+  color:#dfe4e6;
+}
+a{color:#d9b46f}
+.mast{
+  background:linear-gradient(135deg,#0a0f14,#13202a);
+  border-bottom:4px solid var(--bronze);
+}
+.wrap{width:min(1120px,calc(100% - 32px));margin:0 auto}
+.topline{
+  display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  padding:18px 0 6px;
+  color:#bac3c8;
+  font:700 11px Arial,Helvetica,sans-serif;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+}
+.hero{
+  padding:10px 0 28px;
+}
+.crumb{
+  color:#93a0a8;
+  font:700 12px Arial,Helvetica,sans-serif;
+  margin:0 0 14px;
+}
+.crumb a{color:#d9b46f;text-decoration:none}
+.hero h1{
+  margin:0;
+  color:#f1ede5;
+  font-size:clamp(40px,8vw,74px);
+  line-height:.95;
+}
+.deck{
+  max-width:850px;
+  margin:16px 0 0;
+  color:#bdc7cc;
+  font-size:21px;
+  line-height:1.45;
+}
+.meta{
+  margin-top:12px;
+  color:#9facb4;
+  font:700 12px Arial,Helvetica,sans-serif;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.page{
+  width:min(1120px,calc(100% - 32px));
+  margin:24px auto 44px;
+}
+.backlinks{
+  display:flex;gap:10px;flex-wrap:wrap;
+  margin-bottom:18px;
+}
+.backhome{
+  display:inline-block;
+  padding:9px 11px;
+  border:1px solid #46525c;
+  color:#d7b774;
+  text-decoration:none;
+  font:700 11px Arial,Helvetica,sans-serif;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+}
+.backhome:hover{color:white;border-color:#687680}
+.game-identity{
+  margin:0 0 24px;
+  border:1px solid #b8ad98;
+  background:linear-gradient(135deg,rgba(194,138,50,.08),transparent 48%),#f3eddf;
+  color:#20272c;
+  box-shadow:0 16px 34px rgba(0,0,0,.18);
+  overflow:hidden;
+}
+.marquee-wrap{
+  padding:22px 24px 20px;
+  border-bottom:1px solid var(--line);
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 230px;
+  gap:18px;
+  align-items:center;
+}
+.marquee{
+  padding:20px 20px 18px;
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.06),transparent 45%),
+    linear-gradient(135deg,#11181f,#162733);
+  border:4px solid var(--bronze);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.08);
+}
+.marquee-small{
+  color:#cab48a;
+  font:700 11px Arial,Helvetica,sans-serif;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  margin-bottom:8px;
+}
+.marquee-title{
+  color:#f2efe8;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(40px,6vw,72px);
+  line-height:.9;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  text-shadow:0 1px 0 rgba(255,255,255,.1);
+}
+.marquee-sub{
+  margin-top:10px;
+  color:#b7c3ca;
+  font:700 11px Arial,Helvetica,sans-serif;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+.marquee-note{
+  color:#675f54;
+  font:12px/1.45 Arial,Helvetica,sans-serif;
+}
+.marquee-note strong{
+  display:block;
+  color:#1d2b35;
+  margin-bottom:6px;
+  font:700 11px Arial,Helvetica,sans-serif;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+.game-snapshot{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+}
+.snapshot-cell{
+  padding:17px 18px 18px;
+  border-right:1px solid var(--line);
+  min-width:0;
+}
+.snapshot-cell:last-child{border-right:0}
+.snapshot-label{
+  display:block;
+  color:#786f63;
+  font:700 9px Arial,Helvetica,sans-serif;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  margin-bottom:5px;
+}
+.snapshot-value{
+  display:block;
+  color:#1c2d37;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:19px;
+  line-height:1.2;
+}
+.snapshot-note{
+  display:block;
+  margin-top:5px;
+  color:#6e726f;
+  font:11px/1.35 Arial,Helvetica,sans-serif;
+}
+.shell{
+  display:grid;
+  grid-template-columns:280px minmax(0,1fr);
+  gap:22px;
+  align-items:start;
+}
+.sidebar .toc{
+  position:sticky;top:14px;
+  background:#121922;
+  border:1px solid #33404b;
+  box-shadow:0 12px 28px rgba(0,0,0,.22);
+}
+.toc-title{
+  padding:14px 16px 10px;
+  color:#c7d0d5;
+  font:700 13px Arial,Helvetica,sans-serif;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.toc a{
+  display:block;
+  padding:11px 16px;
+  color:#b8c3c9;
+  border-top:1px solid #28343d;
+  text-decoration:none;
+  font:15px/1.35 Arial,Helvetica,sans-serif;
+}
+.toc a:hover{color:#f0c57e}
+.sidebar-note{
+  margin-top:12px;
+  background:#151c23;
+  color:#9da8ae;
+  border:1px solid #303c46;
+  padding:13px 14px;
+  font:14px/1.45 Arial,Helvetica,sans-serif;
+}
+article{
+  background:var(--card);
+  color:var(--ink);
+  border:1px solid #bdb29e;
+  box-shadow:0 20px 44px rgba(0,0,0,.26);
+  padding:30px 34px 38px;
+}
+.section + .section{margin-top:34px}
+.section h2{
+  margin:0 0 12px;
+  color:#162631;
+  font-size:34px;
+  border-bottom:2px solid #b57f31;
+  padding-bottom:8px;
+}
+.section h3{
+  margin:24px 0 10px;
+  color:#26353c;
+  font-size:26px;
+}
+.lead{
+  font-size:22px;
+  line-height:1.55;
+  color:#35444a;
+}
+p{font-size:20px;line-height:1.72;margin:16px 0}
+.quick{display:flex;gap:8px;flex-wrap:wrap}
+.quick span{
+  background:#ddd4c5;
+  color:#394950;
+  padding:6px 10px;
+  border-radius:999px;
+  font:700 11px Arial,Helvetica,sans-serif;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.figure{margin:22px 0}
+.figure img{
+  width:100%;
+  height:auto;
+  display:block;
+  border:1px solid #b7ab96;
+  background:#ddd6c8;
+}
+.caption{
+  font:14px/1.55 Arial,Helvetica,sans-serif;
+  color:#5c6568;
+  margin-top:8px;
+}
+.imgfallback{
+  display:none;
+  border:1px dashed #ae9f85;
+  background:#f7f1e4;
+  color:#6f695f;
+  padding:16px;
+  font:14px/1.5 Arial,Helvetica,sans-serif;
+}
+.callout{
+  margin:22px 0;
+  padding:16px 18px;
+  border-left:5px solid;
+  background:#faf7ef;
+}
+.callout p{margin:10px 0 0;font-size:19px}
+.label{
+  font:700 11px Arial,Helvetica,sans-serif;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+.confirmed{border-color:var(--green);background:var(--green-soft)}
+.confirmed .label{color:var(--green)}
+.open{border-color:var(--amber);background:var(--amber-soft)}
+.open .label{color:var(--amber)}
+.pull{
+  margin:22px 0;
+  padding:16px 18px;
+  background:#f6efe2;
+  border:1px solid #d9cab1;
+  color:#35444a;
+  font-size:23px;
+  line-height:1.5;
+}
+footer{
+  margin-top:34px;
+  border-top:1px solid #28343d;
+  color:#7f8b92;
+  background:#070a0d;
+}
+.footer-inner{
+  width:min(1120px,calc(100% - 32px));
+  margin:0 auto;
+  padding:20px 0 26px;
+  font:14px/1.55 Arial,Helvetica,sans-serif;
+}
+.footer-inner strong{color:#d9dfe2}
+@media(max-width:980px){
+  .marquee-wrap{grid-template-columns:1fr}
+  .game-snapshot{grid-template-columns:1fr 1fr}
+  .snapshot-cell{border-bottom:1px solid var(--line)}
+  .snapshot-cell:nth-child(2),
+  .snapshot-cell:nth-child(4){border-right:0}
+  .snapshot-cell:nth-child(5){grid-column:1 / -1;border-bottom:0}
+  .shell{grid-template-columns:1fr}
+  .sidebar .toc{position:static}
+}
+@media(max-width:600px){
+  .wrap,.page,.footer-inner{width:min(calc(100% - 20px),1120px)}
+  .hero{padding-bottom:22px}
+  .deck{font-size:18px}
+  article{padding:20px 16px 26px}
+  .section h2{font-size:28px}
+  .section h3{font-size:23px}
+  p,.lead{font-size:18px}
+  .game-snapshot{grid-template-columns:1fr}
+  .snapshot-cell{border-right:0 !important;border-bottom:1px solid var(--line)}
+  .snapshot-cell:last-child{border-bottom:0}
+  .marquee-wrap{padding:18px}
+}
+
+.footer-inner.footer-row{display:flex;align-items:flex-end;justify-content:space-between;gap:22px}
+.site-counter{flex:0 0 auto;text-align:right;font:800 9px Arial,Helvetica,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#748089}
+.site-counter .counter-label{margin-bottom:5px}
+.site-counter img{display:block;margin-left:auto;border:1px solid #303944;box-shadow:0 4px 12px rgba(0,0,0,.28)}
+@media(max-width:620px){
+  .footer-inner.footer-row{align-items:flex-start;flex-direction:column}
+  .site-counter{text-align:left}
+  .site-counter img{margin-left:0}
+}
+
+
+
+/* Reader-facing source and table containment */
+article a, .source-list a, .footnotes a { overflow-wrap:anywhere; }
+.table-scroll {max-width:100%;overflow-x:auto;}
+.table-scroll:focus-visible {outline:2px solid #d7b56d;outline-offset:3px;}
+
+article{min-width:0}article a{color:#79511c}h2{overflow-wrap:anywhere}.technical{background:#dceaf0;border:1px solid #95b0bf;border-radius:14px;padding:20px}.technical li{font:16px/1.65 Arial,sans-serif}.archive-figure{margin:26px auto;max-width:100%;padding:10px;background:#faf6ed;border:1px solid #bbae96}.enlarge{padding:0;border:0;background:transparent;display:block;margin:auto;max-width:100%;cursor:zoom-in}.archive-figure img{display:block;max-width:100%;width:auto;height:auto;max-height:none;margin:auto}.archive-figure.pixel img{width:512px;image-rendering:pixelated}.archive-figure.pixel{max-width:536px}figcaption{font:13px/1.6 Arial,sans-serif;color:#515c61;margin:10px 2px}figcaption span{font-weight:bold}.translation{padding:12px;border-left:3px solid #ae7c34;background:#ede4d4}.translation strong{font:700 11px Arial,sans-serif;color:#79571f;text-transform:uppercase}.translation p{font:14px/1.6 Arial,sans-serif;margin:7px 0}.section{margin-bottom:38px}li{font-size:18px;line-height:1.65}.sources{overflow-wrap:anywhere}.sources p,.sources li{font:14px/1.65 Arial,sans-serif}.sources h3{font-size:23px}details{margin:22px 0;padding:14px;background:#f8f1e5;border:1px solid #c8bba1}summary{cursor:pointer;font:700 16px/1.5 Arial,sans-serif}.rights{font:12px/1.65 Arial,sans-serif}.supplement img{max-width:100%}.image-dialog{width:min(96vw,1400px);max-width:96vw;max-height:95vh;background:#101820;color:white;border:1px solid #ab8040;padding:14px}.image-dialog::backdrop{background:#000d}.image-dialog img{display:block;max-width:100%;height:auto;margin:auto}.image-dialog button{position:sticky;top:0;float:right;background:#f0c57e;border:0;padding:12px;cursor:pointer}.image-dialog p{font:14px Arial,sans-serif}a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #ba802f;outline-offset:4px}.top-return{text-align:center;margin:18px 0}.hero .deck{max-width:850px}.toc{max-height:none}.sidebar{min-width:0}.source-table{overflow:auto}table{border-collapse:collapse;max-width:100%}td,th{border:1px solid #c8beab;padding:8px;font:13px/1.5 Arial,sans-serif}@media(max-width:600px){.archive-figure.pixel img{width:256px}.technical{padding:14px}.section h2{font-size:27px}.topline{font-size:9px}.image-dialog{padding:8px}.page{width:calc(100% - 16px)}}
+
+article{min-width:0}article a{color:#74501e}figure{margin:24px 0}figure img{display:block;width:100%;height:auto;max-height:640px;object-fit:contain;background:#10171d}figure button{display:block;padding:0;border:0;background:transparent;width:100%;cursor:zoom-in}figcaption{font:14px/1.55 Arial,sans-serif;color:#566167;margin-top:8px}.pair{display:grid;grid-template-columns:1fr 1fr;gap:18px}.pair figure{min-width:0}.marquee-photo{max-width:1030px;margin:22px auto 0}.marquee-photo img{max-height:320px;object-fit:contain}.marquee-photo figcaption{color:#a8b4bb}li{font-size:19px;line-height:1.65;margin:8px 0}blockquote{border-left:4px solid #bd8d3c;margin:24px 0;padding:2px 20px;background:#f7f0e1}.technical{background:#deebf5;border:1px solid #aac1d2;border-radius:16px;padding:22px;margin:26px 0}.technical dl{display:grid;grid-template-columns:1fr 1fr;gap:18px}.technical dt{font:700 11px Arial;text-transform:uppercase;color:#405e73;letter-spacing:.08em}.technical dd{margin:5px 0 0;font:17px/1.45 Arial}.translation{border-left:4px solid #bd8d3c;padding-left:18px}.review-note{text-align:center;padding:9px;background:#3b2e17;color:#f4dbac;font:12px Arial}.toc summary{cursor:pointer;padding:14px 16px;font:700 14px Arial;color:#d9b46f}dialog{width:min(1200px,96vw);max-height:94vh;padding:16px;background:#10171d;color:white;border:1px solid #aa803b}dialog::backdrop{background:rgba(0,0,0,.88)}dialog img{max-width:100%;height:auto;display:block;margin:auto}dialog button{position:sticky;top:0;float:right;padding:10px 14px;cursor:pointer}dialog p{font:14px/1.5 Arial}.lightbox-link{color:#e0bc7e}h1,h2,h3{overflow-wrap:anywhere}table{width:100%;border-collapse:collapse}td,th{border-bottom:1px solid #bcb09c;padding:10px;text-align:left}.backlinks{justify-content:center}.sources li{overflow-wrap:anywhere}@media(max-width:650px){.pair,.technical dl{grid-template-columns:1fr}.section h2{font-size:27px}.hero h1{font-size:43px;line-height:1.05}figure img{max-height:520px}.technical{padding:16px}li{font-size:18px}}
+body{background:#090d12;color:#dfe4e6}.article-shell{max-width:1060px;margin:0 auto;padding:2.2rem 1.4rem 5rem}.article-shell>h1{font-size:clamp(2.3rem,6vw,4.5rem);color:#f0e6cc}.dek{font-size:1.25rem;color:#d8b36b}.article-shell h2,.article-shell h3{scroll-margin-top:2rem}.article-shell p,.article-shell li{line-height:1.75;font-size:1.075rem}.article-shell table{display:block;overflow-x:auto;border-collapse:collapse;width:100%;margin:2rem 0}.tech-snapshot{background:#132631;border:1px solid #547589;border-radius:14px;padding:1.2rem 1.5rem;margin:2.2rem 0 3rem}.tech-snapshot h2{margin-top:0;color:#e4edf2}.tech-snapshot table{margin:1rem 0}.tech-snapshot th{text-align:left;color:#d5e8ef;width:32%}.tech-snapshot td{color:#eef1ed}.tech-snapshot .tech-note{font-size:.9rem;color:#c4d0d2;margin:0}.article-shell td,.article-shell th{border:1px solid #677179;padding:.6rem .8rem;min-width:9rem}.archive-figure{max-width:680px;margin:2.2rem auto;color:#cbd2d4;text-align:center}.archive-figure.wide{max-width:100%}.archive-figure.pixel{max-width:330px}.archive-figure.logo{max-width:400px}.archive-figure button{border:0;background:transparent;padding:0;cursor:zoom-in;width:100%}.archive-figure img{max-width:100%;height:auto;display:block;margin:auto}.archive-figure figcaption{font-size:.9rem;line-height:1.45;margin:.5rem 0}.research-appendix{border-top:2px solid #b78a48;margin-top:4rem;padding-top:1rem}.research-appendix summary{cursor:pointer;font:700 1.4rem system-ui;color:#d8b36b;padding:1rem 0}.research-appendix[open]{padding-bottom:2rem}.research-appendix h1{font-size:1.8rem}.research-appendix h2{font-size:1.5rem}.research-appendix a{overflow-wrap:anywhere}.top-link{font:600 1rem system-ui;color:#d8b36b}dialog{background:#101820;color:#eee;border:1px solid #d8b36b;max-width:min(96vw,1200px);max-height:96vh}dialog img{max-width:90vw;max-height:85vh;object-fit:contain}@media(max-width:600px){.article-shell{padding:1.2rem .8rem}}
+</style><meta name="description" content="Arcade Side B’s researched history of Sindbad Mystery, Sega’s 1983 treasure-maze arcade game.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://arcadesideb.com/sindbad.html">
+<meta property="og:title" content="Sindbad Mystery | Arcade Side B">
+<meta property="og:description" content="Arcade Side B’s researched history of Sindbad Mystery, Sega’s 1983 treasure-maze arcade game.">
+<meta property="og:url" content="https://arcadesideb.com/sindbad.html">
+</head><body><main class="article-shell"><a class="top-link" href="https://arcadesideb.com/#games" target="_parent">← Back to Games</a><h1>Sindbad Mystery</h1><p class="dek">Sega, 1983: treasure maps, movable rocks and a flying camel.</p><p><strong>Sega, 1983</strong></p>
+<p><strong>Research status:</strong> Complete to a reasonable publication endpoint, September 2026. The remaining uncertainties are narrow technical/provenance questions and do not prevent publication.</p>
+<h2>Website Snapshot</h2><figure class="archive-figure logo"><button class="enlarge" type="button" aria-label="Enlarge Sindbad Mystery title artwork. Source: LaunchBox Games Database."><img src="assets/sindbad/01_logo_marquee.png" alt="Sindbad Mystery title artwork. Source: LaunchBox Games Database." loading="lazy"></button><figcaption>Sindbad Mystery title artwork. Source: LaunchBox Games Database.</figcaption></figure><figure class="archive-figure "><button class="enlarge" type="button" aria-label="Enlarge Original Japanese Sega flyer, front, 1983."><img src="assets/sindbad/08_original_japanese_flyer_front.jpg" alt="Original Japanese Sega flyer, front, 1983." loading="lazy"></button><figcaption>Original Japanese Sega flyer, front, 1983.</figcaption></figure><figure class="archive-figure "><button class="enlarge" type="button" aria-label="Enlarge Modern English translation of the period Japanese flyer front; not an original English Sega flyer."><img src="assets/sindbad/02_translated_flyer_front.jpg" alt="Modern English translation of the period Japanese flyer front; not an original English Sega flyer." loading="lazy"></button><figcaption>Modern English translation of the period Japanese flyer front; not an original English Sega flyer.</figcaption></figure>
+<p>Released by Sega in Japan in July 1983, <strong>Sindbad Mystery</strong> is a single-screen treasure-maze game that hides a surprisingly thoughtful puzzle underneath its bright Arabian-fantasy presentation. Thirty question marks gradually reveal a treasure map, but the player is not required to collect them all. Every opened panel earns 100 points; every panel left unopened when the treasure is found is worth 300. The better the player becomes at reading the map, the less information—and risk—he needs.</p>
+<p>The game's one action button is unusually versatile. Sindbad can dig holes, fill them back in and shove rocks according to context. Holes temporarily reshape a chase, ordinary enemies can erase them, and rocks can become weapons or hazards depending on elevation and momentum. Stairways, upper walkways, bridges and visually overlapping routes make the maze more three-dimensional than it first appears. After three primary stages, the game loops at higher difficulty, capped by the wonderfully odd sight of Sindbad departing on a flying camel.</p>
+<p>Sindbad Mystery also occupies an interesting place in Sega history. It sits at the end of the G80 Raster line while already using hardware ideas associated with the emerging System 1 generation. Period Japanese trade material shows an initially good operator rating that fell over the following weeks, while retrospective accounts connect the game with Steve Hanawa, Yoji Ishii and Yoshiki Kawasaki. Complete original machines remain difficult to document, making surviving Sega flyers, boards, program code and period trade coverage especially important to reconstructing the game accurately.</p>
+<section class="tech-snapshot"><h2>Technical snapshot</h2>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Title</td>
+<td>Sindbad Mystery</td>
+</tr>
+<tr>
+<td>Manufacturer / publisher</td>
+<td>Sega</td>
+</tr>
+<tr>
+<td>Release</td>
+<td>Japan, July 1983</td>
+</tr>
+<tr>
+<td>Genre</td>
+<td>Single-screen treasure-maze action / puzzle game</td>
+</tr>
+<tr>
+<td>Players</td>
+<td>One or two alternating in the arcade program/MAME implementation; Sega’s current archive lists one player, creating a documentation discrepancy</td>
+</tr>
+<tr>
+<td>Controls</td>
+<td>Four-way joystick and one context-sensitive action button</td>
+</tr>
+<tr>
+<td>Monitor</td>
+<td>Vertical</td>
+</tr>
+<tr>
+<td>Hardware family</td>
+<td>Sega G80 Raster, at the late transition toward System 1-style architecture</td>
+</tr>
+<tr>
+<td>Main processor</td>
+<td>Sega 315-5028 encrypted Z80-family CPU, approximately 3.87 MHz in current MAME</td>
+</tr>
+<tr>
+<td>Sound processor</td>
+<td>Z80, 4 MHz in current MAME</td>
+</tr>
+<tr>
+<td>Sound</td>
+<td>Two SN76496 PSGs in the currently emulated configuration; evidence exists for another surviving sound configuration</td>
+</tr>
+<tr>
+<td>MAME shortname</td>
+<td><code>sindbadm</code></td>
+</tr>
+<tr>
+<td>MAME support</td>
+<td>Added/promoted in MAME 0.35b9, March 30, 1999</td>
+</tr>
+<tr>
+<td>Game/board identifier in secondary technical references</td>
+<td>834-5244</td>
+</tr>
+<tr>
+<td>Japanese commercial form</td>
+<td>Period research supports board-set sale; dedicated cabinet formats have not been securely documented</td>
+</tr>
+<tr>
+<td>Starting lives</td>
+<td>3, 4, 5, or 6 selectable in the currently mapped MAME DIP settings</td>
+</tr>
+<tr>
+<td>Extra player</td>
+<td>One extra player can be configured at 10,000, 20,000 or 40,000 points, or disabled; the program provides only one such award</td>
+</tr>
+<tr>
+<td>Treasure-map panels</td>
+<td>30</td>
+</tr>
+</tbody>
+</table></section>
+<hr />
+<h2>Game Profile</h2><figure class="archive-figure pixel"><button class="enlarge" type="button" aria-label="Enlarge Original arcade title screen, enlarged threefold with nearest-neighbor scaling."><img src="assets/sindbad/07_title_screen_3x_nearest.png" alt="Original arcade title screen, enlarged threefold with nearest-neighbor scaling." loading="lazy"></button><figcaption>Original arcade title screen, enlarged threefold with nearest-neighbor scaling.</figcaption></figure>
+<p>Sindbad Mystery looks simple for about the first thirty seconds. A small hero runs around a compact maze, monsters chase him, question marks are scattered along the paths, and a treasure map fills in across the top of the screen. It is easy to file the game mentally beside the countless maze-chase games that followed Pac-Man. Then Sindbad reaches a rock, or digs a hole, or climbs onto an elevated path that passes over a route below it, and the game starts revealing what makes it different.</p>
+<p>The objective is treasure hunting rather than simply clearing dots. Somewhere in each maze is a hidden prize. Sindbad can dig for it at any suitable location, but searching blindly is inefficient and dangerous. The thirty question marks scattered around the maze reveal portions of a treasure map. Each one gives more information about the area in which the treasure is buried. The player can keep collecting question marks until the game effectively solves the problem for him, or he can study the developing map, recognize the location early, stop collecting clues and go dig up the prize.</p>
+<p>That choice is the center of the design. Sindbad Mystery does not merely allow the player to solve the treasure location early; it rewards doing so. Opening another question mark is worth 100 points. If Sindbad finds the treasure while map panels remain unopened, each remaining panel is worth 300 points. A player who needs less information earns more. What first appears to be a simple collection maze is therefore a small deduction game running under constant pressure.</p>
+<p>The pressure comes from monsters that pursue Sindbad around routes that are much less flat than they initially appear. Stairs climb to upper walkways. Other paths run below them. Routes can visually cross without actually meeting. Swinging or dipping rope bridges change the behavior of moving rocks. Tunnels provide transportation for Sindbad but, according to targeted ROM analysis, do not provide the same warp transport for rocks. Learning the maze is not just a matter of memorizing turns; the player has to understand which apparent crossings are real connections and which are different elevations.</p>
+<p>That layered construction is one of the game's best ideas. In a conventional single-screen maze, an experienced player quickly sees almost every possible escape route. Sindbad Mystery deliberately makes the first few credits harder to read. A path may look adjacent while being separated by elevation. A stairway may provide an escape that is invisible to someone reading the screen as a flat grid. Once those relationships make sense, the game becomes noticeably more manageable, and the maze begins to feel like a small place instead of a diagram.</p>
+<h2>The map is a wager on how much you know</h2>
+<p>Thirty question marks make the treasure map look like a conventional collection task. Sega's scoring rule changes the meaning of each mark. Opening one earns 100 points immediately. If Sindbad finds the treasure while a panel is still unopened, that panel is worth 300. For any single clue, the player is effectively exchanging a possible later 300-point reward for a certain 100-point reward and the information needed to find the prize. That is a 200-point difference per panel when the treasure is successfully found, though the comparison does not imply that a player can safely skip every clue.</p>
+<p>The mathematical upper bound from thirty unopened panels would be 9,000 points under that particular bonus rule, while opening all thirty would award 3,000 from the panels themselves. Those are illustrations of the rule, not claims about a practical maximum total score or the other events in a round. A blind dig can waste time and expose Sindbad to monsters; a few opened panels may save a life and make the treasure location clear. The game rewards the moment a player decides the evidence is sufficient. On one maze, that point may arrive early. On another, the player may need several more pieces of the map.</p>
+<p>This makes the first few question marks different from the last few. Early openings can eliminate wide areas of uncertainty. Once a treasure location is apparent, another clue may contribute little except a smaller immediate award. The player is balancing information, time, danger and points on every route around the maze. The published rule is simple enough to fit on the back of a flyer, but it gives the collection system an unusual degree of judgment.</p>
+<p>Koji Kenjoh later remembered the treasure location as changing and recalled that a player might occasionally dig it up with very little map information. That is retrospective player memory, not a contemporary rule sheet. It nevertheless captures the distinctive temptation of the game: act on a hunch before the whole picture is exposed. The precise placement algorithm was not established by the handoff research, so this article should not dress that memory up as a decoded random-number routine.</p><h2>One Button, Several Jobs</h2><figure class="archive-figure "><button class="enlarge" type="button" aria-label="Enlarge Original Japanese Sega flyer back with instructions and scoring."><img src="assets/sindbad/09_original_japanese_flyer_back.jpg" alt="Original Japanese Sega flyer back with instructions and scoring." loading="lazy"></button><figcaption>Original Japanese Sega flyer back with instructions and scoring.</figcaption></figure><figure class="archive-figure "><button class="enlarge" type="button" aria-label="Enlarge Modern English translation of the Japanese flyer back; a reader aid."><img src="assets/sindbad/03_translated_flyer_back.jpg" alt="Modern English translation of the Japanese flyer back; a reader aid." loading="lazy"></button><figcaption>Modern English translation of the Japanese flyer back; a reader aid.</figcaption></figure>
+<p>Sindbad has only a four-way joystick and one action button, but the button changes function according to what he is facing. ROM analysis found distinct internal actions corresponding to digging, burying/filling and shoving a rock. That economy is important: the game asks the player to understand context rather than memorize a control panel full of commands.</p>
+<p>On suitable ground, pressing the button digs a hole. The hole blocks movement and can be used to interfere with a pursuer. Press the button again while properly positioned at one of Sindbad's holes and he fills it back in. This is not an uncertain trick or a later-version feature. Sega's period flyer documents it, the arcade program contains a distinct burying/filling action, and direct MAME play testing confirmed the visible behavior.</p>
+<p>Holes are more flexible than the original finished profile suggested. Multiple holes can remain active at once; direct testing maintained at least four consecutive holes until monsters dealt with them. Sindbad can dig on elevated walkways as well as lower ground. He cannot dig directly on stair tiles, and if a monster is already too close he may be unable to start the digging action at all. That last detail matters in practice. A hole works best as a prepared obstacle or as a move made while there is still separation. Waiting until a monster is touching Sindbad is too late.</p>
+<p>The monsters also prevent holes from becoming permanent walls. Direct arcade-version testing showed ordinary enemies walking up to holes and removing them. Visually, the hole disappears at roughly the same speed that it appears when Sindbad digs it. Calling this “filling the hole” is a fair description of what the player sees. The enemies are not necessarily trapped forever or forced to make a long detour; they can undo Sindbad's work.</p>
+<p>This gives hole placement a useful tactical rhythm. A row of holes can temporarily reshape a chase and buy time, but the player should not assume the route has been permanently sealed. Dig early enough to matter, use the delay to change levels or reach a different corridor, and be ready for the route to reopen behind you.</p>
+<h2>A single button depends on the situation</h2>
+<p>The period Sega flyer shows the action button doing three different jobs: digging a hole, filling an existing hole and pushing a rock. That is more informative than the loose description “one-button controls.” The button's meaning changes with Sindbad's position and the object immediately in front of him. It asks the player to read the local terrain before acting. A button press near empty ground does not have the same consequence as one beside a rock or an existing hole.</p>
+<p>Direct arcade-version testing confirmed that a player-created hole can be filled again. It also maintained at least four holes at once. That last observation establishes a useful lower bound, not an unlimited capacity. A row of holes can interrupt a chase, but ordinary monsters can approach and erase the openings. The player has created a temporary traffic problem rather than permanent construction. If the holes block Sindbad's own intended path, the fill action gives him a way to undo the mistake.</p>
+<p>Elevation matters here too. Sindbad can dig on an upper walkway, according to direct testing, but not directly on a stair tile. Nor is a last-second dig guaranteed when an enemy is already close enough to interfere with the action. These limits make preparation more reliable than panic. A player who anticipates where monsters will travel can create space; a player who waits until contact range may never begin the animation.</p>
+<p>One small test corrected an intuitive but unnecessary assumption about rocks. A question mark on the far side of a blocking rock can sometimes be uncovered by positioning Sindbad and digging beyond it; he need not always move the rock first. That is exactly the sort of arcade detail that a generalized home-version guide could miss. The distinction arose from direct testing of the arcade game, and it is worth retaining because it changes how a player evaluates a crowded route.</p><h2>Rocks: Weapon, Tool and Liability</h2><figure class="archive-figure pixel"><button class="enlarge" type="button" aria-label="Enlarge First stage gameplay; the small original image is displayed at a modest size."><img src="assets/sindbad/04_gameplay_level_1.png" alt="First stage gameplay; the small original image is displayed at a modest size." loading="lazy"></button><figcaption>First stage gameplay; the small original image is displayed at a modest size.</figcaption></figure>
+<p>Rocks are the other major system. Sindbad does not carry a conventional weapon. Instead, the action button can shove a rock in the direction he is facing. Once a rock enters free movement, its behavior is governed by its state and the terrain; the normal shove routine does not simply let the player keep re-steering an already autonomous rock.</p>
+<p>That distinction matters because the most useful rock play comes from positioning. The player wants to understand where the rock can be sent, where gravity will take over and where enemies are likely to be when it arrives. On ordinary ground a rock can be used to threaten a corridor. On slopes, stairs and dipping bridges, terrain can turn it into a projectile that continues under its own momentum.</p>
+<p>Rocks crush enemies, but the scoring system strongly encourages doing more than flattening the first target available. Sega's flyer documents the beginning of the progression, while ROM analysis extends the table: successive enemies hit by the same rock score 200, then 400, then 600, with the sequence reaching 800 points for the fourth and later kills. The practical high-score lesson is obvious. If several monsters can be gathered into the same lane before the rock is sent, the same piece of terrain becomes much more valuable.</p>
+<p>The reward comes with several catches. Ordinary monsters eventually return after being crushed, so a successful rock shot does not permanently reduce the population. It gives points and breathing room, not a cleared board. Direct testing also established that rocks are not permanent barriers. When an enemy encounters a blocking rock it may sometimes turn around, but at other times it performs an animation and destroys the rock. In Dana's testing the motion could look like a small cane- or hook-like action; the exact implement is not identified strongly enough to name more specifically. During testing, enemies occasionally removed rocks before Sindbad could even reach them. A player therefore cannot count on leaving a rock in place as a reliable long-term barricade.</p>
+<p>Stairs are especially dangerous. A rock that is pushed far enough reaches the landing. Abandon the shove partway up, however, and the rock may sit briefly, shimmying for roughly two seconds, before rolling back down the way it came. That pause gives Sindbad just enough time to turn around, retreat and possibly get around a corner. If he does not, his own rock can crush him.</p>
+<p>The returning rock can also crush an enemy. Direct testing proved it. In theory, that makes the rollback an offensive trick: start the rock uphill, abandon it, get clear and let a pursuer take the hit on the return trip. In practice it is a trick shot rather than a dependable strategy. Setting up the enemy, the rock and Sindbad's escape route at the same time is difficult, and the enemies may destroy the rock before the attempt develops. It is worth knowing that the possibility exists, but a new player should treat rollback first as a hazard and only later as something to exploit deliberately.</p>
+<p>Rope bridges add another variation. When a rock reaches the appropriate part of a dipping or swinging bridge, it can take off under its own momentum instead of behaving like a rock being continuously shepherded across flat ground. The important lesson is to think of terrain as part of the weapon system. Sindbad does not simply “push rocks”; he places them into situations where slopes and structures determine what happens next.</p>
+<p>There is also a useful interaction between rocks and question marks. When a rock blocks Sindbad from standing directly on the far-side marker, he can position himself against the rock and use the action button so the digging action occurs on the opposite side beneath the question mark. This allows the map section to be revealed without first relocating the rock. It is the sort of small mechanical detail that makes Sindbad Mystery considerably more interesting once the player stops treating every obstacle as something that must be moved out of the way.</p>
+<h2>Rocks obey the maze, not just the player</h2>
+<p>The scoring table makes a well-placed rock attractive. Sega's flyer shows an increasing chain for successive enemies crushed by the same rock, and targeted program analysis extends it to 200, 400, 600 and then an 800-point cap for the fourth and later victims. The reward encourages a player to gather monsters into a shared lane before sending the rock. It is a positioning problem, not a rapid-fire weapon. Ordinary enemies eventually return, so the shot creates points and temporary relief without permanently clearing the level.</p>
+<p>Terrain can give the rock its own movement. A shove on level ground, a climb up stairs, and a passage over a dipping bridge do not have identical outcomes. Direct testing found that a rock abandoned partway up a stair route pauses and shimmies for roughly two seconds before rolling back. That delay is a warning, but not a guarantee of safety. Sindbad can be crushed by his own returning rock. An ordinary enemy can also be crushed on the return, which makes a trick shot possible if the positions line up; the handoff rightly treats it as an advanced opportunity rather than basic advice.</p>
+<p>A fully landed uphill rock behaved differently in the project tests and did not produce the same rollback. On some bridges and slopes, momentum carried a rock independently after the initial shove. Once it is freely moving, ordinary pushing input does not let Sindbad steer it like a controllable projectile. The player has to forecast the route before committing. This is why the elevated structures are more than visual variety. They are part of the weapon system.</p>
+<p>Rocks are not reliable walls either. A monster may turn away from one, but direct tests also showed enemies destroying a stationary obstruction. The observed animation suggested a small implement, yet its exact identity was not secure enough to name. The safe rule for play is to expect the obstacle to disappear. The safe rule for history is to describe what was seen without building a fictional enemy toolkit around a few pixels.</p>
+<p>The skull breaks the ordinary rock logic. The flyer presents it as a special danger, and program analysis found that it does not use the standard rock-crush path. Completing all thirty map panels can release it, but the program also has an earlier activation path that was not translated into a dependable player-facing trigger. The practical lesson is to be ready before the map is complete and not to assume a rock will eliminate this threat. The historical lesson is that code evidence can settle some negative claims while leaving the precise visible rule open.</p><h2>Reading the Treasure Map</h2><figure class="archive-figure pixel"><button class="enlarge" type="button" aria-label="Enlarge Second gameplay scene and maze layout."><img src="assets/sindbad/05_gameplay_level_2.png" alt="Second gameplay scene and maze layout." loading="lazy"></button><figcaption>Second gameplay scene and maze layout.</figcaption></figure>
+<p>The treasure map is more than a progress meter. Koji Kenjoh, writing retrospectively from his own experience as a player, describes the treasure position as changing and the map as revealing enough of the field to identify the relevant area. That matches the game's scoring incentives: a confident player can act before every panel is open.</p>
+<p>This changes how the question marks should be approached. A beginner naturally wants to collect them all because they look like the obvious objective. That works, and Sega's own current historical description notes that collecting all of them will reveal the treasure path to completion. But efficient play means watching the map after every few panels and asking whether the location is already recognizable.</p>
+<p>Because an opened panel is worth 100 points while an unopened panel can be worth 300 at successful completion, every unnecessary clue has an opportunity cost. The game is quietly asking how much certainty the player needs. That is unusually thoughtful design for an arcade title built around short, pressured rounds.</p>
+<p>There is also a considerate teaching feature at the other end of the spectrum. Kenjoh recalls that when the game ends before the treasure is found, the completed map can be shown so the player sees where the treasure had been. The effect is almost instructional: the lost credit still teaches the player how the map corresponded to the maze.</p>
+<h2>The Skull</h2>
+<p>As the round becomes more dangerous, a large skull joins the hunt. This enemy deserves separate treatment because the program does not handle it as an ordinary monster. The skull is effectively a special pursuer rather than just a tougher member of the existing group.</p>
+<p>Earlier versions of this profile said that revealing the final map section directly caused the skull to appear. Period descriptions made the relationship sound more general, as though the skull emerged as play progressed. ROM analysis shows why both descriptions can sound right. Completing all thirty map panels is sufficient to release the skull, but the program also contains a separate path that can activate the skull before the entire map is uncovered.</p>
+<p>The precise player-visible condition for that earlier activation has not been established strongly enough to publish as a simple rule. Code analysis found a close relationship between special terrain handling, enemy behavior and the skull's early-activation state, but the final visible trigger is not clean enough to state as “do X and the skull appears.” The useful player-facing advice is simpler and safer: do not assume that leaving one question mark unopened guarantees that the skull will stay away. Finishing the full map releases it, and under some circumstances it can arrive sooner.</p>
+<p>Once present, the skull increases the importance of route knowledge. The program does not route the skull through the ordinary rock-crush handling used for the regular enemies, so a rock should not be treated as a way to remove it. Holes and rocks can still affect the shape of the chase, but neither is permanent safety. The layered maze, stairs and escape paths matter more as the pursuit becomes crowded.</p>
+<h2>Three Islands, Then a Harder Cycle</h2><figure class="archive-figure pixel"><button class="enlarge" type="button" aria-label="Enlarge Third gameplay scene."><img src="assets/sindbad/06_gameplay_level_3.png" alt="Third gameplay scene." loading="lazy"></button><figcaption>Third gameplay scene.</figcaption></figure>
+<p>Sindbad Mystery uses three primary maze designs. Each has its own visual structure and route problems, and the profile's three gameplay images correspond to those three main screens. Clearing a stage leads to a short travel sequence before the next island. One of the period-specific charms is a cameo by Sega's Pengo during the between-island sequence.</p>
+<p>After the three-stage group is completed, Sindbad leaves in a much more memorable way. The old profile called his mount a magical horse. It is a camel. The original Sega flyer visibly shows the flying camel, retrospective arcade testimony describes the same scene, and ROM investigation even found an internal music label identifying the “FLYING CAMEL THEME.” The correction is unusually well supported.</p>
+<p>After the three stages, the game loops with changed colors and increased challenge. The exact internal difficulty adjustments are less important to the player than the practical result: familiarity with the first three screens is only the beginning. The game expects route knowledge, more efficient treasure deduction and better use of rocks and holes as the cycles continue.</p>
+<h2>Why the First Credits Can Be Confusing</h2>
+<p>Sindbad Mystery does not communicate its depth through a complicated control scheme. It communicates it through interactions, and that means a first-time player can easily miss half the game.</p>
+<p>Someone approaching it as a Pac-Man-style maze chase may concentrate on collecting every question mark. That player may not understand that the treasure can be found early, that unopened panels are more valuable at completion, that holes can be filled again, that enemies can fill those holes too, that rocks are button-shoved rather than conventional weapons, or that paths crossing visually may be on different levels.</p>
+<p>Once those pieces click, the game becomes much more deliberate. The question marks stop being mandatory dots. Rocks stop being scenery. A stairway becomes both a route and a ballistic hazard. A hole becomes temporary control of the maze rather than a permanent wall. The player begins creating situations instead of only fleeing from them.</p>
+<p>That is the strongest reason Sindbad Mystery deserves attention. It is not obscure merely because an old Sega logo is attached to it. Its maze contains several systems that reinforce one another, and its scoring encourages the player to understand those systems rather than just survive them.</p>
+<hr />
+<h2>Hints from the Arcade</h2>
+<p><strong>Read the maze in three dimensions.</strong> Two paths that appear to cross may be on different elevations. Learn which crossings actually connect, where the stairs lead and which routes pass underneath others.</p>
+<p><strong>Do not automatically collect every question mark.</strong> There are thirty map panels. Each opened panel is worth 100 points, but every unopened panel remaining when the treasure is successfully found is worth 300. Once you recognize the treasure area, consider leaving the remaining clues alone.</p>
+<p><strong>Dig before the enemy is on top of you.</strong> Direct testing showed that Sindbad can be prevented from starting a hole when a monster is already too close. Use holes proactively rather than waiting until the last instant.</p>
+<p><strong>Multiple holes can stay active.</strong> At least four simultaneous holes were directly verified. A short row of holes can reshape a chase, but do not assume it will stay that way.</p>
+<p><strong>Enemies can fill holes.</strong> A pursuer may walk up to one of Sindbad's holes and make it disappear. Use the delay to escape; do not treat the hole as a permanent wall.</p>
+<p><strong>Fill your own bad holes.</strong> Face an existing hole and use the action button again to fill it. If your own obstacle is blocking the route you now need, undo it.</p>
+<p><strong>You can dig on elevated paths, but not on the stairs themselves.</strong> That opens more defensive possibilities on the upper sections of the maze than a new player may expect.</p>
+<p><strong>Use the button to shove rocks.</strong> Rock movement is a context-sensitive action. Once a rock is freely moving, normal re-shoving does not give Sindbad continuous steering control.</p>
+<p><strong>Line enemies up before launching a rock.</strong> Successive kills by the same rock increase through 200, 400, 600 and then 800 points, with the high end capped at 800 per additional kill. A crowded corridor can be worth far more than an isolated target.</p>
+<p><strong>Rock kills are temporary relief.</strong> Crushed ordinary enemies return. Take the points and use the opening to reposition.</p>
+<p><strong>A rock is not a permanent barricade.</strong> Enemies sometimes turn away from a blocking rock, but direct testing also showed them stopping and destroying it. Plan for the route to reopen.</p>
+<p><strong>Commit when pushing uphill.</strong> If a rock is abandoned partway up the stairs, it pauses and shakes briefly before rolling backward. That warning is usually enough to retreat if you react immediately.</p>
+<p><strong>The rollback can kill an enemy, but don't build your whole strategy around it.</strong> It works, but setting up the shot deliberately is difficult. Think of it as an advanced trick or lucky opportunity rather than a basic technique.</p>
+<p><strong>Use bridge and slope momentum.</strong> Terrain can send a rock moving independently. Learn where gravity will take it before pressing the button.</p>
+<p><strong>A rock can sometimes be left in place while you uncover a question mark beyond it.</strong> Position Sindbad against the rock and use the digging action to reach the marker on the far side rather than assuming the rock must always be moved first.</p>
+<p><strong>Do not count on the skull waiting for the last question mark.</strong> Completing the thirty-panel map releases it, but ROM analysis indicates that the game can activate it earlier under another condition. Be ready before the round becomes crowded.</p>
+<p><strong>Do not expect a rock to eliminate the skull.</strong> The skull is handled differently from the ordinary enemies and does not use their normal rock-crush path. Use rocks for space and for ordinary enemies, not as a guaranteed skull weapon.</p>
+<hr />
+<h2>Development and Sega Context</h2>
+<p>Sindbad Mystery arrived in July 1983 during a transitional moment for Sega. The company was still producing games associated with its G80 Raster hardware family, but the architecture represented by Sindbad was already moving toward the design choices that would characterize Sega's System 1 generation.</p>
+<p>Current MAME documentation describes the earlier G80 Raster platform as a system built around a common CPU/video foundation with game-specific board stacks and Sega's unusual G80 security arrangements. As the hardware evolved, Sega consolidated portions of those stacks. Sindbad sits at the far end of that evolution. MAME's historical notes explicitly describe it as the final G80 Raster game and point out that it uses an encrypted Z80 much like the System 1 games, together with a Z80-driven pair of SN76496 sound chips that closely resemble the later System 1 sound arrangement.</p>
+<p>That makes the game's hardware identity slightly more interesting than a simple label such as “Sega G80 Raster.” It belongs to that family, but it also shows Sega already moving away from some of the earlier G80 assumptions.</p>
+<p>The development personnel are not presented through an ordinary arcade credit roll, so the safest approach is to combine later interviews and reconstructed credits while distinguishing levels of certainty.</p>
+<p>Steve Hanawa is strongly associated with the design and programming. Later credit databases identify him in both roles, and an interview-based account of his Sega career says that Sindbad Mystery was his favorite among the arcade games he programmed because he liked its combination of maze crawling and puzzle solving. That recollection fits the final design remarkably well: Sindbad is recognizably a maze game, yet efficient treasure hunting depends on interpreting information rather than simply clearing the board.</p>
+<p>Yoji Ishii's role requires more careful wording. In a 2019 interview, Ishii discussed Sindbad Mystery together with Up'n Down and said that these were projects where plans came down from above and he revised them; he specifically said he was not the director. His later Flicky work was the point at which he described handling a project from zero. For publication, it is therefore safer to credit Ishii with planning/design involvement or revision of an inherited plan rather than elevating him to director.</p>
+<p>Yoshiki Kawasaki provides the strongest first-person link to the game's visual production. In Sega's own retrospective interview, Kawasaki recalled working on the arcade Sindbad Mystery and remembered the limitations of the Z80-based board, particularly the small character capacity. Other retrospective credit work connects him with the game's graphics and illustrated material. The important point is not merely to add another name; his recollection helps explain how much visual identity Sega packed into a constrained platform.</p>
+<p>No securely documented composer credit was located during this research. That absence is worth preserving rather than filling the gap from assumption or later fan attribution.</p>
+<p>That visual identity is easy to underestimate when looking only at screenshots. Sindbad Mystery uses bright sand-colored mazes, water, bridges, stairways, elevated paths, colorful enemies and Arabian-fantasy decoration rather than the black-background geometry common to many maze games of the period. The artwork is not decorative excess. The elevations and structures have to communicate route information, so the graphics are doing mechanical work as well as establishing atmosphere.</p>
+<hr />
+<h2>Release, Operator Context and Period Reception</h2>
+<p>Sega's own historical archive dates Sindbad Mystery to July 1983. Period Japanese material promoted it as a puzzle-feeling treasure-hunt video game, and the surviving Sega flyer explains the major systems in unusually useful detail: question marks, digging, filling holes, rock attacks and scoring are all presented as selling points.</p>
+<p>Research into Japanese trade material supports a list price of <strong>¥132,000 for the board set</strong>. That commercial form matters when discussing cabinet history. A board-set sale could be installed into existing compatible cabinets, and surviving period images do not justify confidently inventing a unique dedicated upright design for Sindbad Mystery.</p>
+<p>A contemporary <em>Game Machine</em> advertising page adds one useful piece of physical evidence: Sindbad Mystery is pictured operating in a Japanese table cabinet alongside other products. That photograph verifies a period table installation, but it still does <strong>not</strong> establish that the pictured cabinet was a unique factory-dedicated Sindbad Mystery model. It is evidence for how the game could be operated, not a license to reconstruct a cabinet design that has not been documented.</p>
+<p>The current MAME input definition includes an upright/cocktail cabinet setting, but the same MAME driver still carries a TODO to verify Sindbad Mystery's DIP switches. That setting is therefore technical evidence that cabinet-mode support existed in the program/emulation model, not proof that Sega sold two dedicated cabinet models. Until original cabinet documentation or an unquestionably original survivor is found, the safest publication wording is that the Japanese release is documented as a board-set product and that dedicated cabinet formats remain uncertain.</p>
+<p>Game Machine's operator charts provide a useful glimpse of early performance. The July 15, 1983 issue rated Sindbad Mystery <strong>7.00</strong> among new table-type video games. The magazine's own scale described 7 as “good,” based on operators' assessment of popularity and earnings. The subsequent numbers then fell in a clear short sequence: <strong>5.85 on August 1, 5.44 on August 15 and 4.88 on September 1</strong>.</p>
+<p>That progression is more informative than the later ratings alone. It suggests a game that attracted a genuinely positive initial operator response and then cooled over the following weeks. The figures are not unit sales and should not be turned into a commercial-success chart, but they make two extremes equally misleading: Sindbad Mystery was neither an obvious blockbuster nor a game that arrived to no operator interest at all.</p>
+<p>A later online claim that Sega sold 3,000 units has circulated, but this research did not locate a trustworthy primary source for that figure. It is intentionally excluded from the publication narrative.</p>
+<p>One of the more interesting later recollections concerns the United States. An interview-based account of Steve Hanawa's Sega career says that after the Japanese release he went to the United States and worked on a localized arcade version. According to that account, the game underwent an “income test,” meaning it was placed in operating locations to measure earnings, and performed reasonably well. The planned release was then overtaken by changes in Sega's American coin-op business. This is valuable context but should remain explicitly attributed to Hanawa's retrospective story rather than presented as if surviving Sega sales paperwork has been found.</p>
+<p>A Japanese location-test recollection also survives from Koji Kenjoh, a later game director writing from his own arcade memories. He remembered Sindbad Mystery being tested at KIGAWA in Shinjuku's Kabukicho district, a location strongly associated with Sega location tests. This is retrospective player testimony rather than a surviving Sega test sheet, and Kenjoh is not being credited here as a Sindbad Mystery developer, but the recollection adds useful texture to the game's path from development to release.</p>
+<hr />
+<h2>Four operator reports, not a sales chart</h2>
+<p>The surviving <em>Game Machine</em> sequence gives Sindbad Mystery a narrower, better-grounded commercial story than a simple “hit” or “flop.” On July 15, 1983, the new table-video chart gave it 7.00, a value the magazine explained as good on its operator popularity and earnings scale. On August 1 the figure was 5.85; on August 15, 5.44; and on September 1, 4.88. Those dates are issue dates for reports of operator assessment. They are not four shipment totals or a count of cabinets in the field.</p>
+<p>The descending sequence suggests early interest followed by cooling over several weeks. It cannot, by itself, tell us whether locations kept the board for months, whether a change in available games displaced it, or how many sets Sega produced. The often-repeated 3,000-unit figure was not supported by a trustworthy period source in this research and therefore does not belong in the article as a fact. A contemporary price of ¥132,000 for a board set tells us about the product on offer, not the number sold.</p>
+<p>The same period material pictures the game in a Japanese table cabinet. That is valuable physical evidence of operation, especially for a title whose complete original machines are hard to document. It establishes an installation, not a unique factory furniture model. The program's upright/cocktail setting is another clue about configurations, but current MAME comments still ask for verification of DIP details. The archive record is strongest when each clue does its proper job rather than being stretched into a definitive cabinet catalog.</p><h2>Hardware and Emulation</h2>
+<p>Sindbad Mystery is useful for understanding Sega's movement from the G80 Raster era toward System 1. MAME's driver notes make the transition unusually explicit. Earlier G80 CPU boards used Sega security chips that scrambled address lines on writes. Sindbad does not follow that standard arrangement. A note dated March 24, 1999 records the discovery that Sindbad Mystery instead uses Sega System 1-style encryption.</p>
+<p>The currently emulated machine configuration uses a Sega 315-5028 encrypted Z80-family main processor, a separate Z80 for sound and two SN76496 programmable sound generators. MAME identifies the game as vertical and maps a four-way joystick plus one action button for each player side.</p>
+<p>The sound story is not completely closed. Current MAME comments note that a recording from a surviving Sindbad Mystery PCB sounds different, particularly around the hole-opening and closing effect, suggesting another hardware configuration and possibly Sega's Universal Sound Board. MAME does not treat that alternative as conclusively identified. The technical snapshot should therefore describe the two-SN76496 arrangement as the currently emulated configuration rather than insisting that every production board was identical.</p>
+<p>The emulation history has a particularly neat timeline. The MAME source preserves the March 24, 1999 encryption discovery note. Six days later, MAME 0.35b9, released March 30, listed Sindbad Mystery among games newly added or promoted from non-working status. For a game that remained obscure in the wider arcade canon, its emulation story captures a real piece of late-1990s preservation detective work.</p>
+<p>The ROM set used for targeted analysis in this research was the MAME <code>sindbadm</code> set supplied by Dana. It was not treated as a substitute for period documentation. Instead, it was used under the project's last-resort verification rule to answer narrow gameplay questions that printed sources did not resolve efficiently. ROM-derived findings include the thirty-panel structure, scoring tables, distinct context-sensitive button actions, rock/tunnel transport separation, enemy return behavior and internal labels such as the flying-camel music cue.</p>
+<p>The ROM itself is <strong>not included in the website handoff ZIP</strong>. It was research evidence, not a redistributable website asset.</p>
+<hr />
+<h2>People and hardware at a transition</h2>
+<p>Three retrospective voices illuminate different parts of Sega's work. Steve Hanawa is strongly associated with programming and design and recalled liking this game for its mixture of maze crawling and puzzle solving. Yoji Ishii spoke of revising plans handed down from above and explicitly said he was not the director of projects such as Sindbad Mystery. Yoshiki Kawasaki recalled working on the arcade game under tight character-memory limits before his Flicky work. These accounts identify participation and perspective; they do not recreate a missing contemporary credits screen or identify an unverified composer.</p>
+<p>The technical record similarly has an edge of uncertainty. Sindbad belongs to Sega's late G80 Raster line, while its encrypted main processor and sound arrangement point toward the next System 1 generation. A March 1999 MAME note records discovery of the System 1-style encryption, shortly before the game entered working emulation coverage. Current emulation uses a 315-5028 encrypted Z80-family CPU, a separate sound Z80 and two SN76496 chips. A surviving-board recording reportedly differs in some sound effects, however, and MAME comments raise another possible sound configuration. That is a reason to describe the emulated setup precisely, not to assume every original PCB was identical.</p>
+<p>There is also a modest player-count conflict. Sega's modern historical archive lists one player, while the arcade program as currently preserved supports two alternating players. Both statements can be true descriptions of their respective sources. The page leaves the discrepancy visible rather than silently replacing Sega's listing or ignoring what the program does.</p><h2>Versions and Later Appearances</h2>
+<p>Sindbad Mystery also appeared on Sega's SG-1000/SC-3000 home hardware. The conversion preserves the basic treasure-maze idea but should not be used indiscriminately as proof of arcade behavior. This project deliberately separated arcade evidence from home-version descriptions when a mechanic was in doubt.</p>
+<p>The title later appeared in Sega's Saturn-era compilation history through <em>Sega Ages: Memorial Selection Vol. 2</em> in 1997. Those later appearances are useful evidence that Sega did not entirely forget the game, but this profile remains centered on the 1983 arcade original.</p>
+<p>The home version is particularly relevant when evaluating old memories and internet guides. A technique described for SG-1000 or a later compilation may look plausible in the arcade game while behaving differently. That is why questions such as rock transport through tunnels were checked against the arcade program rather than copied from a generalized Sindbad Mystery guide.</p>
+<hr />
+<h2>Collector's Note</h2>
+<p>Sindbad Mystery is much easier to encounter today through emulation than as a complete original arcade installation. Surviving original Sega promotional material includes the Japanese flyer, instruction material and board documentation or listings, but complete dedicated machines are difficult to document with confidence.</p>
+<p>That scarcity should not be exaggerated into a claim that no original machines survive. Arcade survivor censuses are voluntary, collections change hands privately, and board-set games were especially vulnerable to conversion and cabinet reuse. The careful conclusion is simply that documented complete survivors are uncommon and that loose boards and paper material are more visible in the collector record.</p>
+<p>Research also located modern collector-market examples of original material, including Sindbad instruction cards sold in Japan and a working board/kit offered by a European collector. These are useful as evidence that original parts and paperwork remain in circulation, but isolated auction and asking prices should not be presented as formal market values.</p>
+<p>The cabinet question remains the biggest collector caveat. Database images can be dangerously persuasive: one modern Sindbad “cabinet” image circulating in a game-image database is plainly a modern presentation/mockup rather than historical cabinet evidence. It has therefore been excluded from the usable image pack. Until a cabinet photograph can be tied to period Sega documentation or a credible original survivor, the website should resist the temptation to illustrate Sindbad with a made-up dedicated cabinet.</p>
+<hr />
+<h2>Modern Context</h2>
+<p>Sindbad Mystery has not become one of Sega's household arcade names, but it has continued to surface among preservationists and serious arcades. Dana supplied evidence that Galloping Ghost Arcade used it as Monday Mystery Game #1102, identifying it as Sega's 1983 Sindbad Mystery. That modern appearance is best used as a brief closing note rather than as a substitute for the game's period history.</p>
+<p>The continued interest makes sense. The game is approachable enough to understand in a credit or two, yet its better ideas are easy to miss without explanation. It is exactly the sort of title that benefits from being profiled rather than merely listed in a database.</p>
+<hr />
+<h2>Preservation is an ongoing comparison of evidence</h2>
+<p>Sindbad Mystery's 1999 emulation milestone did not close every technical question. A working program lets researchers inspect control paths and scoring, but a software model can still carry tentative DIP mappings or represent one sound-board configuration more fully than another. A surviving PCB recording that differs from the current emulation is not something to explain away. It is a lead for comparing boards, recordings and schematics when those become available.</p>
+<p>The same caution applies to home conversions and later compilations. Sega's SG-1000/SC-3000 version and Saturn-era appearance demonstrate that the title had a life beyond the 1983 arcade board. They do not prove that every familiar trick behaves the same on the original. The project specifically tested the arcade game's hole filling, rock movement and tunnel behavior rather than importing plausible advice from a version with the same name. One discarded tip said rocks travel through tunnels; the arcade program did not support it. Another tentative note about filling holes became a confirmed behavior after direct testing.</p>
+<p>This is why a detailed game history benefits from recording corrections, not merely final conclusions. A later reader can see which claim came from Sega's flyer, which came from a first-person recollection, which was observed in play and which required narrow program analysis. Those paths are especially valuable for a board-set game whose cabinet history is incomplete and whose most accessible modern form is emulation.</p><h2>Why It Is Worth Playing</h2>
+<p>Sindbad Mystery is worth playing because it does something specific with the maze-game formula. It does not simply give Pac-Man a different theme. The treasure system changes the purpose of collection. The scoring system rewards deduction. The elevations change how the player reads the maze. Holes temporarily reshape routes. Enemies can undo those holes. Rocks create both attacks and hazards, and terrain determines whether a rock is a tool, a projectile or a threat to Sindbad himself.</p>
+<p>Most importantly, those systems interact. A player who only runs from monsters will find the game hectic. A player who only collects question marks will miss the scoring logic. A player who treats every rock as a disposable weapon will overlook positioning and terrain. The game gets better as the player understands why each part is there.</p>
+<p>It also has personality. The Arabian-fantasy artwork is colorful without overwhelming the playfield. Pengo turns up between islands. Sindbad eventually flies away on a camel. Even the title screen calls the game an “Intelligent Puzzle Game,” a grand little phrase for a design whose real intelligence is that it trusts the player to stop collecting clues once the answer becomes clear.</p>
+<p>For an obscure 1983 Sega release, that is plenty of reason to give it another credit.</p>
+<hr />
+<h2>What the flyer pair contributes</h2>
+<p>The original Japanese flyer is more than attractive art for the top of the page. Its front frames the game as a treasure hunt with three principal scenes and the flying camel. Its reverse explains actions and scoring that would otherwise be easy to misremember after a few minutes of play. The modern English translation helps readers examine those rules, but it has to remain visibly identified as a later translation. An English Sega flyer from 1983 has not been established by simply translating a Japanese page today.</p>
+<p>Putting original and translated pages together allows a reader to check the historical object and understand the mechanic without losing provenance. The skull warning, the 100-versus-300 question-panel choice, and the examples of rising rock rewards all belong to the period evidence. The handoff retains the original files separately from the reader aid, so a future correction to a translated phrase would not silently alter the underlying artifact.</p>
+<p>The three small gameplay pictures have a different job. They show the playfield and its elevated structures at roughly the size their source quality can support. Enlarging them into giant banners would make their pixels more visible without providing more historical information. The logo can anchor the title, while the title screen gives a clear view of the game's own “Intelligent Puzzle Game” description. No invented cabinet picture is needed to make the article look complete.</p><h2>Image and Research Notes for Publication</h2>
+<p>The website package accompanying this master contains the actual collected image files that were available in the authoritative six-page profile: the Sindbad Mystery logo, both translated flyer pages, three gameplay images, the title screen and both original Japanese Sega flyer pages. Originals are preserved without destructive edits. Pixel-art display derivatives are supplied separately and were enlarged using nearest-neighbor scaling so no new image content was invented.</p>
+<p>The strongest historical images are the original Japanese Sega flyer front and back. The translated flyer pair is valuable for readers because it exposes Sega's own gameplay instructions and scoring explanation in English while the untouched Japanese originals preserve provenance. The three gameplay images are suitable as in-body figures but should not be used as enormous full-width hero images; their underlying game resolution is inherently low. The clear logo is useful at modest web widths.</p>
+<p>Several additional images were located during research but could not be transferred as binary files into this deliverable from the available web/file interfaces. They are therefore preserved as source references in the image inventory rather than being falsely represented as collected assets. These include a slightly higher-resolution LaunchBox flyer copy, an original instruction-card image, <em>Game Machine</em> period pages showing a table-cabinet installation and operator ratings, and modern collector documentation. The currently collected 1983 flyer scans are already publication-usable and remain the strongest historical image pair in the package. A modern fabricated/mockup cabinet image found in LaunchBox is explicitly marked <strong>DO NOT USE</strong>.</p><details class="research-appendix"><summary>Evidence register and open questions</summary><p>The detailed source register and audit notes document the article’s evidence and the limits of the surviving record.</p><h2>Sindbad Mystery — Evidence and Source Register</h2>
+<h2>Arcade Side B final website handoff — September 11, 2026</h2>
+<p>This register preserves the substantive evidence behind the publication master. It is intentionally more detailed than the visible website article. Evidence, interpretation and unresolved questions are kept separate so a later build session does not have to reconstruct the research.</p>
+<h2>Evidence classes used here</h2>
+<p><strong>Primary / contemporary:</strong> material created by Sega or the amusement trade at or near the time of release.</p>
+<p><strong>Primary / first-person retrospective:</strong> later statements by people directly involved with Sega or by witnesses describing what they personally did or saw.</p>
+<p><strong>Technical preservation evidence:</strong> current emulator source, program behavior, targeted ROM analysis and direct gameplay verification.</p>
+<p><strong>Secondary / archival:</strong> later databases, collector archives and media repositories useful for discovery or corroboration but not treated as equal to primary evidence.</p>
+<h2>1. Sega 1983 Japanese flyer — PRIMARY / CONTEMPORARY</h2>
+<p>Actual files included:
+- <code>03_IMAGES/originals/08_original_japanese_flyer_front.jpg</code>
+- <code>03_IMAGES/originals/09_original_japanese_flyer_back.jpg</code></p>
+<p>Reader-aid translations included:
+- <code>03_IMAGES/originals/02_translated_flyer_front.jpg</code>
+- <code>03_IMAGES/originals/03_translated_flyer_back.jpg</code></p>
+<p>What it establishes:
+- Sega branding and 1983 period identity.
+- Treasure-hunt / puzzle framing.
+- The three principal gameplay screens as contemporary promotional imagery.
+- Context-sensitive button use: digging a hole, filling a hole, and pushing a rock.
+- 100 points for an opened question-mark/map panel.
+- 300 points for each unopened panel remaining when the treasure is successfully found.
+- Rock-chain examples of 200, 400 and 600 points; ROM analysis extends the chain to an 800-point cap for the fourth and later victims.
+- The skull is a special threat and is described in the translated period instructions as not defeatable.
+- The flying-camel imagery that corrects the earlier “magical horse” wording.
+- SG-8305 printed on the instruction/flyer material.</p>
+<p>Caution:
+The English pair is a later reader translation, not an original 1983 English-language Sega flyer. The untouched Japanese scans are the provenance masters.</p>
+<h2>2. Sega historical archive — OFFICIAL MODERN PRIMARY-SOURCE ARCHIVE</h2>
+<p>URL:
+https://sega.jp/history/arcade/product/9424/</p>
+<p>What it supports:
+- July 1983 release dating.
+- Sega's own modern description of the game as a puzzle-feeling action title built around question marks, map revelation, treasure hunting and digging.
+- The archive currently lists one player.</p>
+<p>Important discrepancy:
+The arcade program/current MAME input mapping supports two alternating players. Preserve this as a documentation discrepancy rather than silently “correcting” Sega's archive.</p>
+<h2>3. Game Machine, July 15, 1983 — PRIMARY / CONTEMPORARY TRADE</h2>
+<p>PDF:
+https://onitama.tv/gamemachine/pdf/19830715p.pdf</p>
+<p>What it supports:
+- New-table-video operator rating of <strong>7.00</strong> for Sindbad Mystery.
+- The magazine's rating explanation: ratings reflect operator assessment of popularity and earnings; 7 corresponds to “good.”
+- A contemporary advertising/trade image showing Sindbad Mystery running in a Japanese table cabinet.
+- Period commercial context including the board-set product and ¥132,000 price evidence located during the research.</p>
+<p>Interpretation:
+The table-cabinet photograph verifies a contemporary table installation. It does <strong>not</strong> prove that the pictured furniture was a unique factory-dedicated Sindbad Mystery cabinet.</p>
+<h2>4. Game Machine, August 1, August 15 and September 1, 1983 — PRIMARY / CONTEMPORARY TRADE</h2>
+<p>PDFs:
+- https://onitama.tv/gamemachine/pdf/19830801p.pdf
+- https://onitama.tv/gamemachine/pdf/19830815p.pdf
+- https://onitama.tv/gamemachine/pdf/19830901p.pdf</p>
+<p>Operator-rating sequence preserved in the final master:
+- July 15: 7.00
+- August 1: 5.85
+- August 15: 5.44
+- September 1: 4.88</p>
+<p>Safe conclusion:
+The period sequence supports a good initial operator response followed by a fairly rapid cooling. These are operator popularity/earnings ratings, not unit sales.</p>
+<p>Do not claim:
+- “3,000 units sold.” No trustworthy primary proof for the circulated 3,000-unit figure was found.
+- “Commercial failure” or “hit” as a simple label. The evidence is more nuanced.</p>
+<h2>5. MAME current Sega G80 Raster driver — TECHNICAL PRESERVATION</h2>
+<p>Source:
+https://github.com/mamedev/mame/blob/master/src/mame/sega/segag80r.cpp</p>
+<p>Raw source:
+https://raw.githubusercontent.com/mamedev/mame/master/src/mame/sega/segag80r.cpp</p>
+<p>What it supports:
+- Sindbad Mystery's place at the late end of the Sega G80 Raster line.
+- System 1-style encryption discovery recorded March 24, 1999.
+- Current emulation model: Sega 315-5028 encrypted Z80-family main CPU, Z80 sound CPU and two SN76496 PSGs.
+- Vertical display and control mapping.
+- Current upright/cocktail input setting.
+- A technical note suggesting a surviving PCB may use a different sound arrangement, possibly involving Sega's Universal Sound Board.
+- The source still contains caution/TODO material around verifying Sindbad Mystery DIP settings.</p>
+<p>Publication rule:
+Describe the two-SN76496 arrangement as the <strong>currently emulated configuration</strong>, not as proof that every surviving production board used identical sound hardware.</p>
+<h2>6. MAME 0.35b9 / 1999 preservation history — TECHNICAL PRESERVATION</h2>
+<p>What the continuity research established:
+- MAME source notes the System 1-style encryption discovery on March 24, 1999.
+- MAME 0.35b9, released March 30, 1999, added/promoted Sindbad Mystery into working preservation coverage.</p>
+<p>Use:
+Good historical context for the Hardware and Emulation section; not central to 1983 commercial history.</p>
+<h2>7. Targeted ROM analysis — TECHNICAL PRESERVATION / PROJECT EVIDENCE</h2>
+<p>No ROM binaries are redistributed in this website package.</p>
+<p>Questions targeted and conclusions preserved:
+- 30 treasure-map panels.
+- Question panel 100 points; unopened panel at successful treasure 300 points.
+- Rock-chain sequence 200, 400, 600, then 800-point cap for fourth and later victims.
+- One context-sensitive action system with distinct digging, burying/filling and rock-shoving paths.
+- Extra-player program/DIP options: disabled, 10,000, 20,000 or 40,000 points; one extra-player award.
+- Starting lives options 3/4/5/6.
+- Rocks do <strong>not</strong> use Sindbad's tunnel/warp transport routine.
+- The skull is a special object/enemy path and does not use the ordinary rock-crush routine.
+- Completing all 30 map panels is sufficient to activate/release the skull, but another program path allows earlier activation; exact player-visible condition remains unresolved.
+- Internal “FLYING CAMEL THEME” label corroborates the flyer/retrospective identification of the end-of-cycle mount.</p>
+<p>Research standard:
+These are targeted conclusions from the supplied program material, not a claim of exhaustive reverse engineering.</p>
+<h2>8. Dana's direct MAME gameplay verification — FIRSTHAND PROJECT TESTING</h2>
+<p>Directly verified during the project:
+- A player-created hole can be filled again.
+- At least four holes can exist simultaneously; do not convert this into an unsupported “unlimited holes” claim.
+- Sindbad can dig on elevated upper paths but not on stair tiles themselves.
+- A nearby enemy can prevent initiation of a dig.
+- Ordinary enemies can approach and eliminate/fill holes.
+- Ordinary enemies can destroy a stationary/blocking rock; behavior can include a cane/hook-like animation, but the implement should not be over-identified.
+- An uphill rock abandoned before fully landing pauses/shimmies for roughly two seconds before rolling back.
+- The rollback can crush Sindbad or an ordinary enemy.
+- A fully landed uphill rock avoids the rollback.
+- Bridge/slope terrain can give rocks autonomous momentum.
+- A question mark beyond a blocking rock can be uncovered by digging on the far side without first moving the rock.</p>
+<p>Superseded older tips:
+- “Rocks may travel through tunnels” — FALSE. Remove.
+- “Hole filling may be possible” — CONFIRMED. No longer tentative.
+- “Magical horse” — FALSE. It is a flying camel.</p>
+<h2>9. Steve Hanawa retrospective account — FIRST-PERSON / INTERVIEW-BASED</h2>
+<p>URL:
+https://smstributes.co.uk/view_article.asp?articleid=48</p>
+<p>Supports:
+- Strong association of Hanawa with programming/design work.
+- His recollection that Sindbad Mystery was a favorite among arcade titles he programmed because of its maze/puzzle combination.
+- His later U.S. localization/income-test account: a localized arcade version was tested and did reasonably, but planned release was overtaken by changes in Sega's U.S. coin-op operation.</p>
+<p>Caution:
+The U.S. account is valuable retrospective testimony, not surviving Sega sales paperwork.</p>
+<h2>10. Yoji Ishii interview — FIRST-PERSON RETROSPECTIVE</h2>
+<p>PDF:
+https://www.space-harrier.com/fz/fz_samp.pdf</p>
+<p>Supports:
+Ishii discussed Up'n Down and Sindbad Mystery as projects whose plans came down from above and which he revised; he specifically said he was not the director. Publication-safe wording is planning/design involvement and revision of an inherited plan.</p>
+<p>Do not call Ishii the game's director.</p>
+<h2>11. Yoshiki Kawasaki — official Sega retrospective — FIRST-PERSON RETROSPECTIVE</h2>
+<p>URL:
+https://www.sega.jp/fb/album/03_flicky/02.html</p>
+<p>Supports:
+Kawasaki directly recalled working on arcade Sindbad Mystery on a Z80-based board with limited character capacity before his Flicky work.</p>
+<p>Safe credit:
+A strong first-person connection to the game's visual/background/character production context.</p>
+<p>Caution:
+The exact formal staff title for Sindbad Mystery has not been established through a contemporary credit roll.</p>
+<h2>12. Koji Kenjoh retrospective player writing — FIRST-PERSON PLAYER MEMORY</h2>
+<p>Game recollection:
+https://note.com/kenjohkohji/n/n518547fdc7ec</p>
+<p>Supports, as retrospective player memory:
+- Treasure position described as changing/random.
+- Map panels narrow the search.
+- Digging may occasionally find treasure very early.
+- Three stages followed by a flying-camel sequence and harder loop.
+- Pengo cameo during the between-stage travel sequence.
+- Layered/3D-like maze and downhill rock behavior.</p>
+<p>Credit caution:
+Kenjoh later became a game director, but this source is not evidence that he developed or directed Sindbad Mystery.</p>
+<h2>13. KIGAWA location-test recollection — RETROSPECTIVE WITNESS</h2>
+<p>Source:
+IGCC interview/article located during research (preserved in the source-link list).</p>
+<p>Supports:
+Kenjoh recalled Sega frequently conducting location tests at KIGAWA in Shinjuku's Kabukicho district and personally remembered seeing Sindbad Mystery there.</p>
+<p>Caution:
+Retrospective eyewitness testimony, not a surviving Sega test sheet.</p>
+<h2>14. Image archives — SECONDARY / ARCHIVAL</h2>
+<p>The Arcade Flyer Archive:
+https://flyers.arcade-museum.com/</p>
+<p>LaunchBox Games Database image material:
+https://gamesdb.launchbox-app.com/</p>
+<p>Uses:
+- Discovery and alternate copies of Sega flyer art, title/gameplay captures and logo assets.
+- The package includes actual image files already carried by the authoritative six-page profile.</p>
+<p>Critical exclusion:
+A modern fabricated/mockup cabinet image located in LaunchBox is not historical evidence and is marked <strong>DO NOT USE</strong> in the image inventory.</p>
+<h2>15. Arcade Museum / VAPS — SECONDARY COLLECTOR CONTEXT</h2>
+<p>Page:
+https://www.arcade-museum.com/Videogame/sindbad-mystery</p>
+<p>Use cautiously for:
+- Collector/survivor leads and general secondary reference.</p>
+<p>Do not use it to make an exact survivor census without direct verification.</p>
+<h2>16. Later home/compilation versions — SECONDARY / PLATFORM HISTORY</h2>
+<p>The research record supports:
+- SG-1000 conversion.
+- Later Sega Saturn compilation appearance.</p>
+<p>These are useful for the “Versions and Later Appearances” section, but the Arcade Side B article remains centered on the 1983 arcade game.</p>
+<h2>Evidence hierarchy for a future build session</h2>
+<p>When statements conflict, prefer in this order where appropriate:
+1. 1983 Sega material and contemporary trade evidence.
+2. Direct program behavior / targeted ROM findings / direct testing for gameplay questions.
+3. First-person developer or witness recollections, with the retrospective nature stated.
+4. MAME technical preservation records.
+5. Secondary databases and collector archives.</p>
+<p>Do not erase a real discrepancy merely to make the article read more cleanly.</p><h2>Sindbad Mystery — Uncertainties and Open Questions</h2>
+<h2>Final publication-state register — September 11, 2026</h2>
+<p>Research is complete to a reasonable publication endpoint. None of the items below requires delaying the Arcade Side B page. They are deliberately preserved so unknowns are not turned into facts later.</p>
+<h2>1. Exact dedicated cabinet forms — UNRESOLVED</h2>
+<p>Verified:
+- Period Japanese material supports Sindbad Mystery as a board-set commercial product.
+- A July 1983 <em>Game Machine</em> advertising page shows the game operating in a Japanese table cabinet.
+- The program/current MAME mapping includes an upright/cocktail cabinet setting.</p>
+<p>Not verified:
+- A unique factory-dedicated Sindbad Mystery upright design.
+- A unique factory-dedicated Sindbad Mystery cocktail/table furniture design.
+- Exact Sega cabinet model numbers or production quantities.</p>
+<p>Publication wording:
+Period table installation is verified; dedicated cabinet formats remain uncertain.</p>
+<h2>2. Player-count documentation discrepancy — UNRESOLVED BUT HARMLESS</h2>
+<ul>
+<li>Sega's current historical archive lists one player.</li>
+<li>The arcade program/current MAME implementation supports two alternating players.</li>
+</ul>
+<p>Keep both facts visible.</p>
+<h2>3. Alternate sound hardware — UNRESOLVED</h2>
+<p>Current MAME emulates Z80 sound plus two SN76496 PSGs. MAME comments also discuss a surviving PCB recording that sounds different and may reflect another sound configuration, possibly Sega's Universal Sound Board.</p>
+<p>Do not claim every original board used exactly the same audio hardware until board-level documentation settles it.</p>
+<h2>4. Exact early skull activation condition — PARTIALLY RESOLVED</h2>
+<p>Verified:
+- Completing all 30 map panels can release the skull.
+- The program also contains an earlier activation path.
+- The skull is not handled like an ordinary rock-crushable enemy.</p>
+<p>Not safely translated into a player rule:
+The exact visible in-game condition that triggers the early activation path.</p>
+<p>Publication wording:
+“Completing the map releases the skull; it can appear earlier under certain conditions.”</p>
+<p>Do not reduce this to a simple timer, “last question mark only,” or hole-filling trigger.</p>
+<h2>5. Composer — UNKNOWN</h2>
+<p>No securely documented composer credit was located. Do not fill this from assumption or uncited fan-credit lists.</p>
+<h2>6. Exact formal personnel roles — PARTLY DOCUMENTED</h2>
+<p>Steve Hanawa:
+Strong retrospective association with programming/design; exact contemporary staff roll not located.</p>
+<p>Yoji Ishii:
+First-person evidence supports revision/planning/design involvement and explicitly says he was not director.</p>
+<p>Yoshiki Kawasaki:
+First-person Sega retrospective confirms he worked on the arcade game and recalls visual-memory constraints; exact formal Sindbad job title remains less secure than the fact of his involvement.</p>
+<p>Koji Kenjoh:
+Retrospective player/location-test witness only for this game. Do not turn his later career as a director into a Sindbad development credit.</p>
+<h2>7. U.S. localization / income test — STRONGLY SUPPORTED RETROSPECTIVE ACCOUNT</h2>
+<p>Hanawa's retrospective account says a localized version was income-tested in the United States and performed reasonably before release plans were overtaken by Sega's U.S. coin-op changes.</p>
+<p>No surviving corporate income-test sheet or U.S. release paperwork was located in this research. Keep the claim attributed to Hanawa's account.</p>
+<h2>8. Exact sales / production quantity — UNKNOWN</h2>
+<p>A 3,000-unit figure circulates online. No trustworthy primary support was located.</p>
+<p>Do not publish 3,000 as fact.</p>
+<h2>9. Surviving-machine census — UNKNOWN</h2>
+<p>Loose boards, Sega flyer/instruction material and archival imagery are easier to document than unquestionably original complete cabinets. No reliable worldwide survivor count was established.</p>
+<p>Do not say “none survive” and do not invent a rarity number.</p>
+<h2>10. Board identifier 834-5244 — SECONDARY TECHNICAL IDENTIFIER</h2>
+<p>The identifier appears in secondary technical references and is useful as a research lead, but the final master does not depend on it being a complete factory product designation.</p>
+<h2>11. DIP-switch documentation — TECHNICAL CAUTION</h2>
+<p>Current program/MAME research supports:
+- 3/4/5/6 starting lives.
+- One extra player at 10,000, 20,000 or 40,000 points, or none.</p>
+<p>MAME source still carries verification caution around Sindbad Mystery DIP settings. Present these as current program/emulation findings, not as a substitute for an original Sega DIP sheet.</p>
+<h2>12. Historical image publication rights — ADMINISTRATIVE, NOT A RESEARCH GAP</h2>
+<p>The package preserves source/provenance notes but does not claim that public web availability equals publication permission. The site builder should follow Arcade Side B's own rights/attribution policy for Sega artwork, archive scans, trade pages, user translations and third-party photographs.</p>
+<p>This does not undermine the historical evidence. It is a publication-administration question.</p><h2>Sindbad Mystery — Publication-Master Audit and Change Log</h2>
+<h2>Final audit performed September 11, 2026</h2>
+<p>Purpose:
+The working ~5,400-word publication draft was audited against the authoritative six-page profile, the locked gameplay/ROM findings, the evidence register and Dana's final website instructions. The goal was <strong>not</strong> to shorten the draft. The goal was to restore anything substantive that synthesis had omitted or softened, remove superseded claims and make the long record readable.</p>
+<p>Final master length:
+Approximately <strong>5,900 words</strong> before ancillary evidence/image/handoff documents. The evidence, uncertainty and image records remain separate so the public article can stay readable without losing the research record.</p>
+<h2>Material restored or strengthened</h2>
+<ol>
+<li>Added a concise Website Snapshot at the top without replacing the full-length article.</li>
+<li>Added the one-extra-player setting: none / 10,000 / 20,000 / 40,000 points.</li>
+<li>Preserved the current 3/4/5/6 starting-lives settings.</li>
+<li>Added an explicit note that no securely documented composer credit was found.</li>
+<li>Added explicit skull/rock wording: the skull does not use the ordinary rock-crush path and should not be described as a normal rock-defeatable enemy.</li>
+<li>Added the newly verified July 15, 1983 <em>Game Machine</em> operator rating of <strong>7.00</strong> before the later 5.85 / 5.44 / 4.88 sequence.</li>
+<li>Reframed period reception to “good initial operator response followed by cooling,” avoiding both “hit” and “flop” simplifications.</li>
+<li>Added the period <em>Game Machine</em> image evidence showing a Japanese table-cabinet installation while explicitly refusing to infer a unique dedicated cabinet model.</li>
+<li>Clarified Koji Kenjoh's role: retrospective player/location-test witness, not a claimed Sindbad Mystery developer/director.</li>
+<li>Retained Steve Hanawa's U.S. localization/income-test account as attributed retrospective evidence rather than corporate paperwork.</li>
+<li>Preserved the audio-hardware uncertainty around the currently emulated two-SN76496 configuration versus evidence of another surviving board configuration.</li>
+<li>Preserved the one-player versus two-alternating-player documentation discrepancy.</li>
+<li>Kept the unverified 3,000-unit claim out of the factual narrative.</li>
+<li>Rewrote the image-status ending so the final master accurately distinguishes collected binary assets from web-verified references.</li>
+</ol>
+<h2>Superseded gameplay claims checked and excluded</h2>
+<ul>
+<li>“Magical horse” — removed/corrected to <strong>flying camel</strong>.</li>
+<li>“Rocks may travel through tunnels” — removed as false.</li>
+<li>“Hole filling may be possible” — converted to <strong>confirmed</strong>.</li>
+<li>“Skull simply appears when the final question mark is collected” — replaced with the more accurate dual-path wording.</li>
+<li>“Rocks can be continuously steered/re-shoved after free movement” — not stated.</li>
+<li>“Dedicated upright/cocktail cabinet definitely existed” — not stated.</li>
+<li>“3,000 units sold” — not stated as fact.</li>
+</ul>
+<h2>Direct gameplay findings verified as still present</h2>
+<ul>
+<li>At least four simultaneous holes.</li>
+<li>Digging on upper/elevated paths.</li>
+<li>No digging on stair tiles.</li>
+<li>Enemy proximity can block starting a dig.</li>
+<li>Enemies can fill/remove holes.</li>
+<li>Enemies can destroy stationary/blocking rocks.</li>
+<li>Uphill abandoned rock pause/shimmy and rollback.</li>
+<li>Rollback can crush Sindbad or an ordinary enemy.</li>
+<li>Fully landing a rock avoids rollback.</li>
+<li>Bridge/slope autonomous rock movement.</li>
+<li>Digging beyond a blocking rock to uncover a question mark.</li>
+<li>Ordinary rock victims respawn/re-enter.</li>
+<li>Rock-chain scoring through the 800-point cap.</li>
+</ul>
+<h2>Editorial/readability pass</h2>
+<p>The final master was kept in narrative form rather than converted into an encyclopedia entry. Dense evidence mechanics are explained in plain language where they matter to the player, while source qualification is moved to the evidence register when repeating it in the article would bog down the prose.</p>
+<p>No research section was deliberately cut merely for length.</p></details><p class="top-link"><a href="https://arcadesideb.com/#games" target="_parent">← Back to Games</a></p></main><dialog id="viewer"><button type="button" id="close-viewer">Close ×</button><img alt=""></dialog><script>const d=document.querySelector('#viewer');document.querySelectorAll('.enlarge').forEach(b=>b.onclick=()=>{const i=b.querySelector('img');if(window.parent!==window && window.parent.openArchiveImage){window.parent.openArchiveImage(i.src,i.alt);return}d.querySelector('img').src=i.src;d.querySelector('img').alt=i.alt;d.showModal()});document.querySelector('#close-viewer').onclick=()=>d.close();</script></body></html>
