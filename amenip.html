@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>Amenip Corporation | Arcade Side B</title>
+<style>
+:root{
+  --bg:#090d12;--paper:#eee7d8;--paper2:#f7f1e7;--ink:#242c31;--muted:#657077;
+  --line:#c9bfad;--darkline:#303b45;--gold:#c28a32;--gold2:#ddb969;
+  --cyan:#6f99aa;--green:#557b63;--red:#8b5650;--max:1180px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:
+  radial-gradient(circle at 84% 8%,rgba(111,153,170,.10),transparent 28%),
+  linear-gradient(rgba(255,255,255,.012) 1px,transparent 1px),var(--bg);
+  background-size:auto,100% 4px,auto;color:#dce2e5;
+  font-family:Georgia,"Times New Roman",serif;line-height:1.72;
+}
+a{color:#a86e20;text-underline-offset:3px}
+.mast{border-bottom:4px solid var(--gold);background:linear-gradient(135deg,#0a0f14,#13202a)}
+.mast-inner,.hero,.shell,.rule{width:min(calc(100% - 32px),var(--max));margin:auto}
+.mast-inner{padding:16px 0;display:flex;justify-content:space-between;gap:20px;align-items:center}
+.brand{font-size:26px;font-weight:700;color:#f0ece4}
+.motto{font:700 10px Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#9ca8af;text-align:right}
+.hero{padding:34px 0 28px}
+.crumb,.eyebrow,.status,.updated,.snapshot dt,.toc-label,.figure-source,.derivative,footer{
+  font-family:Arial,Helvetica,sans-serif
+}
+.crumb{font:700 10px Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#8d999f;margin-bottom:16px}
+.company-wordmark{
+  border:1px solid #52606a;background:
+  linear-gradient(90deg,rgba(194,138,50,.09),transparent 38%),
+  #0e171f;padding:22px 24px 18px;margin-bottom:18px;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.025);
+}
+.company-wordmark h1{margin:0;color:#f2eee5;font:800 clamp(42px,8vw,86px)/.92 Arial,Helvetica,sans-serif;letter-spacing:.08em}
+.company-wordmark .sub{margin-top:11px;color:#b8c1c6;font:700 12px Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase}
+.hero-meta{display:flex;gap:9px;flex-wrap:wrap;margin:15px 0 0}
+.status,.updated{font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;border:1px solid #46535d;padding:6px 8px}
+.status{color:#d8b36b;border-color:#8c682f;background:#1c1911}
+.updated{color:#a9b4ba}
+.snapshot{
+  margin-top:24px;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#39434b;border:1px solid #39434b
+}
+.snapshot>div{background:#111920;padding:14px 16px;min-height:82px}
+.snapshot dt{font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:#7f8b92;font-weight:800}
+.snapshot dd{margin:7px 0 0;color:#f0ece4;font-size:18px;line-height:1.25}
+.intro-note{margin-top:18px;color:#aeb8bd;font-size:15px;max-width:900px}
+.rule{border-top:1px solid #26313a}
+.shell{padding:28px 0 64px}
+.toc{background:#101820;border:1px solid #34404a;padding:14px 16px;margin-bottom:24px}
+.toc-label{font:800 9px Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#c39751;margin-bottom:8px}
+.toc-links{display:flex;flex-wrap:wrap;gap:7px 13px}
+.toc-links a{color:#aeb8bd;text-decoration:none;font:700 10px Arial,sans-serif}
+.article{
+  background:var(--paper);color:var(--ink);border:1px solid #c5baa6;
+  box-shadow:0 12px 34px rgba(0,0,0,.22);padding:clamp(24px,5vw,62px);
+}
+.article p,.article li{font-size:17px}
+.article h1{font-size:32px;line-height:1.15;margin:58px 0 18px;padding-top:12px;border-top:3px solid #263a46;color:#172831}
+.article h1:first-child{margin-top:0}
+.article h2{font-size:23px;line-height:1.22;margin:35px 0 12px;color:#2a404b}
+.article h3{font-size:19px}
+.article table{width:100%;border-collapse:collapse;margin:18px 0 25px;font-size:14px}
+.article th,.article td{border:1px solid #c8beab;padding:9px 10px;vertical-align:top}
+.article th{background:#e2d9c9;text-align:left;font-family:Arial,sans-serif;font-size:11px;text-transform:uppercase;letter-spacing:.05em}
+.article code{background:#e5ddcf;padding:1px 4px;border-radius:2px}
+.article blockquote{margin:22px 0;border-left:4px solid #a87a35;padding:2px 0 2px 16px;color:#505b61}
+.visual-pair,.visual-gallery{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin:24px 0 30px
+}
+.visual-gallery{grid-template-columns:repeat(2,minmax(0,1fr))}
+.archive-figure{
+  margin:0;padding:9px;border:1px solid #b8ad98;background:#faf5eb;
+  box-shadow:0 7px 18px rgba(65,52,31,.07);align-self:start;
+}
+.archive-figure img{display:block;width:100%;height:auto;background:#111;border:1px solid #c9bfad}
+.archive-figure.screen img{image-rendering:pixelated;max-height:510px;object-fit:contain}
+.archive-figure figcaption{padding:9px 4px 3px;color:#59636a;font:12px/1.55 Arial,Helvetica,sans-serif}
+.archive-figure figcaption strong{color:#303a40}
+.derivative{display:inline-block;margin-left:6px;border:1px solid #af8a51;color:#7c591e;padding:1px 5px;font-size:8px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+.public-note{margin:20px 0;padding:14px 16px;border-left:4px solid #b57f31;background:#f5ead8;color:#565148;font:13px/1.55 Arial,sans-serif}
+.footer{width:min(calc(100% - 32px),var(--max));margin:0 auto;padding:0 0 30px;color:#7b868c;font-size:10px;line-height:1.6}
+.rights{padding-top:15px;border-top:1px solid #29343c}
+.rights strong{color:#9ba5aa;text-transform:uppercase;letter-spacing:.06em}
+@media(max-width:760px){
+  .snapshot{grid-template-columns:1fr 1fr}
+  .visual-pair,.visual-gallery{grid-template-columns:1fr}
+  .article{padding:24px 18px}
+  .mast-inner{align-items:flex-start;flex-direction:column}
+  .motto{text-align:left}
+}
+</style>
+<style>
+/* Reader-facing source and table containment */
+article a, .source-list a, .footnotes a { overflow-wrap:anywhere; }
+.table-scroll {max-width:100%;overflow-x:auto;}
+.table-scroll:focus-visible {outline:2px solid #d7b56d;outline-offset:3px;}
+</style><style>.translation-box{margin-top:14px;padding:14px 16px;background:rgba(130,111,68,.09);border-left:3px solid #a88a50;color:inherit}.translation-box strong{font:600 14px Arial,sans-serif}.translation-box p{font-size:15px;line-height:1.6;margin:8px 0 0}</style><style>@media(max-width:420px){.company-wordmark h1{font-size:clamp(22px,7.4vw,32px);line-height:1.04;letter-spacing:.04em;overflow-wrap:anywhere}}@media(max-width:420px){.article{overflow-wrap:anywhere}.article h1{font-size:26px}}</style><style>
+/* Shared company-page pattern, standardized on the approved Elcon article. */
+.crumb,.hero,.rule,.shell{width:min(calc(100% - 32px),1180px)!important;margin-left:auto!important;margin-right:auto!important;max-width:none!important}
+.crumb{padding:18px 0 0!important;color:#93a0a8!important;font:700 11px Arial,sans-serif!important;letter-spacing:0!important;text-transform:none!important}
+.hero{padding:30px 0 26px!important;color:#eff2f3!important}
+.hero .eyebrow{color:#d4ad67;font:800 11px Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase}
+.hero h1{margin:7px 0 10px!important;padding:0!important;border:0!important;background:none!important;font-family:Georgia,serif!important;font-size:clamp(44px,7vw,78px)!important;font-weight:700!important;letter-spacing:0!important;line-height:.95!important;color:#f0ece4!important;text-transform:none!important}
+.hero .deck{max-width:930px;margin:0!important;color:#c3ccd0!important;font:19px/1.55 Georgia,serif!important}
+.hero .meta{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:15px!important}
+.hero .badge{display:inline-block;padding:6px 10px;border:1px solid #6691a3;border-radius:999px;color:#8fc1d3;font:800 10px Arial,sans-serif;text-transform:uppercase;letter-spacing:.05em}
+.hero .updated{color:#aab4b9;font:700 11px Arial,sans-serif!important;text-transform:none!important;letter-spacing:0!important}
+.shell{display:grid!important;grid-template-columns:275px minmax(0,1fr)!important;gap:22px!important;padding:26px 0 50px!important;align-items:start!important}
+.sidebar{display:block!important;position:sticky!important;top:10px!important;margin:0!important;align-self:start!important}
+.toc{display:block!important;margin:0!important;padding:0!important;border:1px solid #34404b!important;border-radius:0!important;background:#111820!important;max-height:82vh!important;overflow:auto!important;box-shadow:none!important}
+.toc-title{display:block!important;margin:0!important;padding:13px 15px!important;color:#d8dfe2!important;font:800 11px Arial,sans-serif!important;letter-spacing:.12em!important;text-transform:uppercase!important}
+.toc>a{display:block!important;border-top:1px solid #29343e!important;padding:9px 13px!important;color:#aebbc2!important;text-decoration:none!important;font:13px/1.35 Arial,sans-serif!important}
+.toc>a:hover{color:#f0c57e!important}
+article.article{width:100%!important;margin:0!important;background:#eee7d8!important;color:#232b30!important;border:1px solid #b9ae9a!important;box-shadow:0 18px 42px rgba(0,0,0,.25)!important;padding:26px 34px 40px!important;min-width:0!important}
+.backhome{display:inline-block;margin-bottom:18px;padding:8px 10px;border:1px solid #9e927e;color:#745322;text-decoration:none;font:800 10px Arial,sans-serif;text-transform:uppercase;letter-spacing:.08em}
+.company-identity{margin:0 0 28px!important;border:1px solid #b8ad98!important;background:linear-gradient(135deg,rgba(194,138,50,.08),transparent 48%),#f3eddf!important;color:#20272c!important;box-shadow:none!important;overflow:hidden!important}
+.company-mark{padding:24px 26px 20px;border-bottom:1px solid #c8beab;position:relative}
+.company-mark:after{content:"COMPANY PROFILE";position:absolute;right:22px;top:18px;color:#8c8272;font:700 9px Arial,sans-serif;letter-spacing:.16em}
+.legal{color:#746b5f;font:700 10px Arial,sans-serif;letter-spacing:.13em;text-transform:uppercase;margin-bottom:7px}
+.wordmark{font-family:Georgia,serif;font-size:clamp(34px,5vw,58px);line-height:.95;color:#122331}
+.wordmark span{display:block;margin-top:7px;color:#8a6429;font:700 13px Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase}
+.company-snapshot{display:grid!important;grid-template-columns:repeat(4,1fr)!important}
+.snapshot-cell{padding:17px 18px!important;border-right:1px solid #c8beab!important;min-width:0}
+.snapshot-cell:last-child{border-right:0!important}
+.snapshot-label{display:block;color:#786f63;font:700 9px Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;margin-bottom:5px}
+.snapshot-value{display:block;color:#1c2d37;font:19px/1.2 Georgia,serif}
+.snapshot-note{display:block;margin-top:5px;color:#6e726f;font:11px/1.35 Arial,sans-serif}
+.company-evidence{margin:0 0 25px;padding:15px 17px;border-left:5px solid #66836e;background:#e7efe8;color:#33433a;font:15px/1.5 Arial,sans-serif}
+@media(max-width:920px){
+ .shell{grid-template-columns:1fr!important}
+ .sidebar{position:static!important}
+ .toc{max-height:none!important}
+ .company-snapshot{grid-template-columns:1fr 1fr!important}
+ .snapshot-cell{border-bottom:1px solid #c8beab!important}
+ .snapshot-cell:nth-child(2){border-right:0!important}
+ .snapshot-cell:nth-child(3),.snapshot-cell:nth-child(4){border-bottom:0!important}
+}
+@media(max-width:600px){
+ article.article{padding:20px 16px 28px!important}
+ .company-snapshot{grid-template-columns:1fr!important}
+ .snapshot-cell{border-right:0!important;border-bottom:1px solid #c8beab!important}
+ .snapshot-cell:last-child{border-bottom:0!important}
+ .company-mark:after{position:static;display:block;margin-bottom:9px;content:"COMPANY PROFILE"}
+ .company-mark{display:flex;flex-direction:column;padding:20px 18px 17px}
+ .company-mark:after{order:-1}
+ .hero h1{font-size:clamp(38px,12vw,56px)!important;overflow-wrap:anywhere}
+ .hero .deck{font-size:17px!important}
+}
+</style><style id="ao-company-profile-consistency">
+/* Exact shared company-profile presentation: Elcon is the house pattern. */
+.company-identity.company-profile-standard{
+  margin:0 0 28px!important;
+  padding:0!important;
+  border:1px solid #b8ad98!important;
+  border-radius:0!important;
+  background:linear-gradient(135deg,rgba(194,138,50,.08),transparent 48%),#f3eddf!important;
+  color:#20272c!important;
+  box-shadow:none!important;
+  overflow:hidden!important;
+  font-family:Georgia,"Times New Roman",serif!important;
+  font-size:16px!important;
+  line-height:normal!important;
+}
+.company-profile-standard .company-mark{
+  display:block!important;
+  position:relative!important;
+  padding:24px 26px 20px!important;
+  border:0!important;
+  border-bottom:1px solid #c8beab!important;
+  border-radius:0!important;
+  background:transparent!important;
+  color:#232b30!important;
+  font:400 16px/normal Georgia,"Times New Roman",serif!important;
+}
+.company-profile-standard .company-mark:after{
+  content:"COMPANY PROFILE"!important;
+  position:absolute!important;
+  right:22px!important;
+  top:18px!important;
+  display:block!important;
+  margin:0!important;
+  color:#8c8272!important;
+  font:700 9px/normal Arial,Helvetica,sans-serif!important;
+  letter-spacing:.16em!important;
+  text-transform:uppercase!important;
+}
+.company-profile-standard .legal{
+  display:block!important;
+  margin:0 0 7px!important;
+  padding:0!important;
+  color:#746b5f!important;
+  font:700 10px/11px Arial,Helvetica,sans-serif!important;
+  letter-spacing:.13em!important;
+  text-transform:uppercase!important;
+}
+.company-profile-standard .wordmark{
+  display:block!important;
+  margin:0!important;
+  padding:0!important;
+  color:#122331!important;
+  font:400 clamp(34px,5vw,58px)/.95 Georgia,"Times New Roman",serif!important;
+  letter-spacing:0!important;
+  text-transform:none!important;
+}
+.company-profile-standard .wordmark span{
+  display:block!important;
+  margin:7px 0 0!important;
+  padding:0!important;
+  color:#8a6429!important;
+  font:700 13px/normal Arial,Helvetica,sans-serif!important;
+  letter-spacing:.16em!important;
+  text-transform:uppercase!important;
+}
+.company-profile-standard .company-snapshot{
+  display:grid!important;
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  color:#232b30!important;
+  font:400 16px/normal Georgia,"Times New Roman",serif!important;
+}
+.company-profile-standard .snapshot-cell{
+  display:block!important;
+  min-width:0!important;
+  margin:0!important;
+  padding:17px 18px!important;
+  border:0!important;
+  border-right:1px solid #c8beab!important;
+  border-radius:0!important;
+  background:transparent!important;
+  color:#232b30!important;
+  font:400 16px/normal Georgia,"Times New Roman",serif!important;
+}
+.company-profile-standard .snapshot-cell:last-child{border-right:0!important}
+.company-profile-standard .snapshot-label{
+  display:block!important;
+  margin:0 0 5px!important;
+  padding:0!important;
+  color:#786f63!important;
+  font:700 9px/10px Arial,Helvetica,sans-serif!important;
+  letter-spacing:.12em!important;
+  text-transform:uppercase!important;
+}
+.company-profile-standard .snapshot-value{
+  display:block!important;
+  margin:0!important;
+  padding:0!important;
+  color:#1c2d37!important;
+  font:400 19px/22.8px Georgia,"Times New Roman",serif!important;
+}
+.company-profile-standard .snapshot-note{
+  display:block!important;
+  margin:5px 0 0!important;
+  padding:0!important;
+  color:#6e726f!important;
+  font:400 11px/14.85px Arial,Helvetica,sans-serif!important;
+}
+.hero .meta{
+  display:flex!important;
+  flex-direction:row!important;
+  flex-wrap:wrap!important;
+  align-items:center!important;
+  gap:10px!important;
+  margin:15px 0 0!important;
+  padding:0!important;
+}
+.hero .meta .badge,
+.hero .meta .updated{
+  display:inline-block!important;
+  position:static!important;
+  margin:0!important;
+  inset:auto!important;
+}
+.hero .meta .badge{
+  padding:6px 9px!important;
+  border:1px solid #78a6b8!important;
+  border-radius:999px!important;
+  background:transparent!important;
+  color:#9fc7d6!important;
+  font:700 11px/normal Arial,Helvetica,sans-serif!important;
+  letter-spacing:0!important;
+  text-transform:uppercase!important;
+}
+.hero .meta .updated{
+  padding:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  color:#9aa6ad!important;
+  font:700 11px/normal Arial,Helvetica,sans-serif!important;
+  letter-spacing:0!important;
+  text-transform:none!important;
+}
+@media(max-width:920px){
+  .company-profile-standard .company-snapshot{grid-template-columns:1fr 1fr!important}
+  .company-profile-standard .snapshot-cell{border-right:1px solid #c8beab!important;border-bottom:1px solid #c8beab!important}
+  .company-profile-standard .snapshot-cell:nth-child(2){border-right:0!important}
+  .company-profile-standard .snapshot-cell:nth-child(3),
+  .company-profile-standard .snapshot-cell:nth-child(4){border-bottom:0!important}
+  .company-profile-standard .snapshot-cell:last-child{border-right:0!important}
+}
+@media(max-width:600px){
+  .company-profile-standard .company-mark{
+    display:flex!important;
+    flex-direction:column!important;
+    padding:20px 18px 17px!important;
+  }
+  .company-profile-standard .company-mark:after{
+    position:static!important;
+    order:-1!important;
+    display:block!important;
+    margin:0 0 9px!important;
+  }
+  .company-profile-standard .wordmark{font-size:34px!important;overflow-wrap:anywhere!important}
+  .company-profile-standard .company-snapshot{grid-template-columns:1fr!important}
+  .company-profile-standard .snapshot-cell{
+    border-right:0!important;
+    border-bottom:1px solid #c8beab!important;
+  }
+  .company-profile-standard .snapshot-cell:nth-child(3){border-bottom:1px solid #c8beab!important}
+  .company-profile-standard .snapshot-cell:last-child{border-bottom:0!important}
+}
+</style><meta name="description" content="A researched history of Amenip Corporation, its arcade games, products, distribution and archival evidence.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://arcadesideb.com/amenip.html">
+<meta property="og:title" content="Amenip Corporation | Arcade Side B">
+<meta property="og:description" content="A researched history of Amenip Corporation, its arcade games, products, distribution and archival evidence.">
+<meta property="og:url" content="https://arcadesideb.com/amenip.html">
+</head>
+<body>
+<header class="mast">
+<div class="mast-inner">
+<div class="brand">Arcade Side B</div>
+<div class="motto">Preserve what others overlooked. Follow the evidence. Keep the record open.</div>
+</div>
+</header>
+<div class="crumb">Arcade Side B  ›  Companies  ›  Amenip Corporation</div>
+<section class="hero">
+<div class="eyebrow">Company history</div><h1>Amenip Corporation</h1><p class="deck">An early-1980s arcade software and rights holder whose five known game families reached players through a network of manufacturers, licensees and regional distributors.</p><div class="meta"><span class="badge living">Open to new evidence</span> <span class="updated">Last updated: September 8, 2026</span></div></section>
+<div class="rule"></div>
+<main class="shell">
+<aside class="sidebar"><nav aria-label="Amenip Corporation article contents" class="toc">
+<div class="toc-title">On this page</div><a href="#amenip-corporation">Amenip overview</a><a href="#1-the-company-that-survives-in-other-people-s-machines">1. The company that survives in other people's machines</a><a href="#2-counting-amenip-why-five-games-is-not-a-database-number">2. Five games and their regional versions</a><a href="#3-mariner-800-fathoms-one-game-crossing-three-markets">3. Mariner / 800 Fathoms: one game crossing three markets</a><a href="#4-round-up-fitter-four-companies-around-one-program">4. Round-Up / Fitter: four companies around one program</a><a href="#5-naughty-mouse-snatcher-the-cabinet-that-changed-the-story">5. Naughty Mouse / Snatcher: the cabinet that changed the story</a><a href="#6-woodpecker-the-hardest-amenip-puzzle">6. Woodpecker: credits, hardware and Japanese release</a><a href="#7-macho-mouse-amenip-techstar-and-game-plan">7. Macho Mouse: Amenip, Techstar, and Game Plan</a><a href="#8-nova-games-the-relationship-we-can-prove-and-the-merger-story-we-cannot">8. Nova Games: commercial connections and separate corporate records</a><a href="#9-palcom-and-queen-river-a-name-that-grew-stronger-without-becoming-clearer">9. Palcom and Queen River: program credits and an unresolved identity</a><a href="#10-false-leads-negative-findings-and-why-they-belong-in-the-story">10. Disputed company and game attributions</a><a href="#11-reconstructing-amenip-s-timeline-without-inventing-a-corporation">11. Amenip’s documented activity and uncertain corporate dates</a><a href="#12-the-five-amenip-outputs-reconstructed-in-full">12. Game catalog and company roles</a><a href="#13-what-the-evidence-says-about-amenip-and-nova">13. What the evidence says about Amenip and Nova</a><a href="#14-the-small-company-arcade-economy-amenip-reveals">14. The small-company arcade economy Amenip reveals</a><a href="#15-why-amenip-matters">15. Why Amenip matters</a><a href="#16-unresolved-questions-worth-reopening-only-for-better-evidence">16. Open questions</a><a href="#appendix-a-final-role-matrix">17. Game and company roles at a glance</a><a href="#appendix-b-principal-source-register">18. Sources</a><a href="#appendix-e-reader-facing-evidence-discipline">19. About the sources</a></nav>
+</aside><article class="article">
+<a class="backhome" href="#companies" target="_top">← Back to Companies</a><section aria-label="Amenip Corporation company profile" class="company-identity company-profile-standard"><div class="company-mark"><div class="legal">Amenip Corporation / documented arcade record</div><div class="wordmark">Amenip Corporation<span>Business address unresolved</span></div></div><div class="company-snapshot"><div class="snapshot-cell"><span class="snapshot-label">Documented arcade activity</span><span class="snapshot-value">1981–1982+</span><span class="snapshot-note">The precise legal founding and endpoint remain unknown.</span></div><div class="snapshot-cell"><span class="snapshot-label">Distinct game families</span><span class="snapshot-value">5 game families</span><span class="snapshot-note">Regional titles and cabinet variants remain within their underlying game families.</span></div><div class="snapshot-cell"><span class="snapshot-label">Commercial reach</span><span class="snapshot-value">4 documented markets</span><span class="snapshot-note">United States, Japan, Canada and West Germany.</span></div><div class="snapshot-cell"><span class="snapshot-label">Company character</span><span class="snapshot-value">Software + rights</span><span class="snapshot-note">Program credits and partner records preserve work often hidden by other names on the cabinet.</span></div></div></section><div class="company-evidence">Amenip is reconstructed chiefly through program credits, copyright records, service documents and the commercial histories of its partners. Those sources establish five game families and an international network while leaving the company’s precise legal lifespan unresolved.</div>
+<h2 id="amenip-corporation">AMENIP CORPORATION</h2>
+<h2 id="the-company-hidden-inside-other-people-s-arcade-machines">The Company Hidden Inside Other People's Arcade Machines</h2>
+<p>Amenip Corporation’s games reached operators through U.S. Billiards, Centuri, Taito, Nova Games, Roller Tron, Techstar, Game Plan and ESG. Titles and company credits changed between regions and commercial versions. Later preservation databases often compressed those relationships into a single developer or manufacturer entry, obscuring the different contributions behind the machine.</p>
+<p>Those different identities record the roles of software authors, rights holders, manufacturers and commercial partners. What can be reconstructed today is a small but international arcade catalog of five Amenip-associated game families, documented between 1981 and at least early October 1982. The company itself remains elusive: its legal formation, officers, business address, and legal endpoint have not yet been established with sufficient evidence. Yet its software, copyrights, trade relationships, physical machines, program credits, service documents, and preservation history are strong enough to recover a surprisingly detailed story.</p><hr/>
+<h2 id="company-snapshot">Company Snapshot</h2>
+<div aria-label="Historical reference table" class="table-scroll" role="region" tabindex="0"><table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Current finding</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Company</td>
+<td>Amenip Corporation</td>
+</tr>
+<tr>
+<td>Verified legal founding/incorporation</td>
+<td>Unknown</td>
+</tr>
+<tr>
+<td>First directly documented arcade activity</td>
+<td>1981</td>
+</tr>
+<tr>
+<td>Last confirmed Amenip-bearing arcade commercial activity</td>
+<td>At least early October 1982</td>
+</tr>
+<tr>
+<td>Documented arcade activity span</td>
+<td>1981-1982, at least two calendar years</td>
+</tr>
+<tr>
+<td>Verified legal endpoint</td>
+<td>Unknown</td>
+</tr>
+<tr>
+<td>Distinct game families</td>
+<td>5</td>
+</tr>
+</tbody>
+</table>
+</div><p>The five game families are:</p>
+<ol>
+<li><strong>Mariner / 800 Fathoms</strong></li>
+<li><strong>Round-Up / Fitter / T.T. Fitter</strong></li>
+<li><strong>Naughty Mouse / Snatcher</strong></li>
+<li><strong>Woodpecker</strong></li>
+<li><strong>Macho Mouse</strong></li>
+</ol>
+<p>The five-game count follows distinct game families. Regional titles, cabinet names, licenses and preserved ROM sets remain part of each game’s history, but do not automatically represent additional works. Counting those names separately, or merging technically distinct games, explains much of the variation among later catalogs.</p>
+<hr/>
+<h2 id="1-the-company-that-survives-in-other-people-s-machines">1. The company that survives in other people's machines</h2>
+<p>Amenip is most often documented through software and partner records rather than a distinctive line of its own cabinets. Its name appears in program credits, copyrights and service documentation for machines bearing other brands. Regional distributors and manufacturers could give a game a new title or cabinet while the software retained a different company’s identity.</p>
+<p>A simple title, year and manufacturer listing cannot fully express those arrangements. Each game’s history therefore distinguishes the parties named in its program, promotional material and service documents.</p>
+<p>Mariner says Amenip in the software, yet 800 Fathoms was sold as a U.S. Billiards machine in North America. Round-Up carries Amenip/Centuri in the program, while contemporary trade evidence says Centuri's licensor was Hiraoka &amp; Co. Taito publicly showed Fitter in Japan. A surviving Snatcher cabinet places NOVA under the marquee title while the game running inside it shows a PALCOM QUEEN RIVER program credit. Woodpecker was commercially presented in Japan by Roller Tron while a contemporary show photograph still displayed Amenip on the screen. Macho Mouse gives us perhaps the cleanest legal clue of all: Amenip is identified in the copyright trail as the work-for-hire author and claimant, while Techstar marketed the arcade product and Game Plan supplied formal cabinet and service documentation.</p>
+<p>These records describe different responsibilities: authorship, copyright ownership, licensing, manufacturing, marketing, regional presentation and cabinet support. Preservation attributions add a later interpretation of those records. The company named on one artifact need not have performed all of the work behind the game.</p>
+<p>The result is a company history built less from a corporate brochure than from a network of artifacts. Title screens establish what the software itself said. Contemporary flyers establish how a product was sold. Trade magazines establish who announced a license or showed a machine. Manuals reveal which company expected to service the cabinet. Corporate records tell us whether two apparently related companies could really have been the same legal entity. Preservation source code shows which programs are close relatives and which are materially distinct.</p>
+<p>Amenip’s corporate records remain elusive, but its games document a broad network of commercial relationships.</p><h2 id="a-note-about-the-games-as-games">The range of Amenip’s games</h2>
+<p>The five games also differ substantially in their play, sound, controls and physical presentation. Those features are part of the history alongside the records identifying who created, sold and supported them.</p><p>They also were not five copies of the same idea. The catalog moves from an underwater scrolling shooter to a maze-and-pattern puzzle, then into odd vertical climbing games, and finally back to a mouse-themed maze game sold into the conversion market. Preservation source places the games across several familiar early-1980s hardware families rather than one obvious proprietary Amenip platform: Mariner/800 Fathoms sits in the Scramble-family preservation tree; Naughty Mouse and Woodpecker live in Pac-Man-derived territory; Round-Up/Fitter and Macho Mouse survive in the same broader driver family. <a aria-label="Source 4" class="src-tag" href="#source-4">[4]</a><a aria-label="Source 5" class="src-tag" href="#source-5">[5]</a><a aria-label="Source 23" class="src-tag" href="#source-23">[23]</a></p>
+<p>That variety is one reason a cabinet-only history misses the company. Amenip does not leave behind one unmistakable machine architecture or a line of cabinets wearing a house style. Its fingerprint is more often the program credit and the chain of commercial partners around it.</p>
+<p>Gameplay descriptions connect the company relationships with the machines players encountered. When later descriptive databases disagree with current program or driver evidence, the technical evidence is given priority and the disagreement is stated rather than quietly harmonized.</p>
+<hr/>
+<h2 id="2-counting-amenip-why-five-games-is-not-a-database-number">2. Five games and their regional versions</h2>
+<p>The catalog contains five distinct game families. Regional titles, cabinet names, preserved ROM sets and companies presenting the same game do not automatically add separate works.</p>
+<p>That rule collapses obvious regional families. Mariner and 800 Fathoms belong to one underlying output. Round-Up, Fitter, and T.T. Fitter belong to one underlying program family. Naughty Mouse and Snatcher belong to one underlying output even though the cabinet and program evidence carries different commercial names and credits.</p>
+<p>The harder question was Woodpecker. For a time, the similarity of Naughty Mouse and Woodpecker made it tempting to treat Woodpecker as simply another renamed or slightly modified member of the Naughty Mouse family. Preservation history made that temptation stronger because the two games traveled through some of the same MAME source territory and shared Amenip/Queen River/Palcom-related attribution problems.</p>
+<p>The technical evidence ultimately argued against merging them. Current MAME preserves Naughty Mouse and Woodpecker as separate parent games rather than making one a clone of the other. The control definitions differ in a way that matters to play: Naughty Mouse is joystick-only, while Woodpecker adds an action button. Woodpecker's program/storage arrangement is also materially different, and the preserved source documents ROM material dumped from a large epoxy block or security module. <a aria-label="Source 4" class="src-tag" href="#source-4">[4]</a> Woodpecker’s Amenip attribution is supported by evidence specific to that game, rather than solely by its relationship to Naughty Mouse. Earlier Woodpecker-specific development evidence exists, and the Japanese Roller Tron evidence independently ties a commercially shown Woodpecker machine to an Amenip-bearing screen. These independent records support the attribution. That decision matters because the final catalog should represent distinct works, not the convenience of a database tree. On the evidence currently available, Naughty Mouse and Woodpecker are close relatives, but they are not the same Amenip output. Commercial records and technical evidence together support the five-game total.</p>
+<hr/>
+<h2 id="3-mariner-800-fathoms-one-game-crossing-three-markets">3. Mariner / 800 Fathoms: one game crossing three markets</h2>
+<div aria-label="Mariner title and gameplay" class="visual-pair"><figure class="archive-figure screen">
+<img alt="Mariner title screen" data-original-src="https://mdk.cab/img/titles/mariner.png" height="256" loading="lazy" referrerpolicy="no-referrer" src="assets/articles/ecce6f09fb3946a551930ac2dc39cbd09f76b225.png" width="224"/>
+<figcaption><strong>Mariner title screen.</strong> The surviving program displays Amenip’s name.</figcaption></figure><figure class="archive-figure screen">
+<img alt="Mariner gameplay screen" data-original-src="https://mdk.cab/img/snap/mariner.png" height="256" loading="lazy" referrerpolicy="no-referrer" src="assets/articles/74d76fa8e97d5a9eca6db97db4b22679732fc812.png" width="224"/>
+<figcaption><strong>Mariner in play.</strong> The underwater scrolling shooter, shown in emulation.</figcaption></figure></div>
+<p>Mariner is one of the best places to begin because Amenip is not hidden there. The surviving Mariner program displays <strong>© AMENIP CORP 1981</strong>. That is direct evidence from the game itself, and it provides a firm 1981 anchor for Amenip's arcade activity. The North American 800 Fathoms variant preserves the Amenip identity while adding U.S. Billiards. The relationship is visible in the software before any later database is consulted. <a aria-label="Source 20" class="src-tag" href="#source-20">[20]</a> This is also an early example of why the physical machine and the software should not be treated as the same historical object.</p>
+<h2 id="what-a-player-actually-saw-in-mariner">What a player actually saw in Mariner</h2>
+<p>The corporate trail starts with a game that is visually easy to understand. Mariner is an underwater scrolling shooter. The player pilots a submarine through submerged terrain, firing forward torpedoes while using a second attack against targets below. Later descriptive references consistently describe five stages and an enemy submarine encounter at the end of each area. Current preservation information also records an eight-way joystick and two action buttons for the 800 Fathoms lineage. <a aria-label="Source 21" class="src-tag" href="#source-21">[21]</a></p>
+<p>The result is a useful contrast with the paperwork-heavy history surrounding it. On screen, the premise is immediate: squeeze a submarine through dangerous terrain and keep shooting. Off screen, the same program becomes Mariner in one market, 800 Fathoms in another, an ESG cabinet or conversion offering in West Germany, and a U.S. Billiards complete machine in North America.</p>
+<p>That makes the game itself a good demonstration of the difference between a <em>work</em> and a <em>commercial product</em>. The submarine program can remain substantially the same while the title, cabinet, regional seller, and support network change around it.</p>
+<h2 id="u-s-billiards-takes-the-game-to-north-america">U.S. Billiards takes the game to North America</h2>
+<div aria-label="800 Fathoms flyer and screens" class="visual-gallery"><figure class="archive-figure">
+<img alt="1981 U.S. Billiards 800 Fathoms flyer" height="1102" loading="lazy" referrerpolicy="no-referrer" src="assets/articles/b96505db7a97a442464ce1112b90578591b8c018.jpg" width="850"/>
+<figcaption><strong>800 Fathoms — U.S. Billiards flyer, 1981.</strong> Original archival image showing the complete North American cabinet, commercial branding and Amityville address.</figcaption>
+</figure><figure class="archive-figure screen">
+<img alt="800 Fathoms title screen" data-original-src="https://mdk.cab/img/titles/800fatha.png" height="256" loading="lazy" referrerpolicy="no-referrer" src="assets/articles/8b78aa365552bd42baac8f1fb548d7641221107d.png" width="224"/>
+<figcaption><strong>800 Fathoms title screen.</strong> The screen carries the Amenip and U.S. Billiards credits.</figcaption></figure><figure class="archive-figure screen">
+<img alt="800 Fathoms gameplay" data-original-src="https://mdk.cab/img/snap/800fatha.png" height="256" loading="lazy" referrerpolicy="no-referrer" src="assets/articles/e6d204fa426cf70466ca9fdbbb08401327048aff.png" width="224"/>
+<figcaption><strong>800 Fathoms in play.</strong> Regional presentation of the Mariner program family.</figcaption>
+</figure></div>
+<p>An original U.S. Billiards flyer presents 800 Fathoms as a complete commercial arcade machine. It is not merely a board being mentioned in a parts list or a title retrospectively associated with a company. The flyer gives U.S. Billiards a direct public-facing role in selling the North American product. <a aria-label="Source 17" class="src-tag" href="#source-17">[17]</a></p>
+<p>Surviving U.S. Billiards technical documentation strengthens that conclusion. The service material supports real cabinet, shipping, installation, board, and repair integration. In other words, U.S. Billiards belongs in the 800 Fathoms story because it handled a physical commercial machine, not because a modern database happened to place its name in a manufacturer column.</p>
+<p>The exact Amenip-U.S. Billiards contract has not been recovered. That absence is worth stating because it prevents the evidence from being overread. We can say that U.S. Billiards manufactured and marketed the North American machine and that the program retained Amenip. We cannot yet reproduce the precise legal language by which the rights moved between them.</p>
+<h2 id="the-roms-support-one-underlying-family">The ROMs support one underlying family</h2>
+<p>Preservation evidence helps answer a different question: are Mariner and 800 Fathoms fundamentally separate games, or regional variants of one work?</p>
+<p>Current MAME preserves Mariner as the parent and two 800 Fathoms sets as close Mariner-lineage variants. The ROM definitions show limited program differences while substantial graphics and PROM material is shared. Current metadata describes the 800 Fathoms relationship as Amenip under U.S. Billiards licensing. <a aria-label="Source 5" class="src-tag" href="#source-5">[5]</a></p>
+<p>MAME cannot by itself prove the legal contract, but it is very useful for the technical relationship. Here the software structure agrees with the commercial evidence: one underlying game traveled through different regional packaging.</p>
+<h2 id="esg-and-the-west-german-branch">ESG and the West German branch</h2>
+<div aria-label="ESG Mariner commercial material" class="visual-pair"><figure class="archive-figure">
+<img alt="West German ESG Mariner flyer" data-original-src="https://flyers.arcade-museum.com/videogame-flyers/5/mariner-05873-01.jpg" height="1207" loading="lazy" referrerpolicy="no-referrer" src="assets/articles/6199d6b0bbbccb0078721db5c5afa6fc30ecef45.jpg" width="850"/>
+<figcaption><strong>ESG Mariner flyer.</strong> West German commercial presentation advertising Mariner in multiple cabinet forms and as a Scramble conversion.</figcaption>
+<div class="translation-box" lang="en"><strong>English translation — relevant excerpt</strong><p>“Mariner — game description. In five gripping stages, the player, as a submarine commander, fights a mysterious maritime empire. Its command center must be found and destroyed. Destroying the base begins the next stage. Attackers must be held at bay with torpedoes and depth charges; destroying the underwater power’s supply depots earns additional points. Adjustable bonus-point thresholds award extra submarines. With another credit, play can resume where it ended within 20 seconds. Available as an upright, table or wall-mounted machine. Also available as a conversion kit for Scramble machines.”</p></div></figure><figure class="archive-figure">
+<img alt="ESG wall-mounted arcade cabinet flyer" data-original-src="https://flyers.arcade-museum.com/videogame-flyers/5/piranha-mariner-crush-roller-crazy-kong-05951-01.jpg" height="1198" loading="lazy" referrerpolicy="no-referrer" src="assets/articles/0ef7717a1a7656047fb9fa7f47e0977dd2171b99.jpg" width="850"/>
+<figcaption>ESG wall-cabinet flyer. This page advertises the modular cabinet and its operator features; it does not name Mariner or establish the game’s licensing arrangements.</figcaption><div class="translation-box" lang="en"><strong>English translation — relevant excerpt</strong><p>“Electronic game machines of the new generation, in all-polyester construction. Wall-mounted video game in a functional design.” The advertised features include impact resistance; two programmable coin validators for different currencies; interchangeable controls for future games; protection against tampering; interchangeable mounting frames for circuit boards; an integrated, theft-resistant cashbox; and a tilted monitor for a sense of depth.</p></div></figure></div>
+<p>ESG’s Mariner advertisement documents the game in West Germany in multiple cabinet forms and as a conversion for Scramble-style hardware. The separate wall-cabinet flyer illustrates ESG’s modular system, but the displayed page does not itself name Mariner. <a aria-label="Source 18" class="src-tag" href="#source-18">[18]</a> <a aria-label="Source 19" class="src-tag" href="#source-19">[19]</a></p>
+<p>This evidence establishes that Mariner was commercially packaged and marketed in West Germany. It does not establish the precise rights chain from Amenip to ESG. No recovered contract tells us whether ESG licensed directly from Amenip, obtained rights through another intermediary, or worked through a more complicated distribution arrangement.</p>
+<p>The surviving material identifies Amenip through the software copyright, U.S. Billiards through North American machine manufacture and marketing, and ESG through West German packaging and sales. The contracts connecting them have not been recovered.</p>
+<h2 id="the-allumer-development-claim">The Allumer development claim</h2>
+<p>One modern preservation-era proposal attributed development of Mariner/800 Fathoms to Allumer. It was investigated rather than dismissed out of hand. The problem was not that the proposal was impossible; the problem was that the accessible evidence did not provide sufficiently strong Mariner-specific primary support to override the direct 1981 Amenip program credit.</p>
+<p>That distinction matters. A later development attribution can sometimes be correct even when another company owns the copyright or publishes the game. But when the proposed developer cannot be tied to the title with evidence stronger than the game's own contemporary credit, the attribution remains a hypothesis.</p>
+<p>For Amenip's history, Mariner therefore remains one of the strongest direct pieces of evidence that the company was producing or controlling arcade software in 1981.</p>
+<p>It also shows how far the work traveled: Amenip in the program, U.S. Billiards in the North American machine, ESG in West Germany, and a preservation lineage that still makes their relationship visible decades later.</p>
+<hr/>
+<h2 id="4-round-up-fitter-four-companies-around-one-program">4. Round-Up / Fitter: four companies around one program</h2>
+<div aria-label="Round-Up title and gameplay" class="visual-pair"><figure class="archive-figure screen">
+<img alt="Round-Up title screen showing Amenip and Centuri" height="320" loading="lazy" referrerpolicy="no-referrer" src="assets/articles/49bd3133e69c6c2d5bf13005c2c043e607c0d81c.jpg" width="280"/>
+<figcaption><strong>Round-Up title screen.</strong> Preserved image displaying <em>COPYRIGHT © 1981 AMENIP/CENTURI</em>.</figcaption>
+</figure><figure class="archive-figure screen">
+<img alt="Round-Up gameplay screen" data-original-src="https://mdk.cab/img/snap/roundup.png" height="256" loading="lazy" referrerpolicy="no-referrer" src="assets/articles/360a15bc5005ad5c2a0397efaa7d5d15f2df8c2b.png" width="224"/>
+<figcaption><strong>Round-Up in play.</strong> The maze and nine-circle center area discussed in the text.</figcaption>
+</figure></div>
+<p>Round-Up and Fitter are an even better demonstration of how quickly arcade credits can become misleading. The North American Round-Up program carries the line <strong>COPYRIGHT © 1981 AMENIP/CENTURI</strong>. That is direct software evidence that Amenip was involved in the North American program lineage. <a aria-label="Source 20" class="src-tag" href="#source-20">[20]</a></p>
+<p>If that were the only surviving evidence, it would be easy to write the story as “Amenip and Centuri made Round-Up.” Contemporary trade material complicates that sentence immediately.</p>
+<h2 id="what-round-up-fitter-asks-the-player-to-do">What Round-Up/Fitter asks the player to do</h2>
+<p>Round-Up is not simply another Pac-Man-style maze chase. Its central loop mixes pursuit, collection, and a color-pattern puzzle. Descriptive sources portray the player as a small robot moving through a maze, capturing red characters and using them to convert the nine white circles in the center area to red while hostile chasers interfere. Finishing that center objective produces a separate pattern-matching challenge: the player manipulates a tri-colored 3-by-3 or 4-by-4 arrangement to match a sample, under a 90-second limit. <a aria-label="Source 22" class="src-tag" href="#source-22">[22]</a></p>
+<p>Current MAME source maps the Round-Up/Fitter family to an eight-way joystick and one action button. <a aria-label="Source 23" class="src-tag" href="#source-23">[23]</a> That detail is worth preserving because some older database summaries reduce the game to a generic maze title. It was stranger than that - part chase game, part territory-management exercise, part visual puzzle.</p>
+<p>That eccentric design also helps explain why the rights trail is more interesting than a simple regional name swap. A distinctive program could be moved through Hiraoka, Centuri, and Taito while retaining different screen credits and commercial identities. The game a player learned was coherent even when the company names around it were not.</p>
+<h2 id="centuri-s-licensor-was-hiraoka">Centuri's licensor was Hiraoka</h2>
+<div aria-label="Centuri Round-Up flyer" class="visual-pair"><figure class="archive-figure">
+<img alt="Centuri Round-Up flyer front" height="1098" loading="lazy" referrerpolicy="no-referrer" src="assets/articles/7fa09542c9e46361a9587db6ae18bd903084714a.jpg" width="850"/>
+<figcaption><strong>Centuri Round-Up flyer — front.</strong> The 1981 advertisement presents the game and its upright cabinet.</figcaption></figure><figure class="archive-figure">
+<img alt="Centuri Round-Up flyer reverse" height="1097" loading="lazy" referrerpolicy="no-referrer" src="assets/articles/8ff36c8a2ee16bd2b7af04411e04dc714caa6fde.jpg" width="850"/>
+<figcaption><strong>Centuri Round-Up flyer — reverse.</strong> Upright and cocktail cabinets appear alongside the statement that Round-Up was manufactured under license from Hiraoka &amp; Co., Ltd.</figcaption></figure></div>
+<p>Cash Box reported in December 1981 that Centuri had a licensing agreement with <strong>Hiraoka &amp; Co., Ltd.</strong> for Round-Up. The report described American-region manufacturing rights rather than an undefined association. <a aria-label="Source 2" class="src-tag" href="#source-2">[2]</a></p>
+<p>Centuri's own original flyer independently supports the same relationship. It states that Round-Up was manufactured under license from Hiraoka &amp; Co., Ltd., while advertising the game in upright and cocktail forms. <a aria-label="Source 3" class="src-tag" href="#source-3">[3]</a></p>
+<p>Those two sources are important because they correct a very easy mistake. The Amenip/Centuri copyright line does <strong>not</strong> justify saying that Centuri licensed Round-Up directly from Amenip. The period commercial paper trail says Hiraoka was Centuri's licensor. The exact Amenip–Hiraoka agreement has not been found. Amenip may have created the software for Hiraoka, assigned or shared rights, or participated through another arrangement. The program credit and Centuri’s documented license identify the participants but do not establish the original direction of development or rights transfer.</p>
+<h2 id="fitter-in-japan">Fitter in Japan</h2>
+<div aria-label="Fitter title and gameplay" class="visual-pair"><figure class="archive-figure screen">
+<img alt="Fitter title screen" data-original-src="https://mdk.cab/img/titles/fitter.png" height="256" loading="lazy" referrerpolicy="no-referrer" src="assets/articles/c01801d22da6752abd35372dc6c25b92a2ace64c.png" width="224"/>
+<figcaption><strong>Fitter title screen.</strong> Japanese-regional software presentation associated with Taito.</figcaption>
+</figure><figure class="archive-figure screen">
+<img alt="Fitter gameplay" data-original-src="https://mdk.cab/img/snap/fitter.png" height="256" loading="lazy" referrerpolicy="no-referrer" src="assets/articles/aeadd801ab6d139962fbcad374deed898cf43dfb.png" width="224"/>
+<figcaption><strong>Fitter in play.</strong> Gameplay from the Japanese version of the Round-Up/Fitter family.</figcaption></figure></div>
+<p>Japan supplies another layer. Game Machine's coverage of the 19th Amusement Machine Show, held October 6-8, 1981, documents Taito publicly presenting <strong>Fitter</strong>. Surviving Fitter presentation carries <strong>© TAITO CORP. 1981</strong>. <a aria-label="Source 1" class="src-tag" href="#source-1">[1]</a><a aria-label="Source 20" class="src-tag" href="#source-20">[20]</a> That is strong evidence for Taito's Japanese commercial presentation. It is not, by itself, proof that Taito was the original developer of the underlying program. The Japanese Taito copyright and the North American Amenip/Centuri credit may reflect different regional or commercial rights. Hiraoka’s role as licensor adds a further distinction; none of those records alone identifies every company’s contribution.</p>
+<h2 id="the-controlled-reconstruction">The documented roles</h2><div aria-label="Round-Up technical documentation" class="visual-gallery"><figure class="archive-figure">
+<img alt="Centuri Round-Up schematics page 1" height="935" loading="lazy" referrerpolicy="no-referrer" src="assets/articles/ef9a7c98ed57ebee0bb404a4576ac7983abd428e.jpg" width="1210"/>
+<figcaption><strong>Round-Up schematics — page 1.</strong> Centuri circuit diagrams for servicing the game.</figcaption></figure><figure class="archive-figure">
+<img alt="Centuri Round-Up schematics page 2" height="935" loading="lazy" referrerpolicy="no-referrer" src="assets/articles/95a8063012c5b4c570a64cf03b1e29d9d08149c0.jpg" width="1210"/>
+<figcaption><strong>Round-Up schematics — page 2.</strong> A further page of Centuri’s circuit diagrams.</figcaption></figure><figure class="archive-figure">
+<img alt="Centuri Round-Up schematics page 3" height="935" loading="lazy" referrerpolicy="no-referrer" src="assets/articles/fc3b9de7cdcf0caa01efcdace6238cc58f91ffdc.jpg" width="1210"/>
+<figcaption><strong>Round-Up schematics — page 3.</strong> Centuri service documentation.</figcaption>
+</figure><figure class="archive-figure">
+<img alt="Round-Up corrected pinout reference" height="1320" loading="lazy" referrerpolicy="no-referrer" src="assets/articles/fbf39ac4535452f5fcee0729afdb3ecf363a5cd0.jpg" width="1020"/>
+<figcaption><strong>Round-Up pinout reference.</strong> Parts-side and solder-side connector assignments.</figcaption></figure><figure class="archive-figure">
+<img alt="Detail from Round-Up schematic" height="599" loading="lazy" referrerpolicy="no-referrer" src="assets/articles/0532b2cd480e69c64295109fa2752038331204a8.jpg" width="968"/>
+<figcaption><strong>Round-Up schematic detail.</strong> The complete service-document pages are shown above.</figcaption></figure></div>
+<p>The best-supported role map is therefore:</p>
+<ul>
+<li><strong>Amenip:</strong> genuine underlying program/copyright relationship in the North American Round-Up lineage.</li>
+<li><strong>Hiraoka &amp; Co., Ltd.:</strong> documented licensor to Centuri.</li>
+<li><strong>Centuri:</strong> North American manufacturer and commercializer under that Hiraoka license.</li>
+<li><strong>Taito:</strong> documented Japanese presenter of Fitter.</li>
+</ul>
+<p>What remains unknown is the exact Amenip-Hiraoka contract and, with it, the original direction of development and rights transfer.</p>
+<p>Round-Up/Fitter remains one game family with several documented commercial participants. Its software credits, license and regional presentations establish different roles for Amenip, Hiraoka, Centuri and Taito, while the original development agreement remains unknown.</p>
+<hr/>
+<h2 id="5-naughty-mouse-snatcher-the-cabinet-that-changed-the-story">5. Naughty Mouse / Snatcher: the cabinet that changed the story</h2>
+<div aria-label="Naughty Mouse preserved program variants" class="visual-gallery"><figure class="archive-figure screen">
+<img alt="Naughty Mouse set 1 title screen" data-original-src="https://mdk.cab/img/titles/nmouse.png" height="288" loading="lazy" referrerpolicy="no-referrer" src="assets/articles/fa75f640be558fdca91c08ac6c28af5097bbbf5e.png" width="224"/>
+<figcaption><strong>Naughty Mouse — set 1 title screen.</strong> The screen displays Amenip’s copyright credit.</figcaption></figure><figure class="archive-figure screen">
+<img alt="Naughty Mouse set 2 title screen" data-original-src="https://mdk.cab/img/titles/nmouseb.png" height="288" loading="lazy" referrerpolicy="no-referrer" src="assets/articles/65d0cbbf15e78ed32b59e87d6a972014ba7d04c5.png" width="224"/>
+<figcaption><strong>Naughty Mouse — set 2 title screen.</strong> A second surviving variant, also displaying Amenip’s copyright credit.</figcaption></figure><figure class="archive-figure screen">
+<img alt="Naughty Mouse gameplay" data-original-src="https://mdk.cab/img/snap/nmouse.png" height="288" loading="lazy" referrerpolicy="no-referrer" src="assets/articles/5cf233341150d198ed8414fdf28b7364e2d0b321.png" width="224"/>
+<figcaption><strong>Naughty Mouse in play.</strong> The vertical climbing layout described in the text.</figcaption>
+</figure></div>
+<p>Of all the Amenip families, Naughty Mouse produced the most persistent corporate question because it is where Nova Games enters most visibly. Current MAME preserves two principal Naughty Mouse sets within one underlying family. One is identified in preservation metadata as <strong>Amenip (Palcom Queen River)</strong>; another as <strong>Amenip Nova Games Ltd.</strong> <a aria-label="Source 4" class="src-tag" href="#source-4">[4]</a> Those labels were useful clues, but they were not enough on their own to establish corporate history. Emulator metadata can preserve valuable knowledge, yet a parenthetical manufacturer note is not a contract, incorporation record, or period advertisement. The origin of those qualifiers requires evidence separate from the metadata itself.</p>
+<h2 id="the-game-itself-and-a-preservation-contradiction-worth-keeping">Naughty Mouse’s controls and its relationship to Woodpecker</h2>
+<p>Naughty Mouse is usually described as a vertical climbing/platform game built around a mouse trying to work upward through a screen of ladders and hostile birds. Eggs and woodpeckers are central to the surviving descriptions, and the basic playfield is immediately different from the maze structure of Round-Up or Macho Mouse. <a aria-label="Source 24" class="src-tag" href="#source-24">[24]</a> Later descriptions sometimes blend Naughty Mouse with Woodpecker, particularly when describing the controls. Many derivative descriptions say that Naughty Mouse has a jump button and then describe Woodpecker as essentially the same game with altered colors or stage arrangements. Current MAME's input definitions do <strong>not</strong> support the first part of that conventional description. The <code>nmouse</code> input map assigns only a four-way joystick; there is no action-button input. The separate <code>woodpek</code> map explicitly adds Button 1. <a aria-label="Source 4" class="src-tag" href="#source-4">[4]</a></p>
+<p>That discrepancy is historically useful. It suggests that at least some modern prose descriptions have blended the two related games together. Current MAME's own driver commentary is cautious about the original title as well, noting that the word <strong>NAUGHTY</strong> is visible at the top of the playfield and that the exact original name was not known to the driver author. <a aria-label="Source 4" class="src-tag" href="#source-4">[4]</a> For this history, the safe description is therefore deliberately narrower than the usual database text: Naughty Mouse/Naughty is a mouse-and-woodpecker climbing game controlled in the current preservation driver by a four-way joystick. Claims about a jump button are not repeated as fact because the current input map contradicts them. The absence of a mapped action button is one of the technical differences supporting their treatment as separate games.</p>
+<h2 id="what-the-surviving-programs-say">What the surviving programs say</h2>
+<p>Earlier examination of the preserved Naughty Mouse variants found visible Amenip credit in the software, which means the Nova/Palcom/Queen River qualifiers were not simply transcriptions of a single title-screen line. That was important. It showed that the preservation labels contained historical interpretation beyond what could be read directly from the common screen evidence. This led into the older MAME provenance trail. Dave Widel is associated with the early MAME contribution history for Naughty Mouse. Historical source lineage shows the Palcom Queen River qualifier appearing relatively early in the preservation history around Naughty Mouse and Woodpecker. The exact original source behind that qualifier, however, was not recovered.</p>
+<p>MAME’s development history and its official releases provide different kinds of evidence. A work-in-progress entry establishes that code or information was being developed, but does not prove that the same attribution appeared in a particular public release. The original MAME 0.69 source package has not been verified for the specific attribution discussed here; later or derivative trees cannot establish its exact contents. The version history matters when dating an attribution, but emulator wording alone cannot establish the corporate identity behind “Palcom Queen River.” The surviving Snatcher cabinet adds physical evidence to the software record.</p>
+<h2 id="snatcher-nova-and-palcom-queen-river-in-one-physical-machine">Snatcher, Nova, and PALCOM QUEEN RIVER in one physical machine</h2>
+<p>International Arcade Museum photographs contributed by Eric Bonenfant show a surviving cabinet with <strong>SNATCHER</strong> on the marquee and <strong>NOVA</strong> printed directly beneath the title. The same photographed machine is running a program whose screen visibly reads <strong>© PALCOM QUEEN RIVER</strong>. <a aria-label="Source 9" class="src-tag" href="#source-9">[9]</a> The photographed machine brings the Nova cabinet branding and PALCOM QUEEN RIVER software credit together in one surviving configuration. NOVA is printed beneath the Snatcher title on the cabinet, giving it a visible commercial role beyond the attribution recorded in MAME. The running program displays the full PALCOM QUEEN RIVER wording, independently confirming that the phrase was used in the software. The cabinet therefore proves a real commercial/presentation relationship among the Snatcher/Naughty Mouse family, Nova branding, and a PALCOM QUEEN RIVER program variant.</p>
+<p>It still does not answer every question. We do not know whether Palcom and Queen River were separate companies, one company, a label and a company, a rights holder and a development group, or something else. We do not know the contract linking them to Nova. We do not know the precise legal mechanism connecting Nova and Amenip. The photographed machine cannot tell us whether its current board and cabinet remained together from the moment of original sale, although the physical combination is unquestionably important evidence of a surviving configuration. The photographed machine supports the following observations: <strong>Nova had a direct cabinet/presentation role in at least one surviving Snatcher configuration, and a surviving program variant carries a full PALCOM QUEEN RIVER credit.</strong> These markings establish a surviving cabinet and program combination; they do not establish common ownership among the credited companies.</p>
+<h2 id="why-snatcher-does-not-become-a-sixth-amenip-game">Why Snatcher does not become a sixth Amenip game</h2>
+<p>Despite the different cabinet title, Snatcher is counted with Naughty Mouse rather than as a separate underlying Amenip output. The preservation lineage treats it as part of the same game family, and nothing recovered in the available evidence justifies promoting the cabinet title into a distinct program on the level of Woodpecker. This is exactly why the output count has to be based on underlying program identity rather than marquee names. In the early arcade business, a new title on the cabinet could represent a regional rename, a licensing presentation, a revised program, or an entirely new game. The evidence has to decide which one. For Naughty Mouse/Snatcher, the evidence supports one Amenip output with multiple commercial identities.</p>
+<hr/>
+<h2 id="6-woodpecker-the-hardest-amenip-puzzle">6. Woodpecker: credits, hardware and Japanese release</h2>
+<div aria-label="Woodpecker program variants and gameplay" class="visual-gallery"><figure class="archive-figure screen">
+<img alt="Woodpecker set 1 title screen" data-original-src="https://mdk.cab/img/titles/woodpeck.png" height="288" loading="lazy" referrerpolicy="no-referrer" src="assets/articles/abcdd9e0ae6b82b076931d3ac3eaa82f59490102.png" width="224"/>
+<figcaption><strong>Woodpecker — set 1 title screen.</strong> This surviving program variant carries the Q RIVER credit.</figcaption></figure><figure class="archive-figure screen">
+<img alt="Woodpecker set 2 title screen" data-original-src="https://mdk.cab/img/titles/woodpeca.png" height="288" loading="lazy" referrerpolicy="no-referrer" src="assets/articles/fae64e4297a43fa888d6d4195e0c6bcddba97f6c.png" width="224"/>
+<figcaption><strong>Woodpecker — set 2 title screen.</strong> This variant carries Amenip’s credit, differing from the Q RIVER attribution in set 1.</figcaption></figure><figure class="archive-figure screen">
+<img alt="Woodpecker gameplay" data-original-src="https://mdk.cab/img/snap/woodpeck.png" height="288" loading="lazy" referrerpolicy="no-referrer" src="assets/articles/8102ca5ed250a62c7d5a18fed6ae8c6110b8fe37.png" width="224"/>
+<figcaption><strong>Woodpecker in play.</strong> Gameplay from the surviving program.</figcaption></figure></div>
+<p>Woodpecker presents several related attribution questions involving its resemblance to Naughty Mouse, differing program credits, an unusual security module and Roller Tron’s Japanese commercial presentation. Its resemblance to Naughty Mouse is complicated by different program credits and controls, MAME’s account of an epoxy security module, and contemporary Japanese coverage of Roller Tron’s release. Palcom and Queen River appear in the software and preservation record, but their corporate identities remain unresolved. The distinctions emerge from the combined software, hardware and trade evidence.</p>
+<h2 id="what-changed-when-woodpecker-became-its-own-game">How Woodpecker differs from Naughty Mouse</h2>
+<p>Woodpecker clearly belongs to the same broad design neighborhood as Naughty Mouse: a vertically organized playfield, a small character navigating platforms or ladders, and bird imagery that makes the family resemblance obvious. The dangerous shortcut is to stop there.</p>
+<p>The current preservation driver gives Woodpecker a four-way joystick <strong>plus an action button</strong>, while Naughty Mouse has no mapped action button. <a aria-label="Source 4" class="src-tag" href="#source-4">[4]</a> Specialist historical commentary has likewise noted that Woodpecker allows the player to go on the offensive in a way Naughty does not. <a aria-label="Source 24" class="src-tag" href="#source-24">[24]</a> The preserved input definitions establish a difference in controls; a full gameplay comparison would require direct observation of both programs.</p>
+<p>That difference sits beside the separate parent-game treatment, the epoxy-module program arrangement, the different surviving credits, and Woodpecker's independent Roller Tron commercial history. Put together, those details make Woodpecker look less like a palette swap and more like a related game that received additional program and commercial development.</p>
+<p>This is also a good example of why an arcade catalog cannot be counted by screenshots alone. Two games can share enough visual DNA to look nearly interchangeable in a still image while differing in controls, program storage, release history, and rights presentation. In Amenip's case those deeper layers are exactly what preserve Woodpecker as output number four rather than another Naughty Mouse alias.</p>
+<h2 id="q-river-is-real-program-evidence">The Q RIVER program credit</h2>
+<p>One surviving Woodpecker variant displays <strong>Q RIVER</strong>. Another displays <strong>© AMENIP</strong>. <a aria-label="Source 4" class="src-tag" href="#source-4">[4]</a> That finding eliminated one possible simplification immediately. Queen River was not merely invented by a modern emulator database. The name exists in surviving program data. At the same time, the full corporate meaning of Queen River remained uncertain. A program credit proves the credit. It does not automatically tell us whether Queen River was the developer, copyright owner, publisher, licensee, or a label used by another organization.</p>
+<p>The Palcom part was even more elusive. Japanese searches produced apparent hits that initially looked promising, but at least some of them were OCR confusion involving <strong>BALCOM</strong>, not Palcom. Those false positives were rejected. No contemporary legal or trade document recovered in the Amenip work independently established Palcom's identity or role. That is why the phrase “Palcom Queen River,” although familiar from preservation databases, cannot be treated as one proven legal company name. Later, the Snatcher cabinet's full <strong>© PALCOM QUEEN RIVER</strong> screen upgraded the evidence that the combined wording really existed in a surviving program context. Even so, the legal identity behind it remains unresolved.</p>
+<h2 id="roller-tron-provides-the-japanese-commercial-anchor">Roller Tron’s Japanese release</h2>
+<p>The crucial Woodpecker breakthrough came from contemporary Japanese trade coverage. Game Machine No. 199, dated November 1, 1982, covered the 20th Amusement Machine Show and labeled a photographed game screen <strong>Woodpecker (Roller Tron)</strong>. The screen visible in that contemporary show photograph carries <strong>© AMENIP</strong>. <a aria-label="Source 6" class="src-tag" href="#source-6">[6]</a> That detail matters enormously. It corrects the idea that the Roller Tron version necessarily carried a Roller Tron copyright screen. The machine shown by Roller Tron still displayed Amenip.</p>
+<p>Game Machine No. 202, dated December 1, 1982, went further. It identified Woodpecker as a Roller Tron product and reported an <strong>early October 1982 release</strong>. The article identified <strong>Shinichi Mori</strong> as Roller Tron's president. <a aria-label="Source 7" class="src-tag" href="#source-7">[7]</a></p>
+<p>A separate Game Machine legal/company notice from July 15, 1982 independently anchors Roller Tron and Shinichi Mori before the game's autumn commercial appearance. <a aria-label="Source 8" class="src-tag" href="#source-8">[8]</a></p>
+<p>Together, those sources provide a strong Japanese chronology: Roller Tron existed as an identifiable company in mid-1982, showed Woodpecker at the autumn amusement show, and was reported as releasing it in early October. The show machine itself retained Amenip on the screen.</p>
+<p>The early October 1982 release is the latest confirmed commercial appearance of an Amenip-credited arcade game in the available record. It establishes that the credit was still being used, rather than an exact date when Amenip Corporation ceased operating.</p>
+<h2 id="the-epoxy-module-and-the-surviving-board">The epoxy module and the surviving board</h2>
+<p>Woodpecker's hardware adds another layer of preservation evidence. Current MAME documents program ROM material dumped from a large epoxy-filled module or security block. A surviving physical board photograph at the International Arcade Museum shows the characteristic large module and handwritten <strong>WOOD PECKER</strong> identification. <a aria-label="Source 4" class="src-tag" href="#source-4">[4]</a><a aria-label="Source 10" class="src-tag" href="#source-10">[10]</a></p>
+<p>No visible Roller Tron or Palcom company marking was established from that board photograph. The module is important for two reasons. First, it gives Woodpecker a materially different program/storage treatment from Naughty Mouse, strengthening the case that the games should not be collapsed into one output. Second, it reminds us how vulnerable obscure arcade software can be. When code is buried inside a potted module and company paperwork disappears, modern understanding may depend on a combination of physical boards, dumps, source comments, and contemporary photographs.</p>
+<h2 id="which-surviving-dump-was-the-roller-tron-game">Which surviving dump was the Roller Tron game?</h2>
+<p>The contemporary show photo strongly favors the Amenip-credit lineage for the Japanese Roller Tron release because the machine on display visibly shows Amenip. What we do <strong>not</strong> have is a verified byte-for-byte chain linking that photographed machine to one specific surviving ROM dump.</p>
+<p>Identifying the exact ROM set would require original board provenance, dump notes, ROM labels or a verified comparison.</p><p>The distinction is subtle but important. It is reasonable to say that Roller Tron's documented Japanese presentation used an Amenip-bearing Woodpecker screen. It is not reasonable to say, without provenance, that a particular modern set is definitely the exact board photographed at the show.</p>
+<h2 id="why-woodpecker-is-its-own-output">Why Woodpecker counts as a separate game</h2>
+<p>The final separation from Naughty Mouse rests on several independent points:</p>
+<ul>
+<li>MAME preserves each as a separate parent game.</li>
+<li>Naughty Mouse is joystick-only; Woodpecker adds an action button.</li>
+<li>Woodpecker uses a materially different program/storage arrangement involving the epoxy module.</li>
+<li>Woodpecker has its own Japanese commercial chronology through Roller Tron.</li>
+<li>The earlier hypothesis that its Amenip attribution was merely inherited from Naughty Mouse was withdrawn after chronology and source review.</li>
+</ul>
+<p>That is enough to make Woodpecker one of Amenip's five distinct underlying outputs. Its software credits, trade coverage, hardware and preservation history together document a company that left few surviving corporate records. Those sources support the game’s inclusion while leaving the precise relationships among several credited companies unresolved.</p>
+<hr/>
+<h2 id="7-macho-mouse-amenip-techstar-and-game-plan">7. Macho Mouse: Amenip, Techstar, and Game Plan</h2>
+<div aria-label="Macho Mouse title and gameplay" class="visual-pair"><figure class="archive-figure screen">
+<img alt="Macho Mouse title screen" data-original-src="https://mdk.cab/img/titles/machomou.png" height="256" loading="lazy" referrerpolicy="no-referrer" src="assets/articles/f9a6a458b475ddd0d90c65faffcc653d217b8aee.png" width="224"/>
+<figcaption>Macho Mouse title screen, displaying Techstar’s 1982 copyright. The copyright registration discussed in this section identifies Amenip as author and claimant.</figcaption></figure><figure class="archive-figure screen">
+<img alt="Macho Mouse gameplay" data-original-src="https://mdk.cab/img/snap/machomou.png" height="256" loading="lazy" referrerpolicy="no-referrer" src="assets/articles/84f611a0ac1121d7476780f8be4e1ee377433f18.png" width="224"/>
+<figcaption>Macho Mouse in play, showing its maze and territory-marking design.</figcaption></figure></div>
+<p>Macho Mouse is the opposite of Woodpecker in one important respect. Where Woodpecker's company roles had to be inferred from a maze of program variants and Japanese trade evidence, Macho Mouse gives Amenip an unusually clear legal position. The U.S. copyright record identifies Amenip Corporation as both the work-for-hire author and copyright claimant for Macho Mouse.<span class="src-tag"><a aria-label="Source 11" class="src-tag" href="#source-11">[11]</a></span> That is unusually valuable evidence for an obscure arcade game. It means Amenip's role is not merely a name attached by a modern database. The copyright record places the company at the source of the work. Techstar’s surviving material documents the marketing and conversion-product side of the release.</p>
+<h2 id="what-macho-mouse-actually-plays-like">What Macho Mouse actually plays like</h2>
+<p>Macho Mouse returns to a maze, with a mouse marking territory while avoiding enemies. Later descriptions refer to a jump or enemy-neutralizing action, but the January 15, 1983 Soo Valley advertisement gives a more specific contemporary account: the player places explosive balloons and triggers them with the button, facing cats and snakes. It also describes an inter-round slot-machine sequence. The differing descriptions should not be treated as interchangeable accounts of the control mechanic.<span class="src-tag"><a aria-label="Source 25" class="src-tag" href="#source-25">[25]</a></span></p><p>Current MAME places Macho Mouse on the <code>suprmous</code> machine/input configuration in the same source driver that contains Round-Up/Fitter, and that shared input definition uses an eight-way joystick with one button. <a aria-label="Source 23" class="src-tag" href="#source-23">[23]</a> This is useful technical context, but it should not be turned into an unsupported claim that Amenip simply recycled Round-Up code. A shared preservation/hardware family is not automatically a documented development genealogy.</p>
+<p>For the reader, the more interesting point is that Amenip's last clearly documented work does not look like a company repeating one genre. Across five outputs, the catalog ranges from shooter to puzzle-maze to vertical platform/climbing designs and back to a mouse-themed maze game. That variety fits the picture of a small software/right-bearing operation working through other companies rather than a manufacturer selling one standardized cabinet platform.</p>
+<h2 id="techstar-packages-the-arcade-product">Techstar packages the arcade product</h2>
+<div aria-label="Macho Mouse Techstar flyer and research crop" class="visual-gallery"><figure class="archive-figure">
+<img alt="Techstar Macho Mouse flyer" height="1104" loading="lazy" referrerpolicy="no-referrer" src="assets/articles/1dc5d7ee8a2b87f56566b178a0e89d19f60d5bba.jpg" width="850"/>
+<figcaption><strong>Techstar Macho Mouse flyer, 1982.</strong> The complete advertisement shows the conversion board and graphics package.</figcaption></figure><figure class="archive-figure">
+<img alt="Detail of the lower portion of the Macho Mouse flyer" height="254" loading="lazy" referrerpolicy="no-referrer" src="assets/articles/1ed245c2cc5383e294c0462c600f983457ef9365.jpg" width="850"/>
+<figcaption><strong>Macho Mouse flyer detail.</strong> The lower portion of the advertisement is enlarged here; the complete flyer is shown above.</figcaption></figure></div>
+<p>Techstar marketed Macho Mouse for the arcade trade and promoted it as a conversion product. Its surviving flyer presents the game as a colorful early-1980s maze title centered on a cartoon mouse. More important historically, the material places Macho Mouse within the conversion-kit economy: a game could be sold to operators without requiring an entirely new purpose-built cabinet.</p>
+<p>That business model mattered to smaller arcade firms. A conversion package could reuse existing cabinets while replacing the board, art, controls, wiring, or other components needed to create a new attraction. It reduced the capital burden compared with manufacturing and shipping every game as a complete dedicated machine.</p>
+<p>Techstar's trademark trail provides a firm commercial date. The company filed for <strong>MACHO MOUSE</strong> on August 23, 1982 and claimed first use and first use in commerce on <strong>August 18, 1982</strong>, for electronic video amusement apparatus. <a aria-label="Source 12" class="src-tag" href="#source-12">[12]</a></p>
+<p>The trademark does not turn Techstar into the game's author. Instead, it neatly complements the copyright evidence: Amenip is documented at the work/authorship level; Techstar is documented at the branding and commercial-product level.</p>
+<h2 id="game-plan-enters-through-service-documentation">Game Plan enters through service documentation</h2>
+<p>A complete 15-page Game Plan manual survives for Macho Mouse. It covers installation, operation, servicing, operator adjustments, monitor information, wiring, and related cabinet support. A wiring drawing identified as <strong>02-70154A</strong> is dated May 7, 1983. <a aria-label="Source 11" class="src-tag" href="#source-11">[11]</a> That is far stronger evidence than a collector memory or a later database association. Game Plan produced formal documentation intended to keep real machines operating.</p>
+<p>What the manual does not prove is ownership of the entire game. It does not show that Game Plan acquired the copyright from Amenip. It does not prove that every Macho Mouse cabinet was built by Game Plan. It establishes a real physical-cabinet and service-support role. This distinction is the same one that runs through the Amenip catalog: a service manual can prove that a company supported a product without proving that it wrote the software.</p>
+<h2 id="more-than-one-cabinet-form">More than one cabinet form</h2>
+<p>A January 1983 Soo Valley distributor advertisement offered Macho Mouse in three physical formats: a full-size upright, a mini-upright, and a sit-down table. The ad is useful because it shows the game being sold as more than a hypothetical board or unreleased prototype. Multiple cabinet forms were being offered to operators. <a aria-label="Source 11" class="src-tag" href="#source-11">[11]</a></p>
+<p>The ad cannot give us a production total. It cannot prove that all three cabinet forms came from one manufacturer. It cannot tell us how many operators bought them. But it demonstrates a real commercial afterlife extending into 1983.</p>
+<p>That afterlife is important for Amenip's timeline because it must <strong>not</strong> be misused. Macho Mouse could still be sold, serviced, and supported in 1983 even if Amenip itself was no longer visibly active in the arcade trade. A later Game Plan wiring drawing or distributor ad proves continued life for an Amenip-created game. It does not automatically prove continued corporate activity by Amenip.</p>
+<p>For that reason, the latest confirmed Amenip-bearing commercial point remains Woodpecker in early October 1982 rather than being pushed into 1983 by downstream Macho Mouse support.</p>
+<h2 id="the-commercial-fog">Production and distribution remain uncertain</h2>
+<p>The surviving program, Techstar promotional material, trademark record, distributor advertisement and Game Plan manual establish Macho Mouse as a commercial product offered in multiple cabinet forms. What does not survive is a reliable production total, a dependable serial-number range, or the exact Amenip-Techstar-Game Plan contract. The safest reconstruction is therefore also the most informative: <strong>Amenip created and claimed the work. Techstar packaged and marketed the arcade product. Game Plan supplied documented cabinet/service support. Distributors offered complete machines in multiple forms. The exact scale of the release remains unknown.</strong> Those distinct contributions explain the different company names associated with the game.</p>
+<hr/>
+<h2 id="8-nova-games-the-relationship-we-can-prove-and-the-merger-story-we-cannot">8. Nova Games: commercial connections and separate corporate records</h2>
+<figure class="archive-figure">
+<img alt="Nova Games of Canada Intrepid flyer" height="1105" loading="lazy" referrerpolicy="no-referrer" src="assets/articles/3e92d1e744ae5bf50044cad2884d1249d8135e7f.jpg" width="850"/>
+<figcaption><strong>Nova Games of Canada — Intrepid flyer, c. 1983.</strong> The flyer documents Nova’s commercial identity. Intrepid is excluded from Amenip’s five-game catalog; this advertisement does not establish a merger or succession between the companies.</figcaption></figure>
+<p>Nova appears in preservation descriptions of Amenip games and on the surviving Snatcher marquee. Its presence has encouraged suggestions that Amenip became Nova in 1982, but the companies’ documented timelines overlap. Canadian corporate filings show that Nova was already incorporated in March 1981.</p>
+<h2 id="nova-already-existed-in-1981">Nova already existed in 1981</h2>
+<p>Six original federal records from Corporations Canada document Nova’s early company history. They establish that <strong>Les Jeux Nova Ltée / Nova Games Ltd. was incorporated on March 13, 1981</strong>. Founding directors included <strong>Neil Rubin</strong> and <strong>Courtney Lai-Hing</strong>. <strong>Andrée Bertrand</strong> appears in formation/incorporator material and signed the initial director filing as president. <a aria-label="Source 14" class="src-tag" href="#source-14">[14]</a></p><p>On September 14, 1982, <strong>Ed Prest</strong> became a director while Rubin and Lai-Hing remained. A registered-office filing shows the office moving from <strong>3150 Sartelon</strong> to <strong>190 Graveline</strong> on that date. <a aria-label="Source 15" class="src-tag" href="#source-15">[15]</a><a aria-label="Source 16" class="src-tag" href="#source-16">[16]</a></p>
+<p>That last address matters because some older or secondary records use 180 Graveline. The original September 1982 filing reviewed says <strong>190 Graveline</strong>, so the original filing controls unless separate primary evidence establishes a later 180 address. A surviving annual return describes Nova's main business as <strong>“AMUSEMENT GAMES.”</strong> These records give Nova a real independent corporate life while Amenip credits were still appearing on arcade software.</p>
+<p>That chronology alone defeats the simplest succession claim. Nova did not suddenly spring into existence after Amenip disappeared; it was already incorporated in March 1981. Amenip-bearing software remained commercially visible afterward, including the 1982 Woodpecker evidence.</p>
+<h2 id="what-the-records-do-not-show">What the records do not show</h2>
+<p>The Nova records reviewed so far do not provide a direct personnel or address bridge to Amenip. The available records concerning Rubin, Lai-Hing, Prest, or the known Nova addresses do not establish a direct link.</p>
+<p>That negative result is useful but limited. It means the currently known Nova officers and addresses do not solve Amenip's corporate identity. It does <strong>not</strong> prove the companies were unrelated.</p>
+<p>The game evidence says the opposite: there was clearly some relationship. Current MAME preserves an Amenip/Nova Naughty Mouse association. The Snatcher cabinet physically places NOVA under the title. Nova was an amusement-game company active during the same period. The connection is strong at the game and commercial-presentation level.</p>
+<p>What remains unknown is the legal mechanism. Amenip could have been a developer supplying Nova. There could have been overlapping investors not visible in the recovered filings. Nova could have acted as a publisher or regional commercial partner. Amenip could have been a label or contracted development operation. Another agreement could have connected them without common ownership at all.</p>
+<p>The surviving evidence does not choose among those possibilities. Three further Nova corporate records have not been examined. They could supplement the known chronology, but cannot be used to infer a relationship with Amenip.</p>
+<p>The documented points are:</p><ul>
+<li>Nova was independently incorporated in Canada in March 1981.</li>
+<li>Its known directors and office history are documented in original federal records.</li>
+<li>It identified its business as amusement games.</li>
+<li>A surviving Snatcher cabinet provides direct Nova presentation evidence around an Amenip-associated game family.</li>
+<li>No current original corporate document proves a merger, rename, parent/subsidiary relationship, or common ownership with Amenip.</li>
+</ul>
+<p>The commercial connection is well supported; a merger or legal succession remains unproved.</p>
+<hr/>
+<h2 id="9-palcom-and-queen-river-a-name-that-grew-stronger-without-becoming-clearer">9. Palcom and Queen River: program credits and an unresolved identity</h2>
+<p>The Palcom/Queen River problem deserves its own treatment because the research changed the status of the evidence without resolving the company identity. At the beginning, <strong>Palcom Queen River</strong> looked suspiciously like a preservation-era phrase that might have been repeated so often that it acquired an illusion of certainty. The older MAME lineage used the qualifier around Naughty Mouse/Woodpecker, but the original documentary source behind it was unclear. Then the software supplied part of the answer. A Woodpecker variant visibly carried <strong>Q RIVER</strong>. That proved Queen River was not merely a modern database invention. The Snatcher cabinet later strengthened the point dramatically: the running game photographed in the Nova-branded cabinet visibly displayed <strong>© PALCOM QUEEN RIVER</strong>. The full wording therefore exists in surviving program evidence, not simply in emulator metadata. <a aria-label="Source 9" class="src-tag" href="#source-9">[9]</a> That establishes the wording independently of later database attribution.</p>
+<p>It still does not tell us what Palcom was. No recovered contemporary corporate filing, trade article, board legend, contract, or original dump note has yet explained whether Palcom and Queen River were one company, two companies, a brand and a company, or another arrangement. Searches that seemed to locate Palcom in Japanese material sometimes turned out to be OCR errors for BALCOM and were rejected. The software confirms that PALCOM QUEEN RIVER was an actual program credit, while the identity behind that wording remains unresolved. The surviving program evidence supports a clear distinction: <strong>Queen River and the combined PALCOM QUEEN RIVER credit are genuine surviving software evidence. Palcom's legal identity and the exact role of Queen River remain unresolved.</strong> A copyright line cannot, by itself, establish the company structure or the contracts behind a game.</p>
+<hr/>
+<h2 id="10-false-leads-negative-findings-and-why-they-belong-in-the-story">10. Disputed company and game attributions</h2>
+<p>Several proposed identifications remain unsupported or conflict with the surviving record.</p><h2 id="the-1985-new-jersey-amenip-case">The 1985 New Jersey Amenip case</h2>
+<p>A published New Jersey appellate case, <strong>Amenip Corp. v. Ultimate Distribution Systems, Inc.</strong>, initially looked tantalizing because it involved a company with the exact Amenip name and transactions dating to the same early-1980s period.</p>
+<p>Reading the opinion changed the picture completely. The underlying business concerned cartons of <strong>disposable butane cigarette lighters</strong> stored in a warehouse. The published opinion does not identify arcade games, Nova, known Nova principals, or any other bridge to the Amenip documented in arcade software. <a aria-label="Source 13" class="src-tag" href="#source-13">[13]</a></p>
+<p>The case cannot presently establish the arcade company’s timeline. This is an important negative finding because a careless company history could easily use the 1985 court date to extend Amenip's lifespan. The evidence does not justify that move. Unless the full underlying court file produces matching officers, addresses, or other entity-level evidence, the lighter-distribution plaintiff remains a separate unresolved namesake.</p>
+<h2 id="the-unverified-new-york-clue">The unverified New York clue</h2>
+<p>A specialist secondary comment suggested that Amenip copyright material may point toward New York State. No located record supplies a direct underlying copyright application, correspondence file, corporate filing, or address record confirming that location with sufficient evidence.</p>
+<p>New York therefore remains a clue, not a fact. This is precisely the type of statement that can harden into folklore if repeated without its evidentiary status. Until the source record is obtained, Amenip's verified jurisdiction and business address remain unknown.</p>
+<h2 id="the-allumer-proposal">The Allumer proposal</h2>
+<p>The modern Allumer development proposal for Mariner was investigated but did not provide primary evidence strong enough to displace the direct Amenip program credit. It remains a hypothesis worth remembering if stronger evidence appears, not a current attribution.</p>
+<h2 id="the-balcom-problem">The BALCOM problem</h2>
+<p>Apparent Japanese “Palcom” hits included OCR mistakes involving BALCOM. Those hits were rejected rather than accumulated as supporting evidence. This matters because several weak false positives can create the appearance of confirmation when they all stem from the same recognition error.</p>
+<h2 id="database-counts-of-three-or-four-games">Database counts of three or four games</h2>
+<p>Modern databases sometimes give Amenip fewer games than the five-output catalog. Those counts are not necessarily “wrong” within their own data models. They may omit Macho Mouse because Techstar is more visible commercially, merge Woodpecker into Naughty Mouse, or treat regional variants inconsistently. Counting distinct game families through software, authorship and commercial evidence gives five Amenip-associated games. Regional titles and cabinet brands do not add separate game families to that total.</p>
+<h2 id="the-missing-mame-0-69-package">The missing MAME 0.69 package</h2>
+<p>The original MAME 0.69 source package has not been verified for this attribution history. Later or derivative trees help explain the lineage, but cannot establish precisely what that official release contained.</p><p>This does not threaten the five-game catalog or the commercial history. It affects the narrower question of when particular parenthetical attributions entered MAME's public source lineage.</p>
+<p>These gaps limit claims about Amenip’s location, lifespan and partners. The surviving evidence does not establish a New York base, continued arcade activity in 1985, a merger with Nova, a single Palcom/Queen River company, or Allumer’s development of Mariner.</p>
+<hr/>
+<h2 id="11-reconstructing-amenip-s-timeline-without-inventing-a-corporation">11. Amenip’s documented activity and uncertain corporate dates</h2>
+<p>The strangest thing about Amenip is that its arcade timeline is clearer than its corporate biography. We can place the company in arcade software in <strong>1981</strong>. Mariner carries Amenip directly. Round-Up carries Amenip/Centuri. Naughty Mouse preservation evidence keeps Amenip in the family. These are not late recollections; they are program-level or closely contemporary traces. We can still see Amenip in a commercial arcade context in <strong>1982</strong>. Techstar's Macho Mouse commercialization begins in August, with Amenip documented in the copyright chain. Woodpecker's Japanese Roller Tron presentation reaches the autumn trade show, and the contemporary show machine still displays Amenip. Game Machine reports an early October release.</p>
+<p>After that, the visible Amenip trail fades. Macho Mouse continues through Game Plan service material and distributor offerings in 1983, but that is the afterlife of an Amenip-created work. It does not prove Amenip's continued corporate operation. Nova continues its own corporate and amusement-game history, but Nova was already a separate legal corporation in 1981. Its later survival cannot simply be used as Amenip's endpoint. The 1985 New Jersey case cannot be joined to arcade Amenip on the current evidence.</p>
+<p>The chronology therefore separates <strong>documented arcade activity</strong> from <strong>legal corporate life</strong>:</p>
+<ul>
+<li>First documented arcade activity: <strong>1981</strong>.</li>
+<li>Last confirmed Amenip-bearing commercial arcade activity: <strong>at least early October 1982</strong>.</li>
+<li>Documented arcade activity span: <strong>1981-1982</strong>.</li>
+<li>Legal formation date: <strong>unknown</strong>.</li>
+<li>Legal dissolution/end date: <strong>unknown</strong>.</li>
+</ul>
+<p>The documented arcade dates establish the period in which Amenip’s work was commercially visible. Its legal formation and dissolution require separate corporate evidence.</p>
+<h2 id="what-kind-of-company-was-amenip">What kind of company was Amenip?</h2>
+<p>Without a formation record or internal company literature, it would be reckless to give Amenip a precise organizational description such as manufacturer, publisher, or development studio and pretend the word covers every title. The surviving behavior suggests something more flexible. Amenip was clearly involved at the <strong>software and rights-bearing level</strong>. Its name appears in program copyrights. The Macho Mouse copyright trail identifies it as author and claimant. Its games repeatedly reached the market through outside manufacturers, marketers, regional presenters, or service partners.</p>
+<p>That pattern makes “arcade software and rights-bearing operation” a safer functional description than “cabinet manufacturer.” It also fits the early-1980s coin-op business. Small firms did not need to own a large cabinet factory to matter. A company could create or control a program, license it to a regional manufacturer, allow another firm to package it as a conversion kit, and watch the game acquire different branding overseas. The physical machine an operator encountered might display the partner's name far more prominently than the company behind the software. Amenip appears to have lived in exactly that layer of the industry.</p>
+<hr/>
+<h2 id="12-the-five-amenip-outputs-reconstructed-in-full">12. Game catalog and company roles</h2>
+<h2 id="1-mariner-800-fathoms-1981">1. Mariner / 800 Fathoms — 1981</h2>
+<p><strong>Amenip role:</strong> Underlying software/copyright identity.<br/>
+<strong>Other documented roles:</strong> U.S. Billiards as North American machine manufacturer/marketer/service party; ESG as West German commercial packager/marketer.<br/>
+<strong>Why it counts as one:</strong> Mariner and 800 Fathoms are close program variants within one preserved lineage.<br/>
+<strong>Key evidence:</strong> Mariner © AMENIP CORP 1981; 800 Fathoms retains Amenip and adds U.S. Billiards; original U.S. Billiards flyer and technical documentation; MAME ROM relationship; ESG flyers. <a aria-label="Source 5" class="src-tag" href="#source-5">[5]</a><a aria-label="Source 17" class="src-tag" href="#source-17">[17]</a><a aria-label="Source 18" class="src-tag" href="#source-18">[18]</a><a aria-label="Source 19" class="src-tag" href="#source-19">[19]</a><a aria-label="Source 20" class="src-tag" href="#source-20">[20]</a></p>
+<p><strong>Still unknown:</strong> Exact Amenip-U.S. Billiards license language; exact ESG rights route; whether stronger evidence will ever support the modern Allumer development proposal.</p>
+<h2 id="2-round-up-fitter-t-t-fitter-1981">2. Round-Up / Fitter / T.T. Fitter — 1981</h2>
+<p><strong>Amenip role:</strong> Underlying program/copyright relationship in the North American Round-Up lineage.<br/>
+<strong>Other documented roles:</strong> Hiraoka as Centuri's licensor; Centuri as North American manufacturer/commercializer; Taito as Japanese Fitter presenter.<br/>
+<strong>Why it counts as one:</strong> The preserved programs and regional presentations represent one underlying game family rather than independent Amenip outputs.<br/>
+<strong>Key evidence:</strong> Round-Up's Amenip/Centuri program credit; Cash Box report of the Centuri-Hiraoka license; Centuri flyer; Game Machine show coverage of Fitter. <a aria-label="Source 1" class="src-tag" href="#source-1">[1]</a><a aria-label="Source 2" class="src-tag" href="#source-2">[2]</a><a aria-label="Source 3" class="src-tag" href="#source-3">[3]</a><a aria-label="Source 20" class="src-tag" href="#source-20">[20]</a></p>
+<p><strong>Still unknown:</strong> Exact Amenip-Hiraoka contract and original development/rights direction.</p>
+<h2 id="3-naughty-mouse-snatcher-1981">3. Naughty Mouse / Snatcher — 1981</h2>
+<p><strong>Amenip role:</strong> Underlying game-family association supported by surviving software/preservation evidence.<br/>
+<strong>Other documented roles:</strong> Nova as direct cabinet/presentation evidence; PALCOM QUEEN RIVER as direct program-screen evidence in the photographed Snatcher configuration.<br/>
+<strong>Why it counts as one:</strong> Snatcher is a commercial/presentation identity within the Naughty Mouse family, not evidence of a separate Amenip program.<br/>
+<strong>Key evidence:</strong> MAME's Amenip/Nova and Amenip/Palcom Queen River preservation branches; earlier visible Amenip program evidence; surviving SNATCHER/NOVA cabinet running a © PALCOM QUEEN RIVER program. <a aria-label="Source 4" class="src-tag" href="#source-4">[4]</a><a aria-label="Source 9" class="src-tag" href="#source-9">[9]</a></p>
+<p><strong>Still unknown:</strong> Exact Amenip-Nova legal relationship; Palcom identity; Queen River's exact role; original source of early preservation parentheticals.</p>
+<h2 id="4-woodpecker-1982-commercial-evidence">4. Woodpecker — 1982 commercial evidence</h2>
+<p><strong>Amenip role:</strong> Distinct underlying Amenip-associated program/output.<br/>
+<strong>Other documented roles:</strong> Roller Tron as Japanese commercial presenter/releaser; Queen River in a surviving program variant; Palcom unresolved.<br/>
+<strong>Why it counts separately from Naughty Mouse:</strong> Separate MAME parent status, different controls, action button, materially different storage/program arrangement, epoxy-module preservation, and independent Roller Tron chronology.<br/>
+<strong>Key evidence:</strong> Q RIVER and © AMENIP program variants; Game Machine show photo and release article; Roller Tron/Shinichi Mori legal notice; surviving PCB/module evidence. <a aria-label="Source 4" class="src-tag" href="#source-4">[4]</a><a aria-label="Source 6" class="src-tag" href="#source-6">[6]</a><a aria-label="Source 7" class="src-tag" href="#source-7">[7]</a><a aria-label="Source 8" class="src-tag" href="#source-8">[8]</a><a aria-label="Source 10" class="src-tag" href="#source-10">[10]</a></p>
+<p><strong>Still unknown:</strong> Exact identity of the Japanese show/release dump; legal identity of Palcom; precise Queen River relationship.</p>
+<h2 id="5-macho-mouse-1982">5. Macho Mouse — 1982</h2>
+<p><strong>Amenip role:</strong> Documented work-for-hire author and copyright claimant.<br/>
+<strong>Other documented roles:</strong> Techstar as commercial branding/marketing/conversion-product party; Game Plan as cabinet/service-support party.<br/>
+<strong>Why it counts:</strong> The copyright evidence identifies Amenip at the level of the underlying work even though Techstar and Game Plan are more visible in surviving commercial material.<br/>
+<strong>Key evidence:</strong> U.S. copyright data preserved in the Techstar copyright documentation; Techstar flyer and trademark record; Game Plan manual and 1983 wiring drawing; January 1983 distributor advertisement offering multiple cabinet forms. <a aria-label="Source 11" class="src-tag" href="#source-11">[11]</a><a aria-label="Source 12" class="src-tag" href="#source-12">[12]</a></p>
+<p><strong>Still unknown:</strong> Exact Amenip-Techstar-Game Plan contract; production volume; serial-number range; distribution scale.</p>
+<hr/>
+<h2 id="13-what-the-evidence-says-about-amenip-and-nova">13. What the evidence says about Amenip and Nova</h2>
+<p>Because Nova appears so often around Amenip discussions, it is useful to state the final interpretation plainly.</p>
+<p>A real <strong>Amenip-Nova relationship is strongly supported</strong> at the game and commercial-presentation level.</p>
+<p>The evidence includes:</p>
+<ul>
+<li>preservation of a Naughty Mouse set associated with Amenip and Nova Games;</li>
+<li>a surviving Snatcher cabinet with NOVA directly beneath the marquee title;</li>
+<li>Nova's verified independent existence as a Canadian amusement-game corporation during the same period;</li>
+<li>the broader pattern of Amenip games appearing through outside commercial partners.</li>
+</ul>
+<p>What the evidence does <strong>not</strong> include is a document showing that Amenip changed its name to Nova, merged into Nova, owned Nova, was owned by Nova, shared officers with Nova, or used Nova as a formal corporate alias.</p>
+<p>The overlapping chronology is particularly important. Nova's March 1981 incorporation predates the latest Amenip-bearing arcade evidence. A company cannot be explained as a simple 1982 rename of another company if the supposedly “new” corporation already existed the year before.</p>
+<p>Amenip and Nova were connected around at least one game family, while the legal and operational structure of that relationship remains unknown. Their overlapping chronology and separate evidence of corporate existence make a simple succession account inadequate.</p>
+<hr/>
+<h2 id="14-the-small-company-arcade-economy-amenip-reveals">14. The small-company arcade economy Amenip reveals</h2>
+<p>Amenip's importance is not proportional to the number of games it made. Five game families form a small catalog beside the giants of 1981-1982. What makes the company useful to arcade history is how many different parts of the business those five games expose.</p>
+<p>A player could stand at a U.S. Billiards cabinet without knowing that Amenip survived in the 800 Fathoms software. An American operator could buy Round-Up from Centuri while the period licensing announcement named Hiraoka and the program itself retained Amenip. A Japanese visitor could see Taito's Fitter at an amusement show. A Snatcher cabinet could put NOVA on the marquee while the running program said PALCOM QUEEN RIVER. Roller Tron could show Woodpecker while the screen still carried Amenip. Techstar could market Macho Mouse while Amenip remained the documented author and claimant and Game Plan later produced service material.</p>
+<p>The different credits reflect a trade built around regional licenses, conversions, kit sales, imported programs, locally manufactured cabinets and title changes. Amenip’s limited public branding makes those arrangements especially visible: its work can often be identified in software sold or supported under another company’s name.</p>
+<p>It also helps explain why preservation databases can disagree without any one of them being malicious or careless. A database built around cabinets may privilege the manufacturer. A ROM set may preserve the program copyright. A flyer may foreground the distributor or licensee. A service manual may carry the company expected to support the machine. A modern emulator has to fit a complex relationship into a compact manufacturer string. Each artifact answers a different question.</p>
+<p>Comparing those records allows each company’s documented contribution to remain visible, including cases where the underlying agreement is missing.</p>
+<p>For Amenip, the combined evidence supports five game families, documented arcade activity in 1981–1982, and multiple commercial partners. It leaves the company’s precise legal lifespan and its relationship with a supposed successor unresolved.</p>
+<hr/>
+<h2 id="15-why-amenip-matters">15. Why Amenip matters</h2>
+<p>Amenip's catalog is tiny by the standards of the golden-age arcade industry. Five underlying outputs over roughly two documented years will never compete numerically with Atari, Namco, Sega, Taito, or Midway.</p>
+<p>That is exactly why the company is worth preserving. Small developers and rights holders are often the first layer of arcade history to disappear. Their software survives because a larger manufacturer built the cabinet. Their copyright is obscured because a regional licensee put its own name on the title screen. Their business records vanish because nobody thought a two-year paper trail would matter forty-five years later. Preservation databases inherit fragments and, understandably, try to turn them into a usable catalog.</p>
+<p>Amenip shows what can be recovered when those fragments are treated as evidence rather than trivia. Mariner reveals a program that moved from an Amenip credit into U.S. Billiards and West German commercial channels. Round-Up exposes a rights chain involving Amenip, Centuri, Hiraoka, and Taito without reducing any of them to a false single role. Naughty Mouse and Snatcher preserve a direct physical Nova connection and a genuine PALCOM QUEEN RIVER program credit while leaving the legal relationships open. Woodpecker ties Amenip to a Japanese Roller Tron release through contemporary show evidence and unusual surviving hardware. Macho Mouse gives Amenip a clear copyright authorship position even though Techstar and Game Plan dominate much of the surviving product trail.</p>
+<p>Taken together, the games show a company operating in the connective tissue of the arcade business: software, rights, licenses, conversions, and regional partnerships.</p>
+<p>The remaining gaps concern Amenip’s address and legal identity, its contract with Hiraoka, and the organizations behind Palcom and Queen River. The New Jersey cigarette-lighter lawsuit shares a company name but has no verified connection to the arcade business, so it cannot establish a later endpoint. The surviving record supports a detailed account of the games while leaving those corporate questions open. Amenip was an early-1980s arcade software and rights holder associated with five distinct game families and an international group of commercial partners. Its precise legal beginning and ending remain unknown. The program credits and partner records preserve work that is often obscured by the better-known names on the cabinets.</p>
+<hr/>
+<h2 id="16-unresolved-questions-worth-reopening-only-for-better-evidence">16. Open questions</h2><p>The following questions remain open to new documents, surviving machines and firsthand evidence: <strong>Amenip's legal formation, jurisdiction, officers, and address.</strong><br/>
+A verified corporate filing, Copyright Office application, correspondence file, or authenticated company record could finally identify the legal entity behind the games.</p><p><strong>Amenip's legal endpoint.</strong><br/>
+The surviving evidence documents arcade activity through at least early October 1982. A dissolution, acquisition, tax, or later corporate record tied to the same entity could extend or clarify the legal timeline.</p>
+<p><strong>The exact Amenip-Nova relationship.</strong><br/>
+A contract, shared-officer record, shared-address document, correspondence, or period trade statement could turn the strong commercial relationship into a defined legal/operational one.</p>
+<p><strong>Palcom and Queen River.</strong><br/>
+The software credits are now real and direct. What remains missing is the corporate identity and contractual chain behind them.</p>
+<p><strong>The exact Japanese Roller Tron Woodpecker dump.</strong><br/>
+Original board provenance or dump notes could connect the surviving program sets directly to the machine photographed in 1982.</p>
+<p><strong>The Amenip-Hiraoka contract for Round-Up/Fitter.</strong><br/>
+This would be the most valuable missing document for resolving the original development and licensing direction of that family.</p>
+<p><strong>Amenip-U.S. Billiards and ESG rights documents.</strong><br/>
+These would refine the Mariner/800 Fathoms commercial chain without changing the current one-output count.</p>
+<p><strong>Exact early MAME provenance.</strong><br/>
+The original MAME 0.69 source package or contemporaneous dump notes could better date the entry of the Palcom/Queen River/Nova qualifiers into preservation history.</p>
+<p>A verified document or well-documented surviving machine could resolve these questions or change the interpretation. Later repetition of an existing attribution does not independently strengthen it.</p><hr/>
+<h2 id="appendix-a-final-role-matrix">17. Game and company roles at a glance</h2><div aria-label="Historical reference table" class="table-scroll" role="region" tabindex="0"><table>
+<thead>
+<tr>
+<th>Underlying output</th>
+<th>Amenip role</th>
+<th>Other documented roles</th>
+<th>Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mariner / 800 Fathoms</td>
+<td>Underlying software/copyright identity</td>
+<td>U.S. Billiards: North American complete-machine manufacture/marketing/service; ESG: West German commercial packaging/marketing</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Round-Up / Fitter / T.T. Fitter</td>
+<td>Underlying program/copyright relationship in North American Round-Up lineage</td>
+<td>Hiraoka: Centuri licensor; Centuri: North American manufacturer/commercializer; Taito: Japanese Fitter presenter</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Naughty Mouse / Snatcher</td>
+<td>Amenip-associated underlying game family</td>
+<td>Nova: direct cabinet/presentation evidence; PALCOM QUEEN RIVER: direct program-screen evidence in photographed cabinet</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Woodpecker</td>
+<td>Distinct Amenip-associated program/output</td>
+<td>Roller Tron: Japanese 1982 release/presentation; Queen River: surviving variant evidence; Palcom unresolved</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Macho Mouse</td>
+<td>Work-for-hire author and copyright claimant</td>
+<td>Techstar: branding/marketing/conversion product; Game Plan: cabinet/service support</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</div><p><strong>Total: 5 distinct Amenip-associated arcade game families.</strong></p>
+<hr/>
+<h2 id="appendix-b-principal-source-register">18. Sources</h2><p id="source-1"><strong>1 — Game Machine, November 1, 1981.</strong> 19th Amusement Machine Show coverage documenting Taito's Fitter presentation.<br/>
+<a href="https://onitama.tv/gamemachine/pdf/19811101p.pdf" rel="noopener" target="_blank">Game Machine, 1981-11-01 (PDF)</a></p>
+<p id="source-2"><strong>2 — Cash Box, December 5, 1981.</strong> Contemporary report of Centuri's licensing agreement with Hiraoka &amp; Co., Ltd. for Round-Up.<br/>
+<a href="https://retrocdn.net/images/5/51/CashBox_US_1981-12-05.pdf" rel="noopener" target="_blank">View source</a></p>
+<p id="source-3"><strong>3 — Centuri Round-Up flyer.</strong> Original commercial flyer stating manufacture under license from Hiraoka &amp; Co., Ltd.; upright and cocktail presentation.<br/>
+<a href="https://flyers.arcade-museum.com/videogames/show/869" rel="noopener" target="_blank">View source</a></p>
+<p id="source-4"><strong>4 — Current MAME pacman.cpp.</strong> Technical preservation source for Naughty Mouse and Woodpecker parentage, controls, ROM arrangements, epoxy-module notes, and preservation labels.<br/>
+<a href="https://raw.githubusercontent.com/mamedev/mame/master/src/mame/pacman/pacman.cpp" rel="noopener" target="_blank">View source</a></p>
+<p id="source-5"><strong>5 — Current MAME scramble.cpp.</strong> Technical preservation source for Mariner/800 Fathoms parent/variant relationship and current license metadata.<br/>
+<a href="https://raw.githubusercontent.com/mamedev/mame/master/src/mame/galaxian/scramble.cpp" rel="noopener" target="_blank">View source</a></p>
+<p id="source-6"><strong>6 — Game Machine, November 1, 1982, No. 199.</strong> 20th Amusement Machine Show coverage showing “Woodpecker (Roller Tron)” with an Amenip-bearing game screen.<br/>
+<a href="https://onitama.tv/gamemachine/pdf/19821101p.pdf" rel="noopener" target="_blank">Game Machine, 1982-11-01 (PDF)</a></p>
+<p id="source-7"><strong>7 — Game Machine, December 1, 1982, No. 202.</strong> Roller Tron Woodpecker article reporting an early-October-1982 release and identifying Shinichi Mori.<br/>
+<a href="https://onitama.tv/gamemachine/pdf/19821201p.pdf" rel="noopener" target="_blank">Game Machine, 1982-12-01 (PDF)</a></p>
+<p id="source-8"><strong>8 — Game Machine, July 15, 1982.</strong> Roller Tron legal/company notice independently anchoring Shinichi Mori.<br/>
+<a href="https://onitama.tv/gamemachine/pdf/19820715p.pdf" rel="noopener" target="_blank">Game Machine, 1982-07-15 (PDF)</a></p>
+<p id="source-9"><strong>9 — International Arcade Museum / KLOV, Snatcher Naughty mouse.</strong> Surviving cabinet photographs contributed by Eric Bonenfant; SNATCHER/NOVA marquee and PALCOM QUEEN RIVER running-screen evidence.<br/>
+<a href="https://www.arcade-museum.com/Videogame/snatcher-naughty-mouse" rel="noopener" target="_blank">View source</a></p>
+<p id="source-10"><strong>10 — International Arcade Museum / KLOV, Woodpecker.</strong> Surviving PCB photograph and epoxy-module evidence.<br/>
+<a href="https://www.arcade-museum.com/Videogame/woodpecker" rel="noopener" target="_blank">View source</a></p>
+<p id="source-11">11 — Macho Mouse copyright registration PAu000456896, October 5, 1982; Techstar sales flyer; Game Plan service manual and wiring drawing 02-70154A, May 7, 1983; and Soo Valley advertisement, Play Meter, January 15, 1983. These sources establish the distinct authorship, commercial and service roles.<a href="https://data.copyright.gov/Registrations/Tabular/reg_toy_or_game_2022_10.csv">Copyright Office registration data</a> · <a href="https://flyers.arcade-museum.com/videogame-flyers/2/macho-mouse-02972-01.jpg">Techstar flyer</a> · <a href="https://arcadesanonymous.neocities.org/gameplan">Game Plan documentation</a> · <a href="https://elibrary.arcade-museum.com/magazines/pm/PlayMeter-1983-01-15/PlayMeter-1983-01-15-084.pdf">Soo Valley advertisement</a> · </p><p id="source-12"><strong>12 — MACHO MOUSE trademark record.</strong> Techstar filing August 23, 1982; claimed first use and first use in commerce August 18, 1982.<br/>
+<a href="https://trademarks.justia.com/733/81/macho-mouse-73381249.html" rel="noopener" target="_blank">View source</a></p>
+<p id="source-13"><strong>13 — Amenip Corp. v. Ultimate Distribution Systems, 200 N.J. Super. 109 (1985).</strong> Published opinion establishing disposable-butane-lighter business facts for the unrelated/identity-unproven Amenip litigant.<br/>
+<a href="https://law.justia.com/cases/new-jersey/appellate-division-published/1985/200-n-j-super-109-0.html" rel="noopener" target="_blank">View source</a></p>
+<p id="source-14"><strong>14 — Corporations Canada, Registered office &amp; Directors.</strong> Original Nova founding/director record naming Neil Rubin and Courtney Lai-Hing; formation material also records Andrée Bertrand. Original filings consulted; no direct public document link is available here.</p>
+<p id="source-15"><strong>15 — Corporations Canada, Directors.</strong> Original Nova director-change record adding Ed Prest effective September 14, 1982. Original filings consulted; no direct public document link is available here.</p>
+<p id="source-16"><strong>16 — Corporations Canada, Registered office.</strong> Original Nova office-change record from 3150 Sartelon to 190 Graveline effective September 14, 1982. Original filings consulted; no direct public document link is available here.</p>
+<p id="source-17"><strong>17 — U.S. Billiards 800 Fathoms original flyer.</strong> Complete North American machine and U.S. Billiards commercial identity.<br/>
+<a href="https://flyers.arcade-museum.com/videogame-flyers/2/800-fathoms-02179-01.jpg" rel="noopener" target="_blank">View source</a></p>
+<p id="source-18"><strong>18 — ESG Mariner flyer.</strong> West German Mariner cabinet and conversion-kit commercial evidence.<br/>
+<a href="https://flyers.arcade-museum.com/videogame-flyers/5/mariner-05873-01.jpg" rel="noopener" target="_blank">View source</a></p>
+<p id="source-19"><strong>19 — ESG multi-game cabinet flyer.</strong> ESG’s modular wall-cabinet advertisement. The displayed page illustrates the cabinet system but does not itself name Mariner.<br/>
+<a href="https://flyers.arcade-museum.com/videogame-flyers/5/piranha-mariner-crush-roller-crazy-kong-05951-01.jpg" rel="noopener" target="_blank">View source</a></p>
+<p id="source-20"><strong>20 — MDK title-screen archive.</strong> Preserved program-screen evidence for Mariner, 800 Fathoms, Round-Up, and Fitter; used as software-image evidence subordinate to period trade/legal sources for commercial claims.<br/>
+<a href="https://mdk.cab/" rel="noopener" target="_blank">View source</a></p>
+<p id="source-21"><strong>21 — Mariner gameplay references, used only for descriptive play context.</strong> Cross-checked descriptive accounts of the submarine, five-stage structure, boss submarine, and two-button control scheme. Legal/development claims continue to rely on sources 5 and 17–20.<br/>
+<a href="https://strategywiki.org/wiki/Mariner" rel="noopener" target="_blank">View source</a><br/>
+<a href="https://www.gamesdatabase.org/game/arcade/mariner.aspx" rel="noopener" target="_blank">View source</a></p>
+<p id="source-22"><strong>22 — Round-Up/Fitter gameplay references, used only for descriptive play context.</strong> Maze objective, nine-center-circle mechanic, and timed pattern-matching bonus round. Commercial/development claims continue to rely on sources 1–3 and 20.<br/>
+<a href="https://adb.arcadeitalia.net/dettaglio_mame.php?game_name=fitter" rel="noopener" target="_blank">View source</a><br/>
+<a href="https://www.arcade-history.com/game/857/fitter-upright-model" rel="noopener" target="_blank">View source</a></p>
+<p id="source-23"><strong>23 — Current MAME <code>taito/roundup.cpp</code>.</strong> Technical preservation source for Round-Up/Fitter inputs and Macho Mouse's current machine/input-family placement. This is technical context, not standalone proof of legal authorship.<br/>
+<a href="https://raw.githubusercontent.com/mamedev/mame/master/src/mame/taito/roundup.cpp" rel="noopener" target="_blank">View source</a></p>
+<p id="source-24"><strong>24 — Atari Compendium, Donkey Kong influences/related-games article.</strong> Specialist secondary gameplay observation used narrowly for the Naughty/Woodpecker control distinction; current MAME input definitions provide the stronger technical evidence.<br/>
+<a href="https://www.ataricompendium.com/archives/articles/donkey_kong/donkey_kong.html" rel="noopener" target="_blank">View source</a></p>
+<p id="source-25"><strong>25 — Macho Mouse gameplay references, used only for descriptive play context.</strong> Maze/trail/cat/action-button/slot-machine description; legal and commercial role claims continue to rely on sources 11–12.<br/>
+<a href="https://strategywiki.org/wiki/Macho_Mouse" rel="noopener" target="_blank">View source</a><br/>
+<a href="https://www.vgdb.co/games/macho-mouse" rel="noopener" target="_blank">View source</a></p>
+<hr/>
+<span id="appendix-c-illustration-program-for-website-publication"></span><span id="appendix-d-publication-coverage-statement"></span><h2 id="appendix-e-reader-facing-evidence-discipline">19. About the sources</h2><p>This history deliberately distinguishes several kinds of statements that are often blended together in arcade reference works. <strong>Direct period or legal evidence</strong> controls dates, licenses, corporate records, and formal rights claims whenever available. <strong>Program and hardware evidence</strong> controls what surviving software and boards visibly say and how current preservation maps controls or ROM arrangements. <strong>Modern technical preservation sources</strong> are used heavily for lineage and hardware context but are not promoted into legal history by themselves. <strong>Later descriptive sources</strong> are used mainly to explain what a player encountered and are subordinated to program/driver evidence when the two disagree.</p>
+<p>That hierarchy is why the text can confidently say that Centuri licensed Round-Up from Hiraoka while refusing to invent the missing Amenip-Hiraoka contract; why it can show a Nova-branded Snatcher cabinet running a PALCOM QUEEN RIVER program without declaring those companies one legal entity; and why it can describe Naughty Mouse as joystick-only in the current preservation driver even though many later game descriptions repeat a jump-button claim.</p>
+<p>The uncertainties are part of the story, not defects to be edited away.</p>
+</article>
+</main>
+<footer class="footer">
+<div class="rights">
+<strong>Rights &amp; Archival Material Notice</strong><br/>
+    Arcade Side B is a noncommercial historical research and preservation project. Some archival images, scans, publications, advertisements, artwork, screenshots, manuals, trademarks, and other materials presented or linked here may remain protected by copyright or other rights. Unless specifically stated otherwise, Arcade Side B does not claim ownership of third-party material and may not have a redistribution agreement with the applicable rights holder. Materials are presented in the interest of historical documentation, research, criticism, education, and preservation. Rights holders who have concerns about material appearing here are welcome to contact Arcade Side B to request attribution, correction, restriction, or removal.
+  </div>
+<div style="margin-top:10px">Arcade Side B · Amenip Corporation · Company history</div>
+<p class="last-updated">Last updated September 8, 2026 · Open to new evidence</p></footer>
+</body>
+</html>
