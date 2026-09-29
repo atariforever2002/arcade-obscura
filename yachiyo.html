@@ -1,0 +1,1305 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>Yachiyo Electronics | Arcade Side B</title>
+<style>
+:root{--paper:#eee7d8;--ink:#242c31;--gold:#c28a32;--max:1180px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(circle at 85% 7%,rgba(93,126,147,.12),transparent 28%),linear-gradient(rgba(255,255,255,.012) 1px,transparent 1px),#090d12;background-size:auto,100% 4px,auto;color:#dce2e5;font-family:Georgia,"Times New Roman",serif;line-height:1.72}
+a{color:#a86e20;text-underline-offset:3px}
+.mast{border-bottom:4px solid var(--gold);background:linear-gradient(135deg,#0a0f14,#14202a)}
+.mast-inner,.hero,.shell,.rule{width:min(calc(100% - 32px),var(--max));margin:auto}
+.mast-inner{padding:16px 0;display:flex;justify-content:space-between;gap:20px;align-items:center}
+.brand{font-size:26px;font-weight:700;color:#f0ece4}.motto{font:700 10px Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#9ca8af;text-align:right}
+.hero{padding:34px 0 28px}.crumb{font:700 10px Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#8d999f;margin-bottom:16px}
+.company-wordmark{border:1px solid #52606a;background:linear-gradient(90deg,rgba(194,138,50,.10),transparent 42%),#0e171f;padding:22px 24px 18px;margin-bottom:18px}
+.company-wordmark h1{margin:0;color:#f2eee5;font:800 clamp(38px,7.4vw,78px)/.94 Arial,sans-serif;letter-spacing:.065em}
+.company-wordmark .jp{margin-top:10px;color:#d5c8ad;font-size:19px;letter-spacing:.08em}
+.company-wordmark .sub{margin-top:9px;color:#b8c1c6;font:700 12px Arial,sans-serif;letter-spacing:.11em;text-transform:uppercase}
+.hero-meta{display:flex;gap:9px;flex-wrap:wrap;margin:15px 0 0}.status,.updated{font:800 10px Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;border:1px solid #46535d;padding:6px 8px}
+.status{color:#d8b36b;border-color:#8c682f;background:#1c1911}.updated{color:#a9b4ba}
+.snapshot{margin-top:24px;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#39434b;border:1px solid #39434b}
+.snapshot>div{background:#111920;padding:14px 16px;min-height:88px}.snapshot dt{font:800 9px Arial,sans-serif;text-transform:uppercase;letter-spacing:.12em;color:#7f8b92}.snapshot dd{margin:7px 0 0;color:#f0ece4;font-size:18px;line-height:1.25}
+.intro-note{margin-top:18px;color:#aeb8bd;font-size:15px;max-width:940px}.rule{border-top:1px solid #26313a}.shell{padding:28px 0 64px}
+.toc{background:#101820;border:1px solid #34404a;padding:14px 16px;margin-bottom:24px}.toc-label{font:800 9px Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#c39751;margin-bottom:8px}.toc-links{display:flex;flex-wrap:wrap;gap:7px 13px}.toc-links a{color:#aeb8bd;text-decoration:none;font:700 10px Arial,sans-serif}
+.article{background:var(--paper);color:var(--ink);border:1px solid #c5baa6;box-shadow:0 12px 34px rgba(0,0,0,.22);padding:clamp(24px,5vw,62px)}
+.article p,.article li{font-size:17px}.article h2{font-size:30px;line-height:1.18;margin:56px 0 18px;padding-top:12px;border-top:3px solid #263a46;color:#172831}.article h2:first-of-type{margin-top:0}.article h3{font-size:22px;line-height:1.22;margin:34px 0 12px;color:#2a404b}
+.article table{width:100%;border-collapse:collapse;margin:18px 0 25px;font-size:14px}.article th,.article td{border:1px solid #c8beab;padding:9px 10px;vertical-align:top}.article th{background:#e2d9c9;text-align:left;font:700 11px Arial,sans-serif;text-transform:uppercase;letter-spacing:.05em}
+.article blockquote{margin:22px 0;border-left:4px solid #a87a35;padding:2px 0 2px 16px;color:#505b61}
+.article .footnotes{font-size:13px;border-top:2px solid #8e8577;margin-top:48px;padding-top:18px}.article .footnotes li,.article .footnotes p{font-size:13px}
+.visual-gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin:24px 0 32px}
+.archive-figure{margin:22px auto 28px;padding:9px;border:1px solid #b8ad98;background:#faf5eb;box-shadow:0 7px 18px rgba(65,52,31,.07);max-width:860px}
+.visual-gallery .archive-figure{margin:0;max-width:none}.archive-figure img{display:block;width:100%;height:auto;background:#111;border:1px solid #c9bfad}
+.archive-figure figcaption{padding:9px 4px 3px;color:#59636a;font:12px/1.55 Arial,sans-serif}.archive-figure figcaption strong{color:#303a40}
+.public-note{margin:20px 0;padding:14px 16px;border-left:4px solid #b57f31;background:#f5ead8;color:#565148;font:13px/1.55 Arial,sans-serif}
+.count-note{margin:20px 0;padding:15px 16px;background:#e6ddcd;border:1px solid #c4b69e;font:13px/1.6 Arial,sans-serif;color:#4e514f}
+.footer{width:min(calc(100% - 32px),var(--max));margin:0 auto;padding:0 0 30px;color:#7b868c;font:10px/1.6 Arial,sans-serif}.rights{padding-top:15px;border-top:1px solid #29343c}.rights strong{color:#9ba5aa;text-transform:uppercase;letter-spacing:.06em}
+@media(max-width:760px){.snapshot{grid-template-columns:1fr 1fr}.visual-gallery{grid-template-columns:1fr}.article{padding:24px 18px}.mast-inner{align-items:flex-start;flex-direction:column}.motto{text-align:left}}
+
+.article,.archive-figure,.visual-gallery{min-width:0;max-width:100%}
+.archive-figure{width:100%;max-width:900px;overflow:visible}
+.archive-figure.portrait{max-width:670px}
+.archive-figure img{display:block;max-width:100%;width:auto;height:auto;margin:0 auto;object-fit:contain}
+.archive-figure figcaption{max-width:100%;overflow-wrap:anywhere}
+.translation-box{margin:7px 2px 2px;padding:11px 13px;border-left:3px solid #9b7a47;background:#ece3d4;color:#4f5659;font:12.5px/1.55 Arial,sans-serif}
+.translation-box strong{display:block;margin-bottom:4px;color:#72562e;font-size:10px;letter-spacing:.08em;text-transform:uppercase}
+.derivative-note{display:inline-block;margin-left:6px;color:#796d5d;font:700 9px Arial,sans-serif;letter-spacing:.05em;text-transform:uppercase}
+.contribute-note{margin:34px 0 4px;padding:16px 18px;border:1px solid #c1b299;background:#f6eddf;color:#4b5356;font:14px/1.6 Arial,sans-serif}
+.contribute-note strong{color:#273943}
+@media(max-width:760px){
+  .archive-figure,.archive-figure.portrait{max-width:100%;width:100%}
+  .article table{display:block;max-width:100%;overflow-x:auto}
+}
+</style>
+<style>
+/* Reader-facing source and table containment */
+article a, .source-list a, .footnotes a { overflow-wrap:anywhere; }
+.table-scroll {max-width:100%;overflow-x:auto;}
+.table-scroll:focus-visible {outline:2px solid #d7b56d;outline-offset:3px;}
+</style><style>@media(max-width:420px){.company-wordmark h1{font-size:clamp(22px,7.4vw,32px);line-height:1.04;letter-spacing:.04em;overflow-wrap:anywhere}}</style><style>
+/* Shared company-page pattern, standardized on the approved Elcon article. */
+.crumb,.hero,.rule,.shell{width:min(calc(100% - 32px),1180px)!important;margin-left:auto!important;margin-right:auto!important;max-width:none!important}
+.crumb{padding:18px 0 0!important;color:#93a0a8!important;font:700 11px Arial,sans-serif!important;letter-spacing:0!important;text-transform:none!important}
+.hero{padding:30px 0 26px!important;color:#eff2f3!important}
+.hero .eyebrow{color:#d4ad67;font:800 11px Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase}
+.hero h1{margin:7px 0 10px!important;padding:0!important;border:0!important;background:none!important;font-family:Georgia,serif!important;font-size:clamp(44px,7vw,78px)!important;font-weight:700!important;letter-spacing:0!important;line-height:.95!important;color:#f0ece4!important;text-transform:none!important}
+.hero .deck{max-width:930px;margin:0!important;color:#c3ccd0!important;font:19px/1.55 Georgia,serif!important}
+.hero .meta{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:15px!important}
+.hero .badge{display:inline-block;padding:6px 10px;border:1px solid #6691a3;border-radius:999px;color:#8fc1d3;font:800 10px Arial,sans-serif;text-transform:uppercase;letter-spacing:.05em}
+.hero .updated{color:#aab4b9;font:700 11px Arial,sans-serif!important;text-transform:none!important;letter-spacing:0!important}
+.shell{display:grid!important;grid-template-columns:275px minmax(0,1fr)!important;gap:22px!important;padding:26px 0 50px!important;align-items:start!important}
+.sidebar{display:block!important;position:sticky!important;top:10px!important;margin:0!important;align-self:start!important}
+.toc{display:block!important;margin:0!important;padding:0!important;border:1px solid #34404b!important;border-radius:0!important;background:#111820!important;max-height:82vh!important;overflow:auto!important;box-shadow:none!important}
+.toc-title{display:block!important;margin:0!important;padding:13px 15px!important;color:#d8dfe2!important;font:800 11px Arial,sans-serif!important;letter-spacing:.12em!important;text-transform:uppercase!important}
+.toc>a{display:block!important;border-top:1px solid #29343e!important;padding:9px 13px!important;color:#aebbc2!important;text-decoration:none!important;font:13px/1.35 Arial,sans-serif!important}
+.toc>a:hover{color:#f0c57e!important}
+article.article{width:100%!important;margin:0!important;background:#eee7d8!important;color:#232b30!important;border:1px solid #b9ae9a!important;box-shadow:0 18px 42px rgba(0,0,0,.25)!important;padding:26px 34px 40px!important;min-width:0!important}
+.backhome{display:inline-block;margin-bottom:18px;padding:8px 10px;border:1px solid #9e927e;color:#745322;text-decoration:none;font:800 10px Arial,sans-serif;text-transform:uppercase;letter-spacing:.08em}
+.company-identity{margin:0 0 28px!important;border:1px solid #b8ad98!important;background:linear-gradient(135deg,rgba(194,138,50,.08),transparent 48%),#f3eddf!important;color:#20272c!important;box-shadow:none!important;overflow:hidden!important}
+.company-mark{padding:24px 26px 20px;border-bottom:1px solid #c8beab;position:relative}
+.company-mark:after{content:"COMPANY PROFILE";position:absolute;right:22px;top:18px;color:#8c8272;font:700 9px Arial,sans-serif;letter-spacing:.16em}
+.legal{color:#746b5f;font:700 10px Arial,sans-serif;letter-spacing:.13em;text-transform:uppercase;margin-bottom:7px}
+.wordmark{font-family:Georgia,serif;font-size:clamp(34px,5vw,58px);line-height:.95;color:#122331}
+.wordmark span{display:block;margin-top:7px;color:#8a6429;font:700 13px Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase}
+.company-snapshot{display:grid!important;grid-template-columns:repeat(4,1fr)!important}
+.snapshot-cell{padding:17px 18px!important;border-right:1px solid #c8beab!important;min-width:0}
+.snapshot-cell:last-child{border-right:0!important}
+.snapshot-label{display:block;color:#786f63;font:700 9px Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;margin-bottom:5px}
+.snapshot-value{display:block;color:#1c2d37;font:19px/1.2 Georgia,serif}
+.snapshot-note{display:block;margin-top:5px;color:#6e726f;font:11px/1.35 Arial,sans-serif}
+.company-evidence{margin:0 0 25px;padding:15px 17px;border-left:5px solid #66836e;background:#e7efe8;color:#33433a;font:15px/1.5 Arial,sans-serif}
+@media(max-width:920px){
+ .shell{grid-template-columns:1fr!important}
+ .sidebar{position:static!important}
+ .toc{max-height:none!important}
+ .company-snapshot{grid-template-columns:1fr 1fr!important}
+ .snapshot-cell{border-bottom:1px solid #c8beab!important}
+ .snapshot-cell:nth-child(2){border-right:0!important}
+ .snapshot-cell:nth-child(3),.snapshot-cell:nth-child(4){border-bottom:0!important}
+}
+@media(max-width:600px){
+ article.article{padding:20px 16px 28px!important}
+ .company-snapshot{grid-template-columns:1fr!important}
+ .snapshot-cell{border-right:0!important;border-bottom:1px solid #c8beab!important}
+ .snapshot-cell:last-child{border-bottom:0!important}
+ .company-mark:after{position:static;display:block;margin-bottom:9px;content:"COMPANY PROFILE"}
+ .company-mark{display:flex;flex-direction:column;padding:20px 18px 17px}
+ .company-mark:after{order:-1}
+ .hero h1{font-size:clamp(38px,12vw,56px)!important;overflow-wrap:anywhere}
+ .hero .deck{font-size:17px!important}
+}
+</style><style id="ao-company-profile-consistency">
+/* Exact shared company-profile presentation: Elcon is the house pattern. */
+.company-identity.company-profile-standard{
+  margin:0 0 28px!important;
+  padding:0!important;
+  border:1px solid #b8ad98!important;
+  border-radius:0!important;
+  background:linear-gradient(135deg,rgba(194,138,50,.08),transparent 48%),#f3eddf!important;
+  color:#20272c!important;
+  box-shadow:none!important;
+  overflow:hidden!important;
+  font-family:Georgia,"Times New Roman",serif!important;
+  font-size:16px!important;
+  line-height:normal!important;
+}
+.company-profile-standard .company-mark{
+  display:block!important;
+  position:relative!important;
+  padding:24px 26px 20px!important;
+  border:0!important;
+  border-bottom:1px solid #c8beab!important;
+  border-radius:0!important;
+  background:transparent!important;
+  color:#232b30!important;
+  font:400 16px/normal Georgia,"Times New Roman",serif!important;
+}
+.company-profile-standard .company-mark:after{
+  content:"COMPANY PROFILE"!important;
+  position:absolute!important;
+  right:22px!important;
+  top:18px!important;
+  display:block!important;
+  margin:0!important;
+  color:#8c8272!important;
+  font:700 9px/normal Arial,Helvetica,sans-serif!important;
+  letter-spacing:.16em!important;
+  text-transform:uppercase!important;
+}
+.company-profile-standard .legal{
+  display:block!important;
+  margin:0 0 7px!important;
+  padding:0!important;
+  color:#746b5f!important;
+  font:700 10px/11px Arial,Helvetica,sans-serif!important;
+  letter-spacing:.13em!important;
+  text-transform:uppercase!important;
+}
+.company-profile-standard .wordmark{
+  display:block!important;
+  margin:0!important;
+  padding:0!important;
+  color:#122331!important;
+  font:400 clamp(34px,5vw,58px)/.95 Georgia,"Times New Roman",serif!important;
+  letter-spacing:0!important;
+  text-transform:none!important;
+}
+.company-profile-standard .wordmark span{
+  display:block!important;
+  margin:7px 0 0!important;
+  padding:0!important;
+  color:#8a6429!important;
+  font:700 13px/normal Arial,Helvetica,sans-serif!important;
+  letter-spacing:.16em!important;
+  text-transform:uppercase!important;
+}
+.company-profile-standard .company-snapshot{
+  display:grid!important;
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  color:#232b30!important;
+  font:400 16px/normal Georgia,"Times New Roman",serif!important;
+}
+.company-profile-standard .snapshot-cell{
+  display:block!important;
+  min-width:0!important;
+  margin:0!important;
+  padding:17px 18px!important;
+  border:0!important;
+  border-right:1px solid #c8beab!important;
+  border-radius:0!important;
+  background:transparent!important;
+  color:#232b30!important;
+  font:400 16px/normal Georgia,"Times New Roman",serif!important;
+}
+.company-profile-standard .snapshot-cell:last-child{border-right:0!important}
+.company-profile-standard .snapshot-label{
+  display:block!important;
+  margin:0 0 5px!important;
+  padding:0!important;
+  color:#786f63!important;
+  font:700 9px/10px Arial,Helvetica,sans-serif!important;
+  letter-spacing:.12em!important;
+  text-transform:uppercase!important;
+}
+.company-profile-standard .snapshot-value{
+  display:block!important;
+  margin:0!important;
+  padding:0!important;
+  color:#1c2d37!important;
+  font:400 19px/22.8px Georgia,"Times New Roman",serif!important;
+}
+.company-profile-standard .snapshot-note{
+  display:block!important;
+  margin:5px 0 0!important;
+  padding:0!important;
+  color:#6e726f!important;
+  font:400 11px/14.85px Arial,Helvetica,sans-serif!important;
+}
+.hero .meta{
+  display:flex!important;
+  flex-direction:row!important;
+  flex-wrap:wrap!important;
+  align-items:center!important;
+  gap:10px!important;
+  margin:15px 0 0!important;
+  padding:0!important;
+}
+.hero .meta .badge,
+.hero .meta .updated{
+  display:inline-block!important;
+  position:static!important;
+  margin:0!important;
+  inset:auto!important;
+}
+.hero .meta .badge{
+  padding:6px 9px!important;
+  border:1px solid #78a6b8!important;
+  border-radius:999px!important;
+  background:transparent!important;
+  color:#9fc7d6!important;
+  font:700 11px/normal Arial,Helvetica,sans-serif!important;
+  letter-spacing:0!important;
+  text-transform:uppercase!important;
+}
+.hero .meta .updated{
+  padding:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  color:#9aa6ad!important;
+  font:700 11px/normal Arial,Helvetica,sans-serif!important;
+  letter-spacing:0!important;
+  text-transform:none!important;
+}
+@media(max-width:920px){
+  .company-profile-standard .company-snapshot{grid-template-columns:1fr 1fr!important}
+  .company-profile-standard .snapshot-cell{border-right:1px solid #c8beab!important;border-bottom:1px solid #c8beab!important}
+  .company-profile-standard .snapshot-cell:nth-child(2){border-right:0!important}
+  .company-profile-standard .snapshot-cell:nth-child(3),
+  .company-profile-standard .snapshot-cell:nth-child(4){border-bottom:0!important}
+  .company-profile-standard .snapshot-cell:last-child{border-right:0!important}
+}
+@media(max-width:600px){
+  .company-profile-standard .company-mark{
+    display:flex!important;
+    flex-direction:column!important;
+    padding:20px 18px 17px!important;
+  }
+  .company-profile-standard .company-mark:after{
+    position:static!important;
+    order:-1!important;
+    display:block!important;
+    margin:0 0 9px!important;
+  }
+  .company-profile-standard .wordmark{font-size:34px!important;overflow-wrap:anywhere!important}
+  .company-profile-standard .company-snapshot{grid-template-columns:1fr!important}
+  .company-profile-standard .snapshot-cell{
+    border-right:0!important;
+    border-bottom:1px solid #c8beab!important;
+  }
+  .company-profile-standard .snapshot-cell:nth-child(3){border-bottom:1px solid #c8beab!important}
+  .company-profile-standard .snapshot-cell:last-child{border-bottom:0!important}
+}
+</style><meta name="description" content="A documented history of Yachiyo Electronics and its arcade manufacturing, assembly and technical work.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://arcadesideb.com/yachiyo.html">
+<meta property="og:title" content="Yachiyo Electronics | Arcade Side B">
+<meta property="og:description" content="A documented history of Yachiyo Electronics and its arcade manufacturing, assembly and technical work.">
+<meta property="og:url" content="https://arcadesideb.com/yachiyo.html">
+</head>
+<body>
+<header class="mast"><div class="mast-inner"><div class="brand">Arcade Side B</div><div class="motto">Preserve what others overlooked. Follow the evidence. Keep the record open.</div></div></header>
+<div class="crumb">Arcade Side B  ›  Companies  ›  Yachiyo Electronics</div>
+<section class="hero">
+<div class="eyebrow">Company history</div><h1>Yachiyo Electronics</h1><p class="deck">A Japanese electronics manufacturer, arcade subcontractor, assembler and technical collaborator whose surviving record requires separate counts for different kinds of involvement.</p><div class="meta"><span class="badge living">Open to new evidence</span> <span class="updated">Last updated: September 8, 2026</span></div></section><div class="rule"></div>
+<main class="shell"><aside class="sidebar"><nav aria-label="Yachiyo Electronics article contents" class="toc"><div class="toc-title">On this page</div><a href="#company-snapshot">Company snapshot</a><a href="#identity-offices-leadership-and-the-shape-of-the-company">1. Identity, offices, leadership, and the shape of the company</a><a href="#the-invader-boom-and-the-tax-case">2. The Invader boom and the tax case</a><a href="#space-stranger-yachiyos-best-documented-arcade-family">3. Space Stranger: Yachiyo’s best-documented arcade family</a><a href="#electrical-approval-records-useful-evidence-dangerous-titles">4. Electrical approvals and their limits</a><a href="#super-twin-manufacture-without-a-new-software-title">5. Super Twin: manufacture without a new software title</a><a href="#janputer-gp-010t-yachiyo-as-manufacturer-in-another-companys-game-lineage">6. Janputer GP-010T: Yachiyo as manufacturer in another company’s game lineage</a><a href="#mole-attack-and-holey-moley">7. Mole Attack and Holey Moley</a><a href="#computer-quiz-atama-no-taisou-and-its-family">8. Computer Quiz: Atama no Taisou and its family</a><a href="#swinging-singles-and-the-utamaro-problem">9. Swinging Singles and the Utamaro problem</a><a href="#hal-laboratory-iwasaki-and-possible-succession">10. HAL Laboratory, Iwasaki, and possible succession</a><a href="#late-technical-evidence-beyond-the-arcade-catalog">11. Late technical evidence beyond the arcade catalog</a><a href="#the-1984-collapse-and-its-financial-fallout">12. The 1984 collapse and its financial fallout</a><a href="#reconciled-arcade-catalog-why-the-count-is-3-6-8">13. Arcade catalog: the games and Yachiyo’s part in them</a><a href="#research-cautions-and-myths-to-avoid">14. Attributions and common misconceptions</a><a href="#what-remains-unresolved">15. What remains unresolved</a><a href="#final-historical-assessment">16. Yachiyo’s place in arcade history</a><a href="#source-notes">17. Source notes</a></nav>
+</aside><article class="article"><a class="backhome" href="#companies" target="_top">← Back to Companies</a><section aria-label="Yachiyo Electronics company profile" class="company-identity company-profile-standard"><div class="company-mark"><div class="legal">Yachiyo Electronics / 株式会社八千代電器産業</div><div class="wordmark">Yachiyo Electronics<span>Tokyo, Japan</span></div></div><div class="company-snapshot"><div class="snapshot-cell"><span class="snapshot-label">Reported start</span><span class="snapshot-value">July 1972</span><span class="snapshot-note">Contemporary reporting gives August 1973 for incorporation or reorganization.</span></div><div class="snapshot-cell"><span class="snapshot-label">Effective collapse</span><span class="snapshot-value">August 1984</span><span class="snapshot-note">The exact legal endpoint remains unresolved.</span></div><div class="snapshot-cell"><span class="snapshot-label">Games Yachiyo helped create</span><span class="snapshot-value">3 game families</span><span class="snapshot-note">Space Stranger, Atama no Taisou and Swinging Singles.</span></div><div class="snapshot-cell"><span class="snapshot-label">Other arcade work</span><span class="snapshot-value">6 products, possibly 8</span><span class="snapshot-note">Including games and machines it built or assembled brings the total to six. Two more quiz releases may also belong.</span></div></div></section><div class="company-evidence">Yachiyo did more than help create games: it also built and assembled them for others. Three game families show its hand in the design or technology. Including its manufacturing work brings the total to six arcade products. Two further quiz releases may bring it to eight, although Yachiyo’s part in those is less clear.</div>
+<div class="count-note">Why the different totals? It depends on the work being counted. Three game families show Yachiyo helping create the games; six products include those it built or assembled. Eight includes two more quiz releases whose connection to Yachiyo is less clear. Each larger total includes the smaller one.</div>
+<h2 id="company-snapshot">Company snapshot</h2>
+<div aria-label="Historical reference table" class="table-scroll" role="region" tabindex="0"><table>
+<colgroup>
+<col style="width: 50%"/>
+<col style="width: 50%"/>
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Documented information</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Company name</td>
+<td>Yachiyo Electronics; Japanese legal name in the surviving court
+record: <strong>株式会社八千代電器産業</strong></td>
+</tr>
+<tr class="even">
+<td>English corporate wording</td>
+<td><strong>Yachiyo Electric Co., Ltd.</strong> is verified on a
+surviving Janputer identification plate; it should not automatically be
+treated as the company’s universal official English legal name</td>
+</tr>
+<tr class="odd">
+<td>Reported start of operations</td>
+<td><strong>July 1972</strong></td>
+</tr>
+<tr class="even">
+<td>Reported incorporation / reorganization</td>
+<td><strong>August 1973</strong></td>
+</tr>
+<tr class="odd">
+<td>Effective operational and financial collapse</td>
+<td><strong>August 1984</strong>, after dishonored paper on August
+6</td>
+</tr>
+<tr class="even">
+<td>Formal legal dissolution</td>
+<td><strong>Unknown</strong>; no dissolution, liquidation, bankruptcy
+judgment, creditor schedule, or asset-sale record has been
+recovered</td>
+</tr>
+<tr class="odd">
+<td>Approximate operating span</td>
+<td>About <strong>12 years</strong>, measured from the reported July
+1972 start to the August 1984 collapse</td>
+</tr>
+<tr class="even">
+<td>Arcade output</td>
+<td>Yachiyo helped create three game families. Its manufacturing and assembly work brings the list to six arcade products. Two further releases in the Atama no Taisou quiz line may bring it to eight, though Yachiyo’s part in those remains less clear.</td>
+</tr>
+</tbody>
+</table>
+</div><p>The numbers above need explanation. Yachiyo was not a conventional
+arcade software house whose catalog can be counted simply by looking for
+its name on title screens. The surviving evidence shows a company that
+manufactured electronics, built or assembled machines for other sellers,
+participated technically in game programs, and worked inside a network
+of Japanese amusement companies whose public-facing names often differed
+from the companies that actually built the hardware. For that reason,
+the most misleading possible summary would be “Yachiyo developed six
+games.” The evidence does not support that formulation.</p>
+<p>The distinction between designing a game, manufacturing its hardware and selling the finished machine is essential to this history. Several titles involve different companies at each stage, and unresolved relationships are identified in the account that follows.</p>
+<h2 id="identity-offices-leadership-and-the-shape-of-the-company">1. Identity, offices, leadership, and the shape of the company</h2>
+<p>The Japanese corporate name recorded in the court transcription is
+<strong>株式会社八千代電器産業</strong>. A surviving court-record
+transcription identifies the corporation by that name and provides the
+strongest current legal and corporate evidence for Yachiyo’s identity.<a class="footnote-ref" href="#fn1" id="fnref1" role="doc-noteref"><sup>1</sup></a> The often-used English rendering
+“Yachiyo Denki Sangyo Co., Ltd.” is a reasonable literal translation,
+but no surviving official English registration has been recovered. The
+wording <strong>“Yachiyo Electric Co., Ltd.”</strong> is physically
+verified on a Janputer GP-010T identification plate. That is important
+evidence of English-language usage by or for Yachiyo, but it is evidence
+for that product plate, not proof that the same wording was the
+company’s universal legal English name.</p>
+<p>Contemporary reporting on Yachiyo’s 1984 failure gives July 1972 as the start of operations and August 1973 as incorporation or reorganization. These are reported dates; the original corporate registration has not been recovered. <a class="footnote-ref" href="#fn2" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
+<p>The court record places the earlier registered office at 1-12-1 Minamicho, Tanashi, Tokyo, and records its move to 2-12-20 Fujicho, Hoya, Tokyo on June 17, 1978. Both are verified corporate addresses, but their use as factories, assembly sites, administrative offices or mixed premises remains unknown. <a class="footnote-ref" href="#fn3" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
+<p>The same record identifies <strong>Mitsuhiro Ikeda
+(池田光博)</strong> as representative director and as the person
+exercising overall control of Yachiyo’s business operations. The
+recorded capital was <strong>¥5 million</strong>, and the company’s
+stated purpose included the manufacture and sale of electronic
+equipment.<a class="footnote-ref" href="#fn4" id="fnref4" role="doc-noteref"><sup>4</sup></a> The surviving evidence does not
+establish the full shareholder structure, the ownership percentages, or
+whether Ikeda owned a controlling equity stake in addition to his
+executive control.</p>
+<p>Three other names are relevant but must be kept in narrower roles.
+<strong>Yasushi Matsuda</strong> appears as a Hoei Sangyo representative
+in contemporary material and as an evidentiary figure in the Yachiyo tax
+case; no evidence currently makes him a Yachiyo officer or shareholder.
+<strong>Kiyoji Musashi</strong> appears as inventor on a late
+Yachiyo-assigned utility-model filing, but his job title and
+amusement-game role are unknown. <strong>Tsuyoshi Ikeda</strong> is
+relevant to the HAL Laboratory chronology because he succeeded Mitsuhiro
+Ikeda as HAL president in March 1984; no direct Yachiyo executive role
+has been established for him.</p>
+<h3 id="the-hoei-relationship">The Hoei relationship</h3>
+<p>Yachiyo’s relationship with <strong>Hoei Sangyo</strong> is central
+to understanding why the company’s own name is often less visible than
+its physical involvement. The court record says that Yachiyo followed a
+policy of entrusting product sales to Hoei.<a class="footnote-ref" href="#fn5" id="fnref5" role="doc-noteref"><sup>5</sup></a>
+Contemporary trade material also places Hoei at Yachiyo’s former Tanashi
+address after Yachiyo moved to Hoya. Together, those facts support a
+close operational relationship and a possible reuse of the premises. They do
+not establish common ownership, a parent-subsidiary structure, or legal
+identity between the companies.</p>
+<p>Hoei itself was established in <strong>April 1977</strong>,
+reportedly with capital of ¥5 million, and was renamed <strong>Coreland
+Technology</strong> in <strong>June 1982</strong>.<a class="footnote-ref" href="#fn6" id="fnref6" role="doc-noteref"><sup>6</sup></a>
+That chronology matters because one recurring historical story has
+treated Coreland as though it were created after Yachiyo collapsed in
+order to succeed it. It was not. Coreland already existed under that
+name two years before Yachiyo failed. If assets, staff, designs,
+contracts, inventory, or know-how ever moved from Yachiyo to Coreland,
+the transfer would have been into an existing company. No such transfer
+has yet been proved.</p>
+<p>The evidence therefore supports a strong Yachiyo-Hoei operating
+relationship, but it stops short of legal succession or shared
+ownership. That distinction remains important throughout the game
+catalog: a Hoei-branded or Hoei-sold machine may still contain
+Yachiyo-manufactured hardware, while a Yachiyo-manufactured machine need
+not have been marketed publicly under Yachiyo’s name.</p>
+<h2 id="the-invader-boom-and-the-tax-case">2. The Invader boom and the tax case</h2>
+<p>Yachiyo’s most revealing surviving corporate document is not an
+arcade advertisement but a tax-criminal judgment. The court
+transcription describes the company as manufacturing amusement
+equipment, including <strong>Invader games</strong>, and says the sudden
+Invader boom produced profits beyond expectations.<a class="footnote-ref" href="#fn7" id="fnref7" role="doc-noteref"><sup>7</sup></a>
+That is unusually strong evidence that arcade manufacturing was
+economically significant to Yachiyo at the exact historical moment when
+the <em>Space Stranger</em> family appeared.</p>
+<p>For the fiscal year ending <strong>March 31, 1979</strong>, the court
+record gives approximately <strong>¥496.9 million in actual
+income</strong>, roughly <strong>¥156 million in concealed
+income</strong>, and about <strong>¥64.7 million in corporate tax
+evasion</strong>. It records a <strong>¥20 million fine</strong> for the
+company and a <strong>one-year sentence for Mitsuhiro Ikeda, suspended
+for three years</strong>.<a class="footnote-ref" href="#fn8" id="fnref8" role="doc-noteref"><sup>8</sup></a> Those figures have to be handled
+carefully. “Income” in a tax case is not the same thing as gross sales,
+production volume, company valuation, or arcade revenue. The record
+shows the scale of the tax case and the financial importance of the
+Invader boom; it does not provide a unit count for machines or a clean
+sales figure.</p>
+<p>The tax case also strengthens the Hoei connection because the case
+narrative discusses Yachiyo’s practice of entrusting sales to Hoei. It
+does not, however, solve the exact division of engineering, program
+development, cabinet manufacture, ownership of game rights, or
+distribution for every product. Those roles still have to be
+reconstructed game by game.</p>
+<h2 id="space-stranger-yachiyos-best-documented-arcade-family">3. Space Stranger: Yachiyo’s best-documented arcade family</h2>
+<p>The <em>Space Stranger</em> family is the strongest place to see
+Yachiyo’s mixed identity as manufacturer, engineer, and
+behind-the-scenes arcade participant. The surviving record contains
+period advertising, trade listings, boards, manuals, schematics,
+operator sheets, regional survivors, and modern preservation work. It
+also contains enough conflicting names to demonstrate why a simple
+“title list” is inadequate.</p>
+<h3 id="the-1978-1979-commercial-chronology">3.1 The 1978-1979
+commercial chronology</h3>
+<p>Hoei publicly exhibited an <strong>upright Space Stranger</strong> in
+<strong>November 1978</strong>.<a class="footnote-ref" href="#fn9" id="fnref9" role="doc-noteref"><sup>9</sup></a> By <strong>April 1,
+1979</strong>, an Esco advertisement showed an upright <strong>Space
+Stranger</strong> and a table-form <strong>Super Space Stranger</strong>
+side by side.<a class="footnote-ref" href="#fn10" id="fnref10" role="doc-noteref"><sup>10</sup></a> The most natural reading of that
+page is that the names initially distinguished cabinet or product
+packages, not necessarily two entirely separate software games.</p>
+<figure class="archive-figure portrait">
+<img alt="An April 1979 Esco Trading advertisement for Super Space Stranger and related table games" class="archive-image" height="1600" loading="lazy" src="assets/articles/8b4992913441a500f3f6ba7693a87d4caa38836d.jpg" style="width:1073px" width="1073"/>
+<figcaption><strong>April 1, 1979 Esco Trading advertisement.</strong> Super Space Stranger appears in a lineup of table games, documenting the use of the name for a particular cabinet configuration.</figcaption><div class="translation-box"><strong>English translation — relevant excerpt</strong>Prominent headings: “Super Space Stranger,” “Space Fighter Mark II,” and “3-in-1 mechanism.” The central diagram labels the three selectable games as Sea Bee, Castle Tic, and a third game position; surrounding copy presents the table as a multi-game product. </div></figure>
+<p>A <strong>May 1, 1979</strong> product index listed <em>Space
+Stranger</em> as an upright at <strong>¥540,000</strong> and <em>Super
+Space Stranger</em> as a table machine at <strong>¥460,000</strong>.<a class="footnote-ref" href="#fn11" id="fnref11" role="doc-noteref"><sup>11</sup></a> Two weeks later, a <strong>May
+15</strong> listing used <em>Super Space Stranger</em> for both upright
+and table forms. It listed an upright at <strong>¥560,000</strong>, a
+black-and-white table at <strong>¥460,000</strong>, and a color table at
+<strong>¥600,000</strong>, and associated the configurations with
+Yachiyo electrical approval number <strong>91-15961</strong>.<a class="footnote-ref" href="#fn12" id="fnref12" role="doc-noteref"><sup>12</sup></a> The ¥540,000 versus ¥560,000
+upright price discrepancy remains unresolved. It may reflect a price
+change, a listing difference, configuration variation, or simply
+inconsistent trade data; there is not enough evidence to choose among
+those explanations.</p>
+<figure class="archive-figure">
+<img alt="A May 15 1979 Game Machine listing showing Hoei Super Space Stranger configurations and prices" class="archive-image" height="1250" loading="lazy" src="assets/articles/c37b02377b9d4db1cc60a3d28bc73919926a090e.jpg" style="width:1210px" width="1210"/>
+<figcaption><strong>May 15, 1979 Hoei listing.</strong> Super Space Stranger is offered in upright and table configurations, both associated with approval number 91-15961.</figcaption><div class="translation-box"><strong>English translation — relevant excerpt</strong>Hoei Sangyo Co., Ltd.: “Super Space Stranger (upright)” — approval 91-15961, list price ¥560,000. “Super Space Stranger (table)” — approval 91-15961, black-and-white ¥460,000 / color ¥600,000. The adjacent columns are other companies and products and are not part of the Yachiyo claim.</div></figure>
+<p>The naming already shifts within a few months. <em>Space
+Stranger</em> is a verified contemporary upright name and also the
+wording displayed by surviving software. <em>Super Space Stranger</em>
+is a verified commercial name used for table hardware and, in at least
+one trade listing, for a broader upright/table family. Later surviving
+physical material adds <strong>Mark Stranger 2</strong> and
+<strong>Stranger 2</strong>. None of that automatically proves a
+conventional sequel.</p>
+<h3 id="yd7000-the-monochrome-family">3.2 YD7000: the monochrome
+family</h3>
+<p>The surviving hardware and service documentation established the
+<strong>YD7000</strong> family as an 8080-family monochrome platform.
+Surviving boards identify a lower CPU/video board
+<strong>YD7000-1A</strong>, an upper sound board
+<strong>YD7000-2B</strong>, and interconnect <strong>YD7000-M2</strong>.
+The original service manual uses the more general labels <strong>CPU
+YD7000-1</strong> and <strong>I/O YD7000-2</strong>, which align with
+the surviving physical 1A/2B revisions.<a class="footnote-ref" href="#fn13" id="fnref13" role="doc-noteref"><sup>13</sup></a></p>
+<p>The YD-7000 service-manual photographs are especially useful because
+they connect the commercial name <em>Super Space Stranger</em> directly
+to monochrome hardware and provide factory table specifications. The
+documented table machine measures approximately <strong>830 mm × 510 mm
+× 630 mm</strong>, weighs <strong>32 kg</strong>, uses <strong>AC 100 V,
+50/60 Hz</strong>, consumes about <strong>60 W</strong>, and is
+configured for a <strong>100-yen coin</strong>.<a class="footnote-ref" href="#fn14" id="fnref14" role="doc-noteref"><sup>14</sup></a></p>
+<figure class="archive-figure portrait">
+<img alt="Surviving Super Space Stranger YD-7000 service manual cover" class="archive-image" height="1200" loading="lazy" src="assets/articles/0de4fc76ac755d59b2c0af54ef98bd8aef2d004b.jpg" style="width:900px" width="900"/>
+<figcaption><strong>Surviving YD-7000 Super Space Stranger service manual.</strong> The manual connects the Super Space Stranger commercial name to the YD-7000 hardware family.</figcaption><div class="translation-box"><strong>English translation</strong>The Japanese title at the top reads “Super Space Stranger.” The remaining prominent cover text is already in English: “model YD-7000” and “SERVICE MANUAL.”</div></figure>
+<p>The manual also preserves operator settings. <strong>SW1 and
+SW2</strong> set the replay threshold; <strong>SW3</strong> selects
+three or four starting cannons; <strong>SW4</strong> sets a bonus cannon
+at 1,000 or 2,000 points; and <strong>SW5</strong> is used for a memory
+test.<a class="footnote-ref" href="#fn15" id="fnref15" role="doc-noteref"><sup>15</sup></a> These details matter because later
+Mark Stranger 2/YD7700 material repurposes operator functions, showing
+that the family evolved beyond a cosmetic cabinet-name change.</p>
+<p>The hardware supported both table and upright use. That helps explain
+why cabinet form and software identity can become entangled in period
+listings: the same broad hardware family could be packaged differently
+while commercial names changed around it.</p>
+<h3 id="yd7700-and-true-color">3.3 YD7700 and true color</h3>
+<p>The later <strong>YD7700-1G</strong> material is not merely the
+monochrome YD7000 program viewed through a colored overlay. The
+preserved technical work supports it as a <strong>true-color hardware
+and program revision</strong> that retains substantial family continuity
+while changing program storage, video/color circuitry, and operator
+functionality.<a class="footnote-ref" href="#fn16" id="fnref16" role="doc-noteref"><sup>16</sup></a> This finding is important because
+it narrows the meaning of later color versions: at least one color
+branch represents real electronic and program evolution, not just a
+different monitor treatment.</p>
+<p>A surviving machine branded <strong>MARK STRANGER 2</strong> on its
+instruction sheet and <strong>STRANGER 2</strong> on other physical
+documentation still displays <strong>SPACE STRANGER</strong> on the game
+title screen. The machine uses genuine color graphics.<a class="footnote-ref" href="#fn17" id="fnref17" role="doc-noteref"><sup>17</sup></a>
+Its operator sheet documents selectable starting cannons, extra-cannon
+thresholds, replay-score settings, a service-play switch, and a
+high-speed-shot or <strong>Fast Shoot</strong> function. In later
+material, <strong>SW5</strong> is used for coinage rather than the
+YD7000 memory-test function. Physical branding, software-title wording,
+and hardware revision therefore need to be treated as separate evidence
+layers.</p>
+<p>The strongest current model is an evolving <em>Space Stranger</em>
+family in which cabinet names, marketing names, service names, and
+software revisions do not map one-to-one. That is why <strong>“Space
+Stranger 2”</strong> remains a useful modern preservation label but not
+a verified period Japanese commercial title. No period Japanese flyer,
+trade listing, manual, title screen, or cabinet plate using the exact
+title <em>Space Stranger 2</em> has been recovered. The verified
+historical names are <em>Space Stranger</em>, <em>Super Space
+Stranger</em>, and physical/service variants of <em>Mark Stranger 2 /
+Stranger 2</em>.</p>
+<h3 id="iwasaki-giken-and-the-technical-network">3.4 Iwasaki Giken and
+the technical network</h3>
+<p>An original <em>Space Stranger</em> engineering schematic carries an
+<strong>Iwasaki Giken Kogyo Co., Ltd.</strong> title block dated
+approximately <strong>October 25, 1978</strong>.<a class="footnote-ref" href="#fn18" id="fnref18" role="doc-noteref"><sup>18</sup></a>
+That is direct evidence of Iwasaki engineering participation in the
+project. What it does <em>not</em> prove is equally important. The schematic
+does not by itself prove that Iwasaki programmed the game, owned the
+design, produced all boards, or was responsible for the later YD7700
+revision. Those remain separate questions.</p>
+<p>The broader research found later institutional links between Iwasaki
+and <strong>HAL Laboratory</strong>, while HAL’s own history identifies
+Mitsuhiro Ikeda as HAL’s first representative president.<a class="footnote-ref" href="#fn19" id="fnref19" role="doc-noteref"><sup>19</sup></a>
+That combination strongly supports a Yachiyo-Iwasaki-HAL
+technical/business network around people and engineering relationships.
+It does not prove that HAL was a Yachiyo subsidiary, that Yachiyo
+transferred <em>Space Stranger</em> technology to HAL, or that HAL
+legally succeeded Yachiyo. The network is historically meaningful
+precisely because the legal and contractual boundaries remain
+incomplete.</p>
+<h3 id="regional-evidence-spain-britain-and-the-united-states">3.5
+Regional evidence: Spain, Britain, and the United States</h3>
+<p>The family did not remain confined to Japanese surviving examples. A
+Spanish machine called <strong>Alpha 2000</strong>, produced by
+<strong>Petaco</strong> in 1980, is documented as a commercial Spanish
+derivative of <em>Space Stranger</em> and carries Spanish approval
+<strong>A/20/00064</strong>.<a class="footnote-ref" href="#fn20" id="fnref20" role="doc-noteref"><sup>20</sup></a> Preservation material
+reports program and display changes. What remains unknown is whether
+Petaco’s use was formally licensed by Yachiyo, Hoei, another rights
+holder, or copied without a recoverable agreement.</p>
+<p>The owner of a long-held British Super Twin reported that his father had acquired it new. This provides valuable family provenance for the surviving machine, although its original purchase location and distributor remain unknown. <a class="footnote-ref" href="#fn21" id="fnref21" role="doc-noteref"><sup>21</sup></a></p>
+<p>A <strong>25-cent Space Stranger cocktail</strong> has also appeared
+in a U.S. auction catalog.<a class="footnote-ref" href="#fn22" id="fnref22" role="doc-noteref"><sup>22</sup></a> Quarter coinage shows that the surviving machine was configured for
+U.S.-style play, but it is not enough to prove factory export. Hoei
+definitely developed a U.S.-facing operation by approximately 1980-1981:
+a Hoei International trademark record and a U.S. International Trade
+Commission investigation place Hoei in the American trade context.<a class="footnote-ref" href="#fn23" id="fnref23" role="doc-noteref"><sup>23</sup></a> No primary evidence has been found for official U.S. or British <em>Space
+Stranger</em> distribution during the principal 1978-1979 release cycle. Surviving machines establish their presence abroad, but the original distribution path remains unknown.</p>
+<h2 id="electrical-approval-records-useful-evidence-dangerous-titles">4. Electrical approvals and their limits</h2>
+<p>Japanese electrical approvals document Yachiyo’s activity, but their equipment descriptions do not necessarily name commercially released games.</p>
+<p>Period approval tables identify three early Yachiyo entries:</p>
+<ul>
+<li><strong>91-15961 — “Television Panic board”</strong>, approved
+<strong>February 3, 1978</strong>.</li>
+<li><strong>91-16243 — “Space Trip board”</strong>, approved
+<strong>March 29, 1978</strong>.</li>
+<li><strong>91-16244 — “Roulette board”</strong>, approved <strong>March
+29, 1978</strong>.<a class="footnote-ref" href="#fn24" id="fnref24" role="doc-noteref"><sup>24</sup></a></li>
+</ul>
+<figure class="archive-figure">
+<img alt="Future Flash advertisement showing the table cabinet, screen imagery, upright cabinet, and approval number 95-1812" class="archive-image" height="1060" loading="lazy" src="assets/articles/83a86d4947021ac78149a559e607fd0f0e420c5a.jpg" style="width:880px" width="880"/>
+<figcaption><strong>Future Flash advertisement, March 15, 1981, p. 20.</strong> The advertisement shows the table and upright cabinets, game screens and approval number 95-1812. That number establishes a Yachiyo regulatory association; it does not establish Yachiyo as the developer, publisher or manufacturer. <a href="https://onitama.tv/gamemachine/pdf/19810315p.pdf">View the March 15, 1981 issue (PDF)</a>.</figcaption><div class="translation-box"><strong>English translation — relevant excerpt</strong>The ad identifies the machine as “Future Flash” and prints approval number “95-1812.” The large slogan says roughly “Expanding the world of video games.” The advertisement includes table and upright cabinets. The approval number establishes a regulatory association, not the identity of the game’s developer or manufacturer.</div></figure>
+<p>These descriptions demonstrate approved electronic boards associated
+with Yachiyo. They do not prove that <em>Television Panic</em>,
+<em>Space Trip</em>, and <em>Roulette</em> were three commercial arcade
+releases. No commercial-title bridge was recovered for those generic
+descriptions.</p>
+<p>Approval <strong>91-15961</strong> became especially informative
+because the same number later appears with multiple <em>Super Space
+Stranger</em> cabinet forms and with <em>Super Twin</em>. It predates
+the public November 1978 <em>Space Stranger</em> exhibition by many
+months. That makes it unsuitable as a sequel marker, ROM revision
+number, or release date. It is regulatory evidence that crossed more
+than one commercial package.</p>
+<p>Another correction concerns <strong>95-1812</strong>, approved to
+Yachiyo on <strong>August 22, 1979</strong>. Earlier work had mistakenly
+used that number as a clue for dating Janputer. Period advertising
+instead associates 95-1812 with <strong>Future Flash</strong>.<a class="footnote-ref" href="#fn25" id="fnref25" role="doc-noteref"><sup>25</sup></a> This creates a real Yachiyo
+regulatory association with Future Flash, but the evidence does not
+establish Yachiyo as the game’s developer, publisher, or manufacturer.
+For catalog counting, Future Flash remains outside the direct Yachiyo
+total.</p>
+<p>Yachiyo received approvals 95-2257 and 95-2258 on October 9, 1981. Period commercial material identifies 95-2258 with Mole Attack. No released product has yet been identified for 95-2257.</p>
+<p>The approval work also corrected two earlier false leads, <strong>TV
+Break</strong> and <strong>Table Barrier</strong>, which had been
+attributed to Yachiyo after vertical table columns were misjoined. Those
+titles are withdrawn from the Yachiyo catalog.</p>
+<div aria-label="Supplemental Yachiyo electrical approval evidence" class="visual-gallery"></div><h2 id="super-twin-manufacture-without-a-new-software-title">5. Super Twin: manufacture without a new software title</h2>
+<p><em>Super Twin</em> is one of the cleanest examples of why Yachiyo’s
+catalog must be interpreted according to the company’s role. A <strong>Game Machine</strong> listing
+dated <strong>October 15, 1979</strong> describes Hoei Sangyo’s
+<em>Super Twin</em> at <strong>¥680,000</strong>.<a class="footnote-ref" href="#fn26" id="fnref26" role="doc-noteref"><sup>26</sup></a>
+The machine combines the driving game <strong>Head On</strong> with
+Yachiyo’s <strong>Super Space Stranger</strong>, and the listing says
+the lever and button are shared by the two games. It explicitly states
+that the product was manufactured by Yachiyo.</p>
+<p>The role split is therefore unusually strong: <strong>Hoei was the
+seller/marketer; Yachiyo manufactured the two-game product
+package</strong>. The listing carries approval number
+<strong>91-15961</strong>, the same Yachiyo approval seen elsewhere in
+the <em>Space Stranger</em> family.</p>
+<p>This does <em>not</em> make <em>Super Twin</em> a standalone Yachiyo
+software game. No separate <em>Super Twin</em> ROM set is established,
+and the evidence does not show that <em>Head On</em> and <em>Super Space
+Stranger</em> were merged into one integrated program. The exact
+internal switching hardware, original board-stack arrangement, and
+contractual basis for the <em>Head On</em> component remain unknown.
+Surviving converted or altered Super Twin cocktails confirm that the
+cabinet reached the field, but altered survivors cannot establish their
+original internal board complement.</p>
+<p>The October 15 listing identifies the Hoei/Yachiyo product as Super Twin. The neighboring 2-in-1 Eagle entry belongs to Data East; it is a separate product, despite the ambiguity introduced when the page’s columns are read out of order.</p><h2 id="janputer-gp-010t-yachiyo-as-manufacturer-in-another-companys-game-lineage">6. Janputer GP-010T: Yachiyo as manufacturer in another company’s game lineage</h2>
+<p>Janputer shows Yachiyo participating in a successful game family that
+did not originate with Yachiyo software development. The defensible core
+history places the <strong>1981 computer-mahjong game Janputer</strong>
+with <strong>Alpha Denshi</strong> as developer and <strong>Sanritsu
+Giken</strong> in the original commercial-release chain.<a class="footnote-ref" href="#fn27" id="fnref27" role="doc-noteref"><sup>27</sup></a> Later retrospective sources from the Alpha Denshi orbit support Alpha’s creation role. A Kazuo Arai retrospective is cited as firsthand support for Alpha development and control-panel design, while later historical material also associates early Alpha figure <strong>Eiji Fukatsu</strong> with the game’s
+creation. Those later accounts strengthen the Alpha lineage but do not
+eliminate the need to distinguish individual roles carefully.</p>
+<p>Later sources sometimes blur Sanritsu Giken and Sanritsu Denki. The evidence used here identifies Sanritsu Giken in the original release and marketing of Janputer; the differing corporate names remain a point requiring clarification.</p>
+<p>The Janputer program became successful enough to generate licensed
+and copied variants. Later material identifies <strong>Taito</strong>
+and <strong>Nihon Bussan</strong> among legitimate licensees. Similarity
+to Janputer alone, however, is not enough to declare every related board
+or cabinet authorized.</p>
+<p>Yachiyo’s direct place in this history comes from a surviving
+<strong>Yachiyo-branded table machine</strong> advertised in 2026. The
+survivor included a <strong>service manual, wiring diagram, and spare
+control panels</strong>. The seller described it as a Yachiyo Denki
+Sangyo Janputer and documented normal one- or two-player alternating
+play against the computer.<a class="footnote-ref" href="#fn28" id="fnref28" role="doc-noteref"><sup>28</sup></a> The physical
+identification plate uses the model <strong>GP-010T</strong> and the
+English wording <strong>“Yachiyo Electric Co., Ltd.”</strong></p>
+<p>That survivor materially supports <strong>Yachiyo manufacture or
+assembly of a fielded Janputer version</strong>. It does not displace
+Alpha Denshi as the software developer or Sanritsu Giken as the original
+commercial releaser. That distinction is one of the most important
+corrections in the final catalog.</p>
+<p><strong>Central Leisure System / CLS</strong> remains an alternate
+distribution or variant lead. Accessible preservation pages describe a
+CLS version, but no primary contract or direct bridge between CLS and
+the surviving Yachiyo machine has been recovered. The current role model
+is therefore:</p>
+<ul>
+<li><strong>Alpha Denshi:</strong> development.</li>
+<li><strong>Sanritsu Giken:</strong> original release/marketing in the
+defensible core lineage.</li>
+<li><strong>Yachiyo:</strong> manufacture/assembly of a surviving
+branded field version.</li>
+<li><strong>CLS:</strong> possible separate distributor or variant, not
+confirmed as part of the Yachiyo chain.</li>
+</ul>
+<p>The abandoned approval-number theory is also important here.
+<strong>95-1812 must not be used to date Janputer</strong>, because that
+approval is associated with Future Flash in period material.</p>
+<h2 id="mole-attack-and-holey-moley">7. Mole Attack and Holey Moley</h2>
+<p>By 1982, Yachiyo appears in a different kind of product chain with
+<strong>Mole Attack</strong>, a video adaptation of the familiar
+hit-the-moles concept. Period Japanese material places <strong>Roller
+Tron</strong> in the release/marketing chain and explicitly names
+<strong>Yachiyo Denki Sangyo as manufacturer</strong>.<a class="footnote-ref" href="#fn29" id="fnref29" role="doc-noteref"><sup>29</sup></a>
+<strong>Kyugo Trading</strong> and <strong>Toyo Gorakuki</strong> appear
+as additional exhibition or sales channels.<a class="footnote-ref" href="#fn30" id="fnref30" role="doc-noteref"><sup>30</sup></a></p>
+<p>Roller Tron’s release role does not establish it as the developer. The surviving evidence
+verifies Roller Tron’s commercial role and Yachiyo’s manufacturing role;
+it does not identify the underlying software programmer or the original
+electronic-game designer.</p>
+<figure class="archive-figure portrait">
+<img alt="July 15 1982 Game Machine coverage of Mole Attack" class="archive-image" height="1900" loading="lazy" src="assets/articles/6fa8ba20051ccef92a8f86bc005e509d27e060f1.jpg" style="width:1398px" width="1398"/>
+<figcaption><strong>July 15, 1982 Game Machine coverage of Mole Attack.</strong> The article shows the cabinet and documents Roller Tron’s release role. Separate period advertising identifies Yachiyo as manufacturer.</figcaption><div class="translation-box"><strong>English translation — relevant excerpt</strong>Headline: “Mole Attack — the whack-a-mole game made into a TV/video game.” Subheading: “Released by Roller Tron.” The article describes the familiar mole-hitting idea being adapted to a video-game format; Roller Tron is presented as the commercial releaser, not proved here as the underlying developer.</div></figure>
+<h3 id="cabinet-and-operator-specifications">7.1 Cabinet and operator
+specifications</h3>
+<p>The dedicated Japanese upright is documented with a
+<strong>nine-button control panel</strong>, dimensions of roughly
+<strong>1,520 mm high × 620 mm wide × 850 mm deep</strong>, a weight of
+about <strong>80 kg</strong>, a <strong>20-inch color display</strong>,
+<strong>AC 100 V</strong> power, consumption of roughly <strong>110
+W</strong>, and <strong>100-yen coinage</strong>.<a class="footnote-ref" href="#fn31" id="fnref31" role="doc-noteref"><sup>31</sup></a></p>
+<p>Modern MAME technical documentation describes a <strong>6502-family
+CPU</strong>, <strong>AY-3-8910</strong> sound, a nine-button input
+matrix, <strong>three program ROMs</strong>, <strong>six graphics
+ROMs</strong>, and incompletely understood protection.<a class="footnote-ref" href="#fn32" id="fnref32" role="doc-noteref"><sup>32</sup></a>
+Known DIP options include a passing-point setting of <strong>300 or
+400</strong> and coinage. One otherwise unidentified four-position
+setting is strongly supported as <strong>mole speed</strong> when the
+technical behavior is compared with period operator literature. That
+interpretation is strong but not treated as a direct printed label from
+the board.</p>
+<p>Approval <strong>95-2258</strong> is commercially connected to Mole
+Attack, adding a regulatory anchor to the period advertising. Approval
+95-2257, issued on the same date, remains unidentified.</p>
+<h3 id="the-u.s.-holey-moley-chain">7.2 The U.S. Holey Moley chain</h3>
+<p>The North American derivative <strong>Holey Moley</strong> was
+handled by <strong>Thomas Automatics</strong>. Contemporary <em>Cash
+Box</em> reporting and advertising document a licensing chain through
+<strong>Roller Tron and Game-A-Tron</strong>.<a class="footnote-ref" href="#fn33" id="fnref33" role="doc-noteref"><sup>33</sup></a>
+The direct U.S. evidence does <em>not</em> name Yachiyo as Thomas’s
+licensor. An upstream Yachiyo agreement may have existed, but the
+surviving American documents do not prove a direct Yachiyo-to-Thomas
+contract.</p>
+<figure class="archive-figure portrait">
+<img alt="1982 Thomas Automatics Holey Moley advertisement" class="archive-image" height="1640" loading="lazy" src="assets/articles/2db9fae77167d678e37ea19eb645986f6e07540c.jpg" style="width:1200px" width="1200"/>
+<figcaption><strong>Thomas Automatics Holey Moley advertisement, 1982.</strong> The advertisement documents the North American version and the commercial relationships surrounding the Mole Attack family.</figcaption></figure>
+<p>A surviving U.S. Holey Moley cabinet was reported by a collector to
+display <strong>MOLE ATTACK</strong> onscreen. The same collector
+community produced testimony that a Mole Attack PCB was silk-screened
+<strong>“1982 YACHIYO.”</strong><a class="footnote-ref" href="#fn34" id="fnref34" role="doc-noteref"><sup>34</sup></a> The high-resolution
+historical photograph supporting the silkscreen testimony could not be
+reacquired for direct inspection, so the physical-board
+claim remains dependent on firsthand collector testimony. Fortunately,
+Yachiyo’s manufacturing role no longer depends on that image because
+period Japanese advertising independently names Yachiyo as
+manufacturer.</p>
+<p>MAME does not currently preserve an independently dumped Holey Moley
+set. A byte-for-byte comparison between a Japanese Mole Attack board and
+a Thomas Automatics Holey Moley board is therefore blocked pending a
+dump of a verified Thomas board. <strong>Game-A-Tron’s exact
+role</strong> within the licensing chain also remains unknown beyond its
+appearance in the contemporary joint-license wording.</p>
+<h3 id="the-bounded-other-amusement-products-pass">7.3 Other products in the same advertisements</h3>
+<p>A 1982 Toyo Gorakuki advertisement places Mole Attack beside Flying Robo, Giant Panda and Emi-chan / Magician Emi-chan. Its multiple columns can make the Yachiyo manufacturer credit appear to apply to neighboring products.</p>
+<p>The advertisement’s layout and a July 1982 product-registration table identify Yachiyo as manufacturer of Mole Attack. The registration table assigns Flying Robo and Giant Panda to Toyo Gorakuki, and Magician Emi-chan to Kato Seisakusho. Those three products are therefore excluded from Yachiyo’s catalog.</p>
+<p>No additional named Yachiyo amusement release has been established from this material. Generic approval descriptions remain unidentified until a period advertisement, manual or comparable record connects them to a commercial title.</p>
+<h2 id="computer-quiz-atama-no-taisou-and-its-family">8. Computer Quiz: Atama no Taisou and its family</h2>
+<p>Computer Quiz: Atama no Taisou provides strong evidence of Yachiyo’s later technical and creative participation. Contemporary coverage places it at the NAO Amusement Expo on March 16–17, 1983, more than two months before the June advertising sometimes used to date its appearance. <a class="footnote-ref" href="#fn35" id="fnref35" role="doc-noteref"><sup>35</sup></a></p>
+<p>The contemporary report identifies <strong>Yachiyo Denki Sangyo as
+manufacturer</strong> while <strong>Uni Enterprise</strong> handled the
+booth and public presentation.<a class="footnote-ref" href="#fn36" id="fnref36" role="doc-noteref"><sup>36</sup></a> That gives a
+meaningful division of roles: Yachiyo was not merely a modern database
+attribution, and Uni was not merely a later distributor name. Both
+companies are visible in the commercial history. The evidence still does
+not support a claim that Yachiyo alone designed or programmed the entire
+game.</p>
+<div aria-label="Supplemental Atama no Taisou trade evidence" class="visual-gallery"><figure class="archive-figure portrait"><img alt="1983 Japanese trade coverage showing the Atama no Taisō passage with adjacent booth photo context" height="2300" loading="lazy" src="assets/articles/dc9a865dbc028416d7e0d04f613ac80f57184b94.jpg" style="width:2100px" width="2100"/><figcaption><strong>1983 Atama no Taisō exhibition coverage.</strong> The trade page includes the passage about Atama no Taisō alongside a photograph of the exhibition booth.</figcaption><div class="translation-box"><strong>English translation — relevant excerpt</strong>Relevant passage: the TV quiz machine “Computer Quiz: Atama no Taisō” has players solve questions displayed on the TV screen and then shows an ability/rank result; the report says the machine appears to have been well received. The page also includes photographs from the exhibition.</div></figure></div>
+<h3 id="game-concept-controls-and-question-system">8.1 Game concept,
+controls, and question system</h3>
+<p>Uni advertising described approximately <strong>500
+questions</strong>, divided across <strong>four fields or
+categories</strong>, with <strong>computer voice guidance</strong>, a
+certificate or recognition for full completion, and continuing program
+updates.<a class="footnote-ref" href="#fn37" id="fnref37" role="doc-noteref"><sup>37</sup></a> Surviving hardware documentation
+shows controls consisting of <strong>four genre-selection buttons plus
+A/B/C answer buttons for each player</strong>.</p>
+<p>MAME documents the original surviving hardware as a <strong>TZU-093
+main board</strong> paired with a <strong>CQM-082-M question/data
+sub-board</strong>. The system uses a <strong>Z80-family CPU</strong>,
+<strong>two AY-3-8910 sound chips</strong>, battery-backed RAM, and
+multiple question ROMs.<a class="footnote-ref" href="#fn38" id="fnref38" role="doc-noteref"><sup>38</sup></a> The modular question-board
+architecture is historically important because later period reporting
+says the second edition could refresh its question content by replacing
+a sub-board.</p>
+<p>The preserved CQM-082-M set has not been proved to be a Part II
+board. There is no recovered Part II or Doctor Q dump, PCB record, or
+technical manual equivalent to the original set. The hardware
+relationship is therefore strongly inferred from the family and period
+descriptions but not physically verified for every version.</p>
+<h3 id="part-ii-zoku-and-doctor-q">8.2 Part II, Zoku, and Doctor Q</h3>
+<p>Uni released <strong>Doctor Q on August 20, 1983</strong> and
+<strong>Atama no Taisou Part II on August 25, 1983</strong>.<a class="footnote-ref" href="#fn39" id="fnref39" role="doc-noteref"><sup>39</sup></a> Period reporting calls Part II the
+<strong>second installment</strong> and says the questions were renewed
+by <strong>replacing the sub-board while the basic play remained
+unchanged</strong>. A January 1984 product guide independently repeats
+this second-edition/sub-board replacement model and lists Part II at
+<strong>¥540,000</strong>.<a class="footnote-ref" href="#fn40" id="fnref40" role="doc-noteref"><sup>40</sup></a></p>
+<p>September 1983 advertising uses the name <strong>Zoku Atama no
+Taisou</strong>. The timing and visual/product context strongly support
+Zoku and Part II as alternate commercial names for the same update
+phase, but no direct source has yet been found that literally says the
+two names are identical. They are therefore counted as <strong>one
+strongly supported update product</strong>, not two separate games,
+while the unresolved naming bridge remains visible.</p>
+<p><strong>Doctor Q</strong> is explicitly advertised as the
+<strong>young-people’s version</strong> of Atama no Taisou, with
+youth-focused question categories.<a class="footnote-ref" href="#fn41" id="fnref41" role="doc-noteref"><sup>41</sup></a> Its family position is
+verified; identical electrical compatibility with the original or Part
+II is not. It is counted in the broader associated-product total but not
+promoted to the direct Yachiyo technical count without independent
+Yachiyo-specific hardware or production evidence.</p>
+<p>Period material also documents continued exhibition activity,
+including an <strong>AMOA</strong> appearance in late 1983.<a class="footnote-ref" href="#fn42" id="fnref42" role="doc-noteref"><sup>42</sup></a> That helps show that the quiz
+family was not a one-show prototype; it remained in active commercial
+presentation during the year.</p>
+<h3 id="program-by-koyama">8.3 “PROGRAM BY KOYAMA”</h3>
+<p>MAME preserves the text “PROGRAM BY KOYAMA” in its account of the protection and program behavior. Koyama’s first name, employer and exact responsibility remain unknown: the credit may refer to game programming, protection code or another technical contribution. It does not establish a sole or principal developer. <a class="footnote-ref" href="#fn43" id="fnref43" role="doc-noteref"><sup>43</sup></a> Koyama remains an identifiable name in the technical record, with the person’s full identity and contribution still to be established.</p>
+<h2 id="swinging-singles-and-the-utamaro-problem">9. Swinging Singles and the Utamaro problem</h2>
+<p><strong>Swinging Singles</strong> is the other 1983 title with
+unusually direct Yachiyo evidence inside the software. The surviving
+U.S. program is associated commercially with <strong>Entertainment
+Enterprises Ltd.</strong> Current MAME material places Yachiyo in the
+program’s attribution and describes U.S. distribution by Entertainment
+Enterprises.<a class="footnote-ref" href="#fn44" id="fnref44" role="doc-noteref"><sup>44</sup></a> The exact legal wording of the
+commercial relationship remains unresolved: the surviving evidence does
+not settle whether Entertainment Enterprises should be labeled
+publisher, distributor, licensee, or some combination of those
+roles.</p>
+<p>Three ROMs contain the text <strong>“BY YACHIYO”</strong> according
+to the preservation driver.<a class="footnote-ref" href="#fn45" id="fnref45" role="doc-noteref"><sup>45</sup></a> That is strong
+evidence of meaningful Yachiyo technical or programming participation.
+It is not proof that Yachiyo alone designed, programmed, manufactured,
+and published the entire game.</p>
+<p>Entertainment Enterprises was a real coin-machine marketer, not
+simply a name attached to one obscure ROM set. A surviving 1981
+<strong>Joker Poker / 21</strong> flyer gives an Oceanside, New York
+sales address, trade-association memberships, cabinet specifications,
+service documentation, and corporate copyright.<a class="footnote-ref" href="#fn46" id="fnref46" role="doc-noteref"><sup>46</sup></a>
+That commercial background makes an Entertainment Enterprises
+distribution or publishing role in Swinging Singles plausible on
+ordinary business grounds, even though the exact contract has not
+survived.</p>
+<h3 id="the-surviving-pcb-and-preservation-state">9.1 The surviving PCB
+and preservation state</h3>
+<p>A 2025 survivor investigation documents <strong>Swinging Singles as a
+44-pin single-board PCB</strong>.<a class="footnote-ref" href="#fn47" id="fnref47" role="doc-noteref"><sup>47</sup></a> One original PROM is
+dead. A substitute PROM allows the board to boot but produces abnormal
+display and credit behavior. The physical preservation problems line up
+with MAME’s own technical limitations: the emulation uses a <strong>fake
+palette</strong>, includes a <strong>wrong-color flag</strong>, and has
+incomplete sound handling. This is a case where the historical and
+technical record remain actively constrained by failing original
+hardware.</p>
+<p>Public survivor photographs do not show a readable Yachiyo
+silkscreen. The <strong>BY YACHIYO</strong> ROM text therefore remains
+the strongest direct Yachiyo evidence on the surviving program.</p>
+<h3 id="why-utamaro-is-no-longer-treated-as-established-fact">9.2 Why
+Utamaro is no longer treated as established fact</h3>
+<p>For years, preservation metadata repeated the claim that
+<strong>Utamaro</strong> was an undumped Japanese original of Swinging
+Singles made by Yachiyo. The research traced where that belief entered
+the preserved source history.</p>
+<p>The earliest preserved MAME driver from <strong>December 17,
+2007</strong> attributes Swinging Singles to Entertainment Enterprises
+and mentions the three Yachiyo ROM strings. It does <strong>not</strong>
+mention Utamaro.<a class="footnote-ref" href="#fn48" id="fnref48" role="doc-noteref"><sup>48</sup></a> The assertion that the game was a
+Yachiyo title called Utamaro appears later in an <strong>uncited July
+15, 2015 metadata change</strong>.<a class="footnote-ref" href="#fn49" id="fnref49" role="doc-noteref"><sup>49</sup></a> That provenance
+discovery materially downgrades the claim. It is not a contemporary
+source or even an early preservation note; it is a later uncited
+assertion added to metadata.</p>
+<p>A Japanese dealer stock list does contain the title <strong>ウタマロ
+(Utamaro)</strong>, with a date of <strong>1981</strong>, under an
+unknown/other maker category.<a class="footnote-ref" href="#fn50" id="fnref50" role="doc-noteref"><sup>50</sup></a> That is a genuine
+trace of a game with the name, but it does not connect the title to
+Yachiyo or Swinging Singles. The 1981 date also conflicts with the
+surviving U.S. program’s <strong>1983 copyright</strong> if the two are
+assumed to be the identical original/reissue relationship commonly
+described.</p>
+<p>A search of Japanese trade archives found no primary Utamaro advertisement, manual, board, title screen, or catalog bridge to Yachiyo or Swinging Singles. Because trade OCR is noisy and incomplete, that absence is not proof that Utamaro never existed. The evidence supports a narrower conclusion: <strong>a Japanese commercial Yachiyo release
+called Utamaro, its date, and its program identity with Swinging Singles
+remain unverified</strong>.</p>
+<h2 id="hal-laboratory-iwasaki-and-possible-succession">10. HAL Laboratory, Iwasaki, and possible succession</h2>
+<p>Mitsuhiro Ikeda’s appearance in HAL Laboratory history makes the
+relationship too important to ignore and too dangerous to simplify.
+HAL’s official corporate history identifies Ikeda as its first
+representative president when HAL was established on <strong>February
+21, 1980</strong>.<a class="footnote-ref" href="#fn51" id="fnref51" role="doc-noteref"><sup>51</sup></a> It records <strong>Tsuyoshi
+Ikeda</strong> succeeding him as president in <strong>March
+1984</strong>, only months before Yachiyo’s financial collapse.</p>
+<p>Combined with the Iwasaki Giken schematic evidence and later
+Iwasaki-HAL institutional connections, the chronology suggests a real
+technical/business network among people and organizations in Yachiyo’s
+orbit. But no inspected corporate transfer, shareholding record, asset
+sale, assignment, contract, personnel transfer, or registry filing
+proves that <strong>HAL was a Yachiyo subsidiary, rescue vehicle, or
+legal successor</strong>.</p>
+<p>The same caution applies to <strong>Coreland</strong>. Hoei’s
+preexisting 1982 rename to Coreland and its earlier close relationship
+with Yachiyo make Coreland a plausible place to look for transferred
+staff or work. The evidence has not produced a legal or operational
+succession document. HAL and Coreland are therefore preserved as
+<strong>separate succession hypotheses</strong>, not merged into a
+single story.</p>
+<h2 id="late-technical-evidence-beyond-the-arcade-catalog">11. Late technical evidence beyond the arcade catalog</h2>
+<p>A Japanese utility-model record names
+<strong>株式会社八千代電器産業</strong> as assignee and <strong>Kiyoji
+Musashi</strong> as inventor. The application was filed <strong>November
+8, 1983</strong> and published <strong>June 5, 1985</strong>.<a class="footnote-ref" href="#fn52" id="fnref52" role="doc-noteref"><sup>52</sup></a> It concerns an <strong>automatic
+paper cutter incorporated into a printer-equipped machine</strong>.</p>
+<p>This filing is useful because it demonstrates Yachiyo-associated
+engineering activity late in the company’s life and gives another named
+technical person. It does not establish that the invention was an arcade
+product, that it reached commercial production, or even that the
+assignee’s business context in the filing was amusement equipment. The
+index view inspected during research did not display an address, so a
+small identity caution remains even though the company name matches.</p>
+<p>The 1985 publication date also must not be used to claim that Yachiyo
+survived its August 1984 collapse. Patent and utility-model applications
+routinely publish after filing and examination delays. The application
+was filed before the collapse; later publication is fully compatible
+with the company having ceased normal operations in 1984.</p>
+<h2 id="the-1984-collapse-and-its-financial-fallout">12. The 1984 collapse and its financial fallout</h2>
+<p>Contemporary trade reporting describes Yachiyo as an important
+subcontract manufacturer and reports that the company issued
+<strong>dishonored paper on August 6, 1984</strong>, with liabilities of
+approximately <strong>¥1.5 billion</strong>.<a class="footnote-ref" href="#fn53" id="fnref53" role="doc-noteref"><sup>53</sup></a>
+This is the strongest evidence for the end of ordinary operations and is
+the basis for using <strong>August 1984</strong> as the company’s
+effective endpoint.</p>
+<figure class="archive-figure">
+<img alt="The September 15 1984 Game Machine page showing the Yachiyo collapse report with more surrounding page context" class="archive-image" height="1800" loading="lazy" src="assets/articles/c537210a06da9196f1ea6c642fdc16b79275a84f.jpg" style="width:1326px" width="1326"/>
+<figcaption><strong>September 15, 1984 Game Machine report on Yachiyo’s collapse.</strong> The report documents Yachiyo’s financial failure. The surrounding trade-page material provides the original publication context.</figcaption><div class="translation-box"><strong>English translation — relevant excerpt</strong>Headline: “Yachiyo Electric collapses.” Side heading: “Related failures also occur; unstable conditions.” The opening passage says that, according to a private credit-reporting agency, Yachiyo Electric Industries Co., Ltd. (head office Hoya, Tokyo; president Mitsuhiro Ikeda) issued dishonored paper on August 6 at Mitsubishi Bank’s Musashisakai branch and elsewhere. The remainder continues the failure report.</div></figure>
+<p>The same report cites <strong>Famicom-related bad
+receivables</strong> as a contributing cause. This detail has been
+particularly vulnerable to exaggeration. The source does
+<strong>not</strong> establish that Yachiyo manufactured Nintendo
+Famicom consoles, had a direct contract with Nintendo, built a large
+stock of unsold Famicoms, or failed because Nintendo rejected its
+hardware. The defensible statement is simply that contemporary trade
+reporting linked part of Yachiyo’s financial problem to bad receivables
+related to Famicom business.</p>
+<p>The failure did not appear in isolation. <strong>Nihon Semiconductor
+Sales</strong>, formerly <strong>Nihon Semicon</strong>, reportedly
+issued its second dishonored note on <strong>August 7, 1984</strong>,
+with liabilities of approximately <strong>¥1.6 billion</strong>.<a class="footnote-ref" href="#fn54" id="fnref54" role="doc-noteref"><sup>54</sup></a> The contemporary article links the
+timing, but the exact relationship between the two companies remains
+unknown. The surviving research cannot yet say whether Nihon
+Semiconductor Sales was primarily a supplier, customer, creditor,
+guarantor, affiliated firm, or some combination.</p>
+<p>A December 1, 1984 trade headline links Takara Kagaku’s collapse to the continuing effects of Yachiyo’s failure. It supports a financial connection, but does not establish Takara Kagaku’s precise contractual role or how the losses passed between the companies. <a class="footnote-ref" href="#fn55" id="fnref55" role="doc-noteref"><sup>55</sup></a></p>
+<p>Some accounts have grouped <strong>Suga
+Den</strong> into the Yachiyo collapse chain. Re-reading the same
+reporting showed that Suga Den belonged to a separate
+<strong>Falcon</strong> collapse chain. It is withdrawn from the Yachiyo
+story.</p>
+<p>The August 1984 operational and financial collapse is well documented. No formal bankruptcy judgment, liquidation notice, dissolution registration, creditor schedule or asset-sale record has been found, so the legal process and final corporate endpoint remain unknown.</p>
+<h2 id="reconciled-arcade-catalog-why-the-count-is-3-6-8">13. Arcade catalog: the games and Yachiyo’s part in them</h2>
+<p>How many arcade games did Yachiyo make? The answer depends on what “make” means. It helped shape the design or technology of three game families. Count the products it built or assembled as well, and the list grows to six. Two related quiz releases could bring it to eight, but the surviving evidence leaves Yachiyo’s part in those less clear. The entries below explain what is known about each.</p>
+<h3 id="layer-1-three-direct-technicalcreative-product-families">Three families with direct technical or creative contributions</h3>
+<p>These are the products for which the current evidence supports a
+meaningful Yachiyo technical, engineering, or programming contribution
+rather than manufacture alone:</p>
+<ol type="1">
+<li><strong>Space Stranger family</strong> — one evolving family
+encompassing <em>Space Stranger</em>, <em>Super Space Stranger</em>, and
+physical/service <em>Mark Stranger 2 / Stranger 2</em> naming. Yachiyo
+hardware/manufacturing evidence is strong, the Iwasaki engineering link
+is real, and the full creative split remains unresolved.</li>
+<li><strong>Computer Quiz: Atama no Taisou</strong> — Yachiyo is
+identified as manufacturer in period expo coverage and is tied directly
+to the surviving hardware/program family, with Uni Enterprise handling
+public presentation and marketing. Sole authorship remains
+unproved.</li>
+<li><strong>Swinging Singles</strong> — the three <strong>BY
+YACHIYO</strong> ROM strings support meaningful technical/program
+participation. Entertainment Enterprises’ exact commercial contract
+remains unresolved.</li>
+</ol>
+<h3 id="layer-2-six-confirmed-yachiyo-made-assembled-or-technically-participated-commercial-productsfamilies">Six products with confirmed manufacturing, assembly or technical involvement</h3>
+<p>Add three products where Yachiyo’s direct participation is
+established but original software authorship is not:</p>
+<ol start="4" type="1">
+<li><strong>Super Twin</strong> — a Yachiyo-manufactured Hoei two-game
+product package combining <em>Head On</em> and <em>Super Space
+Stranger</em>. Not a standalone new program.</li>
+<li><strong>Janputer GP-010T</strong> — a surviving
+Yachiyo-manufactured/assembled field version in an Alpha Denshi /
+Sanritsu Giken lineage. Not Yachiyo software development.</li>
+<li><strong>Mole Attack</strong> — period advertising explicitly
+identifies Yachiyo as manufacturer. Roller Tron, Kyugo, and Toyo appear
+in release, exhibition, or sales roles; underlying software authorship
+remains unknown.</li>
+</ol>
+<h3 id="layer-3-eight-broader-associated-unique-products">Eight products including related quiz-game releases</h3>
+<p>Add two strongly supported Atama-family commercial continuations
+whose individual Yachiyo role has not been independently proved to the
+same standard as the original:</p>
+<ol start="7" type="1">
+<li><strong>Atama no Taisou Part II / Zoku Atama no Taisou</strong> —
+counted as <strong>one</strong> second-edition/update product, with Zoku
+treated as a strongly supported alternate commercial name for the Part
+II phase rather than a ninth distinct title.</li>
+<li><strong>Doctor Q</strong> — a verified youth-oriented Atama-family
+release whose direct Yachiyo-specific hardware or manufacturing role
+remains less certain.</li>
+</ol>
+<h3 id="products-and-names-deliberately-excluded-from-the-count">Related names excluded from these totals</h3>
+<ul>
+<li><strong>Space Stranger 2:</strong> modern preservation/MAME wording,
+not a verified separate period Japanese commercial title.</li>
+<li><strong>Holey Moley:</strong> a North American regional
+derivative/license version of Mole Attack, not a separate
+Yachiyo-developed game.</li>
+<li><strong>Utamaro:</strong> Japanese title trace exists, but Yachiyo
+attribution and identity with Swinging Singles are unverified.</li>
+<li><strong>Future Flash:</strong> Yachiyo regulatory approval
+association exists through 95-1812, but the project lacks a direct
+Yachiyo commercial-development role.</li>
+<li><strong>Television Panic board, Space Trip board, Roulette
+board:</strong> regulatory descriptions without commercial-title
+bridges.</li>
+<li><strong>95-2257:</strong> Yachiyo approval number with no recovered
+commercial identity.</li>
+<li><strong>Flying Robo, Giant Panda, Magician Emi-chan:</strong>
+rejected after the Toyo advertisement layout was reconciled with period
+registration material.</li>
+<li><strong>TV Break and Table Barrier:</strong> withdrawn; they
+originated from a misread approval table.</li>
+</ul>
+<p>The three totals distinguish technical or creative contributions from manufacture and assembly, then include two closely related quiz products whose specific Yachiyo involvement is less certain. They describe different kinds of participation rather than eight independently developed games.</p>
+<h2 id="research-cautions-and-myths-to-avoid">14. Attributions and common misconceptions</h2>
+<p>Several recurring claims about Yachiyo go beyond the evidence. The following distinctions are essential to interpreting the company’s history and catalog.</p><p><strong>Yachiyo was not proved to have a universal legal English name
+“Yachiyo Electric Co., Ltd.”</strong> That wording is verified on a
+product plate. The Japanese legal company name is better supported by
+the court record.</p>
+<p><strong>The Tanashi and Hoya addresses are not proved
+factories.</strong> They are verified registered offices.
+Manufacturing-floor use remains unknown.</p>
+<p><strong>Yachiyo was not proved formally bankrupt, liquidated, or
+dissolved in August 1984.</strong> The operational and financial
+collapse is well supported; the legal termination procedure is not.</p>
+<p><strong>Coreland was not created after Yachiyo collapsed.</strong>
+Hoei was established in 1977 and renamed Coreland Technology in
+1982.</p>
+<p><strong>Neither Coreland nor HAL is a proved legal successor to
+Yachiyo.</strong> Both are historically relevant networks; neither has a
+recovered transfer record.</p>
+<p><strong>The 1984 report does not prove Yachiyo manufactured Famicom
+consoles.</strong> It reports Famicom-related bad receivables.</p>
+<p><strong>The 1985 Yachiyo-assigned utility-model publication does not
+prove post-collapse survival.</strong> The application was filed in
+1983.</p>
+<p><strong>Space Stranger 2 is not a verified period Japanese sequel
+title.</strong> The historical family has multiple authentic names, but
+the exact modern title remains unverified in period commerce.</p>
+<p><strong>Super Space Stranger should not automatically be treated as a
+clean software sequel.</strong> Period advertising uses the name across
+cabinet and display configurations.</p>
+<p><strong>Approval numbers are not release dates, ROM revisions, or
+game titles.</strong> 91-15961 is the clearest example because it
+predates public Space Stranger presentation and appears across multiple
+packages.</p>
+<p><strong>95-1812 is not Janputer dating evidence.</strong> It is
+associated with Future Flash in period advertising.</p>
+<p><strong>Roller Tron is not proved to have developed Mole
+Attack.</strong> Its release/marketing role is supported; Yachiyo
+manufacture is supported; underlying authorship is unknown.</p>
+<p><strong>Thomas Automatics is not proved to have licensed Holey Moley
+directly from Yachiyo.</strong> Contemporary American documentation
+names Roller Tron and Game-A-Tron.</p>
+<p><strong>Yachiyo is not proved to have solely designed or programmed
+Atama no Taisou.</strong> The Yachiyo/Uni split is real, but the
+detailed technical division remains incomplete.</p>
+<p><strong>“PROGRAM BY KOYAMA” is not enough to identify a sole
+programmer.</strong> The person and exact role remain unknown.</p>
+<p><strong>Yachiyo is not proved to have fully developed Swinging
+Singles.</strong> The ROM credit proves contribution, not total
+authorship.</p>
+<p><strong>Utamaro is not a verified Yachiyo Japanese original.</strong>
+The claim appears in later preservation metadata without a cited primary
+bridge.</p>
+<p><strong>Flying Robo, Giant Panda, and Magician Emi-chan are not
+Yachiyo products on the evidence found.</strong> The apparent
+attribution came from a multi-column advertisement layout trap.</p>
+<p><strong>TV Break and Table Barrier are withdrawn Yachiyo
+leads.</strong> They resulted from misjoined vertical approval
+columns.</p>
+<h2 id="what-remains-unresolved">15. What remains unresolved</h2>
+<p>The surviving evidence leaves important questions about Yachiyo’s ownership, contracts, personnel, products and legal endpoint. The following records and physical artifacts could help resolve them:</p><ul>
+<li>Who owned Yachiyo beyond Mitsuhiro Ikeda’s documented executive control? A direct Japanese corporate-registry record could clarify the shareholding.</li>
+<li>How were the Tanashi and Hoya premises used—as offices, factories, assembly sites, mixed-use premises or registered addresses only?</li>
+<li>Who else worked in Yachiyo’s engineering, sales and production departments?</li>
+<li>What contracts, ownership arrangements and production agreements connected Yachiyo, Hoei and later Coreland?</li>
+<li>Which debtor, contract and product were responsible for the Famicom-related bad receivables reported in 1984?</li>
+<li>What financial or commercial relationship connected Yachiyo with Nihon Semiconductor Sales / Nihon Semicon?</li>
+<li>What was Takara Kagaku’s relationship with Yachiyo, and how did Yachiyo’s failure affect it?</li>
+<li>What became of Yachiyo legally? Bankruptcy, liquidation, dissolution, creditor or asset-sale records could establish its endpoint.</li>
+<li>Did staff, designs, equipment, contracts, intellectual property or unfinished products pass to Coreland, HAL or another company?</li>
+<li>Does the fuller official utility-model record confirm the assignee’s identity, and did Kiyoji Musashi’s printer-cutter invention reach a commercial product?</li>
+<li>What additional cabinet, data-plate, PCB, manual and schematic images survive for Space Stranger and Mark Stranger 2? Clear photographs could resolve details obscured in existing copies.</li>
+<li>Was the exact title Space Stranger 2 used in a contemporary Japanese primary source?</li>
+<li>What accounts for the May 1979 upright price difference between ¥540,000 and ¥560,000?</li>
+<li>Was Petaco Alpha 2000 licensed, and what distribution paths brought the surviving Space Stranger machines to Britain and the United States?</li>
+<li>What switching hardware and original board stack did Super Twin use, and what agreement covered its Head On component?</li>
+<li>How does an original Thomas Automatics Holey Moley program compare with Mole Attack? A verified PCB dump is still needed.</li>
+<li>What was Game-A-Tron’s precise legal and commercial role in Holey Moley?</li>
+<li>What hardware relationships and direct Yachiyo involvement can be established for Part II / Zoku and Doctor Q? Boards, manuals, ROMs or technical documents could clarify both.</li>
+<li>Who was Koyama, named in Atama no Taisou’s program, and what work did that person contribute?</li>
+<li>What agreement connected Entertainment Enterprises with Swinging Singles, and what can clear photographs establish about surviving machines?</li>
+<li>Does a Japanese primary source connect Utamaro with Yachiyo or Swinging Singles?</li>
+<li>Which commercial product, if any, corresponded to Yachiyo approval 95-2257?</li>
+</ul>
+<p>These questions mark the limits of the surviving evidence and identify where further discoveries could change the account.</p><h2 id="final-historical-assessment">16. Yachiyo’s place in arcade history</h2>
+<p>Yachiyo Electronics was active during a formative period in Japanese
+arcade history, but its story is easy to miss because the company often
+lived behind other names. Hoei sold machines. Uni Enterprise presented
+and marketed a quiz game. Roller Tron released and marketed Mole Attack.
+Entertainment Enterprises carried Swinging Singles in the United States.
+Alpha Denshi and Sanritsu Giken stand in the core Janputer lineage.
+Iwasaki Giken appears on Space Stranger engineering material. HAL
+Laboratory shares a key executive connection. Looking only at
+title-screen manufacturer names would scatter Yachiyo into
+fragments.</p>
+<p>The surviving evidence instead shows a company that mattered because
+it sat inside the machinery of the industry. It manufactured amusement
+equipment during the Invader boom, participated in the evolving Space
+Stranger hardware family, built a two-game Super Twin package for Hoei,
+manufactured or assembled a Janputer field version, manufactured Mole
+Attack, appeared as manufacturer in the Atama no Taisou launch chain,
+and left direct technical fingerprints in Swinging Singles ROMs. At the
+same time, it participated in broader electronics engineering and
+appears to have been deeply connected to the network from which
+Hoei/Coreland, HAL, and other technical relationships emerged.</p>
+<p>Its collapse in August 1984 also shows the vulnerability of the
+subcontract-manufacturing layer. Yachiyo’s failure was reported with
+liabilities around ¥1.5 billion and with Famicom-related bad receivables
+among the causes, followed immediately by another major dishonored-note
+failure and later trade reporting of wider fallout. Yet the legal end of
+the company remains obscure, just as many of its production contracts
+remain obscure.</p>
+<p>Yachiyo’s contributions span engineering, manufacture and assembly, with other firms often responsible for marketing, licensing or distribution. Those divisions of work account for the different company names surrounding its products. The remaining contractual and corporate gaps limit how precisely some relationships can be described, but do not erase the manufacturing and technical work established by the surviving evidence.</p>
+<hr/>
+<div class="contribute-note" id="contribute-yachiyo"><strong>Contribute to this history.</strong> Arcade Side B welcomes corrections, cabinet or PCB photographs, manuals, flyers, corporate records, serial/production evidence, firsthand recollections, contradictory evidence, and stronger documentation for any unresolved point above. Nothing submitted becomes public automatically; contributions are reviewed before use, and contributors may be credited with permission or remain anonymous.</div><h2 id="source-notes">17. Source notes</h2>
+<section class="footnotes footnotes-end-of-document" id="footnotes" role="doc-endnotes">
+<hr/>
+<ol>
+<li id="fn1"><p>Tokyo District Court judgment transcription, Showa 57 (Toku-wa) No. 1906. Evidence for the legal name, addresses, capital, business purpose, Mitsuhiro Ikeda, the Hoei relationship and tax-case figures. <a href="https://minorusan.net/l/%E6%9D%B1%E4%BA%AC%E5%9C%B0%E6%96%B9%E8%A3%81%E5%88%A4%E6%89%80%20%E6%98%AD%E5%92%8C%EF%BC%95%EF%BC%97%E5%B9%B4%EF%BC%88%E7%89%B9%E3%82%8F%EF%BC%89%EF%BC%91%EF%BC%99%EF%BC%90%EF%BC%96%E5%8F%B7%20%E5%88%A4%E6%B1%BA">View source</a><a class="footnote-back" href="#fnref1" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p><em>Game Machine</em>, September 15, 1984, Yachiyo
+collapse report. <a href="https://onitama.tv/gamemachine/pdf/19840915p.pdf">Game Machine, 1984-09-15 (PDF)</a><a class="footnote-back" href="#fnref2" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Tokyo District Court judgment transcription, Showa 57 (Toku-wa) No. 1906. Evidence for the legal name, addresses, capital, business purpose, Mitsuhiro Ikeda, the Hoei relationship and tax-case figures. <a href="https://minorusan.net/l/%E6%9D%B1%E4%BA%AC%E5%9C%B0%E6%96%B9%E8%A3%81%E5%88%A4%E6%89%80%20%E6%98%AD%E5%92%8C%EF%BC%95%EF%BC%97%E5%B9%B4%EF%BC%88%E7%89%B9%E3%82%8F%EF%BC%89%EF%BC%91%EF%BC%99%EF%BC%90%EF%BC%96%E5%8F%B7%20%E5%88%A4%E6%B1%BA">View source</a><a class="footnote-back" href="#fnref3" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>Tokyo District Court judgment transcription, Showa 57 (Toku-wa) No. 1906. Evidence for the legal name, addresses, capital, business purpose, Mitsuhiro Ikeda, the Hoei relationship and tax-case figures. <a href="https://minorusan.net/l/%E6%9D%B1%E4%BA%AC%E5%9C%B0%E6%96%B9%E8%A3%81%E5%88%A4%E6%89%80%20%E6%98%AD%E5%92%8C%EF%BC%95%EF%BC%97%E5%B9%B4%EF%BC%88%E7%89%B9%E3%82%8F%EF%BC%89%EF%BC%91%EF%BC%99%EF%BC%90%EF%BC%96%E5%8F%B7%20%E5%88%A4%E6%B1%BA">View source</a><a class="footnote-back" href="#fnref4" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>Tokyo District Court judgment transcription, Showa 57 (Toku-wa) No. 1906. Evidence for the legal name, addresses, capital, business purpose, Mitsuhiro Ikeda, the Hoei relationship and tax-case figures. <a href="https://minorusan.net/l/%E6%9D%B1%E4%BA%AC%E5%9C%B0%E6%96%B9%E8%A3%81%E5%88%A4%E6%89%80%20%E6%98%AD%E5%92%8C%EF%BC%95%EF%BC%97%E5%B9%B4%EF%BC%88%E7%89%B9%E3%82%8F%EF%BC%89%EF%BC%91%EF%BC%99%EF%BC%90%EF%BC%96%E5%8F%B7%20%E5%88%A4%E6%B1%BA">View source</a><a class="footnote-back" href="#fnref5" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>Banpresto corporate-lineage filing and later official
+context, used for Hoei establishment and the 1982 Coreland rename.
+<a href="https://www.kabupro.jp/edp/20060623/0060DFVJ.pdf">View source</a><a class="footnote-back" href="#fnref6" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p>Tokyo District Court judgment transcription, Showa 57 (Toku-wa) No. 1906. Evidence for the legal name, addresses, capital, business purpose, Mitsuhiro Ikeda, the Hoei relationship and tax-case figures. <a href="https://minorusan.net/l/%E6%9D%B1%E4%BA%AC%E5%9C%B0%E6%96%B9%E8%A3%81%E5%88%A4%E6%89%80%20%E6%98%AD%E5%92%8C%EF%BC%95%EF%BC%97%E5%B9%B4%EF%BC%88%E7%89%B9%E3%82%8F%EF%BC%89%EF%BC%91%EF%BC%99%EF%BC%90%EF%BC%96%E5%8F%B7%20%E5%88%A4%E6%B1%BA">View source</a><a class="footnote-back" href="#fnref7" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p>Tokyo District Court judgment transcription, Showa 57 (Toku-wa) No. 1906. Evidence for the legal name, addresses, capital, business purpose, Mitsuhiro Ikeda, the Hoei relationship and tax-case figures. <a href="https://minorusan.net/l/%E6%9D%B1%E4%BA%AC%E5%9C%B0%E6%96%B9%E8%A3%81%E5%88%A4%E6%89%80%20%E6%98%AD%E5%92%8C%EF%BC%95%EF%BC%97%E5%B9%B4%EF%BC%88%E7%89%B9%E3%82%8F%EF%BC%89%EF%BC%91%EF%BC%99%EF%BC%90%EF%BC%96%E5%8F%B7%20%E5%88%A4%E6%B1%BA">View source</a><a class="footnote-back" href="#fnref8" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9"><p><em>Game Machine</em>, November 15, 1978, Hoei
+exhibition coverage. <a href="https://onitama.tv/gamemachine/pdf/19781115p.pdf">Game Machine, 1978-11-15 (PDF)</a><a class="footnote-back" href="#fnref9" role="doc-backlink">↩︎</a></p></li>
+<li id="fn10"><p><em>Game Machine</em>, April 1, 1979, Esco Space
+Stranger / Super Space Stranger spread.
+<a href="https://onitama.tv/gamemachine/pdf/19790401p.pdf">Game Machine, 1979-04-01 (PDF)</a><a class="footnote-back" href="#fnref10" role="doc-backlink">↩︎</a></p></li>
+<li id="fn11"><p><em>Game Machine</em>, May 1, 1979, Space Stranger
+product index. <a href="https://onitama.tv/gamemachine/pdf/19790501p.pdf">Game Machine, 1979-05-01 (PDF)</a><a class="footnote-back" href="#fnref11" role="doc-backlink">↩︎</a></p></li>
+<li id="fn12"><p><em>Game Machine</em>, May 15, 1979, Hoei Super Space
+Stranger listing. <a href="https://onitama.tv/gamemachine/pdf/19790515p.pdf">Game Machine, 1979-05-15 (PDF)</a><a class="footnote-back" href="#fnref12" role="doc-backlink">↩︎</a></p></li>
+<li id="fn13"><p>Surviving YD-7000 <em>Super Space Stranger</em> service-manual photographs, preserved from a 2026 Yahoo Japan auction; The preserved photographs provide the service-manual evidence cited here. <a href="https://auctions.yahoo.co.jp/jp/auction/n1223973010">View source</a><a class="footnote-back" href="#fnref13" role="doc-backlink">↩︎</a></p></li>
+<li id="fn14"><p>Surviving YD-7000 <em>Super Space Stranger</em> service-manual photographs, preserved from a 2026 Yahoo Japan auction; The preserved photographs provide the service-manual evidence cited here. <a href="https://auctions.yahoo.co.jp/jp/auction/n1223973010">View source</a><a class="footnote-back" href="#fnref14" role="doc-backlink">↩︎</a></p></li>
+<li id="fn15"><p>Surviving YD-7000 <em>Super Space Stranger</em> service-manual photographs, preserved from a 2026 Yahoo Japan auction; The preserved photographs provide the service-manual evidence cited here. <a href="https://auctions.yahoo.co.jp/jp/auction/n1223973010">View source</a><a class="footnote-back" href="#fnref15" role="doc-backlink">↩︎</a></p></li>
+<li id="fn16"><p>MAME Space Stranger technical source and comparison with surviving hardware. <a href="https://raw.githubusercontent.com/mamedev/mame/master/src/mame/yachiyo/sstrangr.cpp">View source</a> <a class="footnote-back" href="#fnref16" role="doc-backlink">↩︎</a></p></li>
+<li id="fn17"><p>Mark Stranger 2 surviving-machine service/operation
+sheet and collector documentation.
+<a href="https://arcarc.xmission.com/Scans/Backdoor%20Sheets/Stranger%202.pdf">View source (PDF)</a><a class="footnote-back" href="#fnref17" role="doc-backlink">↩︎</a></p></li>
+<li id="fn18"><p>Space Stranger engineering schematic carrying Iwasaki
+Giken Kogyo title block, approximately October 25, 1978.
+<a href="https://gdri.smspower.org/wiki/images/e/ed/Space_Stranger.jpg">View source</a><a class="footnote-back" href="#fnref18" role="doc-backlink">↩︎</a></p></li>
+<li id="fn19"><p>HAL Laboratory official company history; supplemented
+in the project archive by later retrospective material on Iwasaki/HAL
+institutional ties. <a href="https://www.hallab.co.jp/company/history/">View source</a><a class="footnote-back" href="#fnref19" role="doc-backlink">↩︎</a></p></li>
+<li id="fn20"><p>Recreativas.org, Petaco Alpha 2000 / Spanish approval
+record. <a href="https://www.recreativas.org/alpha-2000-21-petaco">View source</a><a class="footnote-back" href="#fnref20" role="doc-backlink">↩︎</a></p></li>
+<li id="fn21"><p>Arcade-Museum forum, long-held U.K. Super Twin survivor
+discussion.
+<a href="https://forums.arcade-museum.com/threads/1979-space-invader-machine-info-requested-please.130172/">View source</a><a class="footnote-back" href="#fnref21" role="doc-backlink">↩︎</a></p></li>
+<li id="fn22"><p>Potter &amp; Potter, 2018 auction catalog documenting a
+25-cent Space Stranger cocktail survivor.
+<a href="https://potterauctions.com/pdf/catalog_064_lr.pdf">View source (PDF)</a><a class="footnote-back" href="#fnref22" role="doc-backlink">↩︎</a></p></li>
+<li id="fn23"><p>Hoei International trademark record and U.S.
+International Trade Commission coin-operated video-game investigation.
+<a href="https://trademarks.justia.com/owners/hoei-international-inc-240455/">View source</a> ;
+<a href="https://www.usitc.gov/publications/337/pub1160.pdf">View source (PDF)</a><a class="footnote-back" href="#fnref23" role="doc-backlink">↩︎</a></p></li>
+<li id="fn24"><p><em>Game Machine</em> approval tables, with later
+retrospective cross-check.
+<a href="https://onitama.tv/gamemachine/pdf/19781015p.pdf">Game Machine, 1978-10-15 (PDF)</a> ;
+<a href="https://onitama.tv/gamemachine/pdf/19821015p.pdf">Game Machine, 1982-10-15 (PDF)</a><a class="footnote-back" href="#fnref24" role="doc-backlink">↩︎</a></p></li>
+<li id="fn25"><p><em>Game Machine</em>, January 1, 1982, Future Flash
+advertisement carrying Yachiyo approval 95-1812.
+<a href="https://onitama.tv/gamemachine/pdf/19820101p.pdf">Game Machine, 1982-01-01 (PDF)</a><a class="footnote-back" href="#fnref25" role="doc-backlink">↩︎</a></p></li>
+<li id="fn26"><p><em>Game Machine</em>, October 15, 1979, Super Twin
+listing. <a href="https://onitama.tv/gamemachine/pdf/19791015p.pdf">Game Machine, 1979-10-15 (PDF)</a><a class="footnote-back" href="#fnref26" role="doc-backlink">↩︎</a></p></li>
+<li id="fn27"><p>Janputer historical reconstruction from Alpha Denshi /
+Sanritsu Giken sources, including IGCC and BEEP retrospectives.
+<a href="https://igcc.jp/yamamoto-18/">View source</a> ;
+<a href="https://www.beep-shop.com/column_entry/16459/">View source</a><a class="footnote-back" href="#fnref27" role="doc-backlink">↩︎</a></p></li>
+<li id="fn28"><p>2026 surviving Yachiyo Janputer table listing with
+service manual, wiring diagram, spare panels, and manufacturer plate.
+<a href="https://jp.mercari.com/item/m94857078983">View source</a><a class="footnote-back" href="#fnref28" role="doc-backlink">↩︎</a></p></li>
+<li id="fn29"><p><em>Game Machine</em>, July 15 and September 15, 1982,
+Mole Attack launch and manufacturer advertising.
+<a href="https://onitama.tv/gamemachine/pdf/19820715p.pdf">Game Machine, 1982-07-15 (PDF)</a> ;
+<a href="https://onitama.tv/gamemachine/pdf/19820915p.pdf">Game Machine, 1982-09-15 (PDF)</a><a class="footnote-back" href="#fnref29" role="doc-backlink">↩︎</a></p></li>
+<li id="fn30"><p><em>Game Machine</em>, October 15 and November 1, 1982,
+Toyo Gorakuki and Kyugo Trading Mole Attack commercial channels.
+<a href="https://onitama.tv/gamemachine/pdf/19821015p.pdf">Game Machine, 1982-10-15 (PDF)</a> ;
+<a href="https://onitama.tv/gamemachine/pdf/19821101p.pdf">Game Machine, 1982-11-01 (PDF)</a><a class="footnote-back" href="#fnref30" role="doc-backlink">↩︎</a></p></li>
+<li id="fn31"><p>Mole Attack Japanese flyer and period advertising.
+<a href="https://flyers.arcade-museum.com/videogames/show/3071">View source</a><a class="footnote-back" href="#fnref31" role="doc-backlink">↩︎</a></p></li>
+<li id="fn32"><p>MAME Mole Attack technical source.
+<a href="https://raw.githubusercontent.com/mamedev/mame/master/src/mame/yachiyo/mole.cpp">View source</a><a class="footnote-back" href="#fnref32" role="doc-backlink">↩︎</a></p></li>
+<li id="fn33"><p><em>Cash Box</em>, August 28, October 2, and November
+20, 1982, Thomas Automatics Holey Moley coverage and licensing language.
+<a href="https://www.worldradiohistory.com/Archive-All-Music/Cash-Box/80s/1982/CB-1982-08-28.pdf">View source</a>
+;
+<a href="https://www.worldradiohistory.com/Archive-All-Music/Cash-Box/80s/1982/CB-1982-10-02.pdf">View source</a>
+;
+<a href="https://www.worldradiohistory.com/Archive-All-Music/Cash-Box/80s/1982/CB-1982-11-20.pdf">View source</a><a class="footnote-back" href="#fnref33" role="doc-backlink">↩︎</a></p></li>
+<li id="fn34"><p>Arcade-Museum collector thread on Holey Moley survivor
+and reported “1982 YACHIYO” PCB marking.
+<a href="https://forums.arcade-museum.com/threads/holey-moley-on-cl.288140/">View source</a><a class="footnote-back" href="#fnref34" role="doc-backlink">↩︎</a></p></li>
+<li id="fn35"><p><em>Game Machine</em>, April 1, 1983, NAO Amusement
+Expo coverage placing Atama no Taisou at the March 16-17 show.
+<a href="https://onitama.tv/gamemachine/pdf/19830401p.pdf">Game Machine, 1983-04-01 (PDF)</a><a class="footnote-back" href="#fnref35" role="doc-backlink">↩︎</a></p></li>
+<li id="fn36"><p><em>Game Machine</em>, April 15, 1983, continuing expo
+coverage and Yachiyo/Uni role evidence.
+<a href="https://onitama.tv/gamemachine/pdf/19830415p.pdf">Game Machine, 1983-04-15 (PDF)</a><a class="footnote-back" href="#fnref36" role="doc-backlink">↩︎</a></p></li>
+<li id="fn37"><p><em>Game Machine</em>, June 1 and November 1, 1983,
+Atama no Taisou / Uni advertising and question-system details.
+<a href="https://onitama.tv/gamemachine/pdf/19830601p.pdf">Game Machine, 1983-06-01 (PDF)</a> ;
+<a href="https://onitama.tv/gamemachine/pdf/19831101p.pdf">Game Machine, 1983-11-01 (PDF)</a><a class="footnote-back" href="#fnref37" role="doc-backlink">↩︎</a></p></li>
+<li id="fn38"><p>MAME Atama no Taisou technical source.
+<a href="https://github.com/mamedev/mame/blob/master/src/mame/yachiyo/atamanot.cpp">View source</a><a class="footnote-back" href="#fnref38" role="doc-backlink">↩︎</a></p></li>
+<li id="fn39"><p><em>Game Machine</em>, September 15, 1983, Part II and
+Doctor Q release article.
+<a href="https://onitama.tv/gamemachine/pdf/19830915p.pdf">Game Machine, 1983-09-15 (PDF)</a><a class="footnote-back" href="#fnref39" role="doc-backlink">↩︎</a></p></li>
+<li id="fn40"><p><em>Game Machine</em>, January 1, 1984, product guide
+and Part II second-edition/sub-board description.
+<a href="https://onitama.tv/gamemachine/pdf/19840101p.pdf">Game Machine, 1984-01-01 (PDF)</a><a class="footnote-back" href="#fnref40" role="doc-backlink">↩︎</a></p></li>
+<li id="fn41"><p><em>Game Machine</em>, October 1, 1983, Doctor Q
+young-people’s-version advertisement.
+<a href="https://onitama.tv/gamemachine/pdf/19831001p.pdf">Game Machine, 1983-10-01 (PDF)</a><a class="footnote-back" href="#fnref41" role="doc-backlink">↩︎</a></p></li>
+<li id="fn42"><p><em>Game Machine</em>, November 1, 1983, AMOA
+exhibition report. <a href="https://onitama.tv/gamemachine/pdf/19831101p.pdf">Game Machine, 1983-11-01 (PDF)</a><a class="footnote-back" href="#fnref42" role="doc-backlink">↩︎</a></p></li>
+<li id="fn43"><p>MAME Atama no Taisou source and December 23, 2011
+commit preserving the modeled protection/Koyama behavior.
+<a href="https://github.com/mamedev/mame/commit/8b2c219977f7799ceac010744fcd2ee67420f364">View source</a><a class="footnote-back" href="#fnref43" role="doc-backlink">↩︎</a></p></li>
+<li id="fn44"><p>MAME Swinging Singles source.
+<a href="https://github.com/mamedev/mame/blob/master/src/mame/yachiyo/ssingles.cpp">View source</a><a class="footnote-back" href="#fnref44" role="doc-backlink">↩︎</a></p></li>
+<li id="fn45"><p>MAME Swinging Singles source.
+<a href="https://github.com/mamedev/mame/blob/master/src/mame/yachiyo/ssingles.cpp">View source</a><a class="footnote-back" href="#fnref45" role="doc-backlink">↩︎</a></p></li>
+<li id="fn46"><p>Entertainment Enterprises <em>Joker Poker / 21</em>
+sales flyer, 1981.
+<a href="https://flyers.arcade-museum.com/videogames/show/4317">View source</a><a class="footnote-back" href="#fnref46" role="doc-backlink">↩︎</a></p></li>
+<li id="fn47"><p>2025 Arcade-Museum survivor PCB investigation.
+<a href="https://forums.arcade-museum.com/threads/rare-pcb-swinging-singles-pinout-for-testing.554263/">View source</a><a class="footnote-back" href="#fnref47" role="doc-backlink">↩︎</a></p></li>
+<li id="fn48"><p>Earliest preserved MAME Swinging Singles driver,
+December 17, 2007.
+<a href="https://github.com/mamedev/mame/blob/7b77f1218624/src/mame/drivers/ssingles.c">View source</a><a class="footnote-back" href="#fnref48" role="doc-backlink">↩︎</a></p></li>
+<li id="fn49"><p>MAME metadata commit of July 15, 2015 introducing the
+uncited Utamaro/Yachiyo assertion.
+<a href="https://github.com/mamedev/mame/commit/ee237fef5aad78e2bb4cd9245679bcc4e0fb9a0e">View source</a><a class="footnote-back" href="#fnref49" role="doc-backlink">↩︎</a></p></li>
+<li id="fn50"><p>Japanese retro-board dealer stock list containing
+ウタマロ. <a href="https://www.ampress.co.jp/takaishokai/stocklist.htm">View source</a><a class="footnote-back" href="#fnref50" role="doc-backlink">↩︎</a></p></li>
+<li id="fn51"><p>HAL Laboratory official company history; supplemented
+in the project archive by later retrospective material on Iwasaki/HAL
+institutional ties. <a href="https://www.hallab.co.jp/company/history/">View source</a><a class="footnote-back" href="#fnref51" role="doc-backlink">↩︎</a></p></li>
+<li id="fn52"><p>Japanese utility model JPS6080894U.
+<a href="https://patents.google.com/patent/JPS6080894U/en">View source</a><a class="footnote-back" href="#fnref52" role="doc-backlink">↩︎</a></p></li>
+<li id="fn53"><p><em>Game Machine</em>, September 15, 1984, Yachiyo
+collapse report. <a href="https://onitama.tv/gamemachine/pdf/19840915p.pdf">Game Machine, 1984-09-15 (PDF)</a><a class="footnote-back" href="#fnref53" role="doc-backlink">↩︎</a></p></li>
+<li id="fn54"><p><em>Game Machine</em>, September 15, 1984, Yachiyo
+collapse report. <a href="https://onitama.tv/gamemachine/pdf/19840915p.pdf">Game Machine, 1984-09-15 (PDF)</a><a class="footnote-back" href="#fnref54" role="doc-backlink">↩︎</a></p></li>
+<li id="fn55"><p><em>Game Machine</em>, December 1, 1984, Takara Kagaku
+collapse report describing continuing effects of Yachiyo.
+<a href="https://onitama.tv/gamemachine/pdf/19841201p.pdf">Game Machine, 1984-12-01 (PDF)</a><a class="footnote-back" href="#fnref55" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+</article></main>
+<footer class="footer"><div class="rights"><strong>Rights &amp; Archival Material Notice</strong><br/>Arcade Side B is a noncommercial historical research and preservation project. Some archival images, scans, publications, advertisements, artwork, screenshots, manuals, trademarks, and other materials presented or linked here may remain protected by copyright or other rights. Unless specifically stated otherwise, Arcade Side B does not claim ownership of third-party material and may not have a redistribution agreement with the applicable rights holder. Materials are presented in the interest of historical documentation, research, criticism, education, and preservation. Rights holders who have concerns about material appearing here are welcome to contact Arcade Side B to request attribution, correction, restriction, or removal.</div><div style="margin-top:10px">Arcade Side B · Yachiyo Electronics · Company history</div><p class="last-updated">Last updated September 8, 2026 · Open to new evidence</p></footer>
+</body></html>

@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Pacific Novelty | Arcade Side B</title>
+<style>
+:root{
+  --ink:#1c2528; --muted:#687174; --paper:#f4f0e8; --card:#fffdf8;
+  --line:#d9d0c2; --navy:#142a35; --navy2:#203e4b; --bronze:#a17446;
+  --green:#476855; --green-soft:#e4eee7; --amber:#8a6532; --amber-soft:#f5ead3;
+  --red:#86504b; --red-soft:#f2e3e0; --shadow:0 8px 24px rgba(25,35,38,.07);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;color:var(--ink);background:var(--paper);
+  font-family:Georgia,"Times New Roman",Times,serif;
+  line-height:1.72;font-size:17px;
+}
+p,li,td{font-family:Georgia,"Times New Roman",Times,serif}
+a{color:#255b73;text-decoration-thickness:1px;text-underline-offset:3px}
+a:hover{color:#173c4c}
+.mast{background:linear-gradient(135deg,var(--navy),var(--navy2));color:white;border-bottom:5px solid var(--bronze)}
+.mast-inner{max-width:1220px;margin:auto;padding:18px 24px 19px;display:flex;align-items:end;justify-content:space-between;gap:22px}
+.brand,.motto,.crumb,.eyebrow,.meta,.label,.toc,.fact small,.game-kicker,.quick,.caption,.source-tag,button,input,textarea,select,footer,.smallcaps{
+  font-family:Arial,Helvetica,sans-serif;
+}
+.brand{text-transform:uppercase;letter-spacing:.13em;font-weight:800;font-size:19px}
+.motto{color:#d8e0df;font-size:13px;text-align:right}
+.crumb{max-width:1220px;margin:0 auto;padding:14px 24px 0;font-size:13px;color:var(--muted)}
+.hero{max-width:1220px;margin:0 auto;padding:26px 24px 22px}
+.eyebrow{color:var(--bronze);text-transform:uppercase;letter-spacing:.14em;font-weight:800;font-size:12px}
+h1,h2,h3,h4{font-family:Georgia,"Times New Roman",Times,serif;line-height:1.16}
+h1{margin:.18em 0 .15em;font-size:clamp(44px,7vw,72px);font-weight:600;letter-spacing:-.03em}
+.deck{max-width:920px;margin:10px 0 18px;font-size:21px;line-height:1.5;color:#39484c}
+.meta{display:flex;flex-wrap:wrap;gap:9px 14px;align-items:center;font-size:13px;color:var(--muted)}
+.badge{display:inline-block;padding:5px 10px;border-radius:999px;font-weight:800;letter-spacing:.02em}
+.badge.complete{background:var(--green-soft);color:#315442;border:1px solid #bfd0c3}
+.rule{height:1px;background:var(--line);max-width:1172px;margin:0 auto}
+.shell{max-width:1220px;margin:0 auto;padding:28px 24px 75px;display:grid;grid-template-columns:255px minmax(0,1fr);gap:42px}
+.sidebar{position:sticky;top:18px;align-self:start}
+.toc{background:rgba(255,253,248,.76);border:1px solid var(--line);border-radius:8px;padding:17px 18px}
+.toc-title{text-transform:uppercase;letter-spacing:.11em;font-size:11px;font-weight:800;color:var(--muted);margin-bottom:9px}
+.toc-toggle{display:none;width:100%;border:0;background:transparent;color:#39484c;padding:0;font-family:Arial,Helvetica,sans-serif;text-transform:uppercase;letter-spacing:.11em;font-size:11px;font-weight:800;text-align:left;cursor:pointer}
+.toc-toggle span:first-child{flex:1}.toc-chevron{font-size:19px;line-height:1;transition:transform .18s ease}.toc-toggle[aria-expanded="true"] .toc-chevron{transform:rotate(180deg)}
+.toc-links{display:block}
+.toc a{display:block;padding:6px 0;color:#36474c;font-size:14px;text-decoration:none;border-bottom:1px solid #e5ded3}
+.toc a:last-child{border:0}
+.sidebar-note{margin-top:14px;padding:14px 16px;font-size:13px;color:#596568;background:#ebe6dc;border-radius:7px}
+article{min-width:0}
+.section{margin:0 0 48px;scroll-margin-top:82px}
+.section h2{font-size:31px;margin:0 0 17px;font-weight:600;padding-bottom:9px;border-bottom:2px solid var(--bronze)}
+.section h3{font-size:24px;margin:30px 0 10px}
+.section h4{font-size:19px;margin:24px 0 7px}
+.lead{font-size:19px}
+.factgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px;margin:20px 0 8px}
+.fact{background:var(--card);border:1px solid var(--line);border-radius:7px;padding:15px 17px}
+.fact small{display:block;color:var(--muted);text-transform:uppercase;letter-spacing:.09em;font-weight:800;font-size:10px}
+.fact strong{font-size:17px}
+.callout{margin:23px 0;padding:19px 20px;background:var(--card);border:1px solid var(--line);border-left:5px solid var(--bronze);border-radius:6px;box-shadow:var(--shadow)}
+.callout p:last-child{margin-bottom:0}
+.callout.confirmed{border-left-color:var(--green);background:#fbfdfa}
+.callout.qualified{border-left-color:var(--amber);background:#fffdf8}
+.callout.open{border-left-color:var(--red);background:#fffafa}
+.label{display:inline-block;margin-bottom:8px;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+.label.confirmed{color:var(--green)} .label.qualified{color:var(--amber)} .label.open{color:var(--red)}
+.timeline{border-left:2px solid #cabaa6;margin:24px 0 0 8px;padding-left:24px}
+.time{position:relative;padding:0 0 24px}
+.time:before{content:"";position:absolute;width:10px;height:10px;background:var(--bronze);border-radius:50%;left:-30px;top:8px;box-shadow:0 0 0 4px var(--paper)}
+.time .date{font-family:Arial,Helvetica,sans-serif;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--bronze)}
+.time p{margin:3px 0}
+.game{padding-top:3px}
+.game-head{margin-bottom:18px}
+.game-kicker{text-transform:uppercase;letter-spacing:.12em;color:var(--bronze);font-size:11px;font-weight:800}
+.game-title{font-size:38px;margin:3px 0 8px}
+.quick{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:20px}
+.quick span{font-size:12px;background:#e8e2d8;border-radius:999px;padding:5px 9px;color:#465155}
+.figure{margin:25px 0 27px;background:var(--card);border:1px solid var(--line);border-radius:7px;overflow:hidden;box-shadow:var(--shadow)}
+.figure img{display:block;width:100%;height:auto;max-height:900px;object-fit:contain;background:#e9e3d8}
+.caption{padding:11px 14px 13px;color:#5b6669;font-size:12px;line-height:1.45;border-top:1px solid var(--line)}
+.imgfallback{display:none;padding:34px 20px;text-align:center;color:#59676b;background:#f0ebe2;font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:1.55}
+.twofig{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:24px 0 28px}
+.twofig .figure{margin:0}
+.catalog{width:100%;border-collapse:collapse;margin-top:18px;font-size:16px}
+.catalog th{text-align:left;background:#e8e1d6;font-family:Arial,Helvetica,sans-serif;text-transform:uppercase;letter-spacing:.07em;font-size:11px}
+.catalog th,.catalog td{padding:12px 11px;border-bottom:1px solid var(--line);vertical-align:top}
+.catalog tr:nth-child(even) td{background:rgba(255,255,255,.35)}
+.people{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:18px}
+.person{border-top:3px solid #c1ad93;background:var(--card);padding:15px 16px;border-radius:5px}
+.person strong{display:block;font-size:18px}.person span{font-family:Arial,Helvetica,sans-serif;font-size:14px;color:var(--muted)}
+.question{padding:14px 0;border-bottom:1px solid var(--line)}.question:last-child{border:0}.question strong{display:block}
+.rev{display:grid;grid-template-columns:120px 1fr;gap:14px;padding:12px 0;border-bottom:1px solid var(--line)}
+.rev-date{font-family:Arial,Helvetica,sans-serif;font-size:12px;font-weight:800;color:var(--bronze)}
+.sources{padding-left:22px}.sources li{margin:11px 0}
+.source-tag{font-size:11px;color:var(--muted)}
+.note{color:var(--muted);font-size:14px}
+.pull{font-size:24px;line-height:1.45;margin:28px 0;padding:0 22px;border-left:4px solid var(--bronze);color:#39484c}
+.subtle{background:#f8f4ec;border:1px solid var(--line);border-radius:6px;padding:16px 18px}
+.smalllist li{margin:7px 0}
+.living{margin-top:48px;padding:25px;background:var(--navy);color:#eef3f1;border-radius:8px}
+.living h2{border:0;color:white;margin-bottom:9px}.living p{color:#dbe4e1}
+.btn{display:inline-block;border:0;border-radius:5px;background:var(--bronze);color:white;padding:11px 16px;font-weight:800;font-size:14px;cursor:pointer;text-decoration:none}
+.btn:hover{background:#8e6339;color:white}
+.formbox{display:none;margin-top:20px;padding:20px;background:#f8f4ec;color:var(--ink);border-radius:6px}.formbox.show{display:block}
+label{display:block;font-family:Arial,Helvetica,sans-serif;font-weight:700;font-size:13px;margin:12px 0 5px}
+input,textarea,select{width:100%;padding:10px 11px;border:1px solid #bdb4a8;border-radius:4px;background:white;font-size:15px}
+textarea{min-height:120px;resize:vertical}.formstatus{font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#495c61;margin-top:10px}
+footer{border-top:1px solid var(--line);padding:27px 24px 42px;color:var(--muted);font-size:12px}
+.footer-inner{max-width:1220px;margin:auto}
+@media(max-width:900px){
+ body{font-size:16px}.mast-inner{align-items:flex-start;flex-direction:column;gap:5px}.motto{text-align:left}
+ .shell{display:block;padding-top:18px}.sidebar{position:static;margin-bottom:31px}.toc{padding:12px 15px}
+ .toc a{display:inline-block;margin-right:14px;border:0;padding:4px 0}.sidebar-note{display:none}
+ .deck{font-size:18px}.factgrid,.people,.twofig{grid-template-columns:1fr}.rev{grid-template-columns:1fr;gap:2px}
+ .section h2{font-size:28px}.game-title{font-size:34px}
+}
+@media(max-width:600px){
+ .hero,.shell,.crumb{padding-left:17px;padding-right:17px}.mast-inner{padding-left:17px;padding-right:17px}
+ .hero{padding-top:22px;padding-bottom:20px}
+ h1{font-size:46px}.deck{font-size:17px;line-height:1.52;margin-top:8px;margin-bottom:16px}
+ .meta{align-items:flex-start;flex-direction:column;gap:7px}
+ .sidebar{margin-bottom:25px}
+ .toc{padding:15px 16px}
+ .desktop-toc-title{display:none}
+ .toc-toggle{display:flex;align-items:center;gap:12px}
+ .toc-links{display:none;padding-top:11px}
+ .toc.open .toc-links{display:block}
+ .toc a{display:block;margin:0;padding:8px 0;border-bottom:1px solid #e5ded3;font-size:15px}
+ .toc a:last-child{border-bottom:0}
+ .section{margin-bottom:42px}
+ .section h2{font-size:27px}
+ .game-title{font-size:34px}
+ .people{gap:10px}.person{padding:13px 14px}.person span{line-height:1.55}
+ .figure{margin:22px 0 24px}.caption{padding:10px 12px 12px}
+ .catalog,.catalog tbody,.catalog tr,.catalog td{display:block;width:100%}
+ .catalog thead{display:none}
+ .catalog{border:0;font-size:15px}
+ .catalog tr{margin:0 0 13px;padding:13px 14px;background:var(--card);border:1px solid var(--line);border-radius:7px;box-shadow:0 4px 14px rgba(25,35,38,.035)}
+ .catalog tr:nth-child(even) td{background:transparent}
+ .catalog td{border:0;padding:5px 0}
+ .catalog td:first-child{font-size:19px;padding-top:0;padding-bottom:7px}
+ .catalog td:nth-child(2)::before{content:"Period";display:block;font-family:Arial,Helvetica,sans-serif;text-transform:uppercase;letter-spacing:.08em;font-size:10px;font-weight:800;color:var(--muted);margin-bottom:1px}
+ .catalog td:nth-child(3)::before{content:"Research position";display:block;font-family:Arial,Helvetica,sans-serif;text-transform:uppercase;letter-spacing:.08em;font-size:10px;font-weight:800;color:var(--muted);margin-bottom:1px}
+ .catalog td:nth-child(4)::before{content:"Why it matters";display:block;font-family:Arial,Helvetica,sans-serif;text-transform:uppercase;letter-spacing:.08em;font-size:10px;font-weight:800;color:var(--muted);margin-bottom:1px}
+ .pull{font-size:21px;padding-left:16px}
+ .living{padding:22px 20px}.living h2{font-size:31px}
+}
+
+.footer-inner.footer-row{display:flex;align-items:flex-end;justify-content:space-between;gap:22px}
+.site-counter{flex:0 0 auto;text-align:right;font:800 9px Arial,Helvetica,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#748089}
+.site-counter .counter-label{margin-bottom:5px}
+.site-counter img{display:block;margin-left:auto;border:1px solid #303944;box-shadow:0 4px 12px rgba(0,0,0,.28)}
+@media(max-width:620px){
+  .footer-inner.footer-row{align-items:flex-start;flex-direction:column}
+  .site-counter{text-align:left}
+  .site-counter img{margin-left:0}
+}
+
+</style>
+<style>
+:root{
+  --ink:#222a2f;
+  --muted:#687174;
+  --paper:#0b0f14;
+  --card:#fbf7ed;
+  --line:#cfc5b3;
+  --navy:#0d141b;
+  --navy2:#16222d;
+  --bronze:#c28a32;
+  --green:#476855;
+  --green-soft:#e3eee6;
+  --amber:#8a6532;
+  --amber-soft:#f5ead3;
+  --red:#86504b;
+  --red-soft:#f2e3e0;
+}
+body{
+  background:
+    radial-gradient(circle at 86% 8%,rgba(112,164,184,.08),transparent 28%),
+    linear-gradient(rgba(255,255,255,.012) 1px,transparent 1px),
+    #090d12;
+  background-size:auto,100% 4px,auto;
+  color:#dfe4e6;
+}
+.mast{
+  background:linear-gradient(135deg,#0a0f14,#13202a);
+  border-bottom:4px solid var(--bronze);
+}
+.brand{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:22px;
+  letter-spacing:.08em;
+}
+.motto{color:#b8c0c5}
+.crumb{color:#919ca3}
+.crumb a{color:#d4b16f}
+.hero{
+  color:#eff2f3;
+}
+.hero h1{color:#f3efe7}
+.deck{color:#bbc4ca}
+.meta{color:#a5afb5}
+.rule{background:#27333d}
+.shell{
+  align-items:start;
+}
+.sidebar .toc{
+  background:#121922;
+  border-color:#33404b;
+  box-shadow:0 12px 28px rgba(0,0,0,.22);
+}
+.toc-title,.toc-toggle{color:#c7d0d5}
+.toc a{
+  color:#b8c3c9;
+  border-bottom-color:#28343d;
+}
+.toc a:hover{color:#f0c57e}
+.sidebar-note{
+  background:#151c23;
+  color:#9da8ae;
+  border:1px solid #303c46;
+}
+article{
+  background:#eee7d8;
+  color:#222a2f;
+  border:1px solid #bdb29e;
+  box-shadow:0 20px 44px rgba(0,0,0,.26);
+  padding:30px 34px 38px;
+}
+.section h2{
+  color:#162631;
+  border-bottom-color:#b57f31;
+}
+.section h3,.section h4{color:#26353c}
+.lead,.pull{color:#35444a}
+.fact,.callout,.figure,.person{
+  box-shadow:none;
+}
+.fact{background:#faf7ef}
+.quick span{background:#ddd4c5}
+.catalog tr:nth-child(even) td{background:rgba(255,255,255,.42)}
+.living{
+  background:linear-gradient(135deg,#101821,#172733);
+  color:#eef3f1;
+  border:1px solid #32424e;
+  box-shadow:0 14px 30px rgba(0,0,0,.14);
+}
+.living p{color:#d6dfe1}
+footer{
+  border-top-color:#28343d;
+  color:#7f8b92;
+  background:#070a0d;
+}
+.footer-inner strong{color:#d9dfe2}
+.backhome{
+  display:inline-block;
+  margin:0 0 18px;
+  padding:9px 11px;
+  border:1px solid #46525c;
+  color:#d7b774;
+  text-decoration:none;
+  font:700 11px Arial,Helvetica,sans-serif;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+}
+.backhome:hover{color:white;border-color:#687680}
+@media(max-width:900px){
+  article{padding:24px 22px 30px}
+}
+@media(max-width:600px){
+  article{
+    margin-left:-2px;
+    margin-right:-2px;
+    padding:20px 16px 26px;
+  }
+}
+</style>
+<style>
+.company-identity{
+  margin:8px 0 24px;
+  border:1px solid #b8ad98;
+  background:linear-gradient(135deg,rgba(194,138,50,.08),transparent 48%),#f3eddf;
+  color:#20272c;
+  box-shadow:0 16px 34px rgba(0,0,0,.18);
+  overflow:hidden;
+}
+.company-mark{
+  padding:24px 26px 20px;
+  border-bottom:1px solid #c8beab;
+  position:relative;
+}
+.company-mark:after{
+  content:"COMPANY PROFILE";
+  position:absolute;
+  right:22px;
+  top:18px;
+  color:#8c8272;
+  font:700 9px Arial,Helvetica,sans-serif;
+  letter-spacing:.16em;
+}
+.company-mark .legal{
+  color:#746b5f;
+  font:700 10px Arial,Helvetica,sans-serif;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+  margin-bottom:7px;
+}
+.company-mark .wordmark{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(32px,5vw,58px);
+  line-height:.95;
+  letter-spacing:.025em;
+  color:#122331;
+}
+.company-mark .wordmark span{
+  display:block;
+  margin-top:6px;
+  color:#8a6429;
+  font:700 13px Arial,Helvetica,sans-serif;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+}
+.company-snapshot{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+}
+.snapshot-cell{
+  padding:17px 18px 18px;
+  border-right:1px solid #c8beab;
+  min-width:0;
+}
+.snapshot-cell:last-child{border-right:0}
+.snapshot-label{
+  display:block;
+  color:#786f63;
+  font:700 9px Arial,Helvetica,sans-serif;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  margin-bottom:5px;
+}
+.snapshot-value{
+  display:block;
+  color:#1c2d37;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:19px;
+  line-height:1.2;
+}
+.snapshot-note{
+  display:block;
+  margin-top:5px;
+  color:#6e726f;
+  font:11px/1.35 Arial,Helvetica,sans-serif;
+}
+@media(max-width:800px){
+  .company-snapshot{grid-template-columns:1fr 1fr}
+  .snapshot-cell{border-bottom:1px solid #c8beab}
+  .snapshot-cell:nth-child(2){border-right:0}
+  .snapshot-cell:nth-child(3),.snapshot-cell:nth-child(4){border-bottom:0}
+}
+@media(max-width:480px){
+  .company-mark{padding:20px 18px 16px}
+  .company-mark:after{position:static;display:block;margin-top:12px}
+  .company-snapshot{grid-template-columns:1fr}
+  .snapshot-cell{border-right:0;border-bottom:1px solid #c8beab !important}
+  .snapshot-cell:last-child{border-bottom:0 !important}
+}
+</style>
+<style>
+/* Reader-facing source and table containment */
+article a, .source-list a, .footnotes a { overflow-wrap:anywhere; }
+.table-scroll {max-width:100%;overflow-x:auto;}
+.table-scroll:focus-visible {outline:2px solid #d7b56d;outline-offset:3px;}
+</style><style>
+/* Shared company-page pattern, standardized on the approved Elcon article. */
+.crumb,.hero,.rule,.shell{width:min(calc(100% - 32px),1180px)!important;margin-left:auto!important;margin-right:auto!important;max-width:none!important}
+.crumb{padding:18px 0 0!important;color:#93a0a8!important;font:700 11px Arial,sans-serif!important;letter-spacing:0!important;text-transform:none!important}
+.hero{padding:30px 0 26px!important;color:#eff2f3!important}
+.hero .eyebrow{color:#d4ad67;font:800 11px Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase}
+.hero h1{margin:7px 0 10px!important;padding:0!important;border:0!important;background:none!important;font-family:Georgia,serif!important;font-size:clamp(44px,7vw,78px)!important;font-weight:700!important;letter-spacing:0!important;line-height:.95!important;color:#f0ece4!important;text-transform:none!important}
+.hero .deck{max-width:930px;margin:0!important;color:#c3ccd0!important;font:19px/1.55 Georgia,serif!important}
+.hero .meta{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:15px!important}
+.hero .badge{display:inline-block;padding:6px 10px;border:1px solid #6691a3;border-radius:999px;color:#8fc1d3;font:800 10px Arial,sans-serif;text-transform:uppercase;letter-spacing:.05em}
+.hero .updated{color:#aab4b9;font:700 11px Arial,sans-serif!important;text-transform:none!important;letter-spacing:0!important}
+.shell{display:grid!important;grid-template-columns:275px minmax(0,1fr)!important;gap:22px!important;padding:26px 0 50px!important;align-items:start!important}
+.sidebar{display:block!important;position:sticky!important;top:10px!important;margin:0!important;align-self:start!important}
+.toc{display:block!important;margin:0!important;padding:0!important;border:1px solid #34404b!important;border-radius:0!important;background:#111820!important;max-height:82vh!important;overflow:auto!important;box-shadow:none!important}
+.toc-title{display:block!important;margin:0!important;padding:13px 15px!important;color:#d8dfe2!important;font:800 11px Arial,sans-serif!important;letter-spacing:.12em!important;text-transform:uppercase!important}
+.toc>a{display:block!important;border-top:1px solid #29343e!important;padding:9px 13px!important;color:#aebbc2!important;text-decoration:none!important;font:13px/1.35 Arial,sans-serif!important}
+.toc>a:hover{color:#f0c57e!important}
+article.article{width:100%!important;margin:0!important;background:#eee7d8!important;color:#232b30!important;border:1px solid #b9ae9a!important;box-shadow:0 18px 42px rgba(0,0,0,.25)!important;padding:26px 34px 40px!important;min-width:0!important}
+.backhome{display:inline-block;margin-bottom:18px;padding:8px 10px;border:1px solid #9e927e;color:#745322;text-decoration:none;font:800 10px Arial,sans-serif;text-transform:uppercase;letter-spacing:.08em}
+.company-identity{margin:0 0 28px!important;border:1px solid #b8ad98!important;background:linear-gradient(135deg,rgba(194,138,50,.08),transparent 48%),#f3eddf!important;color:#20272c!important;box-shadow:none!important;overflow:hidden!important}
+.company-mark{padding:24px 26px 20px;border-bottom:1px solid #c8beab;position:relative}
+.company-mark:after{content:"COMPANY PROFILE";position:absolute;right:22px;top:18px;color:#8c8272;font:700 9px Arial,sans-serif;letter-spacing:.16em}
+.legal{color:#746b5f;font:700 10px Arial,sans-serif;letter-spacing:.13em;text-transform:uppercase;margin-bottom:7px}
+.wordmark{font-family:Georgia,serif;font-size:clamp(34px,5vw,58px);line-height:.95;color:#122331}
+.wordmark span{display:block;margin-top:7px;color:#8a6429;font:700 13px Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase}
+.company-snapshot{display:grid!important;grid-template-columns:repeat(4,1fr)!important}
+.snapshot-cell{padding:17px 18px!important;border-right:1px solid #c8beab!important;min-width:0}
+.snapshot-cell:last-child{border-right:0!important}
+.snapshot-label{display:block;color:#786f63;font:700 9px Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;margin-bottom:5px}
+.snapshot-value{display:block;color:#1c2d37;font:19px/1.2 Georgia,serif}
+.snapshot-note{display:block;margin-top:5px;color:#6e726f;font:11px/1.35 Arial,sans-serif}
+.company-evidence{margin:0 0 25px;padding:15px 17px;border-left:5px solid #66836e;background:#e7efe8;color:#33433a;font:15px/1.5 Arial,sans-serif}
+@media(max-width:920px){
+ .shell{grid-template-columns:1fr!important}
+ .sidebar{position:static!important}
+ .toc{max-height:none!important}
+ .company-snapshot{grid-template-columns:1fr 1fr!important}
+ .snapshot-cell{border-bottom:1px solid #c8beab!important}
+ .snapshot-cell:nth-child(2){border-right:0!important}
+ .snapshot-cell:nth-child(3),.snapshot-cell:nth-child(4){border-bottom:0!important}
+}
+@media(max-width:600px){
+ article.article{padding:20px 16px 28px!important}
+ .company-snapshot{grid-template-columns:1fr!important}
+ .snapshot-cell{border-right:0!important;border-bottom:1px solid #c8beab!important}
+ .snapshot-cell:last-child{border-bottom:0!important}
+ .company-mark:after{position:static;display:block;margin-bottom:9px;content:"COMPANY PROFILE"}
+ .company-mark{display:flex;flex-direction:column;padding:20px 18px 17px}
+ .company-mark:after{order:-1}
+ .hero h1{font-size:clamp(38px,12vw,56px)!important;overflow-wrap:anywhere}
+ .hero .deck{font-size:17px!important}
+}
+</style><style id="ao-company-profile-consistency">
+/* Exact shared company-profile presentation: Elcon is the house pattern. */
+.company-identity.company-profile-standard{
+  margin:0 0 28px!important;
+  padding:0!important;
+  border:1px solid #b8ad98!important;
+  border-radius:0!important;
+  background:linear-gradient(135deg,rgba(194,138,50,.08),transparent 48%),#f3eddf!important;
+  color:#20272c!important;
+  box-shadow:none!important;
+  overflow:hidden!important;
+  font-family:Georgia,"Times New Roman",serif!important;
+  font-size:16px!important;
+  line-height:normal!important;
+}
+.company-profile-standard .company-mark{
+  display:block!important;
+  position:relative!important;
+  padding:24px 26px 20px!important;
+  border:0!important;
+  border-bottom:1px solid #c8beab!important;
+  border-radius:0!important;
+  background:transparent!important;
+  color:#232b30!important;
+  font:400 16px/normal Georgia,"Times New Roman",serif!important;
+}
+.company-profile-standard .company-mark:after{
+  content:"COMPANY PROFILE"!important;
+  position:absolute!important;
+  right:22px!important;
+  top:18px!important;
+  display:block!important;
+  margin:0!important;
+  color:#8c8272!important;
+  font:700 9px/normal Arial,Helvetica,sans-serif!important;
+  letter-spacing:.16em!important;
+  text-transform:uppercase!important;
+}
+.company-profile-standard .legal{
+  display:block!important;
+  margin:0 0 7px!important;
+  padding:0!important;
+  color:#746b5f!important;
+  font:700 10px/11px Arial,Helvetica,sans-serif!important;
+  letter-spacing:.13em!important;
+  text-transform:uppercase!important;
+}
+.company-profile-standard .wordmark{
+  display:block!important;
+  margin:0!important;
+  padding:0!important;
+  color:#122331!important;
+  font:400 clamp(34px,5vw,58px)/.95 Georgia,"Times New Roman",serif!important;
+  letter-spacing:0!important;
+  text-transform:none!important;
+}
+.company-profile-standard .wordmark span{
+  display:block!important;
+  margin:7px 0 0!important;
+  padding:0!important;
+  color:#8a6429!important;
+  font:700 13px/normal Arial,Helvetica,sans-serif!important;
+  letter-spacing:.16em!important;
+  text-transform:uppercase!important;
+}
+.company-profile-standard .company-snapshot{
+  display:grid!important;
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  color:#232b30!important;
+  font:400 16px/normal Georgia,"Times New Roman",serif!important;
+}
+.company-profile-standard .snapshot-cell{
+  display:block!important;
+  min-width:0!important;
+  margin:0!important;
+  padding:17px 18px!important;
+  border:0!important;
+  border-right:1px solid #c8beab!important;
+  border-radius:0!important;
+  background:transparent!important;
+  color:#232b30!important;
+  font:400 16px/normal Georgia,"Times New Roman",serif!important;
+}
+.company-profile-standard .snapshot-cell:last-child{border-right:0!important}
+.company-profile-standard .snapshot-label{
+  display:block!important;
+  margin:0 0 5px!important;
+  padding:0!important;
+  color:#786f63!important;
+  font:700 9px/10px Arial,Helvetica,sans-serif!important;
+  letter-spacing:.12em!important;
+  text-transform:uppercase!important;
+}
+.company-profile-standard .snapshot-value{
+  display:block!important;
+  margin:0!important;
+  padding:0!important;
+  color:#1c2d37!important;
+  font:400 19px/22.8px Georgia,"Times New Roman",serif!important;
+}
+.company-profile-standard .snapshot-note{
+  display:block!important;
+  margin:5px 0 0!important;
+  padding:0!important;
+  color:#6e726f!important;
+  font:400 11px/14.85px Arial,Helvetica,sans-serif!important;
+}
+.hero .meta{
+  display:flex!important;
+  flex-direction:row!important;
+  flex-wrap:wrap!important;
+  align-items:center!important;
+  gap:10px!important;
+  margin:15px 0 0!important;
+  padding:0!important;
+}
+.hero .meta .badge,
+.hero .meta .updated{
+  display:inline-block!important;
+  position:static!important;
+  margin:0!important;
+  inset:auto!important;
+}
+.hero .meta .badge{
+  padding:6px 9px!important;
+  border:1px solid #78a6b8!important;
+  border-radius:999px!important;
+  background:transparent!important;
+  color:#9fc7d6!important;
+  font:700 11px/normal Arial,Helvetica,sans-serif!important;
+  letter-spacing:0!important;
+  text-transform:uppercase!important;
+}
+.hero .meta .updated{
+  padding:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  color:#9aa6ad!important;
+  font:700 11px/normal Arial,Helvetica,sans-serif!important;
+  letter-spacing:0!important;
+  text-transform:none!important;
+}
+@media(max-width:920px){
+  .company-profile-standard .company-snapshot{grid-template-columns:1fr 1fr!important}
+  .company-profile-standard .snapshot-cell{border-right:1px solid #c8beab!important;border-bottom:1px solid #c8beab!important}
+  .company-profile-standard .snapshot-cell:nth-child(2){border-right:0!important}
+  .company-profile-standard .snapshot-cell:nth-child(3),
+  .company-profile-standard .snapshot-cell:nth-child(4){border-bottom:0!important}
+  .company-profile-standard .snapshot-cell:last-child{border-right:0!important}
+}
+@media(max-width:600px){
+  .company-profile-standard .company-mark{
+    display:flex!important;
+    flex-direction:column!important;
+    padding:20px 18px 17px!important;
+  }
+  .company-profile-standard .company-mark:after{
+    position:static!important;
+    order:-1!important;
+    display:block!important;
+    margin:0 0 9px!important;
+  }
+  .company-profile-standard .wordmark{font-size:34px!important;overflow-wrap:anywhere!important}
+  .company-profile-standard .company-snapshot{grid-template-columns:1fr!important}
+  .company-profile-standard .snapshot-cell{
+    border-right:0!important;
+    border-bottom:1px solid #c8beab!important;
+  }
+  .company-profile-standard .snapshot-cell:nth-child(3){border-bottom:1px solid #c8beab!important}
+  .company-profile-standard .snapshot-cell:last-child{border-bottom:0!important}
+}
+</style><meta name="description" content="The history of Pacific Novelty, its arcade games, products, people and surviving company records.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://arcadesideb.com/pacific-novelty.html">
+<meta property="og:title" content="Pacific Novelty | Arcade Side B">
+<meta property="og:description" content="The history of Pacific Novelty, its arcade games, products, people and surviving company records.">
+<meta property="og:url" content="https://arcadesideb.com/pacific-novelty.html">
+</head>
+<body>
+<header class="mast">
+<div class="mast-inner">
+<div class="brand"><a href="https://arcadesideb.com/" style="color:inherit;text-decoration:none" target="_parent">Arcade Side B</a></div>
+<div class="motto">Preserve what others overlooked. Follow the evidence. Keep the record open.</div>
+</div>
+</header>
+<div class="crumb"><a href="https://arcadesideb.com/" target="_parent">Arcade Side B</a>  ›  Companies  ›  Pacific Novelty</div>
+<section class="hero">
+<div class="eyebrow">Company history</div>
+<h1>Pacific Novelty</h1>
+<p class="deck">Incorporated in California on October 15, 1980, Pacific Novelty was still manufacturing arcade games in early 1983. Its short documented operating life produced four videogames and other amusement equipment distinguished by theatrical sound, unusual cabinets and varied game designs. Its exact closing date remains unknown.</p>
+<div class="meta"><span class="badge living">Open to new evidence</span> <span class="updated">Last updated: September 8, 2026</span> </div></section>
+<div class="rule"></div>
+<div class="shell">
+<aside class="sidebar">
+<nav aria-label="Pacific Novelty article contents" class="toc">
+<div class="toc-title">On this page</div><a href="#overview">Overview</a><a href="#origins">1. From route and distribution work to manufacturing</a><a href="#timeline">2. Timeline</a><a href="#catalog">3. Catalog overview</a><a href="#shark">4. Deep Death / Shark Attack</a><a href="#thief">5. Thief</a><a href="#nato">6. NATO Defense</a><a href="#lea">7. Mr. F. Lea</a><a href="#portraits">8. Computer Portraits</a><a href="#hardware">9. A family resemblance beneath the artwork</a><a href="#people">10. People</a><a href="#missing">11. The missing-games question</a><a href="#ending">12. What happened to Pacific Novelty?</a><a href="#questions">13. Open research questions</a><a href="#sources">14. Selected evidence &amp; further reading</a><a href="#contribute">Contribute</a></nav>
+<div class="sidebar-note">Pacific Novelty’s incorporation date and minimum operating span are documented. Its final closure date remains unresolved; later database entries do not establish a continuation of the original company.</div></aside>
+<article class="article">
+<a class="backhome" href="https://arcadesideb.com/" target="_parent">← Back to Companies</a>
+<section aria-label="Pacific Novelty company profile" class="company-identity company-profile-standard">
+<div class="company-mark">
+<div class="legal">Pacific Novelty Manufacturing, Incorporated</div>
+<div class="wordmark">
+      Pacific Novelty
+      <span>Marina del Rey, California</span>
+</div>
+</div>
+<div class="company-snapshot">
+<div class="snapshot-cell">
+<span class="snapshot-label">Documented start</span>
+<span class="snapshot-value">Oct. 15, 1980</span>
+<span class="snapshot-note">California incorporation date.</span>
+</div>
+<div class="snapshot-cell">
+<span class="snapshot-label">Last confirmed operating point</span>
+<span class="snapshot-value">At least Feb. 1983</span>
+<span class="snapshot-note">Exact legal end remains unresolved.</span>
+</div>
+<div class="snapshot-cell">
+<span class="snapshot-label">Confirmed minimum span</span>
+<span class="snapshot-value">About 28 months</span>
+<span class="snapshot-note">Roughly two years and three-and-a-half months.</span>
+</div>
+<div class="snapshot-cell">
+<span class="snapshot-label">Production videogames</span>
+<span class="snapshot-value">4 commercial titles</span>
+<span class="snapshot-note">Shark Attack, Thief, NATO Defense, and Mr. F. Lea. Deep Death is the prototype/show identity that became Shark Attack; Computer Portraits is a separate coin-operated novelty machine.</span>
+</div>
+</div>
+</section>
+<section class="section" id="overview">
+<h2>Overview</h2>
+<p class="lead">Pacific Novelty Manufacturing, Inc. was a small participant in the early-1980s American coin-op business, with a limited catalog and little of the lasting name recognition enjoyed by Atari, Williams, Sega, Namco or Nintendo. Its surviving games nevertheless have distinct identities. Shark Attack casts the player as the predator; Thief adds recorded police chatter to a getaway-car maze chase; NATO Defense combines mine clearing, tank combat and destructible walls; and Mr. F. Lea links four cartoon scenarios through a single character and cabinet.</p>
+<p>The company illustrates several features of the late-1970s and early-1980s arcade boom: small manufacturers entering a rapidly expanding market, reusable electronics beneath changing game designs, and commercial partnerships extending beyond one firm. Its records connect Brian Semler, Bernie Stolar, Philip Lieberman and others to particular work. Those connections survive unevenly across trade profiles, flyers, cabinets, interviews and restoration accounts. Tape mechanisms and game credits supply technical and personnel evidence, while later high-score records document continued play after the company’s brief manufacturing period.</p>
+<p>The surviving Pacific Novelty story presently centers on four production videogames and one important prototype/show name: <em>Deep Death</em>, the 1980 AMOA title that became <em>Shark Attack</em>; <em>Thief</em> in 1981; and <em>NATO Defense</em> plus <em>The Amazing Adventures of Mr. F. Lea (and His Friends)</em> in 1982. The company also produced <em>Computer Portraits</em>, a coin-operated novelty imaging machine that does not fit neatly into the videogame category but tells us a great deal about the company’s taste for spectacle and non-standard amusement products.</p>
+<div class="factgrid">
+<div class="fact"><small>Company</small><strong>Pacific Novelty Manufacturing, Incorporated</strong></div>
+<div class="fact"><small>California incorporation</small><strong>October 15, 1980</strong></div>
+<div class="fact"><small>Documented operating horizon</small><strong>Oct. 1980 – at least Feb. 1983</strong></div>
+<div class="fact"><small>Exact legal end</small><strong>Not yet documented</strong></div>
+<div class="fact"><small>Documented 1981 location</small><strong>Marina del Rey, California</strong></div>
+<div class="fact"><small>President in contemporary reporting</small><strong>Brian D. Semler</strong></div>
+</div>
+<div class="callout confirmed">
+<div class="label confirmed">How long was Pacific Novelty actually around?</div>
+<p>The California corporate record fixes the legal starting point: Pacific Novelty Manufacturing, Incorporated filed its Articles of Incorporation on <strong>October 15, 1980</strong>. Contemporary trade reporting still treated Pacific Novelty as one of the smaller active manufacturers in <strong>February 1983</strong>, with <em>Mr. F. Lea</em> among current product being discussed. That gives us a <strong>confirmed minimum operating span of roughly 28 months—about two years and three-and-a-half months</strong>. The exact date on which the company legally dissolved or finally ceased operations has not yet surfaced, so the exact endpoint remains unknown.</p>
+</div>
+<div class="callout confirmed">
+<div class="label confirmed">Pacific Novelty’s place in the industry</div>
+<p>Although no reliable sales comparison with the major manufacturers is possible, the surviving products document identifiable design work and a distinctive approach to presenting coin-operated entertainment.</p>
+</div>
+</section>
+<section class="section" id="origins">
+<h2>1. From route and distribution work to manufacturing</h2>
+<p>California Secretary of State-derived records identify Pacific Novelty Manufacturing, Incorporated as entity 01027249, with Articles of Incorporation filed on October 15, 1980 and Brian D. Semler listed as president. Development evidently preceded that legal date: Deep Death was already sufficiently advanced to appear at the 1980 AMOA show.</p>
+<p>The strongest contemporary snapshot of Pacific Novelty’s beginnings remains a <em>Play Meter</em> news item dated May 1, 1981, commonly titled “Pacific Novelty hits the water.” The article identifies the firm as Pacific Novelty Manufacturing, Inc., places it in Marina del Rey, California, and names Brian Semler as president. Most importantly, it preserves Semler’s own compressed explanation of how the company got there. According to the article, Semler had previously worked as a liaison involving Segasa and Williams Electronics, then entered distribution and route operation in the San Francisco Bay Area with his brother Larry Siegel. Pacific Novelty, in Semler’s telling, later licensed its game designs to other manufacturers before deciding to produce its own machines. Manufacturing was described as the “ultimate step.”</p>
+<p>Semler’s account places the founders’ route and distribution experience before their move into manufacturing. That background offers a plausible explanation for the emphasis on location appeal, conspicuous cabinets and recorded sound that could attract attention across a noisy arcade. Their earlier licensing activity also helps explain the company’s willingness to work through other manufacturers.</p>
+<p>Later interviews with Bernie Stolar provide another perspective. He recalled entering the business in 1980 and starting Pacific Novelty with Brian Semler, linking the firm to his later career in the game industry. His recollections complement the May 1981 trade report, which names Semler as president. Differences in how these sources describe the founding remain unresolved; a later account alone does not supersede a contemporary statement of office or chronology.</p>
+<p>Pacific Novelty entered manufacturing during the late-1970s and early-1980s arcade expansion, when firms with markedly different backgrounds were pursuing the next successful game. Engineering businesses, imitators, distributors and established makers of non-video amusement equipment all entered the market. Pacific Novelty’s route experience, licensing relationships and interest in novelty attractions help place it within that varied group of smaller manufacturers.</p>
+<div class="callout qualified">
+<div class="label qualified">Formation and leadership</div>
+<p>Contemporary reporting and later oral history emphasize different aspects of the company’s formation and leadership. Both contribute to its history, but the differences between them remain unresolved.</p>
+</div>
+</section>
+<section class="section" id="timeline">
+<h2>2. Timeline</h2>
+<div class="timeline">
+<div class="time"><div class="date">October 15, 1980 · California</div><p><strong>Pacific Novelty Manufacturing, Incorporated files its Articles of Incorporation.</strong> This is the firmest presently documented starting date for the legal company.</p></div>
+<div class="time"><div class="date">1980 · Chicago AMOA</div><p>Pacific Novelty publicly shows a prototype called <strong>Deep Death</strong>. Contemporary post-show reporting later identifies it as one of the more interesting machines on the floor.</p></div>
+<div class="time"><div class="date">By late 1980</div><p>Surviving Pacific Novelty sales material already uses the name <strong>Shark Attack</strong>, tightening the chronology of the title change and showing that the rename was already in play by 1980.</p></div>
+<div class="time"><div class="date">May 1, 1981</div><p><em>Play Meter</em> reports that Pacific Novelty has begun producing <strong>Shark Attack</strong>. Brian Semler says the company has seven more games planned for the year.</p></div>
+<div class="time"><div class="date">1981</div><p><strong>Thief</strong> arrives and becomes the company’s most visible surviving game, aided by its cassette-backed police-radio soundtrack and unusually complete in-program credits.</p></div>
+<div class="time"><div class="date">1982</div><p><strong>NATO Defense</strong> and <strong>The Amazing Adventures of Mr. F. Lea (and His Friends)</strong> appear during the company’s final clearly documented videogame period.</p></div>
+<div class="time"><div class="date">Late 1982 – early 1983</div><p><strong>Mr. F. Lea</strong> becomes Pacific Novelty’s last clearly documented videogame. A January 1983 exhibitor list still includes Pacific Novelty, and a February 1 <em>Play Meter</em> article discusses the firm among smaller manufacturers whose product a distributor was handling.</p></div>
+<div class="time"><div class="date">February 5, 1983</div><p><em>Cash Box</em> reports that Bill Cravens, <strong>formerly</strong> Pacific Novelty’s sales manager, has joined Universal USA. This does not by itself prove the factory had closed, but it fits the picture of a company contracting or breaking apart in early 1983.</p></div>
+<div class="time"><div class="date">1983 · exact endpoint unresolved</div><p>Later recollections describe liquidation or a sale involving Atari, but no contemporary dissolution filing or fully documented acquisition record has yet been recovered. For now, the responsible date range is <strong>incorporated October 15, 1980; operating at least into February 1983; exact end unknown</strong>.</p></div>
+</div>
+</section>
+<section class="section" id="catalog">
+<h2>3. Catalog overview</h2>
+<p>Pacific Novelty’s four production videogames cover notably different subjects and forms of play: a shark hunt, a getaway-car pursuit, a military maze and a cartoon flea moving through several scenarios. The catalog is small, but the games show the company experimenting with theme, recorded sound and cabinet presentation rather than relying on a single repeated format.</p>
+<div aria-label="Historical reference table" class="table-scroll" role="region" tabindex="0"><table class="catalog">
+<thead>
+<tr><th>Title</th><th>Approx. period</th><th>Release history</th><th>Why it matters</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Deep Death</strong></td><td>1980</td><td>Prototype / show title</td><td>Publicly shown at the 1980 AMOA show; the direct precursor to <em>Shark Attack</em>.</td></tr>
+<tr><td><strong>Shark Attack</strong></td><td>1980–1981</td><td>Commercial production title</td><td>Pacific Novelty’s first videogame; combines unusual theme, tape-backed voices and licensing complications.</td></tr>
+<tr><td><strong>Thief</strong></td><td>1981</td><td>Commercial production title</td><td>The company’s best-known game; turns the maze chase into a police pursuit and preserves unusually rich credits.</td></tr>
+<tr><td><strong>NATO Defense</strong></td><td>1982</td><td>Commercial production title</td><td>A military maze-action game with destructible walls, limited ammunition and more prerecorded chatter.</td></tr>
+<tr><td><strong>The Amazing Adventures of Mr. F. Lea (and His Friends)</strong></td><td>1982</td><td>Commercial production title</td><td>A flea-led four-scenario game whose rarity and late timing make it one of the most intriguing Pacific Novelty survivors.</td></tr>
+</tbody>
+</table>
+</div><div class="callout open">
+<div class="label open">Later machines attributed to Pacific Novelty</div>
+<p>Some modern arcade databases group later machines such as <em>Pop-A-Ball</em>, <em>Pop-A-Ball II</em>, and <em>Sungold</em> under “Pacific Novelty.” At least the <em>Pop-A-Ball</em> attribution does not survive a primary-source check: its surviving 1990 flyer identifies <strong>SMS Manufacturing Corporation of Lakewood, New Jersey</strong>, and the federal POP-A-BALL trademark was filed and owned by <strong>SMS Manufacturing Company, Inc.</strong> The later database entries therefore cannot be used as evidence that the original Marina del Rey Pacific Novelty remained active into 1988, 1990, or 1991. <em>Sungold</em> remains a separate unresolved catalog-attribution question.</p>
+</div>
+<p class="note">The dates distinguish prototype appearances, advertising and documented production where those stages occurred at different times or remain uncertain.</p>
+</section>
+<section class="section game" id="shark">
+<div class="game-head">
+<div class="game-kicker">Game 01 · 1980 prototype / 1981 production</div>
+<h2 class="game-title">Deep Death / Shark Attack</h2>
+<div class="quick"><span>Horizontal color raster</span><span>8-way joystick</span><span>Munch + Thrust buttons</span><span>Prerecorded diver voices</span><span>Up to 2 alternating players</span></div>
+</div>
+<p>Shark Attack introduces several recurring features of Pacific Novelty’s games: an unusual premise, conspicuous cabinet presentation and an important role for recorded sound. The player controls a great white shark hunting divers armed with spear guns. The divers can kill the shark or escape, making the player both predator and target. This reversal of the more conventional rescue or hunting role gave the game a distinctive subject among the space shooters, maze chases and abstract action games of 1981.</p>
+<h3>4. Deep Death / Shark Attack</h3>
+<p>The title first appeared publicly as Deep Death at the 1980 AMOA convention in Chicago. In Play Meter’s January 15, 1981 coverage of the show, Tony Licata selected it as one of four standout machines, alongside Battlezone, Berzerk and Star Castle. His response establishes favorable contemporary attention at an early stage in Pacific Novelty’s manufacturing history, although it supplies no measure of subsequent sales.</p>
+<p>The change from Deep Death to Shark Attack was already in place by late 1980. A surviving flyer uses Shark Attack while carrying a 1980 Pacific Novelty copyright, preceding the 1981 trade reports that described production and explained the transition. Deep Death was the AMOA prototype identity; Shark Attack was the commercial name by the end of that year.</p>
+<figure class="figure">
+<img alt="Pacific Novelty Shark Attack sales flyer" data-original-src="https://flyers.arcade-museum.com/videogame-flyers/1/shark-attack-01722-02.jpg" height="1095" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" src="assets/articles/3a4c61cd48a6752972f7653555c36d4ee9903245.jpg" width="850"/>
+<div class="imgfallback">The illustration could not be displayed. Its source is linked in the caption.</div>
+<figcaption class="caption"><strong>Shark Attack — Game Plan sales flyer.</strong> The Game Plan-branded advertisement presents the two-player cocktail cabinet and the shark-versus-divers premise. Source: International Arcade Museum / Arcade Flyer Archive. <a href="https://flyers.arcade-museum.com/videogames/show/1722" rel="noopener" target="_blank">View flyer</a>.</figcaption></figure>
+<figure class="figure">
+<img alt="Shark Attack flyer front page" data-original-src="https://flyers.arcade-museum.com/videogame-flyers/1/shark-attack-01722-01.jpg" height="1091" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" src="assets/articles/af2b30b23aa25edc253995faddd7a633dc12cf7e.jpg" width="850"/>
+<div class="imgfallback">The illustration could not be displayed. Its source is linked in the caption.</div>
+<figcaption class="caption"><strong>Shark Attack — companion flyer page.</strong> The page carries Game Plan branding and Pacific Novelty’s copyright credit. Source: International Arcade Museum / Arcade Flyer Archive. <a href="https://flyers.arcade-museum.com/videogames/show/1722" rel="noopener" target="_blank">View flyer</a>.</figcaption></figure>
+<h3>Controls, scoring and the diver encounters</h3>
+<p>An eight-way joystick and two buttons, Thrust and Munch, control the shark. The buttons make movement and attack separate decisions: the jaws open and close under player control, so touching a diver alone does not complete an attack. Successful play depends on positioning the shark, closing on a target and timing its bite while retaining room to evade spear fire.</p>
+<p>Divers descend in armed groups, requiring the player to balance attack with survival. Their increasing point values create an escalating hunt: early divers yield modest scores, milestone divers are worth more, and completing a full cycle awards an extra shark. Learning when to advance or retreat becomes more consequential as those rewards increase.</p>
+<p>Secondary documentation also describes skull icons and diver sequencing that indicate progress through the cycle. Those displays help players follow the succession of squads, increasing values and extra-life opportunity. They reveal a more structured sequence than a brief view of the basic eat-divers-and-avoid-spears action might suggest.</p>
+<h3>Recorded voices and sound design</h3>
+<p>Shark Attack combined game-generated effects with prerecorded diver voices and reactions delivered from tape. Period accounts and later technical descriptions differ over the exact implementation. They consistently establish that recorded human voices were an active part of the attraction and a feature Pacific Novelty emphasized in its advertising.</p>
+<p>The recordings could draw attention across an arcade while adding an extended human presence to the action. They also offered a way to supply longer passages of sound than a small collection of electronic effects or short synthesized phrases. Pacific Novelty returned to the same approach with police pursuit dialogue in Thief and tank chatter in NATO Defense.</p>
+<p>Later museum and enthusiast accounts describe Shark Attack as an early example of quadraphonic sound in a videogame cabinet, sometimes claiming it as the first. The available evidence does not establish absolute priority. Multi-channel sound was nevertheless central to both the game’s promotion and its later reputation.</p>
+<div class="pull">What made <em>Shark Attack</em> memorable was not only the role reversal. Pacific Novelty tried to make the divers sound as though they were in the water with you.</div>
+<h3>Production, licensing and Stolar’s recollection</h3>
+<p>Bernie Stolar later recalled that Shark Attack attracted legal attention because of its resemblance to Jaws, followed by a royalty arrangement that would begin after the first thousand machines. In his account, Pacific Novelty deliberately stopped below that threshold. Retellings give different figures—999, 990 or simply just under 1,000—so the claimed arrangement and production total require separate corroboration.</p>
+<div class="callout qualified">
+<div class="label qualified">Production estimates and their limits</div>
+<p>Stolar’s recollection supports a production estimate below roughly 1,000 units, but does not establish an audited total. Factory records, distributor invoices or a contemporary production statement could confirm or revise the estimate and resolve the differing figures attached to his account.</p>
+</div>
+<p>Licensing further complicates the total. Museum records identify Game Plan as a licensed manufacturer, and a July 1981 Play Meter item describes its sit-down version of Shark Attack. The Museum of the Game also records a Game World connection. The number of machines made by Pacific Novelty itself therefore may differ from total production across the licensed versions and cabinet formats.</p>
+<h3>Reception and legacy</h3>
+<p>Shark Attack’s favorable show reception survives in contemporary trade coverage, while its later record depends heavily on museum entries, collector reports and a small number of dedicated cabinets and boards. Modern VAPS participation documents few original examples. That scarcity makes each survivor useful for studying construction and variations, although it cannot establish the game’s original sales.</p>
+<p>Shark Attack combines a straightforward action premise with recorded voices and a cabinet built around the shark theme. Those elements give the machine a recognizable identity beyond its graphics and help explain its continuing interest to collectors and historians.</p>
+</section>
+<section class="section game" id="thief">
+<div class="game-head">
+<div class="game-kicker">Game 02 · 1981</div>
+<h2 class="game-title">Thief</h2>
+<div class="quick"><span>Maze chase</span><span>Eight maze layouts</span><span>Getaway-car theme</span><span>Cassette police chatter</span><span>Movie-style credits</span></div>
+</div>
+<div style="margin:0 0 18px"><a class="backhome" href="https://arcadesideb.com/thief.html" style="margin:0" target="_parent">Open dedicated game page: Thief →</a></div>
+<p>Thief entered a crowded maze-chase market in 1981. Its relationship to Pac-Man is readily apparent, but Pacific Novelty adapted the format through a getaway-car theme, recorded police-radio chatter, eight street layouts and a comic criminal-rank system. Those changes distinguish its play and presentation from a simple change of character graphics.</p>
+<p>The player drives a getaway car through city streets while police cars converge. Money provides the collection objective, and dollar-sign power items temporarily allow the player to ram pursuing police cars. Rank titles culminating in Public Enemy #1 give successive stages the character of an exaggerated criminal career.</p>
+<figure class="figure">
+<img alt="Pacific Novelty Thief sales flyer" data-original-src="https://flyers.arcade-museum.com/videogame-flyers/1/thief-01697-02.jpg" height="1093" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" src="assets/articles/673e5a0aa22fc0e98ea926ee4574c7e0fddca96f.jpg" width="850"/>
+<div class="imgfallback">The illustration could not be displayed. Its source is linked in the caption.</div>
+<figcaption class="caption"><strong>Thief — cabinet and gameplay flyer.</strong> The “Coming Attractions” page shows the upright cabinet and presents gameplay scenes as episodes of a film. Source: International Arcade Museum / Arcade Flyer Archive. <a href="https://flyers.arcade-museum.com/videogames/show/1697" rel="noopener" target="_blank">View flyer</a>.</figcaption></figure>
+<figure class="figure">
+<img alt="Thief flyer front page" data-original-src="https://flyers.arcade-museum.com/videogame-flyers/1/thief-01697-01.jpg" height="1096" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" src="assets/articles/5a3d410947a1f317521e5dcdc1cae5a7eb6fe441.jpg" width="850"/>
+<div class="imgfallback">The illustration could not be displayed. Its source is linked in the caption.</div>
+<figcaption class="caption"><strong>Thief — credits page.</strong> Pacific Novelty’s flyer uses film-style production credits, reinforcing the game’s cinematic presentation. Source: International Arcade Museum / Arcade Flyer Archive. <a href="https://flyers.arcade-museum.com/videogames/show/1697" rel="noopener" target="_blank">View flyer</a>.</figcaption></figure>
+<h3>5. Thief</h3>
+<p>The player collects money while driving through a maze and evading converging police cars. Ordinary greenbacks are worth 10 points each, and side tunnels provide alternative escape routes. Dollar-sign power items reverse the pursuit temporarily: ramming successive police cars awards 100, 500, 1,000 and 2,000 points. High scoring therefore requires recognizing when it is safe to change from evasion to attack, as well as choosing routes through the maze.</p>
+<p>Thief uses eight distinct maze layouts, ranging from relatively open escape routes to cramped streets with tight corners and hazardous intersections. After all eight, the sequence repeats at greater speed with a shorter dollar-sign power phase. Progress therefore depends on learning several street plans and adapting to reduced time for attacking the police, as well as handling faster pursuit.</p>
+<p>That structure makes the game read almost like a sequence of urban set pieces rather than a single abstract board. A player who spends real time with <em>Thief</em> learns streets the way a player of <em>Pac-Man</em> learns turns, but there is more geography to internalize. The changing layouts also help explain why the game could support serious score play. A long game is not simply a matter of surviving one repeated pattern forever; it involves memorizing several, then handling them again under greater pressure.</p>
+<h3>The criminal-rank ladder</h3>
+<p>The rank system adds a comic sense of progression. Recorded titles include Loitering, Joyriding, Petty Thief, Car Theft, Grand Theft Auto, Professional Thief, Jewel Thief, The Boss and Public Enemy #1. They frame repeated play as an escalating criminal career while reinforcing the same pursuit theme carried by the graphics and sound.</p>
+<p>This kind of flavored progression is easy to underrate from a modern perspective, but in 1981 it helped distinguish a cabinet quickly. A person walking by could understand not only what the player was doing but what role the game wanted the player to inhabit. It also gave repeated play a comic frame. The player is not just chasing score; he is climbing a fake criminal résumé.</p>
+<h3>Cassette audio and the police pursuit</h3>
+<p>What people remember most about <em>Thief</em> is the police-radio chatter. The cabinet uses a cassette mechanism to play a long loop of pursuit dialogue and related chatter while the game proceeds. The effect is transformative. Instead of a silent car weaving through an abstract maze, the player feels as though he is inside an ongoing police response. The cabinet becomes noisy in a focused, thematic way. The voices refer to streets, locations, pursuit updates and procedural fragments, often with a Los Angeles flavor. The dialogue blurs the boundary between game soundtrack and miniature drama.</p>
+<p>This feature was strong enough that it confused contemporary coverage. <em>Electronic Games</em> reviewed the machine and initially described the voices as coming from an advanced speech-chip solution. Pacific Novelty and industry technicians later corrected the magazine, which then printed an explicit correction explaining that the sound was actually provided by a tape-loop system. That correction is not a trivial footnote. It is a wonderful case study in how even period reporting can misread the technology when a machine is doing something distinctive. It also supports the larger historical claim that Pacific Novelty was using prerecorded audio aggressively and successfully enough to fool informed contemporary observers.</p>
+<div class="callout confirmed">
+<div class="label confirmed">Period reception</div>
+<p><em>Electronic Games</em> treated the audio as the feature that elevated <em>Thief</em> above a crowded maze-chase field. The magazine later revisited the title in awards coverage, giving it a Certificate of Merit and again emphasizing the sound. Even when reviewers felt the game’s maze ancestry, they still saw that the cabinet’s total presentation made it special.</p>
+</div>
+<p>There is also a preservation consequence here. The cassette system is not merely a charming eccentricity. It is part of what makes a restored <em>Thief</em> complete. A dead or missing audio mechanism is not just a minor service problem; it removes a huge part of the original experience. This is one of the reasons collector and restoration interest in <em>Thief</em> has remained relatively high compared with other Pacific Novelty titles. The game is mechanically solid enough to reward play, and theatrically unusual enough to reward preservation.</p>
+<h3>The movie-style credits preserve rare names</h3>
+<p>Thief’s in-program credits imitate a film: Philip Lieberman is writer and screenplay author, Brian D. Semler executive producer, Bernie Stolar director, Bill Cravens the provider of “stunts,” and Robert Meagher responsible for cinematography. Although the wording is playful, the credits preserve a group of named contributors that would otherwise be difficult to establish from the records of such a small manufacturer.</p>
+<p>The mock film credits belong to the same emphasis on performance as Shark Attack’s voices and Thief’s police-radio dialogue. Across otherwise different games, Pacific Novelty used recorded sound and themed presentation to make the cabinet feel like a staged attraction.</p>
+<h3>Sales, surviving machines and competitive play</h3>
+<p>Thief is Pacific Novelty’s most visible surviving videogame. Collector interest, continuing score records and the number of reported surviving dedicated cabinets support that position, but they do not establish a reliable 1981 factory production total.</p>
+<p>What can be said is this: <em>Thief</em> clearly made more of a durable historical footprint than Pacific Novelty’s other videogames. <em>Electronic Games</em> kept mentioning it. National score reporting captured Brian Wathen of Owensboro, Kentucky at 6,130,930 points in early 1983, indicating that competitive or at least committed play persisted well after the launch period. Later historical reconstruction by Classic Arcade Gaming records Mike Ziara at 9,456,120 points at the Golden Dome Arcade in Salisbury, Maryland on April 25, 1983. Those scores do not prove high sales, but they do show that <em>Thief</em> stayed alive as a game rather than vanishing instantly.</p>
+<p>Modern VAPS census participation tells a similar story from the survival end. Among participating members, <em>Thief</em> has more surviving dedicated machines than Pacific Novelty’s other titles. Again, that is not a production ledger. A popular survivor is not always a historically high seller, and a poor survivor can still once have been common. But the cumulative picture supports a cautious statement: <em>Thief</em> is Pacific Novelty’s most visible surviving game and very likely the company’s best remembered release.</p>
+<div class="callout open">
+<div class="label open">Evidence that could clarify sales</div>
+<p>A period distributor report, sales ledger, operator earnings chart or serial-number study could clarify how Thief’s documented popularity among later players and collectors compares with its original commercial performance.</p>
+</div>
+<h3>Why Thief matters</h3>
+<p>Thief combines varied maze layouts, an escalating rank system and recorded pursuit dialogue with unusually informative credits. Its continuing play and preservation record make it a useful introduction to Pacific Novelty’s game design, personnel and interest in theatrical cabinet presentation.</p>
+</section>
+<section class="section game" id="nato">
+<div class="game-head">
+<div class="game-kicker">Game 03 · 1982</div>
+<h2 class="game-title">NATO Defense</h2>
+<div class="quick"><span>Tank / maze action</span><span>32 sectors / cities</span><span>Limited ammunition</span><span>Shootable walls</span><span>Autoreverse cassette chatter</span></div>
+</div>
+<p>NATO Defense applies Pacific Novelty’s interest in themed maze games to a military campaign. The player controls a tank, clearing mined territory while avoiding enemy vehicles, managing limited shells and blasting through walls to change routes. Promotional material describes the campaign as defending cities across 32 sectors. The resulting design combines shooting, route planning and destructible terrain.</p>
+<div class="twofig">
+<figure class="figure">
+<img alt="NATO Defense flyer gameplay page" data-original-src="https://flyers.arcade-museum.com/videogame-flyers/1/nato-defense-01698-02.jpg" height="1093" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" src="assets/articles/2e9a59792dfaf213d62361860b7187ddec5ee9bc.jpg" width="850"/>
+<div class="imgfallback">The illustration could not be displayed. Its source is linked in the caption.</div>
+<figcaption class="caption"><strong>NATO Defense sales flyer.</strong> The advertisement emphasizes 32 sectors, adjustable difficulty, sound and special effects. Source: International Arcade Museum / Arcade Flyer Archive. <a href="https://flyers.arcade-museum.com/videogames/show/1698" rel="noopener" target="_blank">View flyer</a>.</figcaption></figure>
+<figure class="figure">
+<img alt="NATO Defense cabinet dimensions flyer" data-original-src="https://flyers.arcade-museum.com/videogame-flyers/1/nato-defense-01698-04.jpg" height="1109" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" src="assets/articles/ebd564b6bcd53d3f5bdfce7e37c4a441002f84b5.jpg" width="850"/>
+<div class="imgfallback">The illustration could not be displayed. Its source is linked in the caption.</div>
+<figcaption class="caption"><strong>NATO Defense cabinet specifications.</strong> The flyer lists a height of 69 inches, depth of 30 inches, width of 24½ inches and weight of 256 pounds.</figcaption></figure>
+</div>
+<h3>6. NATO Defense</h3>
+<p>The tank clears mines, represented by dots, by driving over them while enemy vehicles move through the maze and fire. Ammunition is limited and can be replenished at dumps. Some walls can be destroyed, allowing the player to alter routes or escape an approaching enemy at the cost of shells. Movement, shooting and resource management consequently affect one another throughout the game.</p>
+<p>The combination gives route planning a direct role in survival and scoring. Clearing mines requires covering territory, while enemy attacks and the limited ammunition supply complicate that route. Promotional descriptions of saving cities and enemies “gaining intelligence” present the changing difficulty as a campaign extending beyond an individual board.</p>
+<p>Scoring follows Pacific Novelty’s recurring taste for escalated reward. Clearing mines is worth modest points. Chained enemy tank kills can rise sharply, giving the player an incentive to turn resource management and aggression into score opportunities rather than merely survival tools. The company’s games repeatedly use this structure: calm-looking objectives on the surface, but high-value scoring coming from moments when the player commits to more dangerous play.</p>
+<h3>Yet another tape-driven cabinet</h3>
+<p>NATO Defense’s owner’s manual describes a leaderless autoreverse cassette that supplies tank chatter and crash sounds. It includes maintenance instructions for the mechanism and states that replacement tapes could be purchased from Pacific Novelty. Recorded audio was therefore part of the machine’s expected service requirements, with provision for worn or damaged tapes.</p>
+<p>The tape system placed NATO Defense within the audio experimentation of the early 1980s. Extended recordings could give the action a sustained setting without relying on short synthesized phrases. Its tank chatter continues the approach heard in Shark Attack and Thief, with different material suited to the military theme.</p>
+<h3>Hardware relationships and variants</h3>
+<p>Collector and technical work in later years has shown that <em>NATO Defense</em> sits inside the same broader Pacific Novelty hardware family as <em>Shark Attack</em> and <em>Thief</em>, even if practical conversion requires real modification and is not a trivial swap. That relationship matters historically because it shows that Pacific Novelty was not engineering every game from zero. A small manufacturer was reusing a core architecture while changing software, sound content, theme and cabinet presentation. The company’s limited size makes much more sense when viewed through that lens.</p>
+<p>Modern emulation and board preservation document an alternate NATO Defense maze set, sometimes described as speed-up or alternate ROM material. It preserves evidence of a revised configuration, although the surviving record does not fully establish its development date or place in the company’s release history.</p>
+<h3>Commercial position</h3>
+<p>No trustworthy production total has been found for NATO Defense. It appeared in 1982 as conditions grew more difficult for small arcade manufacturers, but the available records do not measure how that downturn affected this particular game. Its preserved design and hardware are better documented than its original commercial reach.</p>
+</section>
+<section class="section game" id="lea">
+<div class="game-head">
+<div class="game-kicker">Game 04 · 1982</div>
+<h2 class="game-title">The Amazing Adventures of Mr. F. Lea (and His Friends)</h2>
+<div class="quick"><span>Vertical color raster</span><span>Four mini-games</span><span>4-way joystick + jump</span><span>Dog-themed scenarios</span><span>Very rare survivor</span></div>
+</div>
+<p>The Amazing Adventures of Mr. F. Lea combines familiar early-1980s arcade ideas in a four-scenario structure. A flea protagonist and the “choose a pup” selection connect challenges that recall established platform, crossing and swinging games. The influences are readily visible, but their combination gives the machine a varied cartoon identity within Pacific Novelty’s catalog.</p>
+<div class="twofig">
+<figure class="figure">
+<img alt="Mr F Lea sales flyer artwork" data-original-src="https://flyers.arcade-museum.com/videogame-flyers/2/mr-f-lea-02180-03.jpg" height="1123" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" src="assets/articles/49f74376daa35bbc5b8f9508b132c614a2a65592.jpg" width="850"/>
+<div class="imgfallback">The illustration could not be displayed. Its source is linked in the caption.</div>
+<figcaption class="caption"><strong>The Amazing Adventures of Mr. F. Lea — flyer artwork.</strong> The illustrated flea appears in the game’s promotional artwork. Source: International Arcade Museum / Arcade Flyer Archive. <a href="https://flyers.arcade-museum.com/videogames/show/2182" rel="noopener" target="_blank">View flyer</a>.</figcaption></figure>
+<figure class="figure">
+<img alt="Mr F Lea choose-a-pup flyer page" data-original-src="https://flyers.arcade-museum.com/videogame-flyers/2/mr-f-lea-02180-04.jpg" height="1106" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" src="assets/articles/76ebd091aba4112f9d650a954cba1d10d1f063cc.jpg" width="850"/>
+<div class="imgfallback">The illustration could not be displayed. Its source is linked in the caption.</div>
+<figcaption class="caption"><strong>The Amazing Adventures of Mr. F. Lea — gameplay flyer.</strong> The flyer presents the “choose a pup” selection and the game’s linked scenarios.</figcaption></figure>
+</div>
+<h3>7. Mr. F. Lea</h3>
+<p><strong>Dog Hollow</strong> is the most obviously platform-oriented scenario, recalling the upward-climb logic of games like <em>Donkey Kong</em>: the flea navigates platforms and hazards to move higher. <strong>Lawnmower</strong> carries a lane-crossing rhythm strongly reminiscent of <em>Frogger</em>, requiring timing and route judgment across dangerous moving spaces. <strong>Dog’s Tails</strong> introduces swinging movement and hazard timing that naturally invites comparison with vine or rope sequences from jungle-themed action games. <strong>Dog’s Back</strong> sends Mr. F. Lea across the body of a dog, turning the animal into a playfield with its own hazard logic, jumps and interactions.</p>
+<p>Looked at individually, each piece clearly wears its influences. Looked at collectively, they form a small comic structure with more variety than many contemporary single-mechanic cabinets. The “choose a pup” framing means the player is not merely surviving one copied loop; he is moving through a series of different challenge grammars under a common character and theme. That is enough to make the game worth serious historical attention even if one concludes that it is as much a collage as a cleanly original design.</p>
+<p>There is also a tonal difference from the earlier Pacific Novelty titles. <em>Shark Attack</em>, <em>Thief</em> and <em>NATO Defense</em> all pursue some degree of audio spectacle and adult-ish theme. <em>Mr. F. Lea</em> feels more cartoonish and family-friendly on the surface. The company was therefore not locked into one flavor of presentation. Even late, and perhaps under financial pressure, it was still trying new shapes.</p>
+<h3>Sound without the cassette</h3>
+<p>Technically, <em>Mr. F. Lea</em> is also interesting because it breaks the most visible Pacific Novelty pattern. Surviving emulation and hardware documentation indicate that the game relies on multiple AY-3-8910 sound chips and does not use the cassette-backed chatter architecture associated with the company’s earlier videogames. That shift is notable. It suggests either a practical simplification, a design decision better suited to the game’s brighter tone, or perhaps simply a different resource mix by late 1982.</p>
+<p>The sound identity did not vanish. Surviving musical references, including recognizable borrowed melodies and pieces such as the <em>William Tell Overture</em>, gave the cabinet an energetic personality of its own. The difference is that Pacific Novelty no longer needed taped human dialogue to make the machine lively. In effect, <em>Mr. F. Lea</em> shows the company finding a different route to memorable sound.</p>
+<h3>How rare was it?</h3>
+<p>This is where <em>Mr. F. Lea</em> becomes especially tantalizing. Collector discussions preserve a striking lead: one owner reported hearing from a former Pacific Novelty employee that the game was built in “way less” than 100 units because it appeared during bankruptcy liquidation. That story neatly explains the game’s present scarcity, the difficulty of locating manuals and schematics, and the sense that the title always hovered near the edge of obscurity.</p>
+<div class="callout qualified">
+<div class="label qualified">An unverified production estimate</div>
+<p>The sub-100 claim is secondhand oral history relayed by a collector. It is plausible and fits the game’s rarity, but it should not be converted into “confirmed production under 100” without factory records, contemporary trade reporting, or some equivalent documentary support.</p>
+</div>
+<p>Modern VAPS participation strongly supports rarity without settling the production number. Only a tiny number of original examples appear across active and former participating members, and the title sits very low in ownership/popularity measures. Again, that cannot be reverse-engineered into a precise historical run, but it reinforces the basic preservation reality: <em>Mr. F. Lea</em> is one of those titles where every surviving cabinet or board has outsized historical value.</p>
+<h3>A cabinet question worth watching</h3>
+<p>Collectors have noted similarities between Mr. F. Lea cabinets and earlier Pacific Novelty construction, suggesting that leftover components or Thief-era stock may have been reused. This remains a hypothesis. Serial numbers, internal cabinet photographs and original assembly records would be needed to distinguish common construction practice from actual reuse of earlier stock.</p>
+<p><em>Mr. F. Lea</em> therefore occupies a compelling place in the Pacific Novelty story. It is late, scarce, playful, derivative in visible ways, inventive in structure, technically a little different from the company’s earlier audio-heavy style, and wrapped in a production mystery that feels unusually close to being solvable if the right former employee or paper trail appears.</p>
+</section>
+<section class="section" id="portraits">
+<h2>8. Computer Portraits</h2>
+<p>Pacific Novelty was not only a videogame company. One of the most intriguing products connected with the firm is <em>Computer Portraits</em>, a coin-operated imaging attraction that photographed the customer and produced a printed monochrome portrait rendered in a stylized, character-like format. On the surface this may seem outside the main flow of arcade videogame history. In reality it is deeply revealing. It places Pacific Novelty within a broader amusement and novelty tradition and shows that the company’s interest in selling experiences extended beyond interactive play.</p>
+<p>The surviving manual and collector evidence make it clear that <em>Computer Portraits</em> was a substantial machine, not a paper concept. It relied on imaging components, electronics and a print system that turned computer processing into the attraction itself. Surviving documentation includes setup, troubleshooting, operating theory and schematics—richer material than one might expect for a product now barely remembered. A few collectors have preserved machines or discussed restoration, which gives the product a modern afterlife far larger than its commercial footprint might suggest.</p>
+<p>Historically, the machine helps explain Pacific Novelty’s taste for the unusual. This was not a company content only to make “me too” coin-op videogames. It was willing to market a device whose appeal lay in novelty image production. It also fits neatly with later oral-history recollections. Bernie Stolar remembered the product when describing Pacific Novelty’s line. That cross-confirmation matters because it ties the machine back to the company story even when players today may think only of <em>Thief</em> or <em>Shark Attack</em>.</p>
+<p>Computer Portraits broadens the company’s history beyond videogames. Its imaging and printing systems connect Pacific Novelty with coin-operated novelty attractions and help explain a product range that extended beyond the games now most familiar to collectors.</p>
+</section>
+<section class="section" id="hardware">
+<h2>9. A family resemblance beneath the artwork</h2>
+<p>Shark Attack, Thief and NATO Defense have different themes but share a closely related three-board architecture documented by collectors and preservation work. A modified board set can run all three, including alternate NATO Defense ROM material, although conversion requires more than swapping boards. That technical relationship shows continuity beneath the different art and sound packages.</p>
+<p>A tiny company with limited engineering resources was not likely to invent a wholly new platform for every release. Reusing a core electronic foundation while changing software, cabinet art and sound content is exactly what one would expect. The preservation evidence confirms that expectation. This makes the company’s catalog feel much less random. The cabinets may have sold fantasy, crime, warfare and cartoon comedy, but the engineers were working with a family of shared ideas and hardware.</p>
+<p>The sound systems tell a similar story. <em>Shark Attack</em>, <em>Thief</em> and <em>NATO Defense</em> all rely heavily on prerecorded audio. The exact content and mechanism details vary, yet the design philosophy is unmistakable. Pacific Novelty repeatedly chose long-form taped sound to create atmosphere that ordinary effects or short speech synthesis would not have delivered as cheaply or as richly. That decision says something about how the company wanted its cabinets to compete. A machine should be heard as well as seen.</p>
+<p><em>Mr. F. Lea</em> then becomes more interesting precisely because it partly breaks the pattern. It appears later, uses a different audio personality and sits at a moment when the company may have been under strain. Rather than weakening the family resemblance, the exception clarifies it. We can see what the earlier pattern was because the later game diverges from it.</p>
+<div class="subtle">
+<div class="smallcaps" style="font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#687174;margin-bottom:8px;">What the shared hardware shows</div>
+<ul class="smalllist">
+<li>It helps explain how a small manufacturer could release several visually different games in quick succession.</li>
+<li>It turns modern collector board-conversion work into historical evidence about original engineering practice.</li>
+<li>It shows that Pacific Novelty’s catalog had more internal coherence than a simple title list suggests.</li>
+</ul>
+</div>
+</section>
+<section class="section" id="people">
+<h2>10. People</h2>
+<p>Trade reports, in-program credits and later interviews identify several people behind Pacific Novelty’s machines. Together they support a partial personnel history, with some roles known more precisely than others.</p>
+<div class="people">
+<div class="person"><strong>Brian D. Semler</strong><span>President in contemporary 1981 reporting; described the company’s path from route and distribution work to manufacturing; credited as executive producer on <em>Thief</em>.</span></div>
+<div class="person"><strong>Bernie Stolar</strong><span>Remembered as a founder or co-founder in later first-person interviews; credited as director on <em>Thief</em>; later became a major executive at Atari, Sony and Sega.</span></div>
+<div class="person"><strong>Philip / Phillip Lieberman</strong><span>Connected with development work at Pacific Novelty; credited as writer and screenplay author on <em>Thief</em>; associated in the surviving record with <em>Deep Death</em> / <em>Shark Attack</em>.</span></div>
+<div class="person"><strong>Bill Cravens</strong><span>Credited humorously for “stunts” on <em>Thief</em>; also connected in later industry-history material with the company’s executive side.</span></div>
+<div class="person"><strong>Robert Meagher</strong><span>Credited for “cinematography” on <em>Thief</em>, preserving a name that might otherwise have dropped out of the record entirely.</span></div>
+<div class="person"><strong>Francisco Pflaum</strong><span>Later collected industry-history material attributes sound-design work to him. That attribution remains tentative because documentation identifying his work on individual games has not been located.</span></div>
+</div>
+<p>The surviving names cover only part of the company’s work. Engineering, cabinet construction, art, recording, route operation, sales and service would have involved additional contributors whose identities remain unknown.</p>
+</section>
+<section class="section" id="missing">
+<h2>11. The missing-games question</h2>
+<p>In the May 1, 1981 Play Meter profile, Brian Semler said that Pacific Novelty had seven more games planned for that year. His statement documents a development ambition larger than the surviving catalog, but does not identify the proposed titles or establish that seven additional games were completed.</p>
+<p>The plans may have included sketches, licensed concepts, prototypes, incomplete programs or work that never advanced beyond a proposal. Until individual projects can be identified through period documents or surviving material, the statement cannot support seven additional catalog entries.</p>
+<div class="callout qualified">
+<div class="label qualified">The unidentified projects</div>
+<p>Accessible 1980–1982 trade coverage, flyer and manual indexes, MAME documentation, and AMOA material have not revealed another securely identified Pacific Novelty prototype beyond those discussed here. Semler’s seven-game planning statement remains evidence of an intended program whose individual projects have not been identified.</p></div>
+<h3>The Maneater false lead</h3>
+<p>Maneater has sometimes been associated with Pacific Novelty through a manual-list entry. The entry is a cataloging error: the identified game belongs to Project Support Engineering and dates to 1975. It is excluded from Pacific Novelty’s catalog.</p>
+<p>Other Pacific Novelty projects may remain unidentified. An employee notebook, operator brochure, regional trade advertisement or surviving prototype board could connect a title to the seven-game plan or document additional work. The existing statement establishes the company’s intention, while the identities and completion of the proposed games remain unknown.</p>
+</section>
+<section class="section" id="ending">
+<h2>12. What happened to Pacific Novelty?</h2>
+<p>Pacific Novelty’s beginning is better documented than its ending. The company was incorporated in California on October 15, 1980 and remained visible as an operating manufacturer in trade coverage at the beginning of February 1983. That establishes a minimum corporate and manufacturing span of about 28 months; the date and circumstances of its final closure remain unresolved.</p>
+<p>Later oral history, particularly Bernie Stolar’s recollections, describes a sale to Atari involving stock and an unfavorable outcome as Atari’s financial position worsened. This is a significant firsthand account of the company’s ending, but no contemporary agreement or other recovered transaction record establishes its exact legal terms or sequence.</p>
+<p>The recollections leave several uncertainties. Retrospective accounts can compress dates and corporate arrangements, and phrases such as “Atari went bankrupt” may conflate distinct events. Collector accounts of Mr. F. Lea and bankruptcy liquidation also suggest financial distress during Pacific Novelty’s final documented release period. These accounts may describe connected events, but the records needed to place them in a reliable sequence have not been recovered.</p>
+<div class="callout open">
+<div class="label open">What is known</div>
+<p>The confirmed chronology begins with incorporation on October 15, 1980 and extends through trade coverage in February 1983; the California corporate index records an inactive status. The exact date of cessation or dissolution and the legal form of the remembered Atari transaction remain unknown. An acquisition agreement, contemporary trade notice, company filing, Atari record or comparable primary document could clarify Stolar’s later account.</p>
+</div>
+<p>Pacific Novelty’s ending remains incompletely documented. Former employees or associates may still hold records that clarify when operations ceased and what became of the company’s assets. Correspondence, transaction papers and firsthand accounts could distinguish the remembered Atari arrangement from the legal and commercial events that accompanied it.</p>
+</section>
+<section class="section" id="questions">
+<h2>13. Open research questions</h2>
+<div class="question"><strong>What became of the rest of the 1981 development slate?</strong>Semler’s statement is contemporary and reliable. The identities, progress and fate of those planned projects are not.</div>
+<div class="question"><strong>How many Shark Attack cabinets were actually built, and by whom?</strong>Stolar’s “under 1,000” story, plus Game Plan and Game World licensing, complicates the count.</div>
+<div class="question"><strong>How many Thief and NATO Defense cabinets were produced?</strong>No trustworthy factory totals have surfaced in the current research.</div>
+<div class="question"><strong>Can Mr. F. Lea’s sub-100 production story be corroborated?</strong>The oral-history lead is plausible but not yet documentary proof.</div>
+<div class="question"><strong>What exact roles did individual staff members play on each title?</strong><em>Thief</em> gives unusually strong clues, but the other games need equivalent project-by-project support.</div>
+<div class="question"><strong>What was the precise corporate ending—and on what date?</strong>We now have the October 15, 1980 incorporation and documented activity into February 1983. What remains missing is the legal endpoint: dissolution/suspension paperwork, liquidation records, or documentation showing whether there was a formal Atari acquisition, a partial asset deal, a stock arrangement, or some combination.</div>
+<div class="question"><strong>What internal material survives?</strong>Engineering drawings, serial logs, production memos, staff photos, route paperwork, sales sheets or prototype boards could change this page substantially.</div>
+</section>
+<section class="section" id="sources">
+<h2>14. Selected evidence &amp; further reading</h2>
+<ol class="sources">
+<li><strong>California corporate filing index — Pacific Novelty Manufacturing, Incorporated.</strong> California Secretary of State-derived record: Articles of Incorporation filed October 15, 1980; entity number 01027249; current status inactive; Brian D. Semler identified as president. <span class="source-tag"><a href="https://www.corporationwiki.com/California/Marina-del-Rey/pacific-novelty-manufacturing-incorporated/40560773.aspx" rel="noopener" target="_blank">Open the California-record summary</a></span></li>
+<li><strong><em>Play Meter</em>, February 1, 1983.</strong> Contemporary distributor coverage still discusses Pacific Novelty among active smaller manufacturers and names <em>Mr. F. Lea</em> among the represented product mix. This presently sets the strongest documented minimum endpoint for company operations. <span class="source-tag"><a href="https://elibrary.arcade-museum.com/Play-Meter/1983-February-01/61" rel="noopener" target="_blank">Open the specific page</a></span></li>
+<li><strong><em>Cash Box</em>, February 5, 1983.</strong> Industry personnel note identifies Bill Cravens as formerly Pacific Novelty’s sales manager when reporting his move to Universal USA—useful evidence that the company’s staff structure was changing rapidly by early 1983.</li>
+<li><strong>POP-A-BALL trademark and surviving 1990 flyer.</strong> These correct a misleading modern database grouping: the federal mark was owned by SMS Manufacturing Company, Inc., and the flyer identifies SMS Manufacturing Corporation in Lakewood, New Jersey. These later machines should not be used to extend the original Pacific Novelty company timeline. <span class="source-tag"><a href="https://furm.com/trademarks/pop-a-ball-73818226" rel="noopener" target="_blank">Trademark record</a> · <a href="https://flyers.arcade-museum.com/arcades/show/8089" rel="noopener" target="_blank">View flyer</a></span></li>
+<li><strong><em>Play Meter</em>, May 1, 1981 — “Pacific Novelty hits the water.”</strong> Contemporary company profile identifying Brian Semler as president, Marina del Rey, the 1980 AMOA showing, the <em>Deep Death</em> prototype name, <em>Shark Attack</em> production, Semler’s business background and the seven-game planning statement. <span class="source-tag"><a href="https://elibrary.arcade-museum.com/Play-Meter/1981-May-01/1" rel="noopener" target="_blank">Open issue in the International Arcade Museum eLibrary</a></span></li>
+<li><strong><em>Play Meter</em>, January 15, 1981 — 1980 AMOA review.</strong> Tony Licata’s show coverage placed <em>Deep Death</em> among four standout games. Valuable for contemporary reaction rather than later commercial mythmaking. <span class="source-tag"><a href="https://elibrary.arcade-museum.com/Play-Meter/1981-Jan-15/1" rel="noopener" target="_blank">Open issue in the International Arcade Museum eLibrary</a></span></li>
+<li><strong>Pacific Novelty flyer records — link directly to the specific titles.</strong>
+<ul class="smalllist">
+<li><a href="https://flyers.arcade-museum.com/videogames/show/1722" rel="noopener" target="_blank"><em>Shark Attack</em> specific flyer record</a></li>
+<li><a href="https://flyers.arcade-museum.com/videogames/show/1697" rel="noopener" target="_blank"><em>Thief</em> specific flyer record</a></li>
+<li><a href="https://flyers.arcade-museum.com/videogames/show/1698" rel="noopener" target="_blank"><em>NATO Defense</em> specific flyer record</a></li>
+<li><a href="https://flyers.arcade-museum.com/videogames/show/2182" rel="noopener" target="_blank"><em>Mr. F. Lea</em> specific flyer record</a></li>
+</ul>
+</li>
+<li><strong>Museum of the Game / KLOV-style database entries.</strong> Useful for basic game records, licensing notes, control summaries, cabinet-survivor awareness and collector census context.
+    <ul class="smalllist">
+<li><a href="https://www.arcade-museum.com/Videogame/shark-attack" rel="noopener" target="_blank"><em>Shark Attack</em> museum entry</a></li>
+<li><a href="https://www.arcade-museum.com/Videogame/thief" rel="noopener" target="_blank"><em>Thief</em> museum entry</a></li>
+<li><a href="https://www.arcade-museum.com/Videogame/mr-f-lea" rel="noopener" target="_blank"><em>Mr. F. Lea</em> museum entry</a></li>
+</ul>
+</li>
+<li><strong><em>Thief</em> arcade credits.</strong> MobyGames preserves the game’s unusually rich movie-style credit set in a convenient reference form. <span class="source-tag"><a href="https://www.mobygames.com/game/79859/thief/credits/arcade/" rel="noopener" target="_blank">Specific MobyGames credits page</a></span></li>
+<li><strong><em>NATO Defense</em> owner’s manual.</strong> Primary technical source confirming operator settings, service approach, cabinet details and the leaderless autoreverse cassette mechanism. <span class="source-tag"><a href="https://manuals.plus/m/206169c87e9042504cf561f0dcd83ffb73404ad09cd17c2f673509e40746d07a" rel="noopener" target="_blank">Specific manual copy</a></span></li>
+<li><strong>Modern Pacific Novelty hardware preservation work.</strong> Collector experimentation demonstrating <em>Thief</em>, <em>Shark Attack</em> and <em>NATO Defense</em> on a modified common board family. Useful as preservation evidence, not as proof of original factory-supported interchangeability. <span class="source-tag"><a href="https://forums.arcade-museum.com/threads/thief-shark-attack-and-nato-defense-all-running-on-a-single-boardset.552556/" rel="noopener" target="_blank">Specific collector thread</a></span></li>
+<li><strong><em>Mr. F. Lea</em> rarity and record material.</strong> Museum/database entries plus collector discussion preserve the carefully qualified sub-100 production lead and modern rarity context. <span class="source-tag"><a href="https://www.arcade-museum.com/Videogame/mr-f-lea" rel="noopener" target="_blank">Specific museum entry</a></span></li>
+<li><strong>Bernie Stolar interview material.</strong> Important first-person oral history for the company’s formation, <em>Shark Attack</em>, <em>Thief</em>, <em>NATO Defense</em>, <em>Computer Portraits</em>, the Jaws/royalty story and the claimed Atari transaction. Use with the strengths and limits appropriate to oral history. <span class="source-tag"><a href="https://www.arcadeattack.co.uk/bernie-stolar-jordan-freeman/" rel="noopener" target="_blank">Arcade Attack Retro Gaming Network interview</a></span></li>
+<li><strong><em>Computer Portraits</em> preservation thread.</strong> Modern collector documentation helping establish the machine as a real Pacific Novelty product with surviving examples. <span class="source-tag"><a href="https://forums.arcade-museum.com/threads/pacific-novelty-computer-portraits.441117/" rel="noopener" target="_blank">Specific forum thread</a></span></li>
+</ol>
+<p class="note">The sources above distinguish contemporary reporting and technical documentation from later recollections and preservation work. Each contributes different evidence; none supplies a complete company record.</p></section>
+<section class="living" id="contribute">
+<h2>Have something we’re missing?</h2>
+<p>This is a living research archive. If you have a Pacific Novelty flyer, photograph, cabinet, document, prototype, employee recollection, correction, production record, serial number, or evidence that contradicts something here, we welcome it. Useful contributions can be credited prominently with the contributor’s permission.</p>
+<p class="note">Send corrections, photographs, documents or firsthand recollections to <a href="mailto:arcadeobscura@gmail.com?subject=Arcade%20Side%20B%20Contribution">arcadeobscura@gmail.com</a>. The email link opens your email app; you can also copy the address into your preferred email service.</p></section>
+</article>
+</div>
+<footer><div class="footer-inner footer-row">
+<div><strong>Arcade Side B</strong> · The Overlooked Side of Arcade History · Pacific Novelty · Open to new evidence · Company history</div>
+<div class="site-counter"><div class="counter-label">Site hits</div><img alt="Arcade Side B site hit counter" loading="eager" src="https://hitscounter.dev/api/hit?color=%23c9973a&amp;icon=123&amp;label=SITE%20HITS&amp;url=https%3A%2F%2Fatariforever2002.github.io%2Farcade-obscura%2F"/></div>
+</div><p class="last-updated">Last updated September 8, 2026 · Open to new evidence</p></footer>
+<script>
+const toc=document.querySelector('.toc'), tocToggle=document.getElementById('tocToggle'), tocLinks=document.getElementById('tocLinks');
+if(tocToggle){
+  tocToggle.addEventListener('click',()=>{
+    const open=toc.classList.toggle('open');
+    tocToggle.setAttribute('aria-expanded',open?'true':'false');
+  });
+  tocLinks.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{
+    if(window.matchMedia('(max-width:600px)').matches){
+      toc.classList.remove('open');
+      tocToggle.setAttribute('aria-expanded','false');
+    }
+  }));
+}
+</script>
+</body>
+</html>
