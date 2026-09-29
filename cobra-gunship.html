@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><title>Cobra Gunship | Arcade Side B</title><style>
+:root{
+  --bg:#090d12;
+  --bg2:#0f1720;
+  --card:#eee7d8;
+  --card2:#f4ede1;
+  --ink:#222a2f;
+  --muted:#687174;
+  --line:#c8beab;
+  --navy:#13202a;
+  --navy2:#1b2b36;
+  --bronze:#c28a32;
+  --bronze2:#d8b36b;
+  --green:#486756;
+  --green-soft:#e3eee6;
+  --amber:#8a6532;
+  --amber-soft:#f5ead3;
+  --red:#86504b;
+  --red-soft:#f2e3e0;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:Georgia,"Times New Roman",serif;
+  background:
+    radial-gradient(circle at 80% 8%,rgba(112,164,184,.08),transparent 24%),
+    linear-gradient(rgba(255,255,255,.012) 1px,transparent 1px),
+    var(--bg);
+  background-size:auto,100% 4px,auto;
+  color:#dfe4e6;
+}
+a{color:#d9b46f}
+.mast{
+  background:linear-gradient(135deg,#0a0f14,#13202a);
+  border-bottom:4px solid var(--bronze);
+}
+.wrap{width:min(1120px,calc(100% - 32px));margin:0 auto}
+.topline{
+  display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  padding:18px 0 6px;
+  color:#bac3c8;
+  font:700 11px Arial,Helvetica,sans-serif;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+}
+.hero{
+  padding:10px 0 28px;
+}
+.crumb{
+  color:#93a0a8;
+  font:700 12px Arial,Helvetica,sans-serif;
+  margin:0 0 14px;
+}
+.crumb a{color:#d9b46f;text-decoration:none}
+.hero h1{
+  margin:0;
+  color:#f1ede5;
+  font-size:clamp(40px,8vw,74px);
+  line-height:.95;
+}
+.deck{
+  max-width:850px;
+  margin:16px 0 0;
+  color:#bdc7cc;
+  font-size:21px;
+  line-height:1.45;
+}
+.meta{
+  margin-top:12px;
+  color:#9facb4;
+  font:700 12px Arial,Helvetica,sans-serif;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.page{
+  width:min(1120px,calc(100% - 32px));
+  margin:24px auto 44px;
+}
+.backlinks{
+  display:flex;gap:10px;flex-wrap:wrap;
+  margin-bottom:18px;
+}
+.backhome{
+  display:inline-block;
+  padding:9px 11px;
+  border:1px solid #46525c;
+  color:#d7b774;
+  text-decoration:none;
+  font:700 11px Arial,Helvetica,sans-serif;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+}
+.backhome:hover{color:white;border-color:#687680}
+.game-identity{
+  margin:0 0 24px;
+  border:1px solid #b8ad98;
+  background:linear-gradient(135deg,rgba(194,138,50,.08),transparent 48%),#f3eddf;
+  color:#20272c;
+  box-shadow:0 16px 34px rgba(0,0,0,.18);
+  overflow:hidden;
+}
+.marquee-wrap{
+  padding:22px 24px 20px;
+  border-bottom:1px solid var(--line);
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 230px;
+  gap:18px;
+  align-items:center;
+}
+.marquee{
+  padding:20px 20px 18px;
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.06),transparent 45%),
+    linear-gradient(135deg,#11181f,#162733);
+  border:4px solid var(--bronze);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.08);
+}
+.marquee-small{
+  color:#cab48a;
+  font:700 11px Arial,Helvetica,sans-serif;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  margin-bottom:8px;
+}
+.marquee-title{
+  color:#f2efe8;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(40px,6vw,72px);
+  line-height:.9;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  text-shadow:0 1px 0 rgba(255,255,255,.1);
+}
+.marquee-sub{
+  margin-top:10px;
+  color:#b7c3ca;
+  font:700 11px Arial,Helvetica,sans-serif;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+.marquee-note{
+  color:#675f54;
+  font:12px/1.45 Arial,Helvetica,sans-serif;
+}
+.marquee-note strong{
+  display:block;
+  color:#1d2b35;
+  margin-bottom:6px;
+  font:700 11px Arial,Helvetica,sans-serif;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+.game-snapshot{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+}
+.snapshot-cell{
+  padding:17px 18px 18px;
+  border-right:1px solid var(--line);
+  min-width:0;
+}
+.snapshot-cell:last-child{border-right:0}
+.snapshot-label{
+  display:block;
+  color:#786f63;
+  font:700 9px Arial,Helvetica,sans-serif;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  margin-bottom:5px;
+}
+.snapshot-value{
+  display:block;
+  color:#1c2d37;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:19px;
+  line-height:1.2;
+}
+.snapshot-note{
+  display:block;
+  margin-top:5px;
+  color:#6e726f;
+  font:11px/1.35 Arial,Helvetica,sans-serif;
+}
+.shell{
+  display:grid;
+  grid-template-columns:280px minmax(0,1fr);
+  gap:22px;
+  align-items:start;
+}
+.sidebar .toc{
+  position:sticky;top:14px;
+  background:#121922;
+  border:1px solid #33404b;
+  box-shadow:0 12px 28px rgba(0,0,0,.22);
+}
+.toc-title{
+  padding:14px 16px 10px;
+  color:#c7d0d5;
+  font:700 13px Arial,Helvetica,sans-serif;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.toc a{
+  display:block;
+  padding:11px 16px;
+  color:#b8c3c9;
+  border-top:1px solid #28343d;
+  text-decoration:none;
+  font:15px/1.35 Arial,Helvetica,sans-serif;
+}
+.toc a:hover{color:#f0c57e}
+.sidebar-note{
+  margin-top:12px;
+  background:#151c23;
+  color:#9da8ae;
+  border:1px solid #303c46;
+  padding:13px 14px;
+  font:14px/1.45 Arial,Helvetica,sans-serif;
+}
+article{
+  background:var(--card);
+  color:var(--ink);
+  border:1px solid #bdb29e;
+  box-shadow:0 20px 44px rgba(0,0,0,.26);
+  padding:30px 34px 38px;
+}
+.section + .section{margin-top:34px}
+.section h2{
+  margin:0 0 12px;
+  color:#162631;
+  font-size:34px;
+  border-bottom:2px solid #b57f31;
+  padding-bottom:8px;
+}
+.section h3{
+  margin:24px 0 10px;
+  color:#26353c;
+  font-size:26px;
+}
+.lead{
+  font-size:22px;
+  line-height:1.55;
+  color:#35444a;
+}
+p{font-size:20px;line-height:1.72;margin:16px 0}
+.quick{display:flex;gap:8px;flex-wrap:wrap}
+.quick span{
+  background:#ddd4c5;
+  color:#394950;
+  padding:6px 10px;
+  border-radius:999px;
+  font:700 11px Arial,Helvetica,sans-serif;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.figure{margin:22px 0}
+.figure img{
+  width:100%;
+  height:auto;
+  display:block;
+  border:1px solid #b7ab96;
+  background:#ddd6c8;
+}
+.caption{
+  font:14px/1.55 Arial,Helvetica,sans-serif;
+  color:#5c6568;
+  margin-top:8px;
+}
+.imgfallback{
+  display:none;
+  border:1px dashed #ae9f85;
+  background:#f7f1e4;
+  color:#6f695f;
+  padding:16px;
+  font:14px/1.5 Arial,Helvetica,sans-serif;
+}
+.callout{
+  margin:22px 0;
+  padding:16px 18px;
+  border-left:5px solid;
+  background:#faf7ef;
+}
+.callout p{margin:10px 0 0;font-size:19px}
+.label{
+  font:700 11px Arial,Helvetica,sans-serif;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+.confirmed{border-color:var(--green);background:var(--green-soft)}
+.confirmed .label{color:var(--green)}
+.open{border-color:var(--amber);background:var(--amber-soft)}
+.open .label{color:var(--amber)}
+.pull{
+  margin:22px 0;
+  padding:16px 18px;
+  background:#f6efe2;
+  border:1px solid #d9cab1;
+  color:#35444a;
+  font-size:23px;
+  line-height:1.5;
+}
+footer{
+  margin-top:34px;
+  border-top:1px solid #28343d;
+  color:#7f8b92;
+  background:#070a0d;
+}
+.footer-inner{
+  width:min(1120px,calc(100% - 32px));
+  margin:0 auto;
+  padding:20px 0 26px;
+  font:14px/1.55 Arial,Helvetica,sans-serif;
+}
+.footer-inner strong{color:#d9dfe2}
+@media(max-width:980px){
+  .marquee-wrap{grid-template-columns:1fr}
+  .game-snapshot{grid-template-columns:1fr 1fr}
+  .snapshot-cell{border-bottom:1px solid var(--line)}
+  .snapshot-cell:nth-child(2),
+  .snapshot-cell:nth-child(4){border-right:0}
+  .snapshot-cell:nth-child(5){grid-column:1 / -1;border-bottom:0}
+  .shell{grid-template-columns:1fr}
+  .sidebar .toc{position:static}
+}
+@media(max-width:600px){
+  .wrap,.page,.footer-inner{width:min(calc(100% - 20px),1120px)}
+  .hero{padding-bottom:22px}
+  .deck{font-size:18px}
+  article{padding:20px 16px 26px}
+  .section h2{font-size:28px}
+  .section h3{font-size:23px}
+  p,.lead{font-size:18px}
+  .game-snapshot{grid-template-columns:1fr}
+  .snapshot-cell{border-right:0 !important;border-bottom:1px solid var(--line)}
+  .snapshot-cell:last-child{border-bottom:0}
+  .marquee-wrap{padding:18px}
+}
+
+.footer-inner.footer-row{display:flex;align-items:flex-end;justify-content:space-between;gap:22px}
+.site-counter{flex:0 0 auto;text-align:right;font:800 9px Arial,Helvetica,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#748089}
+.site-counter .counter-label{margin-bottom:5px}
+.site-counter img{display:block;margin-left:auto;border:1px solid #303944;box-shadow:0 4px 12px rgba(0,0,0,.28)}
+@media(max-width:620px){
+  .footer-inner.footer-row{align-items:flex-start;flex-direction:column}
+  .site-counter{text-align:left}
+  .site-counter img{margin-left:0}
+}
+
+
+
+/* Reader-facing source and table containment */
+article a, .source-list a, .footnotes a { overflow-wrap:anywhere; }
+.table-scroll {max-width:100%;overflow-x:auto;}
+.table-scroll:focus-visible {outline:2px solid #d7b56d;outline-offset:3px;}
+
+article{min-width:0}article a{color:#79511c}h2{overflow-wrap:anywhere}.technical{background:#dceaf0;border:1px solid #95b0bf;border-radius:14px;padding:20px}.technical li{font:16px/1.65 Arial,sans-serif}.archive-figure{margin:26px auto;max-width:100%;padding:10px;background:#faf6ed;border:1px solid #bbae96}.enlarge{padding:0;border:0;background:transparent;display:block;margin:auto;max-width:100%;cursor:zoom-in}.archive-figure img{display:block;max-width:100%;width:auto;height:auto;max-height:none;margin:auto}.archive-figure.pixel img{width:512px;image-rendering:pixelated}.archive-figure.pixel{max-width:536px}figcaption{font:13px/1.6 Arial,sans-serif;color:#515c61;margin:10px 2px}figcaption span{font-weight:bold}.translation{padding:12px;border-left:3px solid #ae7c34;background:#ede4d4}.translation strong{font:700 11px Arial,sans-serif;color:#79571f;text-transform:uppercase}.translation p{font:14px/1.6 Arial,sans-serif;margin:7px 0}.section{margin-bottom:38px}li{font-size:18px;line-height:1.65}.sources{overflow-wrap:anywhere}.sources p,.sources li{font:14px/1.65 Arial,sans-serif}.sources h3{font-size:23px}details{margin:22px 0;padding:14px;background:#f8f1e5;border:1px solid #c8bba1}summary{cursor:pointer;font:700 16px/1.5 Arial,sans-serif}.rights{font:12px/1.65 Arial,sans-serif}.supplement img{max-width:100%}.image-dialog{width:min(96vw,1400px);max-width:96vw;max-height:95vh;background:#101820;color:white;border:1px solid #ab8040;padding:14px}.image-dialog::backdrop{background:#000d}.image-dialog img{display:block;max-width:100%;height:auto;margin:auto}.image-dialog button{position:sticky;top:0;float:right;background:#f0c57e;border:0;padding:12px;cursor:pointer}.image-dialog p{font:14px Arial,sans-serif}a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #ba802f;outline-offset:4px}.top-return{text-align:center;margin:18px 0}.hero .deck{max-width:850px}.toc{max-height:none}.sidebar{min-width:0}.source-table{overflow:auto}table{border-collapse:collapse;max-width:100%}td,th{border:1px solid #c8beab;padding:8px;font:13px/1.5 Arial,sans-serif}@media(max-width:600px){.archive-figure.pixel img{width:256px}.technical{padding:14px}.section h2{font-size:27px}.topline{font-size:9px}.image-dialog{padding:8px}.page{width:calc(100% - 16px)}}
+</style><meta name="description" content="A detailed history of Meadows’ Cobra Gunship, its discrete-logic hardware, gameplay and preservation evidence.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://arcadesideb.com/cobra-gunship.html">
+<meta property="og:title" content="Cobra Gunship | Arcade Side B">
+<meta property="og:description" content="A detailed history of Meadows’ Cobra Gunship, its discrete-logic hardware, gameplay and preservation evidence.">
+<meta property="og:url" content="https://arcadesideb.com/cobra-gunship.html">
+</head><body><header class="mast"><div class="wrap"><div class="topline"><span>Arcade history · Research · Preservation</span><span>A living archive of arcade history</span></div><div class="top-return"><a class="backhome" href="https://arcadesideb.com/#games" target="_parent">← Back to Games</a></div><div class="hero"><div class="crumb"><a href="https://arcadesideb.com/" target="_parent">Arcade Side B</a> › Games › Cobra Gunship</div><h1>Cobra Gunship</h1><p class="deck">Meadows Games, 1976 — a cockpit illusion built from discrete logic, physical overlays, and an ambitious flight yoke.</p><div class="meta">Living research · Research checked September 12, 2026 · Page assembled September 26, 2026</div></div></div></header><main class="page"><div class="shell"><aside class="sidebar"><nav aria-label="Article contents" class="toc"><div class="toc-title">Inside the article</div><a href="#meadows-games-1976">Meadows Games, 1976</a><a href="#a-cockpit-in-the-arcade">A Cockpit In The Arcade</a><a href="#the-battlefield">The Battlefield</a><a href="#the-cabinet-was-part-of-the-picture">The Cabinet Was Part Of The Picture</a><a href="#flying-within-the-limits">Flying Within The Limits</a><a href="#score-makes-the-war-faster">Score Makes The War Faster</a><a href="#the-mystery-of-the-misses">The Mystery Of The Misses</a><a href="#one-pilot-at-a-time">One Pilot At A Time</a><a href="#sound-in-a-black-and-white-cockpit">Sound In A Black-And-White Cockpit</a><a href="#hints-from-the-arcade">Hints From The Arcade</a><a href="#a-game-without-a-cpu">A Game Without A Cpu</a><a href="#mame-preserves-the-pieces-not-the-gameplay">Mame Preserves The Pieces, Not The Gameplay</a><a href="#survivors-and-the-view-from-2019">Survivors And The View From 2019</a><a href="#who-actually-developed-cobra-gunship">Who Actually Developed Cobra Gunship?</a><a href="#not-a-flop-just-because-it-is-rare">Not A Flop Just Because It Is Rare</a><a href="#collector-s-note">Collector'S Note</a><a href="#research-note-the-questions-we-are-leaving-open">Research Note: The Questions We Are Leaving Open</a><a href="#why-cobra-gunship-matters">Why Cobra Gunship Matters</a></nav></aside><article><section class="section" id="meadows-games-1976"><h2 data-master-heading="">Meadows Games, 1976</h2><div data-master-text=""><h3>Website Snapshot</h3>
+<p><em>Cobra Gunship</em> is one of those machines that makes 1976 look more adventurous than the usual history-book version of early video games. Meadows Games built a first-person gunship combat machine around a dedicated flight yoke, a recessed black-and-white display, physical cockpit overlays, scaling targets, a banking horizon, sound effects, and a cabinet intended to make the player feel as if he were looking through an aircraft instrument panel rather than standing at an ordinary television game. Even more unusually, it accomplished this without a conventional microprocessor: the game belongs to the late discrete-logic era, with TTL circuitry doing the work later games would hand to software.</p>
+<p>Today <em>Cobra Gunship</em> is extremely difficult to experience properly. Original cabinets are scarce, MAME preserves its ROM/PROM data but does not emulate the TTL circuitry into a playable game, and several important operating documents remain outside easy public access. Yet enough factory material, period trade reporting, preserved hardware, ROM/PROM data, and authentic survivor footage remain to reconstruct a surprisingly rich picture of the game—and to correct a long-repeated design credit along the way.</p>
+<hr/></div><figure class="archive-figure"><button aria-label="Enlarge Meadows Games’ original 1976 Cobra Gunship flyer front. Preserved by the Arcade Flyer Archive; archive contributor: Dphower." class="enlarge" type="button"><img alt="Meadows Games’ original 1976 Cobra Gunship flyer front. Preserved by the Arcade Flyer Archive; archive contributor: Dphower." data-original="flyer-front.jpg" loading="lazy" src="assets/articles/6b9ad1aa5dbacb63b946ac4c2f3eec109442fedb.jpg"/></button><figcaption>Meadows Games’ original 1976 Cobra Gunship flyer front. Preserved by the Arcade Flyer Archive; archive contributor: Dphower. Click image to enlarge.<a href="https://flyers.arcade-museum.com/videogames/show/1709" rel="noopener" target="_blank"> Source</a></figcaption></figure></section><section class="section technical"><h2>Technical snapshot</h2><ul><li>Meadows Games · 1976 · Model CG-1</li><li>Dedicated upright · one or two players, sequential</li><li>Black-and-white raster CRT with physical cockpit overlays</li><li>Specialized flight yoke with built-in firing control</li><li>Discrete TTL circuitry; no conventional CPU</li><li>Factory dimensions: approximately 66 × 28 × 33 inches (H × W × D)</li><li>MAME preservation status as checked September 12, 2026: not working, no emulated sound</li></ul></section><section class="section" id="a-cockpit-in-the-arcade"><h2 data-master-heading="">A COCKPIT IN THE ARCADE</h2><div data-master-text=""><p>There are arcade games that matter because they sold in enormous numbers, introduced famous characters, or established genres. <em>Cobra Gunship</em> matters for a different reason. It looks like a machine from a slightly stranger branch of video-game history, one in which the arcade industry was already reaching toward simulation while much of its technology still belonged to the age of <em>Pong</em>.</p>
+<p>Released by Meadows Games in 1976, with July the safest documented introduction period, <em>Cobra Gunship</em> was an ambitious attempt to put the player behind the controls of an attack aircraft. It was not merely a shooting game decorated with military artwork. Meadows built the cabinet, controls and display around the sensation of piloting.</p>
+<p>The player faced a deeply recessed black-and-white monitor and took hold of the machine's defining feature: a purpose-built flight yoke. Pushing and pulling controlled climb and dive, while turning the yoke banked the aircraft. The firing control was built into the yoke, so aiming, maneuvering and shooting remained part of the same physical action. Meadows also promoted the control system's magnetic reed switches—sealed switching devices intended to reduce the mechanical contact problems an operator might otherwise have to service.</p>
+<p>That specialized control mattered. Joysticks were becoming familiar by 1976, but Meadows did not want <em>Cobra Gunship</em> to feel like another abstract video game being steered around a screen. The player was supposed to fly it.</p>
+<p>The cabinet reinforced the idea before a coin was inserted. Meadows advertised dimensions of approximately 66 inches high, 28 inches wide and 33 inches deep. The upper monitor enclosure projected outward and surrounded the display, visually isolating the battlefield from the room around it. The control area sat beneath it like a compact instrument station. It was not a full sit-down simulator, but it borrowed the language of one.</p></div></section><section class="section" id="the-battlefield"><h2 data-master-heading="">THE BATTLEFIELD</h2><div data-master-text=""><p>The basic objective is easy to understand: maneuver the gunship, bring enemy targets into the sight, and destroy them.</p>
+<p>The presentation was unusually ambitious for its time. Meadows identified jeeps, tanks, half-tracks, helicopter transports and enemy gunships among the targets. Factory advertising describes distant targets beginning as specks and increasing in size as the player closes on them. The horizon reacts as the aircraft climbs, dives and banks. Together those effects produce an impression of depth and forward movement that would have looked striking in a mid-1970s arcade.</p>
+<p>This is important historically, but it should not be exaggerated. <em>Cobra Gunship</em> has sometimes been mentioned in discussions of extremely early first-person scrolling games. The surviving evidence proves perspective effects, changing target scale and a responsive horizon. It does not yet prove exactly how the original video circuitry created all movement or that the machine meets a rigorous technical definition of scrolling. Nor does it justify declaring <em>Cobra Gunship</em> the first of anything without a separate comparison against other early first-person games such as Kee/Atari's <em>Pursuit</em> and Taito's <em>Interceptor</em>.</p>
+<p>The game is impressive enough without manufacturing a record for it.</p></div><figure class="archive-figure"><button aria-label="Enlarge The matching Meadows flyer reverse illustrates the flight controls, targets, scoring, and cabinet access." class="enlarge" type="button"><img alt="The matching Meadows flyer reverse illustrates the flight controls, targets, scoring, and cabinet access." data-original="flyer-back.jpg" loading="lazy" src="assets/articles/274cba6b99134ee21d189d4544dd94b569ecc1f1.jpg"/></button><figcaption>The matching Meadows flyer reverse illustrates the flight controls, targets, scoring, and cabinet access. Click image to enlarge.<a href="https://flyers.arcade-museum.com/videogames/show/1709" rel="noopener" target="_blank"> Source</a></figcaption></figure></section><section class="section" id="the-cabinet-was-part-of-the-picture"><h2 data-master-heading="">THE CABINET WAS PART OF THE PICTURE</h2><div data-master-text=""><p>A raw video signal does not completely reproduce what a <em>Cobra Gunship</em> player saw.</p>
+<p>Surviving hardware and authentic restoration footage show that the cabinet itself supplied part of the visual system. A physical gunsight/crosshair was applied at the display rather than simply generated as another electronic object. Survivor reports also document transparent labels and indicator material around the monitor, including GAME OVER, ONE PLAYER and TWO PLAYER markings, along with a red CRASH lens on at least one surviving cabinet.</p>
+<p>That combination of electronic video and physical presentation was entirely at home in the early arcade industry. Designers routinely mixed television imagery with overlays, artwork, lamps, mirrors and other cabinet effects when the electronics alone could not economically provide the complete illusion.</p>
+<p>In <em>Cobra Gunship</em>, the technique made the screen feel more like something viewed through a cockpit than an exposed black-and-white television.</p>
+<p>Period Meadows advertising even called attention to cabinet serviceability. The upper display assembly could be opened to give an operator access to the television monitor and internal components. This was still coin-operated equipment, after all: a convincing fantasy on the front side had to remain a maintainable business machine from the back.</p></div><figure class="archive-figure"><button aria-label="Enlarge Surviving Cobra Gunship bezel and instrument artwork. Photograph preserved by Museum of the Game." class="enlarge" type="button"><img alt="Surviving Cobra Gunship bezel and instrument artwork. Photograph preserved by Museum of the Game." data-original="bezel.jpg" loading="lazy" src="assets/articles/407b9fb75cb5c7228b57bf1aee4c070c4b85f938.jpg"/></button><figcaption>Surviving Cobra Gunship bezel and instrument artwork. Photograph preserved by Museum of the Game. Click image to enlarge.<a href="https://www.arcade-museum.com/images-game/15/cobra-gunship-15733.jpg" rel="noopener" target="_blank"> Source</a></figcaption></figure></section><section class="section" id="flying-within-the-limits"><h2 data-master-heading="">FLYING WITHIN THE LIMITS</h2><div data-master-text=""><p>The yoke does more than move a gunsight. The aircraft has flight limits.</p>
+<p>Period documentation says that climbing too high or diving too low can trigger a CRASH condition. The important confirmed rule is that a crash carries no scoring penalty. Contemporary descriptions characterize CRASH as a momentary indication, while surviving physical hardware includes a red CRASH lens. Exactly how the indicator, overlay and video circuitry interact is not completely documented in the public material, so the finished profile should not pretend that every detail of the effect has been reconstructed.</p>
+<p>The precise recovery sequence after a crash also remains unresolved. It is not yet safe to state whether the game pauses, re-centers the aircraft, resets some target state or simply resumes after the warning. What can be said confidently is that the player can exceed the permitted flight envelope, the machine announces the crash, and the score is not reduced.</p>
+<p>That turns aggressive maneuvering into a small risk-management problem. The player wants to line up targets quickly without simply throwing the aircraft against its limits.</p></div></section><section class="section" id="score-makes-the-war-faster"><h2 data-master-heading="">SCORE MAKES THE WAR FASTER</h2><div data-master-text=""><p>One of the clearest surviving gameplay rules is <em>Cobra Gunship's</em> score-based difficulty curve.</p>
+<p>Target speed increases when the player reaches 250 points. It increases again at 500, 750 and 1,000 points.</p>
+<p>That gives the score a direct effect on play. Success does not merely produce a larger number; it makes the battlefield harder to control. A player who survives long enough to accumulate a strong score gets less time to acquire, track and engage targets.</p>
+<p>The individual point values for the different vehicles have not been recovered with enough confidence to publish. Authentic survivor footage includes an owner reporting that he reached 70 points during a demonstration. That is useful evidence that the scoring system was operating on the surviving machine, but it is only a total score. It does not mean that any specific target was worth 70 points.</p>
+<p>This is one of several places where restraint matters. A neat scoring table would be nice to print, but an invented one would make the profile worse, not better.</p></div></section><section class="section" id="the-mystery-of-the-misses"><h2 data-master-heading="">THE MYSTERY OF THE MISSES</h2><div data-master-text=""><p>The most interesting unresolved gameplay question is something an arcade operator normally needed to understand immediately: what ends the game?</p>
+<p>Contemporary <em>Play Meter</em> coverage from July 1976 describes game length in terms of an operator-adjustable number of misses. That article presents the misses setting as a normal operating feature of the machine and describes selectable values rather than a fixed timed session.</p>
+<p>Surviving Meadows factory paperwork complicates the story dramatically.</p>
+<p>On an early information sheet, misses-related setting material has been visibly crossed out and replaced by the handwritten notation <strong>2.2 MINUTES</strong>. Nearby text still contains older references to misses. The document looks less like a clean final specification than paperwork caught while the rules were changing.</p>
+<p>This is unusually valuable historical evidence precisely because it is messy. Rather than two modern websites disagreeing about an old game, we appear to have contemporary documentation preserving two rule states close to the game's release.</p>
+<p>What we cannot yet determine is the chronology of the change in production. Meadows may have converted the game from misses-based play to a fixed 2.2-minute game before most cabinets shipped. Early and later configurations may both have reached operators. The handwritten change may represent an engineering or field revision with narrower distribution. The surviving public evidence does not settle it.</p>
+<p>Even the exact definition of a MISS remains uncertain. It should not automatically be interpreted as every fired shot that failed to hit a target; the complete final manual's Game Sequence and Adjustments sections would be much stronger evidence than guesswork from ordinary shooter conventions.</p>
+<p>For now the contradiction belongs in the history rather than being edited out of it.</p></div><figure class="archive-figure"><button aria-label="Enlarge Meadows information sheet, including the handwritten 2.2 MINUTES revision. The faint original scan is retained without reconstruction." class="enlarge" type="button"><img alt="Meadows information sheet, including the handwritten 2.2 MINUTES revision. The faint original scan is retained without reconstruction." data-original="factory-1.jpg" loading="lazy" src="assets/articles/df7834f884f022f40dbce9d9af60781ee41fca0f.jpg"/></button><figcaption>Meadows information sheet, including the handwritten 2.2 MINUTES revision. The faint original scan is retained without reconstruction. Click image to enlarge.<a href="https://www.arcade-museum.com/manuals-videogames/C/Cobra-Gunship-Wiring-Diagram.pdf" rel="noopener" target="_blank"> Source</a></figcaption></figure><figure class="archive-figure"><button aria-label="Enlarge Play Meter, July 1976, page 48: contemporary Cobra Gunship coverage alongside other industry news. Preserved by the International Arcade Museum." class="enlarge" type="button"><img alt="Play Meter, July 1976, page 48: contemporary Cobra Gunship coverage alongside other industry news. Preserved by the International Arcade Museum." data-original="playmeter-1.jpg" loading="lazy" src="assets/articles/f1610d78e1db1b2e092aeaae7d8cef21e200e9f2.jpg"/></button><figcaption>Play Meter, July 1976, page 48: contemporary Cobra Gunship coverage alongside other industry news. Preserved by the International Arcade Museum. Click image to enlarge.<a href="https://elibrary.arcade-museum.com/magazines/pm/PlayMeter-1976-07/PlayMeter-1976-07-048.pdf" rel="noopener" target="_blank"> Source</a></figcaption></figure></section><section class="section" id="one-pilot-at-a-time"><h2 data-master-heading="">ONE PILOT AT A TIME</h2><div data-master-text=""><p><em>Cobra Gunship</em> supports one or two players, but it is not a two-person cooperative aircraft.</p>
+<p>Two-player operation is sequential. Players take turns using the same cockpit and controls, competing through their scores. The arrangement fits the physical design: everything about the machine is centered on one yoke and one pilot's view.</p>
+<p>Meadows' own flyer describes the previous player's score being flashed so the next player knows what he has to beat. It is a small detail, but it reinforces how the cabinet turned a single-player simulator idea into an arcade competition without redesigning the controls for two simultaneous pilots.</p></div></section><section class="section" id="sound-in-a-black-and-white-cockpit"><h2 data-master-heading="">SOUND IN A BLACK-AND-WHITE COCKPIT</h2><div data-master-text=""><p><em>Cobra Gunship</em> was not silent. Meadows advertised realistic graphics and sound effects, and contemporary reporting specifically mentions sound accompanying flight action such as climbing and diving. Early factory service material also identifies a separate sound board.</p>
+<p>The exact catalog of sound effects has not been documented well enough in the surviving public sources to write a detailed audio breakdown. That uncertainty matters because current MAME does not emulate the machine into a working audiovisual game. The appropriate conclusion is simply that sound was part of the original cockpit presentation, even though a modern emulator cannot yet demonstrate it accurately for us.</p></div></section><section class="section" id="hints-from-the-arcade"><h2 data-master-heading="">HINTS FROM THE ARCADE</h2><div data-master-text=""><p>Detailed high-level strategy is difficult to reconstruct for a game that almost nobody can presently play under known-correct conditions, but the confirmed rules still suggest useful principles.</p>
+<p>Smooth yoke movement is likely more valuable than constant wild maneuvering. Climb and dive limits are real, and crossing them can produce a crash. Positioning the aircraft and aiming should also be thought of as one action: Meadows designed the control so the player could maneuver and fire without shifting to a separate panel button.</p>
+<p>Target acquisition becomes increasingly important as the score rises. The known speed jumps at 250, 500, 750 and 1,000 points mean that comfortable early-game habits become less forgiving as the player succeeds.</p>
+<p>Beyond that, target priorities and score-maximizing tactics should remain open until a fully documented survivor or accurate circuit reconstruction can be tested. <em>Cobra Gunship</em> does not need imaginary secret techniques added fifty years later.</p></div></section><section class="section" id="a-game-without-a-cpu"><h2 data-master-heading="">A GAME WITHOUT A CPU</h2><div data-master-text=""><p>The electronics are one of the most fascinating things about <em>Cobra Gunship</em>.</p>
+<p>There is no conventional microprocessor executing a game program. The machine belongs to the discrete TTL era. Networks of logic devices, counters, timing components and related circuitry collectively perform jobs that later arcade boards would assign to software.</p>
+<p><em>Cobra Gunship</em> does contain ROM and PROM devices, and eleven preserved devices are cataloged in the current MAME set. But calling them ordinary program ROMs would be misleading. The surrounding hardware circuit is effectively the program; the ROMs and PROMs provide stored patterns, lookup information and other data used by that circuitry.</p>
+<p>That distinction changes how the game has to be preserved and reverse-engineered. With a CPU-driven title, program code can often reveal scoring rules, timers, object behavior and state transitions. Here, a crucial part of the behavior exists in the physical connectivity among components. Dumped ROMs are valuable pieces of the machine, but they are not the whole machine.</p>
+<p>Targeted examination of the preserved data found obvious internal structure. Several of the 512-byte devices contain repeated or closely related patterns, while the small 32-byte PROMs contain deliberate compact table-like data. One device, <code>cobra.m6</code>, is particularly regular and geometric. Those observations are technically interesting, but they do not prove exact circuit roles. In particular, <code>m6</code> should not be labeled the “horizon ROM” without schematics or circuit tracing that demonstrates the connection.</p>
+<p>Naively drawing the ROM contents as raster graphics also produces strange fragmented patterns. That has helped generate past concern that the dumps might be corrupt. The targeted audit found no simple smoking-gun corruption signature, and unknown physical address/output mapping provides an entirely plausible explanation for graphics that look wrong when treated as ordinary linear bitmap data.</p>
+<p>The responsible position is therefore not “the dumps are bad.” It is “the circuitry needed to interpret them correctly is still incompletely reconstructed.”</p></div></section><section class="section" id="mame-preserves-the-pieces-not-the-gameplay"><h2 data-master-heading="">MAME PRESERVES THE PIECES, NOT THE GAMEPLAY</h2><div data-master-text=""><p><em>Cobra Gunship</em> is cataloged in MAME under the short name <code>cgunship</code>, but the presence of an entry should not be mistaken for playable emulation.</p>
+<p>Current official MAME source preserves the known ROM/PROM inventory, while the actual Meadows TTL netlist remains essentially a placeholder. The source itself warns that its timing values were copied from <em>Pong</em> and are not accurate for this driver. <em>Cobra Gunship</em> remains flagged <code>MACHINE_NO_SOUND | MACHINE_NOT_WORKING</code>.</p>
+<p>In plain English: MAME knows the machine exists and preserves important digital components from it, but it does not currently reproduce the original game circuitry as a functioning game.</p>
+<p>That makes <em>Cobra Gunship</em> a particularly good example of the limits of ROM preservation. Saving the contents of every programmable device is necessary, but on a CPU-less TTL machine it may still be insufficient to bring the game back digitally.</p>
+<p>Full circuit schematics are known to survive in collector hands. A future preservation effort that combines those schematics with original hardware measurements and the preserved ROM/PROM data could potentially move the machine from cataloged artifact to genuine emulation.</p></div></section><section class="section" id="survivors-and-the-view-from-2019"><h2 data-master-heading="">SURVIVORS AND THE VIEW FROM 2019</h2><div data-master-text=""><p>Authentic modern footage provides a rare bridge between the paperwork and the physical machine.</p>
+<p>The Reality Bin's 2019 <em>Cobra Gunship Project</em> videos document an original 1976 Meadows cabinet rather than a software recreation. The first video establishes the survivor and shows the physical construction, including an overlay that had partly come loose during transportation. The owner specifically explains that the crosshair is on the monitor/display assembly rather than being generated as part of the raw picture.</p>
+<p>The machine was working imperfectly, and filming a black-and-white CRT introduces severe strobing and exposure problems. That makes the videos poor evidence for fine timing or subtle target behavior. They are nevertheless extremely valuable for understanding how much of the player's experience belonged to the cabinet rather than the electronic video signal alone.</p>
+<p>Older collector documentation adds several hardware details. One 2005 survivor was reported with a 19-inch Motorola black-and-white monitor, model XM501-10 / chassis 19VP111, and an 8.079 MHz crystal on the game board. Those are authentic survivor observations, but without complete factory schematics they should not automatically be treated as universal specifications for every production cabinet.</p>
+<p>Collector discussions also describe more than one board configuration, including a variant with additional jumpers or daughterboard hardware. It is tempting to connect such differences to the documented rules revision, but no evidence presently proves that relationship. “Different board revision exists” is evidence. “The daughterboard created 2.2-minute play” is still a hypothesis.</p></div></section><section class="section" id="who-actually-developed-cobra-gunship"><h2 data-master-heading="">WHO ACTUALLY DEVELOPED COBRA GUNSHIP?</h2><div data-master-text=""><p>One of the most useful results of this research is the correction of a widely repeated creator credit.</p>
+<p>Atari co-founder Ted Dabney worked with Meadows and has often been identified in modern databases and histories as the designer of <em>Cobra Gunship</em>. Dabney himself contradicted that claim.</p>
+<p>During his Smithsonian oral-history interview, he was specifically told that he had received credit for <em>Cobra Gunship</em> and asked whether he remembered developing it. Dabney said he had not developed the game. He remembered helping the actual developer extensively but could no longer remember the man's name.</p>
+<p>A much stronger candidate appears in the professional history of C.W. “Bill” Hicks. Hicks lists <em>Cobra Gunship</em> among his Meadows black-and-white arcade projects and describes his role for that group as sole engineer/programmer responsible for hardware and software designs.</p>
+<p>The best current attribution is therefore careful but meaningful: <strong>C.W. “Bill” Hicks is strongly evidenced as the principal engineer/developer of <em>Cobra Gunship</em>. Ted Dabney substantially assisted the project but explicitly denied being its developer.</strong></p>
+<p>A contemporary Meadows document independently naming Hicks has not yet surfaced. That missing period corroboration is worth acknowledging, but it does not justify continuing to repeat a Dabney credit that Dabney himself rejected.</p></div></section><section class="section" id="not-a-flop-just-because-it-is-rare"><h2 data-master-heading="">NOT A FLOP JUST BECAUSE IT IS RARE</h2><div data-master-text=""><p>Very few <em>Cobra Gunship</em> cabinets are encountered today, but present-day rarity should not be rewritten into a story of immediate commercial failure.</p>
+<p>Period trade reporting tells a different story. In September 1976, <em>Cash Box</em> described <em>Cobra Gunship</em> as a “big seller for Meadows.” Other contemporary distributor reports described strong interest and placed it among hot current products. The machine continued to appear in active-trade and distributor material into 1977 and 1978.</p>
+<p>Trade magazines naturally contained promotion and boosterism, so this is not proof of a giant production run. No trustworthy factory production quantity has been recovered. Nor has a reliable original 1976 factory selling price been established. Later distributor asking prices—such as $995 advertisements appearing well after introduction—are useful evidence that the machine remained in commercial circulation, but they should not be mislabeled as Meadows' launch MSRP.</p>
+<p>The safe conclusion is narrower and more interesting: <em>Cobra Gunship</em> drew real operator/distributor attention and appears to have sold strongly enough to be discussed positively in the trade. Its survival rate half a century later is a separate question.</p></div><figure class="archive-figure"><button aria-label="Enlarge Meadows’ operator advertisement promotes the cabinet, Day-Glo instrument panel, and profit features. Arcade Flyer Archive / TAFA Original." class="enlarge" type="button"><img alt="Meadows’ operator advertisement promotes the cabinet, Day-Glo instrument panel, and profit features. Arcade Flyer Archive / TAFA Original." data-original="operator-ad.jpg" loading="lazy" src="assets/articles/3796cdc0e83d5761d8f95113246c2d269691a81c.jpg"/></button><figcaption>Meadows’ operator advertisement promotes the cabinet, Day-Glo instrument panel, and profit features. Arcade Flyer Archive / TAFA Original. Click image to enlarge.<a href="https://flyers.arcade-museum.com/videogames/show/4158" rel="noopener" target="_blank"> Source</a></figcaption></figure></section><section class="section" id="collector-s-note"><h2 data-master-heading="">COLLECTOR'S NOTE</h2><div data-master-text=""><p>A surviving <em>Cobra Gunship</em> is more than a rare cabinet. It preserves a technological branch of arcade history that is unusually difficult to recreate once the original hardware disappears.</p>
+<p>The monitor, physical overlay and indicators, specialized yoke, sound circuitry, artwork and TTL logic board all contribute to the authentic experience. Replacing the display and reproducing only a rough video output would preserve only part of what Meadows built.</p>
+<p>Fortunately, the documentation trail is better than the machine's rarity might suggest. A final Meadows Model CG-1 operator manual is known to survive. A currently documented new-old-stock copy shows that its contents include sections titled <strong>Game Sequence</strong> and <strong>Adjustments</strong>—exactly the portions most likely to resolve the remaining questions about misses, timing and post-crash behavior. Andy Welburn's arcade manual collection also lists the Model CG-1 operator manual and notes that his copy does not include schematics.</p>
+<p>Full logic schematics are nevertheless known from separate collector holdings. Kurz-Kasch later supported <em>Cobra Gunship</em> with TF-650 diagnostic program card 220ABC, another sign that service information persisted after the game's commercial life.</p>
+<p>Those materials are not necessarily lost. They are scattered.</p>
+<p>That is an encouraging preservation problem. A clean scan of the final manual and complete schematics could answer several historical questions at once and, more importantly, give a circuit-level emulator far better evidence than blind interpretation of the ROM/PROM files.</p></div></section><section class="section" id="research-note-the-questions-we-are-leaving-open"><h2 data-master-heading="">RESEARCH NOTE: THE QUESTIONS WE ARE LEAVING OPEN</h2><div data-master-text=""><p>Several gaps remain intentionally visible because the evidence does not justify closing them.</p>
+<p>The production game-duration rule remains unresolved. July 1976 trade reporting describes operator-adjustable misses, while Meadows factory paperwork visibly changes the setting to 2.2 minutes. We do not know exactly when that revision occurred or which cabinets received which configuration.</p>
+<p>The exact definition of a MISS is unknown.</p>
+<p>Individual point values for the jeep, tank, half-track, helicopter transport and gunship targets have not been established reliably.</p>
+<p>The complete sequence after a CRASH is uncertain. No scoring penalty is confirmed, but the precise reset, pause or recovery behavior is not.</p>
+<p>A factory production total and original 1976 factory selling price remain unknown.</p>
+<p>C.W. Hicks has strong first-person professional evidence connecting him to the game as principal engineer/developer, but a recovered 1976 Meadows credit naming him has not been found.</p>
+<p>True technical scrolling has not been demonstrated, so no “first scrolling game” claim should be published.</p>
+<p>Full logic schematics and the final operator manual are known to survive but were not recovered in complete public form during this research project.</p>
+<p>These are not holes to disguise. They define the boundary between what survives and what we would merely like to know.</p></div></section><section class="section" id="why-cobra-gunship-matters"><h2 data-master-heading="">WHY COBRA GUNSHIP MATTERS</h2><div data-master-text=""><p><em>Cobra Gunship</em> did not create a franchise. It did not introduce a mascot. Meadows itself disappeared, the game became scarce, and modern emulation has not yet restored it to easy play.</p>
+<p>Yet the machine captures an important moment in arcade design.</p>
+<p>By 1976, designers were discovering that a video game did not have to present abstract objects on an exposed screen. A cabinet could try to place the player somewhere else. Specialized controls could reinforce the illusion. Electronic graphics, physical overlays, lamps, sound and artwork could function as one experience rather than as separate decorations.</p>
+<p><em>Cobra Gunship</em> pushed hard in that direction using technology descended directly from the earliest commercial video games.</p>
+<p>Its circuitry belongs to the discrete-logic era.</p>
+<p>Its ambitions point toward the simulator.</p>
+<p>That tension is what makes it fascinating.</p>
+<p>Stand in front of the original cabinet and the idea is immediate: grab the yoke, look through the gunsight, bank the aircraft, watch targets grow as they approach, fire, keep the gunship inside its flight limits, and try to stay ahead of a battlefield that becomes faster as the score climbs.</p>
+<p>For a few minutes in a 1976 arcade, Meadows was trying to make the television disappear and leave the player in the cockpit.</p>
+<p>Nearly fifty years later, enough evidence survives for us to see just how ambitious that was.</p></div></section><section class="section" id="survivor-videos"><h2>See a surviving machine</h2><p>The Reality Bin’s 2019 restoration footage shows an original cabinet. Its condition and CRT filming artifacts limit conclusions about precise gameplay behavior.</p><p><a href="https://www.youtube.com/watch?v=NlNq0AE6fLM" rel="noopener" target="_blank">Part 1 — the cabinet and project</a></p><p><a href="https://www.youtube.com/watch?v=DVk1fiomnrs" rel="noopener" target="_blank">Part 2 — demonstration</a></p></section><section class="section sources" id="source-notes"><h2>Sources &amp; preservation notes</h2><p>Research findings and emulator status reflect the September 12, 2026 handoff. The full evidence trail is retained below.</p><details><summary>Evidence and source register</summary><h1>Cobra Gunship (1976) — Evidence and Source Trail</h1>
+<p>This file is the sourcing companion to the citation-free publication master. It is intentionally more explicit than the public article. The hierarchy below favors Meadows factory material, contemporary trade coverage, first-person testimony, authentic surviving hardware, and current emulator source over later database summaries.</p>
+<h2>A. Primary / near-primary factory and period sources</h2>
+<h3>Meadows Cobra Gunship sales flyer — main two-page flyer</h3>
+<ul>
+<li>Archive page: <a href="https://flyers.arcade-museum.com/videogames/show/1709" rel="noopener" target="_blank">https://flyers.arcade-museum.com/videogames/show/1709</a></li>
+<li>Front image: <a href="https://flyers.arcade-museum.com/videogame-flyers/1/cobra-gunship-01709-01.jpg" rel="noopener" target="_blank">https://flyers.arcade-museum.com/videogame-flyers/1/cobra-gunship-01709-01.jpg</a></li>
+<li>Back image: <a href="https://flyers.arcade-museum.com/videogame-flyers/1/cobra-gunship-01709-02.jpg" rel="noopener" target="_blank">https://flyers.arcade-museum.com/videogame-flyers/1/cobra-gunship-01709-02.jpg</a></li>
+<li>Use: cabinet presentation, yoke/control description, magnetic reed switches, target types, target scaling/depth claims, operator access, one/two-player framing, cabinet dimensions, factory marketing language.</li>
+<li>Reliability: primary Meadows sales literature. Marketing claims should still be read as marketing, but physical/control specifications are high value.</li>
+</ul>
+<h3>Meadows alternate Cobra Gunship flyer / operator advertisement</h3>
+<ul>
+<li>Archive page: <a href="https://flyers.arcade-museum.com/videogames/show/4158" rel="noopener" target="_blank">https://flyers.arcade-museum.com/videogames/show/4158</a></li>
+<li>Use: corroborates one/two players, dual coin mechanism, realistic graphics/sound effects, operator-adjustable game time, Day-Glo instrument panel, warranty language, degree-of-difficulty scoring language.</li>
+<li>Reliability: primary Meadows promotional literature.</li>
+</ul>
+<h3>Meadows early information / wiring material</h3>
+<ul>
+<li>PDF: <a href="https://www.arcade-museum.com/manuals-videogames/C/Cobra-Gunship-Wiring-Diagram.pdf" rel="noopener" target="_blank">https://www.arcade-museum.com/manuals-videogames/C/Cobra-Gunship-Wiring-Diagram.pdf</a></li>
+<li>Use: crucial misses-versus-timer evidence; the misses setting is crossed out and replaced by handwritten <code>2.2 MINUTES</code>; confirms the score thresholds 250/500/750/1000; confirms CRASH rule with no score penalty; identifies cabinet/wiring and sound-board context.</li>
+<li>Reliability: primary factory/service evidence. The handwritten alteration is evidence of a revision state, not proof that every production cabinet used the altered rule.</li>
+</ul>
+<h3>Play Meter, July 1976</h3>
+<ul>
+<li>Direct article/page PDF used in research: <a href="https://elibrary.arcade-museum.com/magazines/pm/PlayMeter-1976-07/PlayMeter-1976-07-048.pdf" rel="noopener" target="_blank">https://elibrary.arcade-museum.com/magazines/pm/PlayMeter-1976-07/PlayMeter-1976-07-048.pdf</a></li>
+<li>Use: contemporary gameplay/operation description; misses-controlled game duration; climb/dive CRASH with no scoring penalty; score-based speed increases; sequential two-player play; period release context.</li>
+<li>Reliability: contemporary trade coverage, near-primary and especially valuable because it conflicts meaningfully with the altered factory sheet.</li>
+</ul>
+<h3>Cash Box, September 18, 1976</h3>
+<ul>
+<li>PDF: <a href="https://www.worldradiohistory.com/Archive-All-Music/Cash-Box/70s/1976/Cash-Box-1976-09-18.pdf" rel="noopener" target="_blank">https://www.worldradiohistory.com/Archive-All-Music/Cash-Box/70s/1976/Cash-Box-1976-09-18.pdf</a></li>
+<li>Research finding: California Clippings describes Cobra Gunship as a <code>big seller for Meadows</code>.</li>
+<li>Use: commercial reception. Treat as trade-press evidence, not a production count.</li>
+</ul>
+<h3>Cash Box, August 28, 1976</h3>
+<ul>
+<li>PDF: <a href="https://www.worldradiohistory.com/Archive-All-Music/Cash-Box/70s/1976/Cash-Box-1976-08-28.pdf" rel="noopener" target="_blank">https://www.worldradiohistory.com/Archive-All-Music/Cash-Box/70s/1976/Cash-Box-1976-08-28.pdf</a></li>
+<li>Research finding: the magazine's new-machine photographic lineup describes the July 3, 1976 Cobra Gunship introduction and highlights overlay graphics, yoke with built-in firing button, realistic targets and flight sounds.</li>
+<li>Use: release chronology and period feature corroboration.</li>
+</ul>
+<h3>Play Meter distributor listings, later trade circulation</h3>
+<ul>
+<li>December 1977 page: <a href="https://elibrary.arcade-museum.com/magazines/pm/PlayMeter-1977-12/PlayMeter-1977-12-008.pdf" rel="noopener" target="_blank">https://elibrary.arcade-museum.com/magazines/pm/PlayMeter-1977-12/PlayMeter-1977-12-008.pdf</a></li>
+<li>Research finding: used-market/distributor listing gives Cobra Gunship at $995.</li>
+<li>February 1978 trade listing was also located during research with a later $895 asking price.</li>
+<li>Use: proves continued commercial circulation. These are NOT Meadows launch MSRP figures.</li>
+</ul>
+<h2>B. Creator-credit evidence</h2>
+<h3>Ted Dabney — Smithsonian oral history</h3>
+<ul>
+<li>PDF: <a href="https://www.si.edu/media/NMAH/NMAH-AC1498_Transcript_TedDabney.pdf" rel="noopener" target="_blank">https://www.si.edu/media/NMAH/NMAH-AC1498_Transcript_TedDabney.pdf</a></li>
+<li>Critical passage: when specifically asked whether he developed Cobra Gunship, Dabney said he did not; he said he helped the actual developer extensively but could not remember his name.</li>
+<li>Use: directly overturns the common simple claim <code>Designed by Ted Dabney</code>.</li>
+<li>Reliability: first-person oral history from Dabney himself.</li>
+</ul>
+<h3>C.W. / Bill Hicks professional history — Dark Star Studios</h3>
+<ul>
+<li>Page: <a href="https://darkstarstudios.com/game.htm" rel="noopener" target="_blank">https://darkstarstudios.com/game.htm</a></li>
+<li>Research finding: Cobra Gunship appears among Hicks' Meadows B/W arcade projects; role listed as <code>Sole Engineer/Programmer</code> with <code>Hardware &amp; Software Designs</code> for the group.</li>
+<li>Use: strongest identified evidence for principal engineer/developer attribution.</li>
+<li>Qualification: no recovered 1976 Meadows document independently naming Hicks was found. Wording should remain <code>strongly evidenced</code>, not falsely absolute.</li>
+</ul>
+<h2>C. Current technical / preservation evidence</h2>
+<h3>Official MAME source — current as checked 2026-09-12</h3>
+<ul>
+<li>Source file: <a href="https://github.com/mamedev/mame/blob/master/src/mame/meadows/meadwttl.cpp" rel="noopener" target="_blank">https://github.com/mamedev/mame/blob/master/src/mame/meadows/meadwttl.cpp</a></li>
+<li>Driver facts verified directly from official repository:</li>
+<li><code>cgunship</code> is present.</li>
+<li>eleven ROM/PROM loads are cataloged.</li>
+<li>source comment says timing was copied from Pong and is not accurate for this driver.</li>
+<li>netlist schematic section is effectively a placeholder.</li>
+<li>current game flags are <code>MACHINE_NO_SOUND | MACHINE_NOT_WORKING</code>.</li>
+<li>Use: public explanation that MAME preserves identity/data but does not presently implement a playable Cobra Gunship.</li>
+<li>Correction preserved: an intermediate research-chat statement that current MAME used <code>MACHINE_IS_SKELETON</code> was checked and retracted. Do NOT restore it.</li>
+</ul>
+<h3>Dana-supplied cgunship.7z and targeted audit</h3>
+<ul>
+<li>Original user-supplied ROM/PROM archive is preserved in the prior continuity pack, not redistributed in this website handoff.</li>
+<li>Same-chat audit matched the 11 internal file names/SHA-1 values against current MAME.</li>
+<li>Diagnostic PNGs are included under technical_evidence/ for continuity.</li>
+<li>Use: establishes preserved data structure and supports the caution that naïve bitmap interpretation is not proof of bad dumps.</li>
+</ul>
+<h3>The Reality Bin — authentic survivor videos</h3>
+<ul>
+<li>Part 1: <a href="https://www.youtube.com/watch?v=NlNq0AE6fLM" rel="noopener" target="_blank">https://www.youtube.com/watch?v=NlNq0AE6fLM</a></li>
+<li>Part 2: <a href="https://www.youtube.com/watch?v=DVk1fiomnrs" rel="noopener" target="_blank">https://www.youtube.com/watch?v=DVk1fiomnrs</a></li>
+<li>Use: original 1976 survivor cabinet; physical overlay/crosshair evidence; cabinet construction; authentic but imperfect gameplay demonstration.</li>
+<li>Cautions: CRT filming artifacts and machine condition make fine timing/behavior conclusions unsafe. <code>70 points</code> in narration is a demonstrated total score only.</li>
+</ul>
+<h3>2005 survivor/restoration discussion</h3>
+<ul>
+<li>Public archive: <a href="https://forums.tomshardware.com/threads/1976-meadows-cobra-gunship.140867/" rel="noopener" target="_blank">https://forums.tomshardware.com/threads/1976-meadows-cobra-gunship.140867/</a></li>
+<li>Use: reports 8.079 MHz crystal, Motorola 19-inch B&amp;W monitor XM501-10 / chassis 19VP111, transparent monitor labels, red CRASH lens, and restoration details.</li>
+<li>Reliability: collector/survivor report, useful but not equivalent to a factory production specification.</li>
+</ul>
+<h3>2020 Cobra Gunship PCB variant discussion</h3>
+<ul>
+<li>Thread: <a href="https://forums.arcade-museum.com/threads/meadows-cobra-gunship-pcb-mystery.473591/" rel="noopener" target="_blank">https://forums.arcade-museum.com/threads/meadows-cobra-gunship-pcb-mystery.473591/</a></li>
+<li>Use: evidence for at least one unusual PCB variant/daughtercard/jumper configuration.</li>
+<li>Caution: no proof that this variant corresponds to the documented timing revision.</li>
+</ul>
+<h2>D. Documentation-survival evidence</h2>
+<h3>Andy Welburn manual collection</h3>
+<ul>
+<li><a href="https://www.andysarcade.net/personal/manuals.htm" rel="noopener" target="_blank">https://www.andysarcade.net/personal/manuals.htm</a></li>
+<li>Lists <code>Cobra Gunship | Meadows | Model CG-1 | Operators manual - no schems</code>.</li>
+<li>Use: confirms a final operator manual survives in a private/reference collection.</li>
+</ul>
+<h3>NOS Model CG-1 manual listing — current at research closeout</h3>
+<ul>
+<li><a href="https://www.ebay.com/itm/297068996322" rel="noopener" target="_blank">https://www.ebay.com/itm/297068996322</a></li>
+<li>Listing title: Meadows - Cobra Gunship - Model CG-1 Manual - NOS.</li>
+<li>Listing photographs showed a table of contents including Introduction, Warranty Information, Set Up, Game Sequence, Coin Acceptor, Adjustments, Static Harness, PCB Removal, Trouble Shooting, Illustrations, and Monitor Service Manual.</li>
+<li>Use: proves the final manual's Game Sequence and Adjustments sections exist and may resolve remaining rule questions.</li>
+<li>Caution: seller images/listing are modern commercial material and require normal permission/rights handling before publication.</li>
+</ul>
+<h3>Kurz-Kasch TF-650 diagnostic support</h3>
+<ul>
+<li>Index: <a href="https://www.flippers.com/kurzkasc.html" rel="noopener" target="_blank">https://www.flippers.com/kurzkasc.html</a></li>
+<li>Secondary corroborating index: <a href="https://hitecharcaderepair.com/repair/test-equipment-we-use/kurz-kasch-test-fixture/" rel="noopener" target="_blank">https://hitecharcaderepair.com/repair/test-equipment-we-use/kurz-kasch-test-fixture/</a></li>
+<li>Both align Cobra Gunship with TF-650 program card <code>220ABC</code>.</li>
+<li>Important correction: an OCR-derived <code>$85</code> association was withdrawn. Do not publish it.</li>
+</ul>
+<h2>E. Useful discovery/secondary sources — do not let these override primary evidence</h2>
+<ul>
+<li>Museum of the Game / International Arcade Museum Meadows company database:
+  <a href="https://www.arcade-museum.com/company/meadows-games" rel="noopener" target="_blank">https://www.arcade-museum.com/company/meadows-games</a></li>
+<li>Arcade History Cobra Gunship page:
+  <a href="https://www.arcade-history.com/?id=4288&amp;n=cobra-gunship&amp;page=detail" rel="noopener" target="_blank">https://www.arcade-history.com/?id=4288&amp;n=cobra-gunship&amp;page=detail</a></li>
+<li>Useful for discovery and basic identity.</li>
+<li>Contains the obsolete/simple Ted Dabney design credit and therefore demonstrates why database credits require checking.</li>
+<li>Golden Age Arcade Historian scrolling discussion:
+  <a href="https://allincolorforaquarter.blogspot.com/2013/04/what-was-first-coin-op-video-game-to.html" rel="noopener" target="_blank">https://allincolorforaquarter.blogspot.com/2013/04/what-was-first-coin-op-video-game-to.html</a></li>
+<li>Useful for identifying the scrolling question, not for proving it.</li>
+</ul>
+<h2>F. Evidence hierarchy for the website build</h2>
+<p>When sources conflict, use this order unless a specific reason dictates otherwise:
+1. Original Meadows factory/service documentation.
+2. Contemporary 1976 trade reporting and advertisements.
+3. Direct first-person testimony from an involved creator/engineer.
+4. Authentic surviving hardware and carefully documented survivor footage.
+5. Current official MAME source for emulator state and preserved ROM inventory.
+6. Collector/restoration reports.
+7. Later arcade databases and historical summaries.</p>
+<p>Do not let a secondary database flatten a conflict already preserved in primary evidence.</p></details><details><summary>Factory wiring diagram</summary><figure class="archive-figure"><button aria-label="Enlarge Original Meadows wiring diagram; faint scan preserved without invented detail." class="enlarge" type="button"><img alt="Original Meadows wiring diagram; faint scan preserved without invented detail." data-original="factory-2.jpg" loading="lazy" src="assets/articles/6c7e9fafa0278b4041cd1d19fde2ca9f7a07d7b0.jpg"/></button><figcaption>Original Meadows wiring diagram; faint scan preserved without invented detail. Click image to enlarge.<a href="https://www.arcade-museum.com/manuals-videogames/C/Cobra-Gunship-Wiring-Diagram.pdf" rel="noopener" target="_blank"> Source</a></figcaption></figure></details><details><summary>ROM/PROM diagnostic evidence — not gameplay</summary><p>This research visualization is a diagnostic interpretation of preserved data, not an authentic game screen, recovered sprite sheet, or working emulation.</p><figure class="archive-figure"><button aria-label="Enlarge Research contact sheet of ROM/PROM diagnostic layouts. Evidence only; not gameplay imagery." class="enlarge" type="button"><img alt="Research contact sheet of ROM/PROM diagnostic layouts. Evidence only; not gameplay imagery." data-original="contact_sheet.png" loading="lazy" src="assets/articles/11d64c425b9fbc601f38365120e668dc56d8e5b0.png"/></button><figcaption>Research contact sheet of ROM/PROM diagnostic layouts. Evidence only; not gameplay imagery. Click image to enlarge.</figcaption></figure></details></section><section class="section"><h2>Help keep the record open</h2><p>Have a final CG-1 manual, circuit schematics, cabinet photographs, or firsthand memories? <a href="mailto:arcadeobscura@gmail.com?subject=Arcade%20Side%20B%20-%20Cobra%20Gunship">Contribute information</a>. Submissions are reviewed before publication; contributors may be credited with permission or remain anonymous.</p><a class="backhome" href="https://arcadesideb.com/#games" target="_parent">← Back to Games</a></section></article></div></main><footer><div class="footer-inner"><strong>Rights &amp; Archival Material Notice</strong><p class="rights">Arcade Side B is a noncommercial historical research and preservation project. Some archival images, scans, publications, advertisements, artwork, screenshots, manuals, trademarks, and other materials presented or linked here may remain protected by copyright or other rights. Unless specifically stated otherwise, Arcade Side B does not claim ownership of third-party material and may not have a redistribution agreement with the applicable rights holder. Materials are presented in the interest of historical documentation, research, criticism, education, and preservation. Rights holders who have concerns about material appearing here are welcome to contact Arcade Side B to request attribution, correction, restriction, or removal.</p></div></footer><dialog class="image-dialog"><button class="close-image" type="button">Close ×</button><p></p><img alt=""/></dialog><script>const box=document.querySelector('.image-dialog');document.querySelectorAll('.enlarge').forEach(b=>b.addEventListener('click',()=>{const i=b.querySelector('img');if(window.parent!==window && window.parent.openArchiveImage){window.parent.openArchiveImage(i.src,i.alt);return;}box.querySelector('img').src=i.src;box.querySelector('img').alt=i.alt;box.querySelector('p').textContent=i.alt;box.showModal()}));box.querySelector('button').onclick=()=>box.close();box.addEventListener('click',e=>{if(e.target===box)box.close()});</script></body></html>
