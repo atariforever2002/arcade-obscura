@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>Elcon Industries | Arcade Side B</title>
+<style>
+:root{
+  --bg:#090d12;--paper:#eee7d8;--paper2:#f5efe3;--ink:#232b30;--muted:#667075;
+  --line:#c8beab;--darkline:#303b45;--gold:#c28a32;--gold2:#d8b36b;
+  --green:#557b63;--cyan:#6f99aa;--max:1180px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:
+  radial-gradient(circle at 82% 10%,rgba(111,153,170,.09),transparent 28%),
+  linear-gradient(rgba(255,255,255,.012) 1px,transparent 1px),#090d12;
+  background-size:auto,100% 4px,auto;color:#dce2e5;font-family:Georgia,"Times New Roman",serif;
+}
+a{color:#a96f21}
+.mast{border-bottom:4px solid var(--gold);background:linear-gradient(135deg,#0a0f14,#13202a)}
+.mast-inner{width:min(calc(100% - 32px),var(--max));margin:auto;padding:17px 0;display:flex;justify-content:space-between;gap:20px;align-items:center}
+.brand{font-size:26px;font-weight:700;color:#f0ece4}
+.motto{font:700 10px Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#9ca8af;text-align:right}
+.crumb,.hero,.rule,.shell{width:min(calc(100% - 32px),var(--max));margin-left:auto;margin-right:auto}
+.crumb{padding-top:18px;color:#93a0a8;font:700 11px Arial,sans-serif}
+.crumb a{color:#d4ad67;text-decoration:none}
+.hero{padding:30px 0 26px}
+.eyebrow{color:var(--gold2);font:800 10px Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase}
+.hero h1{margin:7px 0 10px;font-size:clamp(44px,7vw,78px);line-height:.95;color:#f0ece4}
+.deck{max-width:930px;color:#b9c4ca;font-size:20px;line-height:1.5;margin:0}
+.meta{display:flex;gap:12px;flex-wrap:wrap;margin-top:17px;color:#9aa6ad;font:700 11px Arial,sans-serif}
+.badge{padding:6px 9px;border:1px solid currentColor;border-radius:999px;text-transform:uppercase}
+.living{color:#78a6b8}
+.rule{height:1px;background:#29343e}
+.shell{display:grid;grid-template-columns:275px minmax(0,1fr);gap:22px;padding:26px 0 50px;align-items:start}
+.sidebar{position:sticky;top:10px}
+.toc{border:1px solid #34404b;background:#111820;max-height:82vh;overflow:auto}
+.toc-title{padding:13px 15px;color:#d8dfe2;font:800 11px Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase}
+.toc a{display:block;border-top:1px solid #29343e;padding:9px 13px;color:#aebbc2;text-decoration:none;font:13px/1.35 Arial,sans-serif}
+.toc a:hover{color:#f0c57e}
+.sidebar-note{margin-top:12px;border:1px solid #34404b;background:#111820;padding:13px;color:#94a0a7;font:13px/1.45 Arial,sans-serif}
+article{background:var(--paper);color:var(--ink);border:1px solid #b9ae9a;box-shadow:0 18px 42px rgba(0,0,0,.25);padding:26px 34px 40px;min-width:0}
+.backhome{display:inline-block;margin-bottom:18px;padding:8px 10px;border:1px solid #9e927e;color:#745322;text-decoration:none;font:800 10px Arial,sans-serif;text-transform:uppercase;letter-spacing:.08em}
+.company-identity{margin:0 0 28px;border:1px solid #b8ad98;background:linear-gradient(135deg,rgba(194,138,50,.08),transparent 48%),#f3eddf;overflow:hidden}
+.company-mark{padding:24px 26px 20px;border-bottom:1px solid var(--line);position:relative}
+.company-mark:after{content:"COMPANY PROFILE";position:absolute;right:22px;top:18px;color:#8c8272;font:700 9px Arial,sans-serif;letter-spacing:.16em}
+.legal{color:#746b5f;font:700 10px Arial,sans-serif;letter-spacing:.13em;text-transform:uppercase;margin-bottom:7px}
+.wordmark{font-size:clamp(34px,5vw,58px);line-height:.95;color:#122331}
+.wordmark span{display:block;margin-top:7px;color:#8a6429;font:700 13px Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase}
+.company-snapshot{display:grid;grid-template-columns:repeat(4,1fr)}
+.snapshot-cell{padding:17px 18px;border-right:1px solid var(--line)}
+.snapshot-cell:last-child{border-right:0}
+.snapshot-label{display:block;color:#786f63;font:700 9px Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;margin-bottom:5px}
+.snapshot-value{display:block;color:#1c2d37;font-size:19px;line-height:1.2}
+.snapshot-note{display:block;margin-top:5px;color:#6e726f;font:11px/1.35 Arial,sans-serif}
+.overview-box{padding:18px 20px;background:#f8f2e7;border:1px solid #d2c5af;margin:0 0 26px}
+.overview-box h2{margin-top:0!important}
+article h2{margin:38px 0 13px;color:#172a35;font-size:31px;border-bottom:2px solid #b57f31;padding-bottom:7px}
+article h2:first-of-type{margin-top:0}
+article h3{margin:27px 0 9px;color:#2b3a41;font-size:24px}
+article p{font-size:18px;line-height:1.7;margin:14px 0}
+article li{font-size:17px;line-height:1.6;margin:6px 0}
+article blockquote{margin:18px 0;padding:10px 17px;border-left:4px solid var(--gold);background:#f7f0e3;color:#465156}
+article table{width:100%;border-collapse:collapse;margin:18px 0;font:14px/1.45 Arial,sans-serif}
+article th,article td{border:1px solid #c8beab;padding:8px 9px;vertical-align:top}
+article th{background:#ddd3c1;color:#24323a;text-align:left}
+article code{font-size:.88em}
+.src-tag{display:inline-block;color:#76531e;font:700 10px Arial,sans-serif;white-space:nowrap}
+.public-note{margin:0 0 25px;padding:15px 17px;border-left:5px solid var(--green);background:#e7efe8;color:#33433a;font:15px/1.5 Arial,sans-serif}
+.footer{border-top:1px solid #29343e;background:#07090c}
+.footer-inner{width:min(calc(100% - 32px),var(--max));margin:auto;padding:21px 0 27px;display:flex;justify-content:space-between;align-items:flex-end;gap:20px;color:#7f8b92;font:12px Arial,sans-serif}
+.footer-inner strong{color:#d9dfe2;font-family:Georgia,serif;font-size:15px}
+.site-counter{text-align:right;font:800 9px Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#748089}
+.site-counter img{display:block;margin:5px 0 0 auto;border:1px solid #303944}
+@media(max-width:920px){
+ .shell{grid-template-columns:1fr} .sidebar{position:static} .toc{max-height:none}
+ .company-snapshot{grid-template-columns:1fr 1fr}
+ .snapshot-cell:nth-child(2){border-right:0}
+ .snapshot-cell{border-bottom:1px solid var(--line)}
+ .snapshot-cell:nth-child(3),.snapshot-cell:nth-child(4){border-bottom:0}
+}
+@media(max-width:600px){
+ .mast-inner{align-items:flex-start;flex-direction:column} .motto{text-align:left}
+ .company-snapshot{grid-template-columns:1fr} .snapshot-cell{border-right:0;border-bottom:1px solid var(--line)!important}
+ .snapshot-cell:last-child{border-bottom:0!important}
+ article{padding:20px 16px 28px} article p{font-size:17px} article h2{font-size:27px}
+ .footer-inner{align-items:flex-start;flex-direction:column} .site-counter{text-align:left} .site-counter img{margin-left:0}
+}
+
+.elcon-visuals{
+  margin:28px 0 34px;
+}
+.elcon-visuals h2{
+  margin-top:0;
+}
+.flyer-pair{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+  align-items:start;
+}
+.archive-figure{
+  margin:0;
+  padding:10px;
+  border:1px solid #b8ad98;
+  background:#f8f3e8;
+}
+.archive-figure img{
+  width:100%;
+  height:auto;
+  display:block;
+  border:1px solid #c8beab;
+  background:#e9dfce;
+}
+.archive-figure figcaption{
+  padding:9px 4px 2px;
+  color:#5e6668;
+  font:12px/1.5 Arial,Helvetica,sans-serif;
+}
+.rights-hold{
+  margin:24px 0;
+  padding:15px 17px;
+  border:1px dashed #b69d72;
+  background:#f7efe1;
+  color:#5b554c;
+  font:13px/1.55 Arial,Helvetica,sans-serif;
+}
+.rights-hold strong{
+  color:#65471e;
+}
+@media(max-width:700px){
+  .flyer-pair{grid-template-columns:1fr}
+}
+
+
+/* ELTON/ELCON PUBLICATION VISUALS */
+.visual-section{
+  margin:20px 0 32px;
+}
+.visual-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+  margin:18px 0 24px;
+  align-items:start;
+}
+.visual-grid.brochure{
+  grid-template-columns:1fr 1fr;
+}
+.archive-figure{
+  margin:0;
+  padding:10px;
+  border:1px solid #b8ad98;
+  background:#f8f3e8;
+}
+.archive-figure img{
+  width:100%;
+  height:auto;
+  display:block;
+  border:1px solid #c8beab;
+  background:#e9dfce;
+}
+.archive-figure figcaption{
+  padding:9px 4px 2px;
+  color:#5e6668;
+  font:12px/1.5 Arial,Helvetica,sans-serif;
+}
+.visual-note{
+  margin:18px 0;
+  padding:14px 16px;
+  border-left:4px solid #b57f31;
+  background:#f7efe1;
+  color:#5b554c;
+  font:13px/1.55 Arial,Helvetica,sans-serif;
+}
+@media(max-width:760px){
+  .visual-grid,.visual-grid.brochure{grid-template-columns:1fr}
+}
+
+
+/* CONTEXTUAL ARCHIVAL FIGURES */
+.inline-archive-figure{
+  margin:22px auto 27px;
+  max-width:780px;
+  padding:10px;
+  border:1px solid #b8ad98;
+  background:#f8f3e8;
+  box-shadow:0 8px 18px rgba(64,52,34,.08);
+}
+.inline-archive-figure.narrow{max-width:560px}
+.inline-archive-figure img{
+  width:100%;
+  height:auto;
+  display:block;
+  border:1px solid #c8beab;
+  background:#e9dfce;
+}
+.inline-archive-figure figcaption{
+  padding:9px 4px 2px;
+  color:#5e6668;
+  font:12px/1.55 Arial,Helvetica,sans-serif;
+}
+.inline-archive-figure figcaption strong{color:#334047}
+.derivative-note{
+  display:inline-block;
+  margin-left:5px;
+  padding:2px 5px;
+  border:1px solid #b89a66;
+  color:#76531e;
+  font:700 8px Arial,Helvetica,sans-serif;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.context-note{
+  margin:18px 0 22px;
+  padding:13px 15px;
+  border-left:4px solid #b57f31;
+  background:#f7efe1;
+  color:#5b554c;
+  font:13px/1.55 Arial,Helvetica,sans-serif;
+}
+
+</style>
+<style>
+/* Reader-facing source and table containment */
+article a, .source-list a, .footnotes a { overflow-wrap:anywhere; }
+.table-scroll {max-width:100%;overflow-x:auto;}
+.table-scroll:focus-visible {outline:2px solid #d7b56d;outline-offset:3px;}
+</style><style id="ao-company-profile-consistency">
+/* Exact shared company-profile presentation: Elcon is the house pattern. */
+.company-identity.company-profile-standard{
+  margin:0 0 28px!important;
+  padding:0!important;
+  border:1px solid #b8ad98!important;
+  border-radius:0!important;
+  background:linear-gradient(135deg,rgba(194,138,50,.08),transparent 48%),#f3eddf!important;
+  color:#20272c!important;
+  box-shadow:none!important;
+  overflow:hidden!important;
+  font-family:Georgia,"Times New Roman",serif!important;
+  font-size:16px!important;
+  line-height:normal!important;
+}
+.company-profile-standard .company-mark{
+  display:block!important;
+  position:relative!important;
+  padding:24px 26px 20px!important;
+  border:0!important;
+  border-bottom:1px solid #c8beab!important;
+  border-radius:0!important;
+  background:transparent!important;
+  color:#232b30!important;
+  font:400 16px/normal Georgia,"Times New Roman",serif!important;
+}
+.company-profile-standard .company-mark:after{
+  content:"COMPANY PROFILE"!important;
+  position:absolute!important;
+  right:22px!important;
+  top:18px!important;
+  display:block!important;
+  margin:0!important;
+  color:#8c8272!important;
+  font:700 9px/normal Arial,Helvetica,sans-serif!important;
+  letter-spacing:.16em!important;
+  text-transform:uppercase!important;
+}
+.company-profile-standard .legal{
+  display:block!important;
+  margin:0 0 7px!important;
+  padding:0!important;
+  color:#746b5f!important;
+  font:700 10px/11px Arial,Helvetica,sans-serif!important;
+  letter-spacing:.13em!important;
+  text-transform:uppercase!important;
+}
+.company-profile-standard .wordmark{
+  display:block!important;
+  margin:0!important;
+  padding:0!important;
+  color:#122331!important;
+  font:400 clamp(34px,5vw,58px)/.95 Georgia,"Times New Roman",serif!important;
+  letter-spacing:0!important;
+  text-transform:none!important;
+}
+.company-profile-standard .wordmark span{
+  display:block!important;
+  margin:7px 0 0!important;
+  padding:0!important;
+  color:#8a6429!important;
+  font:700 13px/normal Arial,Helvetica,sans-serif!important;
+  letter-spacing:.16em!important;
+  text-transform:uppercase!important;
+}
+.company-profile-standard .company-snapshot{
+  display:grid!important;
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  color:#232b30!important;
+  font:400 16px/normal Georgia,"Times New Roman",serif!important;
+}
+.company-profile-standard .snapshot-cell{
+  display:block!important;
+  min-width:0!important;
+  margin:0!important;
+  padding:17px 18px!important;
+  border:0!important;
+  border-right:1px solid #c8beab!important;
+  border-radius:0!important;
+  background:transparent!important;
+  color:#232b30!important;
+  font:400 16px/normal Georgia,"Times New Roman",serif!important;
+}
+.company-profile-standard .snapshot-cell:last-child{border-right:0!important}
+.company-profile-standard .snapshot-label{
+  display:block!important;
+  margin:0 0 5px!important;
+  padding:0!important;
+  color:#786f63!important;
+  font:700 9px/10px Arial,Helvetica,sans-serif!important;
+  letter-spacing:.12em!important;
+  text-transform:uppercase!important;
+}
+.company-profile-standard .snapshot-value{
+  display:block!important;
+  margin:0!important;
+  padding:0!important;
+  color:#1c2d37!important;
+  font:400 19px/22.8px Georgia,"Times New Roman",serif!important;
+}
+.company-profile-standard .snapshot-note{
+  display:block!important;
+  margin:5px 0 0!important;
+  padding:0!important;
+  color:#6e726f!important;
+  font:400 11px/14.85px Arial,Helvetica,sans-serif!important;
+}
+.hero .meta{
+  display:flex!important;
+  flex-direction:row!important;
+  flex-wrap:wrap!important;
+  align-items:center!important;
+  gap:10px!important;
+  margin:15px 0 0!important;
+  padding:0!important;
+}
+.hero .meta .badge,
+.hero .meta .updated{
+  display:inline-block!important;
+  position:static!important;
+  margin:0!important;
+  inset:auto!important;
+}
+.hero .meta .badge{
+  padding:6px 9px!important;
+  border:1px solid #78a6b8!important;
+  border-radius:999px!important;
+  background:transparent!important;
+  color:#9fc7d6!important;
+  font:700 11px/normal Arial,Helvetica,sans-serif!important;
+  letter-spacing:0!important;
+  text-transform:uppercase!important;
+}
+.hero .meta .updated{
+  padding:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  color:#9aa6ad!important;
+  font:700 11px/normal Arial,Helvetica,sans-serif!important;
+  letter-spacing:0!important;
+  text-transform:none!important;
+}
+@media(max-width:920px){
+  .company-profile-standard .company-snapshot{grid-template-columns:1fr 1fr!important}
+  .company-profile-standard .snapshot-cell{border-right:1px solid #c8beab!important;border-bottom:1px solid #c8beab!important}
+  .company-profile-standard .snapshot-cell:nth-child(2){border-right:0!important}
+  .company-profile-standard .snapshot-cell:nth-child(3),
+  .company-profile-standard .snapshot-cell:nth-child(4){border-bottom:0!important}
+  .company-profile-standard .snapshot-cell:last-child{border-right:0!important}
+}
+@media(max-width:600px){
+  .company-profile-standard .company-mark{
+    display:flex!important;
+    flex-direction:column!important;
+    padding:20px 18px 17px!important;
+  }
+  .company-profile-standard .company-mark:after{
+    position:static!important;
+    order:-1!important;
+    display:block!important;
+    margin:0 0 9px!important;
+  }
+  .company-profile-standard .wordmark{font-size:34px!important;overflow-wrap:anywhere!important}
+  .company-profile-standard .company-snapshot{grid-template-columns:1fr!important}
+  .company-profile-standard .snapshot-cell{
+    border-right:0!important;
+    border-bottom:1px solid #c8beab!important;
+  }
+  .company-profile-standard .snapshot-cell:nth-child(3){border-bottom:1px solid #c8beab!important}
+  .company-profile-standard .snapshot-cell:last-child{border-bottom:0!important}
+}
+</style><meta name="description" content="A detailed history of Elcon Industries, its arcade cabinets, coin-operated games, advertising and surviving evidence.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://arcadesideb.com/elcon.html">
+<meta property="og:title" content="Elcon Industries | Arcade Side B">
+<meta property="og:description" content="A detailed history of Elcon Industries, its arcade cabinets, coin-operated games, advertising and surviving evidence.">
+<meta property="og:url" content="https://arcadesideb.com/elcon.html">
+</head>
+<body>
+<header class="mast">
+<div class="mast-inner">
+<div class="brand"><a href="https://arcadesideb.com/" style="color:inherit;text-decoration:none" target="_parent">Arcade Side B</a></div>
+<div class="motto">Preserve what others overlooked. Follow the evidence. Keep the record open.</div>
+</div>
+</header>
+<div class="crumb"><a href="https://arcadesideb.com/" target="_parent">Arcade Side B</a>  ›  Companies  ›  Elcon Industries</div>
+<section class="hero">
+<div class="eyebrow">Company history</div>
+<h1>Elcon Industries</h1>
+<p class="deck">A Michigan cabinet builder, systems integrator, assembler, conversion specialist and marketer whose 1975–1982 record ranges from cocktail furniture and multi-game installations to compact cabinets, outside-board integrations and Crazy Kong assembly during the legal turbulence of 1982.</p>
+<div class="meta"><span class="badge living">Open to new evidence</span> <span class="updated">Last updated: September 8, 2026</span> </div></section>
+<div class="rule"></div>
+<div class="shell">
+<aside class="sidebar">
+<nav aria-label="Elcon Industries article contents" class="toc">
+<div class="toc-title">On this page</div>
+<a href="#overview">Elcon’s work as cabinet builder, assembler and supplier</a>
+<a href="#origins">1. Origins: Electronic Concept Industries, E.C.I. and the Elcon name, 1975</a>
+<a href="#cocktails">2. The cocktail-table and conversion business, 1975-1976</a>
+<a href="#people">3. Company names, addresses and leadership</a>
+<a href="#design">4. Elcon's recurring design philosophy: make the cabinet adaptable</a>
+<a href="#six-pack">5. The Six Pack, wall games and the 6 Game Kiosk</a>
+<a href="#count-method">6. What the game counts include</a><a href="#games-14">7. Fourteen Elcon-branded or assembled game families</a>
+<a href="#broader-21">8. Seven additional games supplied by Elcon</a>
+<a href="#diversions">9. Diversions: restaurant tables with other companies’ game boards</a>
+<a href="#compact">10. Compact cabinets and the 1981 product transition</a>
+<a href="#hardware">11. Hardware and platform products outside the game count</a>
+<a href="#micropin">12. Micropin: distribution, acquisition and corporate afterlife</a>
+<a href="#vip">13. V.I.P. and Elcon's 1982 sales channel</a>
+<a href="#crazy-kong">14. Crazy Kong and the 1982 litigation period</a>
+<a href="#survivors">15. Surviving machines and what physical evidence changes</a>
+<a href="#evidence-changes">16. What the evidence changes</a>
+<a href="#unknowns">17. Open questions</a>
+<a href="#meaning">18. What Elcon tells us about arcade history</a>
+<a href="#chronology">19. Chronology</a><a href="#catalog">20. Game catalog summary</a><a href="#sources">21. Sources</a><a href="#closing">22. Closing assessment</a><a href="#contribute">Contribute</a>
+</nav>
+<div class="sidebar-note">Elcon built cabinets, assembled machines, integrated other companies’ boards and marketed game packages. Those roles explain its product range without implying that it wrote every game program it sold.</div>
+</aside>
+<article>
+<a class="backhome" href="https://arcadesideb.com/#companies" target="_parent">← Back to Companies</a>
+<section aria-label="Elcon Industries company profile" class="company-identity company-profile-standard">
+<div class="company-mark">
+<div class="legal">Elcon Industries / E.C.I. operating lineage</div>
+<div class="wordmark">Elcon Industries<span>Michigan, United States</span></div>
+</div>
+<div class="company-snapshot">
+<div class="snapshot-cell">
+<span class="snapshot-label">Verified operating lineage</span>
+<span class="snapshot-value">1975–1982</span>
+<span class="snapshot-note">Exact legal incorporation and dissolution remain unresolved.</span>
+</div>
+<div class="snapshot-cell">
+<span class="snapshot-label">Elcon-branded or assembled games</span>
+<span class="snapshot-value">14 game families</span>
+<span class="snapshot-note">Fourteen commercial game families, with some uncertainty over 5 Games / Take Five; these are not fourteen original programs.</span>
+</div>
+<div class="snapshot-cell">
+<span class="snapshot-label">Total games offered or installed</span>
+<span class="snapshot-value">21 game families</span>
+<span class="snapshot-note">Includes seven additional games originating with other companies.</span>
+</div>
+<div class="snapshot-cell">
+<span class="snapshot-label">Company character</span>
+<span class="snapshot-value">Cabinets + integration</span>
+<span class="snapshot-note">Cocktails, Six Pack, wall games, compact cabinets, Diversions, Magic Trolley and more.</span>
+</div>
+</div>
+</section>
+<div class="public-note"><strong>About the evidence:</strong> This page follows the best evidence currently available. Fact, inference, conflicting evidence and unresolved questions are kept distinct. New documentation, survivor photographs, employee/operator recollections and corrections are welcome.</div>
+<h2 id="overview">Elcon’s work as cabinet builder, assembler and supplier</h2>
+<p>Elcon Industries occupies an awkward but revealing place in American arcade history. It was small enough that later databases often reduced it to a list of names, yet the surviving record shows a much more complicated company: a Michigan cabinet builder, systems integrator, assembler, conversion specialist, marketer, and sometimes game-package brand whose commercial identity depended as much on how games were installed and sold as on who wrote the software inside them. Elcon moved through cocktail conversions, compact furniture, wall-mounted games, multi-game kiosks, novelty cabinets, restaurant booth tables, outside-board integrations, and finally the assembly and sale of Crazy Kong machines during the legal turbulence of 1982. <a aria-label="Source 1" class="src-tag" href="#source-1">[1]</a><a aria-label="Source 5" class="src-tag" href="#source-5">[5]</a><a aria-label="Source 6" class="src-tag" href="#source-6">[6]</a><a aria-label="Source 14" class="src-tag" href="#source-14">[14]</a><a aria-label="Source 45" class="src-tag" href="#source-45">[45]</a></p>
+<p>The research therefore cannot be summarized accurately by asking only, 'Which games did Elcon develop?' In several cases the evidence points directly to an outside game family: Highjumpers corresponds strongly to Exidy's Circus; Video Bowl to Exidy's Robot Bowl; Brickyard to Ramtek's Barricade/Brickyard; the 1979-80 directory openly places outside-origin titles such as Blasto and Space Wars inside Elcon's offering; Diversions was built around licensed boards from other suppliers; and the federal Crazy Kong case makes Elcon's role as assembler and seller explicit. <a aria-label="Source 2" class="src-tag" href="#source-2">[2]</a><a aria-label="Source 27" class="src-tag" href="#source-27">[27]</a><a aria-label="Source 32" class="src-tag" href="#source-32">[32]</a><a aria-label="Source 43" class="src-tag" href="#source-43">[43]</a><a aria-label="Source 48" class="src-tag" href="#source-48">[48]</a><a aria-label="Source 49" class="src-tag" href="#source-49">[49]</a></p>
+<p>The catalog distinguishes 14 Elcon-branded, Elcon-built or assembled, or distinctly Elcon-packaged arcade game families. That is not a claim of fourteen original programs. A broader count reaches 21 by adding seven confirmed outside-origin games that Elcon offered or installed. The Six Pack, wall cabinet, cocktail lines, Diversions, whiskey barrel, Magic Trolley, compact cabinets and Token Vendor are documented separately as hardware and platforms. This distinction reflects the company’s varied roles in supplying arcade equipment.</p><h2 id="origins">1. Origins: Electronic Concept Industries, E.C.I. and the Elcon name, 1975</h2>
+<p>The earliest verified commercial evidence dates to July 30, 1975. A Marketplace advertisement under the full name Electronic Concept Industries, in Pontiac, Michigan, advertised repair of video and wall games, conversion of existing games into cocktail tables, manufacture of new cocktail tables in three styles, and a five-game offering. This is the oldest presently verified primary evidence in the Elcon operating lineage. <a aria-label="Source 53" class="src-tag" href="#source-53">[53]</a></p>
+<p>Only a few months later, on October 18, 1975, a Cash Box directory for the Music Operators of America exposition independently listed Elcon Industries at P.O. Box 441, Bloomfield Hills, with telephone 647-7452 and booth 96. November 1975 Play Meter advertising then used the wording Electronic Concepts Ind. Marketing / E.C.I. at the same Bloomfield Hills box and telephone associated with Elcon. <a aria-label="Source 24" class="src-tag" href="#source-24">[24]</a><a aria-label="Source 50" class="src-tag" href="#source-50">[50]</a></p>
+<p>Those overlapping names correct an easy but over-neat story. The evidence strongly supports one operating continuity between E.C.I. and Elcon, but it does not support a simple sequential sentence such as 'Electronic Concept Industries renamed itself Elcon Industries.' The Elcon name was already in period use while an E.C.I. identity continued in commerce. Sources also preserve both singular 'Electronic Concept Industries' and plural 'Electronic Concepts Ind. Marketing.' Later directories sometimes use 'Elcon Games, Inc.' while legal and trade sources use Elcon Industries or Elcon Industries, Inc. The exact legal mechanism - formal name change, assumed name, related entity, marketing division, predecessor/successor, or another arrangement - remains unresolved. <a aria-label="Source 24" class="src-tag" href="#source-24">[24]</a><a aria-label="Source 50" class="src-tag" href="#source-50">[50]</a></p>
+<p>Elcon’s verified commercial operating lineage begins in 1975. Its exact incorporation date and the legal relationships among the overlapping company names remain unknown.</p><h2 id="cocktails">2. The cocktail-table and conversion business, 1975-1976</h2>
+<p>The early Elcon story is unusually physical. The surviving documentation is not just a game-title list; it is a catalog of furniture, materials, conversion methods, operator economics, and room-placement ideas. The strongest source is a four-page grayscale Elcon brochure preserved in the Larry Bieza coin-op and amusements history collection at The Strong. The brochure is undated, but three conversion-kit prices match an April 1976 Elcon advertisement exactly - $150, $210, and $230 - giving the brochure a strong c. 1976 placement. <a aria-label="Source 25" class="src-tag" href="#source-25">[25]</a><a aria-label="Source 45" class="src-tag" href="#source-45">[45]</a></p>
+<figure class="inline-archive-figure">
+<img alt="Elcon cocktail-table brochure page 1" height="1844" src="assets/articles/e9ecd9fe03dd5d2c06430342b2cab94616e0d2d7.jpg" width="1300"/>
+<figcaption><strong>Elcon cocktail-table brochure, page 1.</strong> Cover of the c. 1976 brochure, with Elcon’s company name and address. Scan from The Strong / Larry Bieza collection.</figcaption></figure>
+<p>The brochure defines three cabinet families. Model Thirty was the conventional thirty-inch octagonal seated cocktail table. Model Forty was a forty-inch octagonal standing or barstool-height model, positioned for theater lobbies and high-volume restaurant waiting areas where chairs were undesirable. The Rectangular Model was a lower-priced, wall-fitting four-player table; a 1976 advertisement gives the format at roughly 26 by 36 inches. <a aria-label="Source 45" class="src-tag" href="#source-45">[45]</a></p>
+<figure class="inline-archive-figure">
+<img alt="Elcon cocktail-table brochure page 2" height="996" src="assets/articles/8ec5f8e00cfc3e8febf2e3629aedc14fbd6d9881.jpg" width="1300"/>
+<figcaption><strong>Elcon cocktail-table brochure, page 2.</strong> The product lineup includes Model Thirty, Model Forty and rectangular cocktail tables.</figcaption></figure>
+<p>Elcon marketed the cabinets as furniture rather than bare plywood coin boxes. The brochure specified Formica bases, solid-oak control rails, embossed real-copper tops, tempered-glass inserts, 19-inch Motorola monitors, pre-tested logic boards, and a one-year warranty. It also advertised 220-volt, 50-Hz operation and knock-down shipment for overseas customers. Those export and shipping options matter because they show Elcon selling itself as a cabinet/system supplier capable of supporting customers beyond a local Michigan route. <a aria-label="Source 45" class="src-tag" href="#source-45">[45]</a></p>
+<figure class="inline-archive-figure">
+<img alt="Elcon cocktail-table brochure page 3" height="2005" src="assets/articles/20b2894c8324266c18f511e559e2b97ffbf2fbff.jpg" width="1300"/>
+<figcaption><strong>Elcon cocktail-table brochure, page 3.</strong> Order form and price list for complete tables, conversion kits and accessories, with deposit and shipping terms.</figcaption></figure>
+<p>The product economics were equally explicit. Complete-table pricing ran from roughly $845 to about $1,015 depending on cabinet and board option, with the joystick-equipped column consistently $75 higher than the three-game configuration. Elcon sold conversion kits as well as complete tables, reinforcing the company's early identity around modifying existing locations rather than requiring operators to throw away otherwise serviceable equipment. The order form also offered a Token Vendor for $645 and a separate base for $45; no surviving evidence identifies its manufacturer or proves Elcon designed it. <a aria-label="Source 45" class="src-tag" href="#source-45">[45]</a></p>
+<figure class="inline-archive-figure">
+<img alt="Elcon cocktail-table brochure page 4" height="1925" src="assets/articles/d7223badca2ac6204aadd0bb8b0457e685a15e44.jpg" width="1300"/>
+<figcaption><strong>Elcon cocktail-table brochure, page 4.</strong> Construction details, features, conversion kits and warranty information, with diagrams of the available games.</figcaption></figure>
+<p>Two game packages anchor these early tables. Double Play offered Tennis or Hockey, with joystick controls, three paddle sizes and adjustable scoring. Triple Play allowed selection among Tennis, Soccer and Hockey. E.C.I. advertising claimed that the company designed and manufactured its own logic boards, but the brochure supplies no schematics, board markings or outside technical confirmation. The responsible statement is therefore that Elcon/E.C.I. sold these packages and claimed in-house board design and manufacture; independent technical authorship remains unresolved. <a aria-label="Source 24" class="src-tag" href="#source-24">[24]</a><a aria-label="Source 45" class="src-tag" href="#source-45">[45]</a></p>
+<p>The brochure is preserved in Box 13, Folder 29 of The Strong’s Larry Bieza collection. Staff identified the contents as Model 30, Model 40 and rectangular cocktail-table material, rather than The Six Pack. The institution’s public catalog search did not identify Six Pack or 6 Game Kiosk material. That limits what has been located in this collection; it does not establish that no Six Pack documentation survives elsewhere.<a aria-label="Source 10" class="src-tag" href="#source-10">[10]</a><a aria-label="Source 11" class="src-tag" href="#source-11">[11]</a><a aria-label="Source 21" class="src-tag" href="#source-21">[21]</a><a aria-label="Source 22" class="src-tag" href="#source-22">[22]</a><a aria-label="Source 44" class="src-tag" href="#source-44">[44]</a><a aria-label="Source 45" class="src-tag" href="#source-45">[45]</a></p><h3>The whiskey-barrel cabinet</h3>
+<p>Elcon also experimented with novelty furniture. A March 1976 Play Meter item verifies an oak whiskey-barrel video cabinet approximately thirty-five inches high and configurable with knob or joystick controls. The cabinet is important because it shows that Elcon's willingness to reshape the game environment predates the Six Pack and Diversions. <a aria-label="Source 26" class="src-tag" href="#source-26">[26]</a></p>
+<p>Later accounts have associated the whiskey-barrel cabinet with Ramtek’s Hit Me, but the contemporary Play Meter item does not identify the installed game. The cabinet is verified; Hit Me remains an unconfirmed association.<a aria-label="Source 16" class="src-tag" href="#source-16">[16]</a><a aria-label="Source 26" class="src-tag" href="#source-26">[26]</a></p><h2 id="people">3. Company names, addresses and leadership</h2>
+<p>Elcon's leadership chronology is more complicated than older summaries suggested. A 1976 Billboard directory names Joyce DeVries as president and Andre R. Dubel as sales manager. An April 1978 Play Meter photograph identifies Joyce DeVries as an Elcon employee alongside Dubel and staff. The April 1979 Billboard directory again lists J. DeVries as president and Dubel as sales manager. <a aria-label="Source 54" class="src-tag" href="#source-54">[54]</a><a aria-label="Source 55" class="src-tag" href="#source-55">[55]</a><a aria-label="Source 43" class="src-tag" href="#source-43">[43]</a></p>
+<p>A July 1977 Cash Box manufacturer directory, however, calls the concern Elcon Games, Inc. and names Andre Dubel as president. The discrepancy with the 1976 and 1979 Billboard listings may reflect different entities, directory lag, varying titles or another administrative circumstance. The surviving sources do not establish a simple DeVries-to-Dubel succession.<a aria-label="Source 56" class="src-tag" href="#source-56">[56]</a></p><p>By June 1980, however, a Billboard directory does list Andre R. Dubel as president and Thomas Tol as general manager. By March 1982 Play Meter lists Dubel as president and Don Suwinski as general manager. The federal Nintendo litigation independently confirms Dubel as president of Elcon Industries, Inc. in 1982. <a aria-label="Source 6" class="src-tag" href="#source-6">[6]</a><a aria-label="Source 14" class="src-tag" href="#source-14">[14]</a><a aria-label="Source 46" class="src-tag" href="#source-46">[46]</a></p>
+<p>Addresses also chart the company's movement. The earliest lineage uses Pontiac and then Bloomfield Hills contact points. The 1977 AMOA directory places Elcon at 3285 Hilton Road, Ferndale, with three consecutive booths C-27 through C-29. By 1979 the company is at 2715 Nakota, Royal Oak, the address that remains visible in later trade and legal evidence. These changes are useful operating markers even though the missing corporate records prevent them from being translated into exact legal-entity dates. <a aria-label="Source 43" class="src-tag" href="#source-43">[43]</a><a aria-label="Source 51" class="src-tag" href="#source-51">[51]</a></p>
+<h2 id="design">4. Elcon's recurring design philosophy: make the cabinet adaptable</h2>
+<p>Across otherwise different products, the strongest recurring Elcon idea is interchangeability. In the early cocktail years, the company sold conversion kits and complete tables so operators could reuse locations and equipment. In the Six Pack era, the front-door game assembly was advertised as interchangeable in minutes. Diversions later accepted customer-selected outside logic boards. The March 1982 advertisement again emphasized that an operator who bought an Elcon game could still change it later. <a aria-label="Source 2" class="src-tag" href="#source-2">[2]</a><a aria-label="Source 5" class="src-tag" href="#source-5">[5]</a><a aria-label="Source 6" class="src-tag" href="#source-6">[6]</a><a aria-label="Source 25" class="src-tag" href="#source-25">[25]</a><a aria-label="Source 45" class="src-tag" href="#source-45">[45]</a></p>
+<p>This continuity makes cabinet architecture a major part of Elcon's history rather than decorative packaging around a software catalog. The company's surviving record is most coherent when read as a series of answers to operator questions: How can I fit more games in less floor space? How can I place a video game in a restaurant or lounge? How can I change the game without replacing the cabinet? How can I sell outside boards inside a consistent physical environment?</p>
+<h2 id="six-pack">5. The Six Pack, wall games and the 6 Game Kiosk</h2>
+<p>The Six Pack remains the clearest expression of Elcon's design philosophy. A surviving two-page sales flyer depicts a free-standing structure supporting six individual wall-mounted video games. The structure could surround an existing column, or three wall games could be arranged in a semicircle against a wall. Elcon described the support assembly as lightweight aluminum and Formica that bolted together in minutes, with illuminated graphics above the machines to identify the games. <a aria-label="Source 1" class="src-tag" href="#source-1">[1]</a></p>
+<figure class="inline-archive-figure">
+<img alt="Original Elcon Six Pack flyer front" height="1105" src="assets/articles/4eb65cdd88604613c4b6cb3d09f36d516fd4f253.jpg" width="850"/>
+<figcaption><strong>The Six Pack — original flyer front.</strong> Elcon’s wall-mounted installation of six games.</figcaption></figure>
+<p>Crucially, the wall games were not permanently dependent on the central structure. Elcon advertised them as complete machines that could be installed in the Six Pack or operated separately. The individual wall cabinet measured 23 inches wide, 32 inches high and 14.5 inches deep and used a full-size 19-inch monitor. The flyer states that the game itself was contained in the front-door assembly and that doors/games could be exchanged in minutes. This is unusually aggressive modularity for 1977 and anticipates the same sales idea seen in Diversions and the 1982 conversion advertisement. <a aria-label="Source 2" class="src-tag" href="#source-2">[2]</a></p>
+<figure class="inline-archive-figure">
+<img alt="Original Elcon Six Pack flyer reverse" height="1105" src="assets/articles/ce7ce8a1f6463976953d8e0553f7258e1aa5daab.jpg" width="850"/>
+<figcaption><strong>The Six Pack / Elcon product flyer — original reverse.</strong> Wall-cabinet dimensions, game descriptions and the interchangeable front-door game module. Scan supplied by Dana.</figcaption></figure>
+<p>Known flyer headers include Brickyard, Videobowl and Highjumpers. The flyer also discusses other Elcon games and cabinet forms, making it both a Six Pack document and one of the central sources for the 1977 product line. No verified complete surviving Six Pack has been documented in the available evidence, and no authenticated installation photograph from a second angle has been secured. The missing photographs and survivors leave details unresolved; they do not establish that the product was never built or sold. <a aria-label="Source 1" class="src-tag" href="#source-1">[1]</a><a aria-label="Source 2" class="src-tag" href="#source-2">[2]</a><a aria-label="Source 12" class="src-tag" href="#source-12">[12]</a></p>
+<figure class="inline-archive-figure">
+<img alt="Restored image of the Elcon Six Pack flyer" height="1690" src="assets/articles/92da328bdfb205603e7ec8b67484b39918f46a4b.jpg" width="1300"/>
+<figcaption><strong>Six Pack flyer, restored for legibility.</strong> This restored image is shown alongside the original scans above, which remain the reference for comparison.</figcaption></figure>
+<p>The phrase ‘6 Game Kiosk’ appears in Elcon’s 1979 and 1980 directory listings. A 1978 trade description documents the same unusual six-wall-game arrangement, including placement around a column or as three units in a semicircle. The Six Pack and the later kiosk are therefore very strongly supported as the same design or a direct continuation. No located document explicitly equates the two names, so a small uncertainty remains.<a aria-label="Source 43" class="src-tag" href="#source-43">[43]</a><a aria-label="Source 46" class="src-tag" href="#source-46">[46]</a></p><p>Many technical questions remain. The flyer does not reveal the rear cabinet profile, mounting hardware, internal chassis, PCB placement, power supply, speaker/coin-door arrangement, the central support's electrical distribution, full structural footprint, detailed assembly sequence or production quantity. A future reconstruction should therefore distinguish documented dimensions from extrapolated engineering. The evidence is strong enough for a historically informed feasibility build, not an exact replica certified from original drawings. <a aria-label="Source 1" class="src-tag" href="#source-1">[1]</a><a aria-label="Source 2" class="src-tag" href="#source-2">[2]</a></p>
+<h3>Magic Trolley and mobile-arcade experimentation</h3>
+<p>The Magic Trolley belongs to the same family of Elcon experiments in changing where and how arcade games could be encountered. Specialist historian Keith Smith reported that Elcon showed a mobile-arcade concept called the Magic Trolley at the 1977 AMOA exposition, and relayed an Andre Dubel recollection that perhaps only one was sold. The period AMOA directory independently confirms that Elcon occupied booths C-27 through C-29 at the show, but no primary show photograph or advertisement identifying the Magic Trolley itself has been located. <a aria-label="Source 9" class="src-tag" href="#source-9">[9]</a><a aria-label="Source 51" class="src-tag" href="#source-51">[51]</a></p>
+<p>Accordingly, the existence and show association are strongly supported, while the reported production/sales quantity remains interview-level evidence. The Magic Trolley is not included in the 14-game count because it is an environment/platform concept, not a distinct game program.</p>
+<h2 id="count-method">6. What the game counts include</h2><p>Elcon’s product range included game titles, cabinet families, multi-game installations, conversion services, outside-board offerings, distribution channels and corporate relationships. These cannot all be counted as separate arcade games. The 14-family catalog below is restricted to distinct Elcon commercial game packages, with other offerings documented separately.</p><p>A title belongs in the fourteen-family group only when the surviving evidence supports a distinct Elcon-branded, Elcon-built/assembled, or distinctly Elcon-packaged commercial game family. Outside origin does not automatically remove a title if Elcon created a distinct commercial package - Highjumpers and Video Bowl are examples. Conversely, merely offering an outside manufacturer's game in a directory or installing an outside board in Diversions does not automatically turn that software into an Elcon release. </p>
+<p>The broader 21-family count adds seven outside-origin games verifiably offered or installed by Elcon: Blasto, Depthcharge, Gypsy Juggler, Space Wars, Tank Battalion, Devil Zone and Space Force. Hardware and platform products remain separate from both counts. Any future change would need evidence for an additional or differently identified game family.</p><h2 id="games-14">7. Fourteen Elcon-branded or assembled game families</h2>
+<h3>7.1. Double Play</h3>
+<p><strong>Date:</strong> 1975-c. 1976. <strong>Counted as:</strong> one game family.</p>
+<p>Double Play belongs to the verified 1975-76 E.C.I./Elcon cocktail program. The Strong brochure describes a two-game sports board allowing the operator or player to choose Tennis or Hockey. Joystick control, three paddle sizes and adjustable scoring distinguish it from a generic one-line 'Pong clone' label. <a aria-label="Source 45" class="src-tag" href="#source-45">[45]</a></p>
+<p>The importance of Double Play is partly corporate. E.C.I. advertising claimed that its Double Play and Triple Play logic boards were designed and manufactured in-house. That is a company claim rather than independently verified engineering authorship because no surviving schematic, board legend or third-party technical source has yet closed that gap. <a aria-label="Source 24" class="src-tag" href="#source-24">[24]</a><a aria-label="Source 45" class="src-tag" href="#source-45">[45]</a></p>
+<p>Counted as: one Elcon/E.C.I. game family. It is counted because the commercial package is directly documented, not because the evidence establishes who drew every circuit.</p>
+<h3>7.2. Triple Play</h3>
+<p><strong>Date:</strong> 1975-c. 1976. <strong>Counted as:</strong> one game family.</p>
+<p>Triple Play is the three-game companion to Double Play. Primary Elcon brochure material lists Tennis, Soccer and Hockey as selectable games. The package was sold in the Model Thirty, Model Forty and rectangular cabinet program, giving it a clear role in Elcon's early furniture-oriented strategy. <a aria-label="Source 45" class="src-tag" href="#source-45">[45]</a></p>
+<p>As with Double Play, E.C.I.'s own claim of in-house logic-board design and manufacture is preserved but technically unconfirmed. The distinction matters because manufacturer advertising does not independently prove engineering authorship. <a aria-label="Source 24" class="src-tag" href="#source-24">[24]</a><a aria-label="Source 45" class="src-tag" href="#source-45">[45]</a></p>
+<p>Counted as: one Elcon/E.C.I. game family.</p>
+<h3>7.3. 5 Games</h3>
+<p><strong>Date:</strong> c. 1975. <strong>Counted as:</strong> one game family — strongly supported.</p>
+<p>Elcon's 5 Games posed an early dating and authorship trap. Later databases have circulated a 1970 date that does not fit the period evidence and is rejected. The relevant comparative artifact is Fun Games' 1975 Take Five. Its five-mode/player-count architecture corresponds one-for-one with the Elcon 5 Games concept. <a aria-label="Source 4" class="src-tag" href="#source-4">[4]</a><a aria-label="Source 57" class="src-tag" href="#source-57">[57]</a></p>
+<p>The evidence supports treating 5 Games as part of the Take Five design/game family rather than an independently invented Elcon five-game collection. What remains unknown is how that relationship worked commercially: licensed circuitry, purchased boards, copied or adapted design, an intermediary supplier, or another arrangement. No surviving contract or technical bridge has resolved it. </p>
+<p>The commercial evidence strongly supports counting 5 Games as one Elcon game family. Its relationship to Take Five remains less securely documented than the other entries, which is why the fourteen-family total carries some uncertainty.</p>
+<h3>7.4. Blockbuster</h3>
+<p><strong>Date:</strong> 1977. <strong>Counted as:</strong> one game family.</p>
+<p>Blockbuster is one of the best cases for why Elcon packaging deserves to be treated separately from underlying design ancestry. A 1977 Elcon flyer describes a five-game menu: Magic Squares, Tennis, Soccer, Gravity Ball and Blockbuster, and shows the system in upright and multiple cocktail formats. <a aria-label="Source 42" class="src-tag" href="#source-42">[42]</a></p>
+<p>Surviving hardware strengthens the Elcon-specific side of the story. Collector documentation preserves an operating Blockbuster +4 cabinet, while separate PCB documentation shows a large discrete-logic board with 'ELCON IND' etched into the board artwork. That makes it difficult to explain Blockbuster as merely an untouched stock board installed in an Elcon box. The evidence instead supports an Elcon-specific implementation. <a aria-label="Source 13" class="src-tag" href="#source-13">[13]</a><a aria-label="Source 59" class="src-tag" href="#source-59">[59]</a></p>
+<p>At the same time, the design family clearly overlaps Fun Games Take Five and United Games Video Five. The safest synthesis is that Blockbuster represents an evolved Elcon member of that broader five-game design lineage. The original circuit authorship and exact license/engineering path from Fun Games or related suppliers to Elcon remain unresolved. A modern U.S. Billiards attribution has not been elevated because period primary support has not been secured. <a aria-label="Source 57" class="src-tag" href="#source-57">[57]</a><a aria-label="Source 58" class="src-tag" href="#source-58">[58]</a></p>
+<p>Counted as: one Elcon game family.</p>
+<h3>7.5. Highjumpers</h3>
+<p><strong>Date:</strong> 1977-1980. <strong>Counted as:</strong> one game family.</p>
+<p>Highjumpers appears prominently in the Six Pack material and remained in the 1979-80 Elcon catalog. The key identification came from comparing Elcon's own play description with Exidy's primary Circus manual and sales flyer. The wording follows Circus closely and, more decisively, repeats the same unusual operator adjustment of 3, 5, 7 or 9 jumps. <a aria-label="Source 2" class="src-tag" href="#source-2">[2]</a><a aria-label="Source 43" class="src-tag" href="#source-43">[43]</a><a aria-label="Source 46" class="src-tag" href="#source-46">[46]</a><a aria-label="Source 48" class="src-tag" href="#source-48">[48]</a></p>
+<p>That evidence strongly identifies the underlying game family as Circus. It does not reveal whether Elcon bought original Exidy boards, licensed the game, copied the circuitry, altered the program, or used another source. Elcon’s package is strongly identified with Exidy Circus, but neither a license nor unauthorized copying is established. <a aria-label="Source 48" class="src-tag" href="#source-48">[48]</a></p>
+<p>Counted as: one Elcon-branded commercial family because the Elcon package itself is directly documented.</p>
+<h3>7.6. Video Bowl</h3>
+<p><strong>Date:</strong> 1977-1980. <strong>Counted as:</strong> one game family.</p>
+<p>Video Bowl is the bowling counterpart to Highjumpers: an Elcon-branded title whose underlying identity becomes clear only when primary feature descriptions are compared. Elcon's description matches Exidy Robot Bowl in one/two-player regulation bowling, animated bowler presentation, characteristic sound effects and, most tellingly, the unusual beer-frame feature. <a aria-label="Source 2" class="src-tag" href="#source-2">[2]</a><a aria-label="Source 49" class="src-tag" href="#source-49">[49]</a></p>
+<p>The product remained in Elcon's 1979 and 1980 directory catalog. As with Highjumpers, the evidence is strong enough to identify the game family but not to prove board supplier, licensing terms or authorization. <a aria-label="Source 43" class="src-tag" href="#source-43">[43]</a><a aria-label="Source 46" class="src-tag" href="#source-46">[46]</a></p>
+<p>Counted as: one Elcon-branded commercial family.</p>
+<h3>7.7. Brickyard</h3>
+<p><strong>Date:</strong> 1977. <strong>Counted as:</strong> one game family.</p>
+<p>Brickyard was once misidentified in collector discussion as an Atari Breakout derivative. Period reporting and the game’s features support a different identification. Contemporary 1977 trade/legal reporting about the Ramtek/Gremlin Barricade trademark dispute states that Ramtek would use the Brickyard name for further Barricade-type games. Elcon's flyer settings align with the Barricade/Brickyard architecture, and the preserved ROM lineage independently supports Brickyard as a Barricade-family clone or revision. <a aria-label="Source 60" class="src-tag" href="#source-60">[60]</a><a aria-label="Source 61" class="src-tag" href="#source-61">[61]</a><a aria-label="Source 2" class="src-tag" href="#source-2">[2]</a></p>
+<p>The evidence is very high confidence: Elcon Brickyard belongs to the Ramtek Barricade/Brickyard lineage, not Atari Breakout. The Elcon-branded commercial package is still historically real regardless of where the underlying design originated. </p>
+<p>Counted as: one Elcon package; dated to 1977 unless stronger primary evidence establishes an earlier Elcon-branded release.</p>
+<h3>7.8. Casino / Super Casino</h3>
+<p><strong>Date:</strong> 1977-1981. <strong>Counted as:</strong> one game family.</p>
+<p>Casino is verified in Elcon's 1977 material as a blackjack game, supporting up to four players and a progressive jackpot where legal. A 1978 directory description explicitly calls Casino 'Video blackjack.' <a aria-label="Source 42" class="src-tag" href="#source-42">[42]</a></p>
+<p>By April 1979 the catalog uses Super Casino, and that name remains in the June 1980 directory and January 1981 compact-cabinet advertisement. The evidence supports treating Casino to Super Casino as one continuing blackjack lineage. The phrase 'Super Casino Video Blackjack' in Elcon product-line wording is best read as a title plus descriptor rather than proof of a second title named Video Blackjack. <a aria-label="Source 43" class="src-tag" href="#source-43">[43]</a><a aria-label="Source 46" class="src-tag" href="#source-46">[46]</a><a aria-label="Source 47" class="src-tag" href="#source-47">[47]</a><a aria-label="Source 64" class="src-tag" href="#source-64">[64]</a></p>
+<p>The exact hardware change implied by 'Super' remains unknown, as does the underlying board supplier. A separate later database entry for Video Blackjack is not counted without independent period evidence. </p>
+<p>Counted as: Casino/Super Casino once, not two or three releases.</p>
+<h3>7.9. TV Pin Ball</h3>
+<p><strong>Date:</strong> c. 1975-1977. <strong>Counted as:</strong> one game family.</p>
+<p>TV Pin Ball is one of the less technically resolved titles but remains a real Elcon product. Surviving Elcon product description supports one- or two-player play with adjustable scores and a free-game option. <a aria-label="Source 2" class="src-tag" href="#source-2">[2]</a><a aria-label="Source 4" class="src-tag" href="#source-4">[4]</a></p>
+<p>The exact release chronology is weaker than the product identity. Rather than force an exact year from later database metadata, the available evidence places it in the c. 1975-77 early Elcon range. Counted as: one Elcon title.</p>
+<h3>7.10. Cosmic Attackers</h3>
+<p><strong>Date:</strong> 1979-1981. <strong>Counted as:</strong> one game family.</p>
+<p>Cosmic Attackers is a verified Elcon commercial package and an unusually useful case for separating a model name from whatever board happens to survive inside a cabinet. Period material and later advertising place it in upright, cocktail and compact-cabinet contexts, including the January 1981 small-cabinet advertisement. <a aria-label="Source 36" class="src-tag" href="#source-36">[36]</a><a aria-label="Source 47" class="src-tag" href="#source-47">[47]</a><a aria-label="Source 64" class="src-tag" href="#source-64">[64]</a></p>
+<p>Survivor reports document materially different internal configurations. One Elcon cocktail has been reported with a Sega Space Attack board, while other examples have multi-board stacks or different monitor arrangements. No one reported configuration establishes a standard hardware arrangement for every Cosmic Attackers machine. They show instead that Elcon could preserve a commercial package identity while sourcing different electronics. <a aria-label="Source 36" class="src-tag" href="#source-36">[36]</a></p>
+<p>Counted as one Elcon game package. Surviving examples differ in board and monitor configuration, so each machine’s history matters.</p>
+<h3>7.11. Collision</h3>
+<p><strong>Date:</strong> by 1980. <strong>Counted as:</strong> one game family.</p>
+<p>Elcon’s period product-line material directly names Collision as a manufactured or offered title. Its inclusion therefore rests on contemporary commercial evidence.<a aria-label="Source 64" class="src-tag" href="#source-64">[64]</a></p><p>Dodge 'Em, by contrast, appears in later game lists with a precise November 1979-style date but has not been found in a period Elcon ad, flyer, manual, price sheet, labeled survivor or service record. There is also no evidence strong enough to say Dodge 'Em was simply another name for Collision. </p>
+<p>The conservative historical treatment is therefore asymmetric: Collision is verified and counts once; Dodge 'Em remains an unverified secondary attribution and does not count. The evidence does not establish either 'two distinct games' or 'the same game' unless new period evidence appears.</p>
+<h3>7.12. Royal Flush Drawpoker</h3>
+<p><strong>Date:</strong> by 1981. <strong>Counted as:</strong> one game family.</p>
+<p>Royal Flush Drawpoker is a separate Elcon offering, not part of the Casino/Super Casino blackjack lineage. Product-line material says it was available in upright, wall and cocktail-table models, and the January 1981 compact-cabinet advertisement includes Royal Flush among the available games. <a aria-label="Source 47" class="src-tag" href="#source-47">[47]</a><a aria-label="Source 64" class="src-tag" href="#source-64">[64]</a></p>
+<p>The unresolved part is electronics: no board supplier or exact underlying draw-poker design has been securely identified. The title itself and Elcon's commercial offering are strong enough for the fourteen-family count; software authorship is not.</p>
+<h3>7.13. Astro Combat / Astro Combat III</h3>
+<p><strong>Date:</strong> 1981. <strong>Counted as:</strong> one game family.</p>
+<p>Astro Combat is directly advertised by Elcon under the plain title in January 1981. That primary ad establishes a real Elcon commercial package independent of later survivor interpretation. <a aria-label="Source 47" class="src-tag" href="#source-47">[47]</a></p>
+<p>A surviving compact Elcon cabaret has a damaged label that appears to read Astro Combat III, with matching Elcon-style inventory numbers on major internal components. The running hardware is Moon Cresta-like. This supports Astro Combat III as an Elcon package/model designation, but no Astro Combat I or Astro Combat II commercial releases have been verified. <a aria-label="Source 35" class="src-tag" href="#source-35">[35]</a></p>
+<p>The best-supported interpretation is therefore that 'III' more likely marks an Elcon package, model or revision than a conventional trilogy. That reading remains an interpretation; the suffix’s precise meaning is unresolved. </p>
+<p>Counted as: Astro Combat / Astro Combat III once.</p>
+<h3>7.14. Crazy Kong / Crazy Kong Part II</h3>
+<p><strong>Date:</strong> 1981-1982. <strong>Counted as:</strong> one game family.</p>
+<p>Crazy Kong supplies the clearest legal record of Elcon acting as an assembler and seller around outside-origin boards. In Nintendo of America v. Elcon, the federal court described Elcon Industries, Inc. as a Michigan corporation engaged in assembling and selling coin-operated electronic video games and components. The court found that beginning in November 1981 Elcon purchased Crazy Kong printed-circuit boards from Arctic International in New Jersey and International Scientific in Fullerton, California; the boards appeared to have been manufactured by Falcon. <a aria-label="Source 14" class="src-tag" href="#source-14">[14]</a><a aria-label="Source 32" class="src-tag" href="#source-32">[32]</a></p>
+<p>Elcon intended to install those boards in complete games for resale. The opinion records distribution, offers for sale and sales of numerous Crazy Kong units in Michigan and elsewhere, at least as late as April 1982. Elcon said it had stopped handling the game in April. On October 4, 1982 the court granted preliminary injunctive relief to Nintendo. <a aria-label="Source 32" class="src-tag" href="#source-32">[32]</a></p>
+<p>This is not evidence that Elcon programmed Crazy Kong. It is strong evidence that Elcon created complete commercial machines around purchased outside boards and sold them as part of its business. Crazy Kong Part II belongs to the same Falcon game family/revision context and does not prove an Elcon model sequence. <a aria-label="Source 35" class="src-tag" href="#source-35">[35]</a></p>
+<p>Counted as: Crazy Kong / Crazy Kong Part II once as an Elcon-assembled commercial family.</p>
+<h2 id="broader-21">8. Seven additional games supplied by Elcon</h2>
+<p>The April 1979 Billboard directory provides a particularly clean snapshot of Elcon's middle-period catalog. It lists J. DeVries as president, Andre Dubel as sales manager, the Royal Oak address and nine Elcon offerings: Blasto, Blockbuster, Depthcharge, Gypsy Juggler, Highjumpers, 6 Game Kiosk, Space Wars, Super Casino and Video Bowl. A June 1980 directory repeats the same nine-item offering while listing Andre Dubel as president and Thomas Tol as general manager. This establishes at least fourteen months of catalog continuity. <a aria-label="Source 43" class="src-tag" href="#source-43">[43]</a><a aria-label="Source 46" class="src-tag" href="#source-46">[46]</a></p>
+<p>Four of those names have clear outside origins independent of Elcon: Blasto and Depthcharge trace to Gremlin; Gypsy Juggler to Meadows Games; Space Wars to Cinematronics. Their appearance in Elcon's catalog is therefore important commercial evidence, but it is not evidence that Elcon developed the programs. The surviving material does not yet establish the exact Elcon cabinet, board supplier, license or purchase arrangement for each. <a aria-label="Source 43" class="src-tag" href="#source-43">[43]</a></p>
+<p>An outside-origin game could reach an Elcon cabinet through purchase, licensing, distribution, adaptation or unauthorized copying. Its origin alone does not establish which arrangement applied. For these four titles, the Elcon commercial association is verified but the supply mechanism remains unknown.</p><h3>8.1. Blasto</h3>
+<p><strong>Date and context:</strong> By 1979. <strong>Original lineage:</strong> Gremlin origin. Period directory confirms Elcon offering/association; exact Elcon cabinet, licensing and supply path unresolved.</p>
+<h3>8.2. Depthcharge</h3>
+<p><strong>Date and context:</strong> By 1979. <strong>Original lineage:</strong> Gremlin origin. Period directory confirms Elcon offering/association; exact Elcon cabinet, licensing and supply path unresolved.</p>
+<h3>8.3. Gypsy Juggler</h3>
+<p><strong>Date and context:</strong> By 1979. <strong>Original lineage:</strong> Meadows Games origin. Period directory confirms Elcon offering/association. It is distinct from Highjumpers; the available evidence does not establish an unauthorized copy.</p>
+<h3>8.4. Space Wars</h3>
+<p><strong>Date and context:</strong> By 1979. <strong>Original lineage:</strong> Cinematronics origin. Period directory confirms Elcon offering/association; exact package and authorization path unresolved.</p>
+<h3>8.5. Tank Battalion</h3>
+<p><strong>Date and context:</strong> 1981 Diversions context. <strong>Original lineage:</strong> Namco / Game Plan chain. Outside licensed board/game family relevant to Elcon's Diversions integration model; included among the broader associated offerings, outside the 14 Elcon game families.</p>
+<h3>8.6. Devil Zone</h3>
+<p><strong>Date and context:</strong> 1981 Diversions context. <strong>Original lineage:</strong> Universal origin. Outside licensed board/game family relevant to Elcon's Diversions integration model; included among the broader associated offerings, outside the 14 Elcon game families.</p>
+<h3>8.7. Space Force</h3>
+<p><strong>Date and context:</strong> 1981 Diversions context. <strong>Original lineage:</strong> Venture Line origin. Outside licensed board/game family relevant to Elcon's Diversions integration model; included among the broader associated offerings, outside the 14 Elcon game families.</p>
+<h2 id="diversions">9. Diversions: restaurant tables with other companies’ game boards</h2>
+<p>By 1981 Elcon's integration model became explicit in print. Play Meter described Diversions, a booth-style dining/video table developed principally for ShowBiz Pizza Place. The article specifies a 14-inch color monitor and a tabletop around 32 by 41 inches, designed to preserve food space and leg/knee room in a restaurant booth. Andre Dubel was quoted saying the concept was operating in ten locations and 'doing nicely' at the time. <a aria-label="Source 5" class="src-tag" href="#source-5">[5]</a><a aria-label="Source 27" class="src-tag" href="#source-27">[27]</a></p>
+<p>The more important historical point is how games reached Diversions. The article describes customer-selected licensed logic boards and names Universal USA, Data East and Game Plan as outside suppliers for current or future Elcon games. That is direct evidence that Elcon's cabinet identity and commercial package could be distinct from the software origin. <a aria-label="Source 27" class="src-tag" href="#source-27">[27]</a></p>
+<p>Three outside game families are associated with the Diversions offering: Tank Battalion through the Namco/Game Plan chain, Devil Zone through Universal, and Space Force through Venture Line. The specific Data East title has not been identified. Astro Fantasia, Lock ’N Chase and Pro Golf remain possibilities rather than documented installations.</p><p>Diversions is a major Elcon cabinet system rather than a fifteenth game. Its use of separately supplied, licensed boards makes the distinction between cabinet manufacture and game authorship especially clear.</p>
+<h2 id="compact">10. Compact cabinets and the 1981 product transition</h2>
+<p>The January 15, 1981 advertisement 'If we made them any smaller' shows Elcon compressing the arcade cabinet into two compact forms. The ad gives dimensions of 32 x 32 x 28 inches for a low format and 24 x 24 x 59 inches for a narrow upright, both with 19-inch color monitors. It offers Astro Combat, Cosmic Attackers, Royal Flush, Super Casino and other games. <a aria-label="Source 47" class="src-tag" href="#source-47">[47]</a></p>
+<p>This advertisement is a useful bridge between the 1970s modular/furniture experiments and the final conversion-heavy 1982 advertising. Elcon was not abandoning cabinets for software; it was continuing to make cabinet size, placement and replaceability part of the product proposition. Survivor testimony from 2019, in which a collector reported that his father once operated about forty compact Elcon-branded cabinets and that two remained, fits this broader design pattern, although those cabinets have not been documented well enough to identify them as a specific product family. <a aria-label="Source 17" class="src-tag" href="#source-17">[17]</a></p>
+<h2 id="hardware">11. Hardware and platform products outside the game count</h2>
+<p>The following products are historically substantial but do not add to the 14-game headline count. Keeping them separate prevents Elcon's hardware creativity from disappearing while also preventing the game total from being inflated.</p>
+<h3>Cocktail conversion program</h3>
+<p><strong>Date/context:</strong> 1975-c. 1976. <strong>Type:</strong> Conversion/service program. E.C.I./Elcon advertised conversion of existing video games into cocktail tables and sale of complete tables.</p>
+<h3>Model Thirty</h3>
+<p><strong>Date/context:</strong> c. 1976. <strong>Type:</strong> 30-inch octagonal seated cocktail. Primary Strong brochure; marketed for cocktail lounges; Double Play or Triple Play board options.</p>
+<h3>Model Forty</h3>
+<p><strong>Date/context:</strong> c. 1976. <strong>Type:</strong> 40-inch octagonal standing/barstool cocktail. Primary Strong brochure; promoted for theater lobbies and high-volume waiting areas.</p>
+<h3>Rectangular Model</h3>
+<p><strong>Date/context:</strong> c. 1976. <strong>Type:</strong> Wall-fitting four-player cocktail. Primary Strong brochure; 1976 ad gives roughly 26 x 36-inch form; lower-priced workhorse.</p>
+<h3>Whiskey-barrel cabinet</h3>
+<p><strong>Date/context:</strong> 1976. <strong>Type:</strong> Novelty oak cabinet. Period Play Meter announcement; about 35 inches high; knob or joystick. Installed game not identified in primary text.</p>
+<h3>The Six Pack</h3>
+<p><strong>Date/context:</strong> c. 1977. <strong>Type:</strong> Six-wall-game modular installation. Primary two-page Elcon flyer. Six wall games around a central support or three-game semicircle against a wall.</p>
+<h3>Wall Cabinet</h3>
+<p><strong>Date/context:</strong> c. 1977. <strong>Type:</strong> Wall-mounted cabinet. 23 x 32 x 14.5 inches, 19-inch monitor; game contained in front-door assembly; interchangeable in minutes.</p>
+<h3>6 Game Kiosk</h3>
+<p><strong>Date/context:</strong> 1979-1980. <strong>Type:</strong> Six-game kiosk/installation wording. Period directory phrase. Very strongly supported as same design/continuation as The Six Pack, but one explicit naming bridge remains missing.</p>
+<h3>Magic Trolley</h3>
+<p><strong>Date/context:</strong> 1977. <strong>Type:</strong> Mobile arcade/trailer concept. Strong specialist/interview evidence for AMOA display; report that only one may have sold remains secondary.</p>
+<h3>1981 compact cabinets</h3>
+<p><strong>Date/context:</strong> 1981. <strong>Type:</strong> Low compact + narrow upright formats. Elcon ad gives 32 x 32 x 28 and 24 x 24 x 59 inches; both with 19-inch color monitors.</p>
+<h3>Diversions</h3>
+<p><strong>Date/context:</strong> 1981. <strong>Type:</strong> Booth-style dining/video table. 14-inch color monitor; developed principally for ShowBiz Pizza; customer-selected outside logic boards.</p>
+<h3>Token Vendor and base</h3>
+<p><strong>Date/context:</strong> c. 1976. <strong>Type:</strong> Non-game vending equipment. Elcon brochure order form offered Token Vendor for $645 and base for $45; manufacturer/design origin unknown.</p>
+<h2 id="micropin">12. Micropin: distribution, acquisition and corporate afterlife</h2>
+<p>Micropin entered the Elcon story first as a commercial relationship and then as a confirmed parent company. Micropin Corporation, associated with Pasadena, California, held the MICROPIN trademark for electronic pinball equipment, and the rare Pentacup product survives in technical collector records. Pentacup is important context for Micropin's amusement business but is not an Elcon-developed game. <a aria-label="Source 18" class="src-tag" href="#source-18">[18]</a><a aria-label="Source 20" class="src-tag" href="#source-20">[20]</a></p>
+<p>Collector eyewitness material reports that Elcon displayed multiple Micropin units at an AMOA show and was intended to act as exclusive distributor. That recollection is useful but remains secondary. Specialist historian Keith Smith later described Micropin as Elcon's owner while discussing annual reports and 10-Ks. Contemporary transaction reports provide firmer evidence for the acquisition. <a aria-label="Source 19" class="src-tag" href="#source-19">[19]</a><a aria-label="Source 23" class="src-tag" href="#source-23">[23]</a></p>
+<p>By January 9, 1982 Cash Box reported Micropin's purchase of Elcon as still pending. The reported transaction involved a 420,000-share exchange and the possibility of an additional 420,000 shares to Andre Dubel based on future earnings. A February 1 Play Meter article likewise described an acquisition agreement and repeated management estimates for Elcon's sales and earnings. These are management estimates reported at the time; audited Elcon accounts have not been recovered. <a aria-label="Source 28" class="src-tag" href="#source-28">[28]</a><a aria-label="Source 29" class="src-tag" href="#source-29">[29]</a></p>
+<p>On February 27 Cash Box reported the acquisition as completed and described Elcon as a wholly owned Micropin subsidiary still headed by founder Andre Dubel. Micropin intended to market nationwide through Elcon. This closes the basic ownership question even though the exact legal closing date remains unknown. A January 1 date appears in secondary/reported material and may reflect an accounting-effective date; it is not established as the exact closing date. <a aria-label="Source 30" class="src-tag" href="#source-30">[30]</a></p>
+<p>Micropin's July 1982 fiscal-results report gives another tempting but dangerous set of numbers. For the fiscal year ended March 31, 1982, Micropin reported gross revenue of $1,865,452 and net income of $71,669, compared with prior-year gross revenue of $187,898 and a net loss of $798,369. Fourth-quarter revenue was reported at $1,338,275 with net income of $309,639. That quarter overlaps the Elcon acquisition, but the report does not allocate results by subsidiary or product. The increase cannot be attributed directly to Elcon from these consolidated figures. <a aria-label="Source 52" class="src-tag" href="#source-52">[52]</a></p>
+<p>By the same July report Micropin described itself as both an operator and manufacturer of electronic amusement games, primarily video games. This makes the acquisition strategically intelligible: Elcon offered established cabinet, assembly and marketing capacity. But it still does not mean every post-acquisition Micropin-manufactured product was an Elcon product. <a aria-label="Source 52" class="src-tag" href="#source-52">[52]</a></p>
+<h2 id="vip">13. V.I.P. and Elcon's 1982 sales channel</h2>
+<p>A March 1982 Play Meter directory and advertisement show Elcon still marketing its own identity after the Micropin acquisition. Andre Dubel is listed as president, Don Suwinski as general manager, and the Royal Oak address remains 2715 Nakota. The company listed video games in console, cocktail, bartop and booth-style formats. An adjacent sales message emphasized that even after buying an Elcon game, the operator could change it economically - the same convertibility theme visible in the Six Pack and Diversions years earlier. <a aria-label="Source 6" class="src-tag" href="#source-6">[6]</a><a aria-label="Source 31" class="src-tag" href="#source-31">[31]</a></p>
+<p>The advertisement says Elcon games were available exclusively from V.I.P. at 31199 Schoolcraft, Livonia, Michigan. The Nintendo litigation separately names Venture Into Products Marketing and Sales Limited in the Crazy Kong distribution network. The best-supported interpretation is that V.I.P. was very likely Venture Into Products Marketing and Sales Limited, but an explicit surviving record joining that full company name to the Schoolcraft address remains desirable before treating the identity as absolutely closed. <a aria-label="Source 31" class="src-tag" href="#source-31">[31]</a><a aria-label="Source 32" class="src-tag" href="#source-32">[32]</a></p>
+<h2 id="crazy-kong">14. Crazy Kong and the 1982 litigation period</h2>
+<p>The final documented phase of Elcon is dominated by intellectual-property litigation, but the lawsuits should not be used as a shortcut explanation for the company's disappearance. The Nintendo opinion is the strongest recovered case because it includes factual findings about Elcon's business, board purchases and sales. <a aria-label="Source 32" class="src-tag" href="#source-32">[32]</a></p>
+<p>The same opinion also cites Williams Electronics, Inc. v. Elcon Industries, Inc., docket 82-71738, with a ruling dated June 1, 1982, and Bally Midway Manufacturing Co. v. Micropin Corporation doing business as Elcon Industries and Andre Dubel, docket 82-71456, with a July 27, 1982 ruling. The underlying pleadings, disputed games and full dispositions were not recovered in the available records. Defender or Defense Command has appeared as a hypothesis for the Williams matter, but there is not enough evidence to publish that identification as fact. <a aria-label="Source 32" class="src-tag" href="#source-32">[32]</a><a aria-label="Source 33" class="src-tag" href="#source-33">[33]</a><a aria-label="Source 34" class="src-tag" href="#source-34">[34]</a></p>
+<p>Elcon and Andre Dubel were still active legal participants when the Nintendo preliminary-injunction opinion was issued on October 4, 1982. That date is therefore a valid last-confirmed operating/legal point for the documented 1975–1982 horizon. It is not proof that normal manufacturing continued through October, just as the April Crazy Kong sales cutoff is not proof that every other Elcon activity stopped that month. Exact dissolution or successor status remains unresolved. <a aria-label="Source 32" class="src-tag" href="#source-32">[32]</a></p>
+<p>The unrecovered Williams and Bally case files could identify additional products, clarify the Micropin/Elcon legal relationship or change the late catalog. Those questions remain open; the surviving Nintendo opinion establishes the cited cases and rulings without supplying their full contents.</p><h2 id="survivors">15. Surviving machines and what physical evidence changes</h2>
+<p>Elcon survives in scattered physical machines, and those survivors often complicate the paper record rather than simply confirming it. The Blockbuster +4 cabinet is one of the best references for Elcon styling, multi-game presentation and control hardware. The etched ELCON IND discrete-logic PCB adds direct hardware weight to the idea of an Elcon-specific Blockbuster implementation. <a aria-label="Source 13" class="src-tag" href="#source-13">[13]</a><a aria-label="Source 59" class="src-tag" href="#source-59">[59]</a></p>
+<p>Cosmic Attackers survivors demonstrate configuration variability. Different reported boards and monitor arrangements caution against assuming that an Elcon product name corresponds to one fixed electronics stack. <a aria-label="Source 36" class="src-tag" href="#source-36">[36]</a></p>
+<p>The Astro Combat III survivor is equally important for a different reason: it preserves Elcon package labeling that does not map neatly onto a known software trilogy. Matching inventory-style labels on internal components make the cabinet a valuable future documentation target. <a aria-label="Source 35" class="src-tag" href="#source-35">[35]</a></p>
+<p>A modern compact Frogger-family cabinet has been proposed as Elcon. Its physical style makes the attribution plausible, but the public evidence has not shown a decisive Elcon data plate, internal label set, original board provenance or period catalog listing. Falcon is a plausible upstream board lead because Falcon produced a Frog bootleg and federal evidence proves Elcon later bought Falcon-manufactured Crazy Kong boards through intermediaries. Plausibility is not proof; the Frogger package stays outside the count. <a aria-label="Source 37" class="src-tag" href="#source-37">[37]</a><a aria-label="Source 40" class="src-tag" href="#source-40">[40]</a><a aria-label="Source 41" class="src-tag" href="#source-41">[41]</a></p>
+<p>Another collector reported in 2019 that his father had once operated roughly forty compact Elcon cabinets and that two remained. He described a fold-down plexiglass/control-panel assembly, a monitor that could be pulled out for service, Shinlee original monitors and an unusual transformer arrangement. If those survivors can someday be documented with owner permission, they could become one of the richest physical sources for Elcon construction practice. For now the testimony is preserved as a lead, not converted into measurements or model identifications not established by the available documentation. <a aria-label="Source 17" class="src-tag" href="#source-17">[17]</a></p>
+<p>FROG and Bull Frog provide comparative context, but no Elcon–Computran business relationship is verified. Bull Frog belongs to the separate Computran history. The six-page FROG manual used for comparison is a publicly circulated reference scan, not a document recovered from the cabinet discussed in the collector evidence.<a aria-label="Source 38" class="src-tag" href="#source-38">[38]</a><a aria-label="Source 39" class="src-tag" href="#source-39">[39]</a></p><div class="context-note"><strong>Comparative illustration:</strong> the FROG manual is included for comparison. It is <em>not</em> being presented as an Elcon manual or as proof of an Elcon–Computran relationship.</div>
+<figure class="inline-archive-figure narrow">
+<img alt="Cover of the preserved FROG arcade game manual reference copy" height="1274" src="assets/articles/8fa3a9e187e60335a18ed09e94960768e956248b.jpg" width="900"/>
+<figcaption><strong>FROG manual.</strong> A comparative reference for the Bull Frog / Frogger-family attribution discussed above. This manual does not establish Elcon manufacture, and FROG is excluded from Elcon’s verified game count.</figcaption></figure>
+<h2 id="evidence-changes">16. What the evidence changes</h2>
+<p>Several recurring attributions differ from the surviving evidence. The following distinctions are useful when comparing Elcon machines, company listings and later accounts.</p><p><strong>The 1976 leadership listing:</strong> 1976 Billboard directory names Joyce DeVries president and Dubel sales manager.</p>
+<p><strong>E.C.I. and Elcon names:</strong> Elcon and E.C.I. identities overlap in 1975 commerce; exact legal mechanism unresolved.</p>
+<p><strong>Astro Combat numbering:</strong> No I or II verified; III treated as package/model/revision suffix unless new evidence appears.</p>
+<p><strong>Brickyard’s game lineage:</strong> Primary trade/legal plus preserved lineage support Ramtek Barricade/Brickyard.</p>
+<p><strong>Bull Frog attribution:</strong> Bull Frog is attributed to Computran, not Elcon.</p>
+<p><strong>The possible Falcon–Frogger connection:</strong> Falcon is a plausible upstream lead only.</p>
+<p><strong>The U.S. Billiards–Blockbuster attribution:</strong> Modern attribution lacks period primary proof.</p>
+<p><strong>The whiskey-barrel game:</strong> Primary barrel item verifies cabinet but does not identify game.</p>
+<p>Dodge ’Em has not been independently documented in period Elcon material and is excluded as a separate title.</p>
+<p>A list of Elcon’s products and business relationships may contain 32 entries without describing 32 games: cabinets, multi-game systems, distribution channels and corporate relationships are separate from game titles.</p>
+<h2 id="unknowns">17. Open questions</h2>
+<p>The remaining questions concern missing corporate records, agreements, period sales material and documented surviving machines. Each would benefit from specific new evidence:</p><p><strong>Exact E.C.I./Elcon/Elcon Games legal relationship - Unresolved.</strong> Requires Michigan corporate filings, assumed-name/name-change records, formal legal documents or equivalent primary evidence.</p>
+<p>Incorporation, founding and dissolution dates remain unknown. The documented 1975–1982 span describes commercial and legal activity, rather than exact corporate start and end dates.</p>
+<p>Joyce DeVries and Andre Dubel’s leadership chronology is unclear. Conflicting period listings may describe different entities or titles; they do not establish a simple succession.</p>
+<p>The Six Pack’s production quantity and the survival of a complete unit remain unknown. Authenticated photographs, serial numbers, invoices, price sheets or a surviving installation could clarify them.</p>
+<p>The 6 Game Kiosk is very likely related to the Six Pack, but no recovered source explicitly connects the two names.</p>
+<p>The Magic Trolley is strongly supported by reporting. A trade-show photograph, brochure, invoice or original Dubel interview could establish further details and help clarify production quantity.</p>
+<p>Elcon claimed authorship of Double/Triple Play boards. Surviving boards, schematics, markings or independent engineering documentation could corroborate that claim.</p>
+<p>The relationship between 5 Games and Take Five remains unresolved. Licensing, purchasing, supplier or technical documentation could establish how the game reached Elcon.</p>
+<p><strong>Blockbuster underlying circuit authorship / U.S. Billiards role - Unresolved.</strong> Elcon-specific board implementation supported; original circuitry route and U.S. Billiards claim not proven.</p>
+<p>The underlying game families of Highjumpers and Video Bowl are strongly identified. Their board suppliers and licensing arrangements remain unknown.</p>
+<p><strong>Super Casino hardware evolution - Unresolved.</strong> Casino-Super Casino continuity strong; exact revision and board source unknown.</p>
+<p><strong>Royal Flush board supplier - Unresolved.</strong> Commercial offering verified, electronics origin not.</p>
+<p><strong>Blasto/Depthcharge/Gypsy Juggler/Space Wars Elcon package details - Unresolved.</strong> Outside origins known; exact Elcon sourcing, licensing and cabinet forms unknown.</p>
+<p><strong>Specific Data East Diversions title - Unresolved.</strong> Direct Elcon, ShowBiz or circuit-board evidence is needed.</p>
+<p><strong>Apparent Elcon Frogger survivor - Plausible but unverified.</strong> An Elcon data plate, original internal labels, documented board provenance or a period catalog could establish the attribution.</p>
+<p>The Williams 82-71738 and Bally 82-71456 case files have not been located. Federal court or National Archives holdings may preserve them.</p>
+<p>The connection between V.I.P. and Venture Into Products Marketing and Sales Limited is strongly supported, but no recovered primary source explicitly joins the full name to 31199 Schoolcraft.</p>
+<p>Micropin’s acquisition of Elcon was complete by the February 27, 1982 report. The effective date remains unresolved; January 1 is not established without the underlying filing.</p>
+<h2 id="meaning">18. What Elcon tells us about arcade history</h2>
+<p>Elcon's importance lies less in one famous hit than in a persistent idea about arcade hardware. From 1975 onward the company treated the cabinet as a commercial variable: convert an operator's existing machine, sell furniture-grade cocktail tables, put the game in a replaceable front door, cluster wall games around a central support, move the arcade into a trailer, compress cabinets, integrate outside logic boards into restaurant furniture, and keep telling operators that the game could be changed later. <a aria-label="Source 1" class="src-tag" href="#source-1">[1]</a><a aria-label="Source 5" class="src-tag" href="#source-5">[5]</a><a aria-label="Source 6" class="src-tag" href="#source-6">[6]</a><a aria-label="Source 24" class="src-tag" href="#source-24">[24]</a><a aria-label="Source 45" class="src-tag" href="#source-45">[45]</a><a aria-label="Source 47" class="src-tag" href="#source-47">[47]</a></p>
+<p>That strategy makes Elcon a useful case study in the part of arcade history that standard developer/manufacturer fields obscure. A game can have one software origin, another board manufacturer, an Elcon cabinet, an Elcon package name, a distributor, and a later legal owner. Highjumpers, Video Bowl, Diversions and Crazy Kong all occupy different points on that spectrum. Treating all those relationships as a single 'manufacturer' credit erases more history than it explains. <a aria-label="Source 27" class="src-tag" href="#source-27">[27]</a><a aria-label="Source 32" class="src-tag" href="#source-32">[32]</a><a aria-label="Source 48" class="src-tag" href="#source-48">[48]</a><a aria-label="Source 49" class="src-tag" href="#source-49">[49]</a></p>
+<p>Several attributions remain unresolved: a separate Dodge ’Em release, Astro Combat I and II, Hit Me in the whiskey-barrel cabinet, the Data East title used in Diversions, and the supplier of the apparent Frogger survivor’s board. The exact legal relationship between E.C.I. and Elcon and the full Williams and Bally case files are also still missing.</p>
+<h2 id="chronology">19. Chronology</h2><p><strong>1975-07-30:</strong> Electronic Concept Industries advertises video-game repair, cocktail conversions, new tables and five games; earliest verified operating-lineage evidence.</p>
+<p><strong>1975-10-18:</strong> Elcon Industries appears independently in the MOA exhibitor directory at the Bloomfield Hills contact identity.</p>
+<p><strong>November 1975:</strong> Electronic Concepts Ind. Marketing / E.C.I. uses the same Bloomfield Hills box/phone, proving overlapping identity usage.</p>
+<p><strong>1976:</strong> Cocktail brochure/advertising documents Model Thirty, Model Forty, Rectangular tables, Double Play, Triple Play, conversion pricing, export support and materials; whiskey-barrel cabinet also appears.</p>
+<p><strong>1976 directory:</strong> Joyce DeVries listed as president; Andre Dubel sales manager. <strong>1977:</strong> Six Pack/wall-cabinet era; Blockbuster, Highjumpers, Video Bowl, Brickyard, Casino and TV Pin Ball appear in the documented product range; Elcon occupies three AMOA booths.</p>
+<p><strong>1978:</strong> Elcon six-wall-game trade description strengthens Six Pack/6 Game Kiosk continuity; Joyce DeVries appears in Play Meter staff coverage.</p>
+<p><strong>April 1979:</strong> Billboard lists DeVries president/Dubel sales manager and the nine-item offering including outside-origin titles and 6 Game Kiosk.</p>
+<p><strong>June 1980:</strong> Billboard lists Dubel president/Thomas Tol GM and repeats the nine-item catalog.</p>
+<p><strong>January 1981:</strong> Compact-cabinet advertisement names Astro Combat, Cosmic Attackers, Royal Flush and Super Casino.</p>
+<p><strong>1981:</strong> Diversions establishes the ShowBiz booth-table concept and outside licensed-board model.</p>
+<p><strong>Late 1981:</strong> Micropin acquisition agreement develops; Elcon begins purchasing Crazy Kong boards for complete-machine assembly.</p>
+<p><strong>February 27, 1982:</strong> Cash Box reports Micropin acquisition completed; Elcon described as wholly owned subsidiary still headed by Dubel.</p>
+<p><strong>March 1982:</strong> Elcon still advertises changeable games and cabinet formats; V.I.P. promoted as exclusive source.</p>
+<p><strong>Through April 1982:</strong> Federal findings document Elcon Crazy Kong sales through at least April.</p>
+<p><strong>June/July 1982:</strong> Williams and Bally Midway-related Elcon cases produce rulings; full files remain unrecovered.</p>
+<p><strong>October 4, 1982:</strong> Nintendo preliminary-injunction opinion documents Elcon/Dubel as active legal participants and provides the latest verified corporate or legal activity in this account.</p>
+<h2 id="catalog">20. Game catalog summary</h2><p>The following summary brings together the fourteen Elcon game families, their dates, the company’s commercial role and the limits of the surviving evidence.</p><p><strong>1. Double Play (1975-c. 1976) — Included.</strong> Elcon/E.C.I. commercial sports-game package documented in primary brochure material. Tennis or Hockey; joystick control; three paddle sizes and adjustable scoring. E.C.I. claimed in-house logic-board design/manufacture, but surviving technical evidence has not independently confirmed that authorship.</p>
+<p><strong>2. Triple Play (1975-c. 1976) — Included.</strong> Elcon/E.C.I. commercial three-game sports package: Tennis, Soccer, and Hockey. Primary brochure documentation verifies the package. The company claimed design/manufacture of its logic boards; technical authorship remains unconfirmed independently.</p>
+<p><strong>3. 5 Games (c. 1975) - one game family — strongly supported.</strong> Elcon-marketed five-game ball-and-paddle package. Research strongly ties it to the Fun Games Take Five design family rather than an independently conceived five-game system. Exact commercial/engineering mechanism remains unresolved.</p>
+<p><strong>4. Blockbuster (1977) — Included.</strong> Distinct Elcon five-game commercial system. Period flyer and surviving Elcon-marked PCB evidence support an Elcon-specific implementation. It is an evolved relative of the Take Five / Video Five design family; original circuit authorship and licensing route remain unresolved.</p>
+<p><strong>5. Highjumpers (1977-1980) — Included.</strong> Distinct Elcon-branded package strongly identified with Exidy Circus through near-verbatim primary play descriptions and identical 3/5/7/9-jump settings. Elcon board source and authorization are unresolved.</p>
+<p><strong>6. Video Bowl (1977-1980) — Included.</strong> Distinct Elcon-branded package strongly identified with Exidy Robot Bowl through the unusual combination of regulation bowling, animated bowler, sound, and beer-frame feature. Board source and authorization remain unresolved.</p>
+<p><strong>7. Brickyard (1977) — Included.</strong> Distinct Elcon commercial title. The evidence ties it with very high confidence to Ramtek's Barricade/Brickyard lineage; the old collector identification as Atari Breakout is rejected.</p>
+<p><strong>8. Casino / Super Casino (1977-1981) — One game family.</strong> One commercial blackjack lineage. Casino is verified by 1977; period 1978 language calls Casino 'Video blackjack'; Super Casino is listed from 1979 through January 1981. A separate 'Video Blackjack' title is not independently verified.</p>
+<p><strong>9. TV Pin Ball (c. 1975-1977) — Included.</strong> Confirmed Elcon video-pinball title, one or two players with adjustable scores/free-game option. Product identity is stronger than exact release chronology.</p>
+<p><strong>10. Cosmic Attackers (1979-1981) — Included.</strong> Confirmed Elcon package in upright, cocktail and later compact-cabinet contexts. Survivor reports show materially different internal board/monitor configurations, so product identity must be separated from electronics installed in any one survivor.</p>
+<p><strong>11. Collision (by 1980) — Included.</strong> Period-attested Elcon-manufactured/offered maze-driving title in Elcon's own product-line material. Later 'Dodge 'Em' attributions are not independently verified and are not counted separately.</p>
+<p><strong>12. Royal Flush Drawpoker (by 1981) — Included.</strong> Separate Elcon draw-poker offering, advertised as available in upright, wall and cocktail-table formats. Exact board supplier/electronics lineage remains unresolved.</p>
+<p><strong>13. Astro Combat / Astro Combat III (1981) — One game family.</strong> Plain Astro Combat is advertised by Elcon in January 1981. A surviving compact Elcon cabinet appears labeled Astro Combat III with matching component inventory labels. No Astro Combat I or II releases are verified; 'III' is treated as package/model/revision wording, not proof of a trilogy.</p>
+<p><strong>14. Crazy Kong / Crazy Kong Part II (1981-1982) — One game family.</strong> Federal evidence verifies Elcon purchase of Falcon-family Crazy Kong boards through intermediaries, assembly into complete machines, and sales through at least April 1982. This counts as an Elcon-assembled commercial family, not Elcon-developed software.</p>
+<p><strong>Other games supplied by Elcon:</strong> Blasto; Depthcharge; Gypsy Juggler; Space Wars; Tank Battalion; Devil Zone; Space Force. <strong>Excluded from these totals:</strong> Dodge 'Em; Possible Elcon Frogger-family cabaret; Hit Me in whiskey barrel; Unidentified Data East Diversions title; Video Blackjack as separate title; Astro Combat I / II; Bull Frog; Pentacup.</p>
+<h2 id="sources">21. Sources</h2><p>The sources include contemporary advertisements and reporting, legal opinions, archival material, surviving machines and later historical accounts. Period documents and physical evidence take precedence where they conflict with database descriptions. The notes identify what each source supports and where its limits matter.</p><p id="source-1"><strong>1 - The Six Pack sales flyer, front page (c. 1977).</strong> Elcon Industries. Primary image. Original scan supplied to Arcade Obscura. Six-wall structure, three-game semicircle, aluminum/Formica support, rapid assembly, illuminated identifiers.</p>
+<p id="source-2"><strong>2 - The Six Pack / Elcon product flyer, back page (c. 1977).</strong> Elcon Industries. Primary image. Original scan supplied to Arcade Obscura. Game descriptions; wall cabinet 23 x 32 x 14.5; 19-inch monitor; front-door game module; Royal Oak contact.</p>
+<p id="source-3"><strong>3 - The Six Pack (1977 record).</strong> Arcade-History. Database record. Location: <a href="https://www.arcade-history.com/?id=276130&amp;n=the-six-pack&amp;page=detail" rel="noopener" target="_blank">View source</a>. Corroborative database only; The original flyer provides the product details.</p>
+<p id="source-4"><strong>4 - Elcon Industries (Current).</strong> MobyGames. Company/game database. Location: <a href="https://www.mobygames.com/company/33770/elcon-industries/" rel="noopener" target="_blank">View source</a>. Later company and game listing; the individual attributions are assessed in this article.</p>
+<p id="source-5"><strong>5 - Elcon bows new games table that allows dining while playing (1981-10-01).</strong> Play Meter. Contemporary trade article. Location: <a href="https://elibrary.arcade-museum.com/Play-Meter/1981-October-01/16" rel="noopener" target="_blank">View source</a>. Diversions, ShowBiz, 14-inch monitor, licensed boards, conversion strategy.</p>
+<p id="source-6"><strong>6 - Elcon company listing and conversion advertisement (1982-03-01).</strong> Play Meter. Directory/advertisement. Location: <a href="https://elibrary.arcade-museum.com/Play-Meter/1982-March-01/14" rel="noopener" target="_blank">View source</a>. Dubel/Suwinski, Royal Oak, cabinet formats, changeability, V.I.P.</p>
+<p id="source-7"><strong>7 - Billboard International Disco Sourcebook 1979-80 - Elcon listing (1979).</strong> Billboard. Contemporary directory. Location: <a href="https://www.worldradiohistory.com/Archive-All-Music/Billboard/70s/1979/Billboard-International-Disco-Sourcebook-1979-80.pdf" rel="noopener" target="_blank">View source</a>. Company entry D-46 and games-category D-75 cited here.</p>
+<p id="source-8"><strong>8 - More Odds and Ends - Ikegami, Elcon, First Video Game Death (2012-11).</strong> Keith Smith. Specialist history. Location: <a href="https://allincolorforaquarter.blogspot.com/2012/11/more-odds-and-ends-ikegami-tshshinki.html" rel="noopener" target="_blank">View source</a>. Founder/earlier-name/product-list leads; Where accounts differ, contemporary documents provide the stronger evidence.</p>
+<p id="source-9"><strong>9 - Update on Atari Oddities - Magic Trolley (2014-10-13).</strong> Keith Smith. Specialist/interview report. Location: <a href="https://allincolorforaquarter.blogspot.com/2014/10/update-on-atari-oddities.html" rel="noopener" target="_blank">View source</a>. Magic Trolley AMOA report and Dubel recollection that only one may have sold.</p>
+<p id="source-10"><strong>10 - The Strong response to Elcon/Six Pack inquiry (2026-07-15).</strong> Stephanie / The Strong. Archive correspondence. Correspondence with The Strong. Folder 29 concerns cocktail tables; catalog search found no Six Pack/6 Game Kiosk material.</p>
+<p id="source-11"><strong>11 - Larry Bieza coin-op and amusements history collection - Series III (1973-2009 collection).</strong> The Strong. Institutional finding aid. Location: <a href="https://archives.museumofplay.org/repositories/3/archival_objects/37124" rel="noopener" target="_blank">View source</a>. Collection context for short-lived coin-op companies.</p>
+<p id="source-12"><strong>12 - Atari theatre or kiosk kits/cabs discussion (2012).</strong> Museum of the Game forum. Collector discussion. Location: <a href="https://forums.arcade-museum.com/threads/atari-theatre-or-kiosk-kits-cabs.126198/page-2" rel="noopener" target="_blank">View source</a>. Negative/collector context; not proof no complete Six Pack survives.</p>
+<p id="source-13"><strong>13 - Blockbuster 'n4 - by Elcon Industries (2010-03-20).</strong> Avoid Spikes. Surviving-machine documentation. Location: <a href="https://avoidspikes.blogspot.com/2010/03/blockbuster-n4-by-elcon-industries.html" rel="noopener" target="_blank">View source</a>. Surviving Blockbuster +4 cabinet.</p>
+<p id="source-14"><strong>14 - Nintendo of America, Inc. v. Elcon Industries, Inc. (1982-10-04).</strong> U.S. District Court, E.D. Michigan. Federal court opinion. Location: <a href="https://law.justia.com/cases/federal/district-courts/FSupp/564/937/1407344/" rel="noopener" target="_blank">View source</a>. Corporate identity, Crazy Kong purchases/assembly/sales, Dubel role, injunction, citations to other cases.</p>
+<p id="source-15"><strong>15 - What Was the First Cocktail Video Game (Redux) (2013-10).</strong> Keith Smith. Specialist history. Location: <a href="https://allincolorforaquarter.blogspot.com/2013/10/what-was-first-cocktail-video-game-redux.html" rel="noopener" target="_blank">View source</a>. Early Elcon cocktail/conversion lead.</p>
+<p id="source-16"><strong>16 - Oddball Atari Coin-Ops (2012-12).</strong> Keith Smith. Specialist history. Location: <a href="https://allincolorforaquarter.blogspot.com/2012/12/oddball-atari-coin-ops.html" rel="noopener" target="_blank">View source</a>. Barrel-cabinet/Hit Me lead; The period announcement does not identify Hit Me as the installed game.</p>
+<p id="source-17"><strong>17 - Two transformers in the cabinet (2019-03).</strong> Museum of the Game forum / nmantas. Collector technical discussion. Location: <a href="https://forums.arcade-museum.com/threads/two-transformers-in-the-cabinet.446987/" rel="noopener" target="_blank">View source</a>. Route of about forty compact Elcon cabinets; two reportedly remain.</p>
+<p id="source-18"><strong>18 - MICROPIN - USPTO Serial 73162645 (1978 filing / 1980 registration).</strong> Micropin Corporation. Trademark record. Location: <a href="https://trademarks.justia.com/browse-by-serial-number/73/16/26/" rel="noopener" target="_blank">View source</a>. Electronic pinball trademark/corporate identity.</p>
+<p id="source-19"><strong>19 - Micropin: Has anyone played it? (c. 2013).</strong> Pinside / participants. Collector eyewitness discussion. Location: <a href="https://pinside.com/pinball/forum/topic/micropin-has-anyone-played-it" rel="noopener" target="_blank">View source</a>. Reported Elcon booth with Micropin units and intended distribution role.</p>
+<p id="source-20"><strong>20 - Pentacup - Micropin Corp. (1979 record).</strong> IPSND. Technical collector database. Location: <a href="https://www.ipsnd.net/view.aspx?id=3821" rel="noopener" target="_blank">View source</a>. Rare Micropin electronic pinball; not Elcon authorship evidence.</p>
+<p id="source-21">21 — Elcon cocktail-table brochure provenance. The brochure is held in The Strong’s Larry Bieza collection, Box 13, Folder 29; see source 45 for the document’s historical content.</p><p id="source-22">22 - The Strong, public catalog searches, July 20, 2026. No direct Elcon, Micropin or Dubel legal file was located in the public catalog. This limited search does not establish that no such records exist.</p><p id="source-23"><strong>23 - Centuri/Allied Leisure Annual Report Goodies - Part 1 (2013-08-30).</strong> Keith Smith. Specialist history. Location: <a href="https://allincolorforaquarter.blogspot.com/2013/08/centuriallied-leisure-annual-report.html" rel="noopener" target="_blank">View source</a>. Describes Micropin as owner of Elcon; underlying filing later partially corroborated by trade reporting.</p>
+<p id="source-24"><strong>24 - Electronic Concepts Ind. Marketing cocktail conversion/table advertisements (1975-11).</strong> E.C.I.. Contemporary advertisement. Location: <a href="https://archive.org/stream/play-meter-volume-1-number-11-november-1975/Play%20Meter%20-%20Volume%201%2C%20Number%2011%20-%20November%201975_djvu.txt" rel="noopener" target="_blank">View source</a>. Bloomfield Hills contact continuity and early cabinet/game program.</p>
+<p id="source-25"><strong>25 - Elcon Industries cocktail conversion cabinets (1976-04).</strong> Elcon Industries / Marketplace. Contemporary advertisement. Location: <a href="https://elibrary.arcade-museum.com/classic/Marketplace/1976-April/16" rel="noopener" target="_blank">View source</a>. Same Bloomfield Hills contact as late-1975 E.C.I.; cabinet models and conversion prices.</p>
+<p id="source-26"><strong>26 - Whiskey barrel holds video (1976-03).</strong> Play Meter / Elcon. Contemporary announcement. Location: <a href="https://archive.org/stream/play-meter-volume-2-number-3-march-1976/Play%20Meter%20-%20Volume%202%2C%20Number%203%20-%20March%201976_djvu.txt" rel="noopener" target="_blank">View source</a>. Oak barrel cabinet; game unspecified.</p>
+<p id="source-27"><strong>27 - Elcon Diversions booth-style video table (1981-10-01).</strong> Play Meter. Contemporary trade article. Location: <a href="https://elibrary.arcade-museum.com/Play-Meter/1981-October-01/16" rel="noopener" target="_blank">View source</a>. ShowBiz orientation, ten locations claim, dimensions, outside board suppliers.</p>
+<p id="source-28"><strong>28 - Elcon Industries to be acquired by operating company Micropin (1982-02-01).</strong> Play Meter. Contemporary corporate article. Location: <a href="https://archive.org/stream/play-meter-volume-9-number-3-february-1st-1982/Play%20Meter%20-%20Volume%208%2C%20Number%203%20-%20February%201st%201982_djvu.txt" rel="noopener" target="_blank">View source</a>. Acquisition agreement, share terms, management estimates, Dubel continuing role.</p>
+<p id="source-29"><strong>29 - Micropin set to purchase Elcon (1982-01-09).</strong> Cash Box. Contemporary trade report. Location: <a href="https://www.worldradiohistory.com/Archive-All-Music/Cash-Box/Cash-Box/80s/1982/CB-1982-01-09.pdf" rel="noopener" target="_blank">View source</a>. Transaction still pending; 420,000-share exchange and contingent shares.</p>
+<p id="source-30"><strong>30 - Micropin acquired Elcon (1982-02-27).</strong> Cash Box. Contemporary trade report. Location: <a href="https://www.worldradiohistory.com/Archive-All-Music/Cash-Box/Cash-Box/80s/1982/CB-1982-02-27.pdf" rel="noopener" target="_blank">View source</a>. Completed acquisition; wholly owned subsidiary; Dubel remains head; nationwide marketing intent.</p>
+<p id="source-31"><strong>31 - Elcon directory and V.I.P. exclusive-sales advertisement (1982-03-01).</strong> Play Meter / Elcon. Directory/advertisement. Location: <a href="https://elibrary.arcade-museum.com/Play-Meter/1982-March-01/14" rel="noopener" target="_blank">View source</a>. Dubel/Suwinski, cabinet formats, V.I.P. Schoolcraft address.</p>
+<p id="source-32"><strong>32 - Nintendo of America, Inc. v. Elcon Industries, Inc. (1982-10-04).</strong> U.S. District Court. Federal court opinion. Location: <a href="https://law.justia.com/cases/federal/district-courts/FSupp/564/937/1407344/" rel="noopener" target="_blank">View source</a>. Same opinion as source 14; retained for the citations in the legal-history section.</p>
+<p id="source-33"><strong>33 - Pre-electronic court-record retrieval (Current).</strong> E.D. Michigan. Institutional guide. Location: <a href="https://www.mied.uscourts.gov/clerk/records" rel="noopener" target="_blank">View source</a>. Retrieval route for 1982 dockets.</p>
+<p id="source-34"><strong>34 - Order copies of federal court records (Current).</strong> National Archives. Institutional guide. Location: <a href="https://www.archives.gov/research/court-records/order-copies" rel="noopener" target="_blank">View source</a>. Closed federal case-file acquisition route.</p>
+<p id="source-35"><strong>35 - Elcon Industries Moon Cresta cabaret / Astro Combat III (2024-2026).</strong> KLOV / Museum of the Game. Surviving-machine discussion. Location: <a href="https://forums.arcade-museum.com/threads/elcon-industries-moon-cresta-cabaret.543467/" rel="noopener" target="_blank">View source</a>. Damaged Astro Combat III label and matching inventory stickers.</p>
+<p id="source-36"><strong>36 - Elcon Cosmic Attackers (2019).</strong> KLOV / Museum of the Game. Surviving-machine discussion. Location: <a href="https://forums.arcade-museum.com/threads/elcon-cosmic-attackers.439855/" rel="noopener" target="_blank">View source</a>. Different reported internal configurations.</p>
+<p id="source-37"><strong>37 - Lost Elcon Industries bootleg Frogger (2025-12).</strong> KLOV / Museum of the Game. Surviving-machine discussion. Location: <a href="https://forums.arcade-museum.com/threads/lost-elcon-industries-bootleg-frogger.558850/" rel="noopener" target="_blank">View source</a>. Possible Elcon Frogger-family package; attribution incomplete.</p>
+<p id="source-38"><strong>38 - Anybody ever heard of a Bull Frog cab? (2005 onward).</strong> KLOV / Museum of the Game. Surviving-machine discussion. Location: <a href="https://forums.arcade-museum.com/threads/anybody-ever-heard-of-a-bull-frog-cab.15590/" rel="noopener" target="_blank">View source</a>. FROG manual provenance and Computran crossover context.</p>
+<p id="source-39"><strong>39 - FROG manual reference copy (Period manual / modern scan).</strong> Unknown upstream. Manual reference. Reference scan. Not recovered from the cabinet discussed in this history; comparative evidence only.</p>
+<p id="source-40"><strong>40 - MAME Galaxian/Frogger hardware and ROM definitions (Current).</strong> MAMEdev. Technical preservation source. Location: <a href="https://raw.githubusercontent.com/mamedev/mame/master/src/mame/galaxian/galaxian.cpp" rel="noopener" target="_blank">View source</a>. Used for hardware relationships, not corporate attribution by itself.</p>
+<p id="source-41"><strong>41 - Falcon FROG technical discussion (Current thread).</strong> KLOV / Museum of the Game. Collector technical discussion. Location: <a href="https://forums.arcade-museum.com/threads/convert-frog-falcon-to-frogger-sega-gremlin-konami.422051/" rel="noopener" target="_blank">View source</a>. Falcon Frog context; supplier bridge to Elcon remains unproven.</p>
+<p id="source-42"><strong>42 - Elcon Blockbuster sales flyer (1977).</strong> Elcon Industries. Primary sales flyer. Location: <a href="https://flyers.arcade-museum.com/videogames/show/2499" rel="noopener" target="_blank">View source</a>. Five-game menu, cabinet forms, Casino, product/company claims.</p>
+<p id="source-43"><strong>43 - Billboard International Disco Sourcebook - exact Elcon entries (1979).</strong> Billboard. Industry directory. Location: <a href="https://www.worldradiohistory.com/Archive-All-Music/Billboard/70s/1979/Billboard-International-Disco-Sourcebook-1979-80.pdf" rel="noopener" target="_blank">View source</a>. D-46 company entry and D-75 nine-item catalog.</p>
+<p id="source-44">44 — Elcon cocktail-table brochure provenance. The Strong supplied the scans on July 30, 2026. The brochure is held in its Larry Bieza collection, Box 13, Folder 29; see source 45 for the document itself.</p><p id="source-45"><strong>45 - Elcon cocktail-table brochure: Model Thirty, Model Forty, Rectangular (c. 1976).</strong> Elcon Industries / Larry Bieza collection at The Strong. Primary archival brochure. The Strong, Larry Bieza collection, Box 13, Folder 29. Cabinets, Double/Triple Play, pricing, materials, monitors, warranty, exports, Token Vendor.</p>
+<p id="source-46"><strong>46 - Billboard International Disco Sourcebook - Elcon listings (1980-06).</strong> Billboard. Industry directory. Pages D-24 and D-46. Dubel president, Thomas Tol GM, repeated nine-item catalog.</p>
+<p id="source-47"><strong>47 - If we made them any smaller - compact cabinets (1981-01-15).</strong> Elcon Industries / Play Meter. Contemporary advertisement. Location: <a href="https://elibrary.arcade-museum.com/magazines/pm/PlayMeter-1981-01-15/PlayMeter-1981-01-15-056.pdf" rel="noopener" target="_blank">View source</a>. Two cabinet dimensions; Astro Combat, Cosmic Attackers, Royal Flush, Super Casino.</p>
+<p id="source-48"><strong>48 - Circus service manual and 1977 sales flyer (1977).</strong> Exidy. Service manual + flyer. Location: <a href="https://www.arcade-museum.com/manuals-videogames/C/Circus.pdf" rel="noopener" target="_blank">View source</a>. Highjumpers comparison; identical jump settings and description.</p>
+<p id="source-49"><strong>49 - Robot Bowl service manual and 1977 sales flyer (1977).</strong> Exidy. Service manual + flyer. Museum of the Game reference material. Video Bowl comparison; regulation bowling + beer-frame match.</p>
+<p id="source-50"><strong>50 - 1975 MOA exposition exhibitor listing (1975-10-18).</strong> Cash Box / MOA. Trade-show exhibitor directory. Location: <a href="https://www.worldradiohistory.com/Archive-All-Music/Cash-Box/70s/1975/CB-1975-10-18.pdf" rel="noopener" target="_blank">View source</a>. Elcon Industries, Bloomfield Hills box/phone, booth 96.</p>
+<p id="source-51"><strong>51 - 1977 AMOA exposition exhibitor listing (1977-10-29).</strong> Cash Box / AMOA. Trade-show exhibitor directory. Location: <a href="https://www.worldradiohistory.com/Archive-All-Music/Cash-Box/70s/1977/CB-1977-10-29.pdf" rel="noopener" target="_blank">View source</a>. Ferndale address; booths C-27 through C-29.</p>
+<p id="source-52"><strong>52 - Micropin reports annual profit (1982-07-17).</strong> Cash Box. Corporate-results report. Location: <a href="https://www.worldradiohistory.com/Archive-All-Music/Cash-Box/Cash-Box/80s/1982/CB-1982-07-17.pdf" rel="noopener" target="_blank">View source</a>. Micropin FY/Q4 revenue/income; combined operating/manufacturing scope; no Elcon-only allocation.</p>
+<h3>Additional sources</h3><p id="source-53"><strong>53 - Electronic Concept Industries - repair/conversion/new cocktail tables/five games (1975-07-30).</strong> Marketplace advertisement. <a href="https://elibrary.arcade-museum.com/classic/Marketplace/1975-July-30/33" rel="noopener" target="_blank">View source</a></p>
+<p id="source-54"><strong>54 - Joyce DeVries president; Andre Dubel sales manager (1976).</strong> Billboard directory. <a href="https://retrocdn.net/images/c/cb/Billboard_US_1976-08-14.pdf" rel="noopener" target="_blank">View source</a></p>
+<p id="source-55"><strong>55 - Elcon staff / Royal Oak; Joyce DeVries identified (1978-04-21).</strong> Play Meter staff coverage. <a href="https://elibrary.arcade-museum.com/Play-Meter/1978-April-21/1" rel="noopener" target="_blank">View source</a></p>
+<p id="source-56"><strong>56 - Elcon Games, Inc.; Andre Dubel president - conflicting office/title evidence (1977-07).</strong> Cash Box directory. <a href="https://www.worldradiohistory.com/Archive-All-Music/Cash-Box/70s/1977/CB-1977-07-02-Anniversary.pdf" rel="noopener" target="_blank">View source</a></p>
+<p id="source-57"><strong>57 - Take Five five-mode architecture (1975).</strong> Fun Games flyer. <a href="https://flyers.arcade-museum.com/videogames/show/5608" rel="noopener" target="_blank">View source</a></p>
+<p id="source-58"><strong>58 - United Games Video Five (Modern).</strong> Survivor/restoration. <a href="https://www.outerworldarcade.com/video_five/index.html" rel="noopener" target="_blank">View source</a></p>
+<p id="source-59"><strong>59 - Elcon Blockbuster PCB etched ELCON IND (Modern documentation).</strong> PCB documentation. <a href="https://www.wolfgangrobel.de/arcadereps3/blockbuster.htm" rel="noopener" target="_blank">View source</a></p>
+<p id="source-60"><strong>60 - Ramtek Barricade / Brickyard naming during trademark dispute (1977-04-22).</strong> Trade/legal report. <a href="https://elibrary.arcade-museum.com/Play-Meter/1977-April-22/1" rel="noopener" target="_blank">View source</a></p>
+<p id="source-61"><strong>61 - Ramtek Barricade/Brickyard preserved lineage (Current).</strong> MAME source. <a href="https://github.com/mamedev/mame/blob/master/src/mame/ramtek/hitme.cpp" rel="noopener" target="_blank">View source</a></p>
+<p id="source-62"><strong>62 - Diversions coverage (1981-09-19).</strong> Trade report. <a href="https://www.worldradiohistory.com/Archive-All-Music/Cash-Box/80s/1981/CB-1981-09-19.pdf" rel="noopener" target="_blank">View source</a></p>
+<p id="source-63"><strong>63 - Elcon repackaging/conversion context (1981-06-01).</strong> Trade coverage. <a href="https://elibrary.arcade-museum.com/classic/Play-Meter/1981-June-01/25" rel="noopener" target="_blank">View source</a></p>
+<p id="source-64"><strong>64 - Cosmic Attackers + product-line wording (c. 1979-80).</strong> Primary flyer image. <a href="https://flyers.arcade-museum.com/videogames/show/2335" rel="noopener" target="_blank">View source</a></p>
+<p id="source-65"><strong>65 - Tegeto c/o Elcon / Take Five slot context (1980-11-01).</strong> Trade context. <a href="https://www.worldradiohistory.com/Archive-All-Music/Cash-Box/80s/1980/CB-1980-11-01.pdf" rel="noopener" target="_blank">View source</a></p>
+<h2 id="closing">22. Closing assessment</h2><p>The surviving record supports a coherent picture of Elcon Industries as a small but inventive Michigan amusement company whose specialty was not one kind of software but the packaging of electronic games into adaptable commercial environments. From the earliest 1975 conversion advertisements to the Six Pack, compact cabinets, Diversions and the final 1982 conversion message, Elcon repeatedly sold operators on flexibility. </p>
+<p>Its catalog also demonstrates why the arcade industry's commercial record cannot be reduced to one manufacturer field. Elcon branded outside-origin games, offered other companies' titles, built distinct hardware around licensed boards, assembled Falcon-family Crazy Kong boards into complete machines, and maintained its own cabinet identities across multiple electronics configurations. The distinction between fourteen Elcon game families and twenty-one total offerings is an attempt to preserve those relationships rather than flatten them. </p>
+<p>Elcon's exact corporate paperwork, some supplier relationships, several surviving machines and two 1982 case files remain missing. Company papers, additional machine documentation and firsthand accounts could clarify those gaps.</p>
+<p>Elcon’s history documents the cabinet, conversion, licensing and integration work behind arcade machines. Its role becomes clearer when those activities are considered alongside the software that the cabinets contained.</p><h2 id="count-definition">How the fourteen- and twenty-one-game totals differ</h2>
+<p><strong>Elcon game families (14):</strong> distinct Elcon-branded, Elcon-built/assembled or distinctly Elcon-packaged arcade game families. Not a claim of original programming authorship.</p>
+<p><strong>Broader count (21):</strong> the fourteen Elcon game families plus seven other companies’ games that Elcon offered or installed.</p>
+<p><strong>Not counted:</strong> cabinets, kiosks, conversion programs, distribution channels, corporate relationships, unverified secondary title attributions, or unsupported splits of descriptors/revisions into separate games.</p>
+<h2 id="research-status">Further evidence sought</h2><p>Further discoveries could clarify Elcon’s corporate identity, the missing federal case files, its sales literature and the construction of surviving machines. Company filings, period documents, data plates, internal photographs and firsthand recollections with clear provenance would be especially useful.</p><section id="contribute">
+<h2>Contribute to the Elcon record</h2>
+<p>Arcade Side B is especially interested in Elcon corporate filings, additional 1975–1982 sales literature, surviving-machine data plates and internal photographs, the missing 1982 federal case files, first-person employee/operator records with provenance, and documentation that clarifies Elcon’s board suppliers, licensing relationships or legal identities. Useful contributions will be reviewed and credited with permission.</p>
+</section>
+</article>
+</div>
+<footer class="footer">
+<div class="footer-inner">
+<div><strong>Arcade Side B</strong> · The Overlooked Side of Arcade History · Elcon Industries · Company history</div>
+<div class="site-counter"><div>Site hits</div><img alt="Arcade Side B site hit counter" src="https://hitscounter.dev/api/hit?color=%23c9973a&amp;icon=123&amp;label=SITE%20HITS&amp;url=https%3A%2F%2Fatariforever2002.github.io%2Farcade-obscura%2F"/></div>
+</div>
+<p class="last-updated">Last updated September 8, 2026 · Open to new evidence</p></footer>
+</body>
+</html>
