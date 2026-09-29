@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Thief | Arcade Side B</title>
+<style>
+:root{
+  --bg:#090d12;
+  --bg2:#0f1720;
+  --card:#eee7d8;
+  --card2:#f4ede1;
+  --ink:#222a2f;
+  --muted:#687174;
+  --line:#c8beab;
+  --navy:#13202a;
+  --navy2:#1b2b36;
+  --bronze:#c28a32;
+  --bronze2:#d8b36b;
+  --green:#486756;
+  --green-soft:#e3eee6;
+  --amber:#8a6532;
+  --amber-soft:#f5ead3;
+  --red:#86504b;
+  --red-soft:#f2e3e0;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:Georgia,"Times New Roman",serif;
+  background:
+    radial-gradient(circle at 80% 8%,rgba(112,164,184,.08),transparent 24%),
+    linear-gradient(rgba(255,255,255,.012) 1px,transparent 1px),
+    var(--bg);
+  background-size:auto,100% 4px,auto;
+  color:#dfe4e6;
+}
+a{color:#d9b46f}
+.mast{
+  background:linear-gradient(135deg,#0a0f14,#13202a);
+  border-bottom:4px solid var(--bronze);
+}
+.wrap{width:min(1120px,calc(100% - 32px));margin:0 auto}
+.topline{
+  display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  padding:18px 0 6px;
+  color:#bac3c8;
+  font:700 11px Arial,Helvetica,sans-serif;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+}
+.hero{
+  padding:10px 0 28px;
+}
+.crumb{
+  color:#93a0a8;
+  font:700 12px Arial,Helvetica,sans-serif;
+  margin:0 0 14px;
+}
+.crumb a{color:#d9b46f;text-decoration:none}
+.hero h1{
+  margin:0;
+  color:#f1ede5;
+  font-size:clamp(40px,8vw,74px);
+  line-height:.95;
+}
+.deck{
+  max-width:850px;
+  margin:16px 0 0;
+  color:#bdc7cc;
+  font-size:21px;
+  line-height:1.45;
+}
+.meta{
+  margin-top:12px;
+  color:#9facb4;
+  font:700 12px Arial,Helvetica,sans-serif;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.page{
+  width:min(1120px,calc(100% - 32px));
+  margin:24px auto 44px;
+}
+.backlinks{
+  display:flex;gap:10px;flex-wrap:wrap;
+  margin-bottom:18px;
+}
+.backhome{
+  display:inline-block;
+  padding:9px 11px;
+  border:1px solid #46525c;
+  color:#d7b774;
+  text-decoration:none;
+  font:700 11px Arial,Helvetica,sans-serif;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+}
+.backhome:hover{color:white;border-color:#687680}
+.game-identity{
+  margin:0 0 24px;
+  border:1px solid #b8ad98;
+  background:linear-gradient(135deg,rgba(194,138,50,.08),transparent 48%),#f3eddf;
+  color:#20272c;
+  box-shadow:0 16px 34px rgba(0,0,0,.18);
+  overflow:hidden;
+}
+.marquee-wrap{
+  padding:22px 24px 20px;
+  border-bottom:1px solid var(--line);
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 230px;
+  gap:18px;
+  align-items:center;
+}
+.marquee{
+  padding:20px 20px 18px;
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.06),transparent 45%),
+    linear-gradient(135deg,#11181f,#162733);
+  border:4px solid var(--bronze);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.08);
+}
+.marquee-small{
+  color:#cab48a;
+  font:700 11px Arial,Helvetica,sans-serif;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  margin-bottom:8px;
+}
+.marquee-title{
+  color:#f2efe8;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(40px,6vw,72px);
+  line-height:.9;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  text-shadow:0 1px 0 rgba(255,255,255,.1);
+}
+.marquee-sub{
+  margin-top:10px;
+  color:#b7c3ca;
+  font:700 11px Arial,Helvetica,sans-serif;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+.marquee-note{
+  color:#675f54;
+  font:12px/1.45 Arial,Helvetica,sans-serif;
+}
+.marquee-note strong{
+  display:block;
+  color:#1d2b35;
+  margin-bottom:6px;
+  font:700 11px Arial,Helvetica,sans-serif;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+.game-snapshot{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+}
+.snapshot-cell{
+  padding:17px 18px 18px;
+  border-right:1px solid var(--line);
+  min-width:0;
+}
+.snapshot-cell:last-child{border-right:0}
+.snapshot-label{
+  display:block;
+  color:#786f63;
+  font:700 9px Arial,Helvetica,sans-serif;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  margin-bottom:5px;
+}
+.snapshot-value{
+  display:block;
+  color:#1c2d37;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:19px;
+  line-height:1.2;
+}
+.snapshot-note{
+  display:block;
+  margin-top:5px;
+  color:#6e726f;
+  font:11px/1.35 Arial,Helvetica,sans-serif;
+}
+.shell{
+  display:grid;
+  grid-template-columns:280px minmax(0,1fr);
+  gap:22px;
+  align-items:start;
+}
+.sidebar .toc{
+  position:sticky;top:14px;
+  background:#121922;
+  border:1px solid #33404b;
+  box-shadow:0 12px 28px rgba(0,0,0,.22);
+}
+.toc-title{
+  padding:14px 16px 10px;
+  color:#c7d0d5;
+  font:700 13px Arial,Helvetica,sans-serif;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.toc a{
+  display:block;
+  padding:11px 16px;
+  color:#b8c3c9;
+  border-top:1px solid #28343d;
+  text-decoration:none;
+  font:15px/1.35 Arial,Helvetica,sans-serif;
+}
+.toc a:hover{color:#f0c57e}
+.sidebar-note{
+  margin-top:12px;
+  background:#151c23;
+  color:#9da8ae;
+  border:1px solid #303c46;
+  padding:13px 14px;
+  font:14px/1.45 Arial,Helvetica,sans-serif;
+}
+article{
+  background:var(--card);
+  color:var(--ink);
+  border:1px solid #bdb29e;
+  box-shadow:0 20px 44px rgba(0,0,0,.26);
+  padding:30px 34px 38px;
+}
+.section + .section{margin-top:34px}
+.section h2{
+  margin:0 0 12px;
+  color:#162631;
+  font-size:34px;
+  border-bottom:2px solid #b57f31;
+  padding-bottom:8px;
+}
+.section h3{
+  margin:24px 0 10px;
+  color:#26353c;
+  font-size:26px;
+}
+.lead{
+  font-size:22px;
+  line-height:1.55;
+  color:#35444a;
+}
+p{font-size:20px;line-height:1.72;margin:16px 0}
+.quick{display:flex;gap:8px;flex-wrap:wrap}
+.quick span{
+  background:#ddd4c5;
+  color:#394950;
+  padding:6px 10px;
+  border-radius:999px;
+  font:700 11px Arial,Helvetica,sans-serif;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.figure{margin:22px 0}
+.figure img{
+  width:100%;
+  height:auto;
+  display:block;
+  border:1px solid #b7ab96;
+  background:#ddd6c8;
+}
+.caption{
+  font:14px/1.55 Arial,Helvetica,sans-serif;
+  color:#5c6568;
+  margin-top:8px;
+}
+.imgfallback{
+  display:none;
+  border:1px dashed #ae9f85;
+  background:#f7f1e4;
+  color:#6f695f;
+  padding:16px;
+  font:14px/1.5 Arial,Helvetica,sans-serif;
+}
+.callout{
+  margin:22px 0;
+  padding:16px 18px;
+  border-left:5px solid;
+  background:#faf7ef;
+}
+.callout p{margin:10px 0 0;font-size:19px}
+.label{
+  font:700 11px Arial,Helvetica,sans-serif;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+.confirmed{border-color:var(--green);background:var(--green-soft)}
+.confirmed .label{color:var(--green)}
+.open{border-color:var(--amber);background:var(--amber-soft)}
+.open .label{color:var(--amber)}
+.pull{
+  margin:22px 0;
+  padding:16px 18px;
+  background:#f6efe2;
+  border:1px solid #d9cab1;
+  color:#35444a;
+  font-size:23px;
+  line-height:1.5;
+}
+footer{
+  margin-top:34px;
+  border-top:1px solid #28343d;
+  color:#7f8b92;
+  background:#070a0d;
+}
+.footer-inner{
+  width:min(1120px,calc(100% - 32px));
+  margin:0 auto;
+  padding:20px 0 26px;
+  font:14px/1.55 Arial,Helvetica,sans-serif;
+}
+.footer-inner strong{color:#d9dfe2}
+@media(max-width:980px){
+  .marquee-wrap{grid-template-columns:1fr}
+  .game-snapshot{grid-template-columns:1fr 1fr}
+  .snapshot-cell{border-bottom:1px solid var(--line)}
+  .snapshot-cell:nth-child(2),
+  .snapshot-cell:nth-child(4){border-right:0}
+  .snapshot-cell:nth-child(5){grid-column:1 / -1;border-bottom:0}
+  .shell{grid-template-columns:1fr}
+  .sidebar .toc{position:static}
+}
+@media(max-width:600px){
+  .wrap,.page,.footer-inner{width:min(calc(100% - 20px),1120px)}
+  .hero{padding-bottom:22px}
+  .deck{font-size:18px}
+  article{padding:20px 16px 26px}
+  .section h2{font-size:28px}
+  .section h3{font-size:23px}
+  p,.lead{font-size:18px}
+  .game-snapshot{grid-template-columns:1fr}
+  .snapshot-cell{border-right:0 !important;border-bottom:1px solid var(--line)}
+  .snapshot-cell:last-child{border-bottom:0}
+  .marquee-wrap{padding:18px}
+}
+
+.footer-inner.footer-row{display:flex;align-items:flex-end;justify-content:space-between;gap:22px}
+.site-counter{flex:0 0 auto;text-align:right;font:800 9px Arial,Helvetica,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#748089}
+.site-counter .counter-label{margin-bottom:5px}
+.site-counter img{display:block;margin-left:auto;border:1px solid #303944;box-shadow:0 4px 12px rgba(0,0,0,.28)}
+@media(max-width:620px){
+  .footer-inner.footer-row{align-items:flex-start;flex-direction:column}
+  .site-counter{text-align:left}
+  .site-counter img{margin-left:0}
+}
+
+</style>
+<style>
+/* Reader-facing source and table containment */
+article a, .source-list a, .footnotes a { overflow-wrap:anywhere; }
+.table-scroll {max-width:100%;overflow-x:auto;}
+.table-scroll:focus-visible {outline:2px solid #d7b56d;outline-offset:3px;}
+</style><meta name="description" content="Arcade Side B’s full history of Thief, including its gameplay, hardware, production and historical sources.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://arcadesideb.com/thief.html">
+<meta property="og:title" content="Thief | Arcade Side B">
+<meta property="og:description" content="Arcade Side B’s full history of Thief, including its gameplay, hardware, production and historical sources.">
+<meta property="og:url" content="https://arcadesideb.com/thief.html">
+</head>
+<body>
+<header class="mast">
+<div class="wrap">
+<div class="topline">
+<div>Arcade History · Research · Preservation</div>
+<div>A living archive of arcade history</div>
+</div>
+<div class="hero">
+<div class="crumb"><a href="https://arcadesideb.com/" target="_parent">Arcade Side B</a>  ›  <a href="https://arcadesideb.com/pacific-novelty.html" target="_parent">Pacific Novelty</a>  ›  Games  ›  Thief</div>
+<h1>Thief</h1>
+<p class="deck">Pacific Novelty’s 1981 maze chase puts the player in a getaway car, with eight street layouts, escalating criminal ranks and cassette-driven police-radio chatter.</p>
+<div class="meta">Game history · Open to new evidence · Updated September 8, 2026</div>
+</div>
+</div>
+</header>
+<main class="page">
+<div class="backlinks">
+<a class="backhome" href="https://arcadesideb.com/" target="_parent">← Back to Arcade Side B</a>
+<a class="backhome" href="https://arcadesideb.com/pacific-novelty.html" target="_parent">← Back to Pacific Novelty / Thief section</a>
+</div>
+<section aria-label="Thief game snapshot" class="game-identity">
+<div class="marquee-wrap">
+<div class="marquee">
+<div class="marquee-small">Pacific Novelty presents</div>
+<div class="marquee-title">Thief</div>
+<div class="marquee-sub">Pacific Novelty · 1981</div>
+</div>
+<div class="marquee-note">
+<strong>Cabinet and promotional artwork</strong>
+          The period flyers reproduced in this article show the upright cabinet, gameplay scenes and the film-style credits used to promote Thief.
+        </div>
+</div>
+<div class="game-snapshot">
+<div class="snapshot-cell">
+<span class="snapshot-label">Release period</span>
+<span class="snapshot-value">1981</span>
+<span class="snapshot-note">Documented commercial production title.</span>
+</div>
+<div class="snapshot-cell">
+<span class="snapshot-label">Company</span>
+<span class="snapshot-value">Pacific Novelty</span>
+<span class="snapshot-note">Pacific Novelty Manufacturing, Incorporated.</span>
+</div>
+<div class="snapshot-cell">
+<span class="snapshot-label">Game type</span>
+<span class="snapshot-value">Maze chase</span>
+<span class="snapshot-note">Getaway-car theme with eight maze layouts.</span>
+</div>
+<div class="snapshot-cell">
+<span class="snapshot-label">Presentation hook</span>
+<span class="snapshot-value">Cassette police chatter</span>
+<span class="snapshot-note">Tape-loop pursuit audio is a core part of the cabinet’s identity.</span>
+</div>
+<div class="snapshot-cell">
+<span class="snapshot-label">What is known</span>
+<span class="snapshot-value">Best-known surviving Pacific Novelty title</span>
+<span class="snapshot-note">Commercial totals remain unresolved, but the game has the company’s strongest lasting footprint.</span>
+</div>
+</div>
+</section>
+<div class="shell">
+<aside class="sidebar">
+<nav aria-label="Game page contents" class="toc">
+<div class="toc-title">On this page</div>
+<a href="#overview">Overview</a>
+<a href="#play">How it plays</a>
+<a href="#ranks">Criminal-rank ladder</a>
+<a href="#sound">Audio and presentation</a>
+<a href="#credits">Movie-style credits</a>
+<a href="#sales">Commercial position</a>
+<a href="#why">Why Thief matters</a>
+<a href="#contribute">Contribute</a>
+</nav>
+<div class="sidebar-note"></div>
+</aside>
+<article>
+<section class="section" id="overview">
+<h2>Overview</h2>
+<p class="lead">Thief arrived in the crowded 1981 maze-chase market with a getaway-car theme, varied street layouts and recorded police-radio dialogue. Its basic relationship to Pac-Man is apparent, while the pursuit setting, criminal ranks and sound give Pacific Novelty’s game a distinct presentation.</p>
+<p>The player drives a getaway car through city streets while police cars converge. Collecting money provides the main objective, and dollar-sign power items allow the car to run police off the road. A criminal-rank ladder, progressing from petty offenses to Public Enemy #1, turns repeated play into an exaggerated criminal career. These elements give the maze-chase rules a consistent setting and a sense of escalation.</p><figure class="figure">
+<img alt="Pacific Novelty Thief sales flyer" data-original-src="https://flyers.arcade-museum.com/videogame-flyers/1/thief-01697-02.jpg" height="1093" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" src="assets/articles/673e5a0aa22fc0e98ea926ee4574c7e0fddca96f.jpg" width="850"/>
+<div class="imgfallback">The illustration could not be displayed. Its source is linked in the caption.</div>
+<figcaption class="caption"><strong>Thief — cabinet and gameplay flyer.</strong> The “Coming Attractions” page shows the upright cabinet and presents gameplay scenes as episodes of a film. Source: International Arcade Museum / Arcade Flyer Archive. <a href="https://flyers.arcade-museum.com/videogames/show/1697" rel="noopener" target="_blank">View flyer</a>.</figcaption></figure>
+<figure class="figure">
+<img alt="Thief flyer front page" data-original-src="https://flyers.arcade-museum.com/videogame-flyers/1/thief-01697-01.jpg" height="1096" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" src="assets/articles/5a3d410947a1f317521e5dcdc1cae5a7eb6fe441.jpg" width="850"/>
+<div class="imgfallback">The illustration could not be displayed. Its source is linked in the caption.</div>
+<figcaption class="caption"><strong>Thief — credits page.</strong> Pacific Novelty’s flyer uses film-style production credits, reinforcing the game’s cinematic presentation. Source: International Arcade Museum / Arcade Flyer Archive. <a href="https://flyers.arcade-museum.com/videogames/show/1697" rel="noopener" target="_blank">View flyer</a>.</figcaption></figure>
+</section>
+<section class="section" id="play">
+<h2>How it plays</h2>
+<p>At the most basic level, <em>Thief</em> asks the player to drive through a maze, collect money and evade police. Ordinary greenbacks are worth 10 points each. Police cars do not just lumber randomly; they converge, cut off routes and force quick directional judgments. Side tunnels can abruptly change an escape line. The dollar-sign power items let the player smash pursuing police cars for escalating point values—100, 500, 1,000 and 2,000 if chained effectively.</p>
+<p>Thief uses eight distinct maze layouts, ranging from open escape routes to cramped streets with tight corners and dangerous intersections. After all eight, the sequence repeats at greater speed and with a shorter power phase. Players must learn several street plans while adapting to faster pursuit and reduced opportunities to attack the police. That structure makes the game read almost like a sequence of urban set pieces rather than a single abstract board. A long game is not simply a matter of surviving one repeated pattern forever; it involves memorizing several layouts and then handling them again under greater pressure.</p>
+</section>
+<section class="section" id="ranks">
+<h2>The criminal-rank ladder</h2>
+<p>One of <em>Thief</em>’s cleverest touches is the mock criminal-career ladder. As the player progresses, the game assigns and upgrades titles ranging from petty misdemeanor humor up through more grandiose outlaw status. Surviving sources preserve ranks such as <em>Loitering</em>, <em>Joyriding</em>, <em>Petty Thief</em>, <em>Car Theft</em>, <em>Grand Theft Auto</em>, <em>Professional Thief</em>, <em>Jewel Thief</em>, <em>The Boss</em> and ultimately <em>Public Enemy #1</em>. The ranks add continuity to successive stages and reinforce the cabinet’s crime-film theme. They also make the player’s progress legible to spectators, who can follow both the chase and the increasingly grandiose criminal status it confers.</p></section>
+<section class="section" id="sound">
+<h2>Audio and presentation</h2>
+<p>The cabinet’s cassette mechanism plays an extended loop of police pursuit dialogue. References to streets, locations and progress reports, often with a Los Angeles flavor, connect the moving cars to an ongoing police response. The recordings provide a sustained setting for the action beyond the electronic sounds generated by the game.</p>
+<div class="callout confirmed">
+<div class="label confirmed">Period reception</div>
+<p><em>Electronic Games</em> treated the audio as the feature that elevated <em>Thief</em> above a crowded maze-chase field. The magazine later revisited the title in awards coverage, giving it a Certificate of Merit and again emphasizing the sound.</p>
+</div>
+<p>This feature was strong enough that it confused contemporary coverage. <em>Electronic Games</em> initially described the voices as coming from an advanced speech-chip solution. Pacific Novelty and industry technicians later corrected the magazine, which printed an explicit correction explaining that the sound was actually provided by a tape-loop system. The correction demonstrates how distinctive the cabinet seemed even to informed contemporary observers.</p>
+<div class="pull">Recorded audio gives <em>Thief</em> its sustained police-pursuit atmosphere.</div>
+<p>The cassette system is also important to preservation. A surviving machine with a missing or inoperative audio mechanism retains its game program but loses much of the sound that shaped the original experience.</p>
+</section>
+<section class="section" id="credits">
+<h2>Movie-style credits</h2>
+<p>Thief’s in-program credits imitate a film: Philip Lieberman is writer and screenplay author, Brian D. Semler executive producer, Bernie Stolar director, Bill Cravens the provider of “stunts,” and Robert Meagher responsible for cinematography. Their playful presentation preserves named contributions that are rarely so well documented for a small early-1980s arcade company.</p>
+<p>The film-credit format complements the company’s use of recorded voices in Shark Attack and police-radio chatter in Thief. In each case, presentation gives the machine a theatrical character beyond its immediate rules.</p></section>
+<section class="section" id="sales">
+<h2>Commercial position</h2>
+<p>Thief is Pacific Novelty’s best-known surviving game. More examples are documented than for the company’s other dedicated machines, and later score records attest to continued play. Neither surviving cabinets nor score reports, however, supplies a reliable 1981 factory production total.</p><p>National score reporting recorded Brian Wathen of Owensboro, Kentucky at 6,130,930 points in early 1983, demonstrating committed play after the launch period. Classic Arcade Gaming’s later historical reconstruction records Mike Ziara at 9,456,120 points at the Golden Dome Arcade in Salisbury, Maryland on April 25, 1983. Modern VAPS census participation provides a separate record of surviving cabinets. Together with the score history, it supports Thief’s position as Pacific Novelty’s most visible surviving game, while leaving original production and sales totals unresolved.</p>
+<div class="callout open">
+<div class="label open">Evidence that could clarify sales</div>
+<p>A period distributor report, sales ledger, operator earnings chart or serial-number study could clarify how Thief’s later visibility compares with its original commercial performance.</p>
+</div>
+</section>
+<section class="section" id="why">
+<h2>Why Thief matters</h2>
+<p>Thief brings together several features of Pacific Novelty’s work: familiar rules adapted through a distinctive theme, recorded sound as a major part of the cabinet, and unusually informative personnel credits. Its eight mazes and criminal-rank progression give players several forms of continuing challenge. Continuing score records and cabinet preservation also provide a more substantial afterlife than is documented for the company’s other videogames. That record makes Thief a useful introduction to both Pacific Novelty and the later history of its machines.</p>
+</section>
+<section class="section" id="contribute">
+<h2>Contribute</h2>
+<p>Marquee and cabinet photographs, manuals, operator paperwork, score records, serial numbers and corrections could help document Thief more fully. Contributions with clear provenance are particularly useful, and contributors can be credited with permission.</p></section>
+</article>
+</div>
+</main>
+<footer>
+<div class="footer-inner footer-row">
+<div><strong>Arcade Side B</strong> · The Overlooked Side of Arcade History · Thief game history</div>
+<div class="site-counter"><div class="counter-label">Site hits</div><img alt="Arcade Side B site hit counter" loading="eager" src="https://hitscounter.dev/api/hit?color=%23c9973a&amp;icon=123&amp;label=SITE%20HITS&amp;url=https%3A%2F%2Fatariforever2002.github.io%2Farcade-obscura%2F"/></div>
+</div>
+<p class="last-updated">Last updated September 8, 2026 · Open to new evidence</p></footer>
+</body>
+</html>
