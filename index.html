@@ -118,6 +118,23 @@ nav a{
 }
 nav a:hover,nav a:focus{border-color:var(--line);color:white}
 
+
+/* Site search */
+.site-search{max-width:760px;margin:0 auto 15px;padding:12px 14px;border:1px solid var(--line);background:rgba(18,25,34,.92)}
+.site-search label{display:block;margin-bottom:6px;color:var(--gold2);font:800 10px Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase}
+.site-search-row{display:flex;gap:8px}
+.site-search input{flex:1;min-width:0;padding:10px 12px;border:1px solid #394855;background:#0b1016;color:var(--ink);font:14px Arial,sans-serif}
+.site-search button{padding:9px 14px;border:1px solid #e1aa55;background:var(--gold);color:#11151a;font:800 10px Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;cursor:pointer}
+.search-hint{margin:6px 0 0;color:var(--muted);font-size:11px}
+.search-results{margin-top:10px;border-top:1px solid var(--line);padding-top:6px}
+.search-results[hidden]{display:none}
+.search-result{display:block;padding:9px 4px;border-bottom:1px solid rgba(255,255,255,.09);text-decoration:none}
+.search-result:hover,.search-result:focus{background:rgba(211,154,66,.08)}
+.search-result strong{display:block;color:var(--ink);font-family:Georgia,serif;font-size:16px}
+.search-result small{display:block;color:var(--gold2);font-size:9px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+.search-result span{display:block;color:#aeb8be;font-size:12px;line-height:1.4}
+.search-empty{color:#bdc6cc;font-size:12px;padding:10px 4px}
+
 /* HERO RESEARCH WALL — CONTROLLED COLLAGE */
 .ephemera-art{
   position:relative;
@@ -739,6 +756,12 @@ footer strong{color:#dce2e5;font-family:Georgia,serif;font-size:16px}
 <a href="#method">Method</a>
 <a href="#contribute">Contribute</a>
 </nav>
+<form class="site-search" id="site-search" role="search">
+  <label for="site-search-input">Search Arcade Side B</label>
+  <div class="site-search-row"><input id="site-search-input" name="q" type="search" placeholder="Games, companies, hardware, people…" autocomplete="off"><button type="submit">Search</button></div>
+  <p class="search-hint">Search page entries and full game and company histories. Results stay in this browser.</p>
+  <div class="search-results" id="site-search-results" aria-live="polite" hidden></div>
+</form>
 </div>
 </div>
 </header>
@@ -10872,5 +10895,29 @@ Secondary/preservation cross-check for Threshold developer attribution, Taito/Ta
 })();
 </script>
 
+
+<script id="arcade-side-b-search">
+(function(){
+  const form=document.getElementById('site-search');
+  const input=document.getElementById('site-search-input');
+  const output=document.getElementById('site-search-results');
+  if(!form||!input||!output)return;
+  const clean=s=>(s||'').replace(/\s+/g,' ').trim();
+  const records=[];
+  const headings=[...document.querySelectorAll('main .section-head[id]')];
+  function categoryFor(el){let found='Arcade Side B';for(const h of headings){if(h.compareDocumentPosition(el)&Node.DOCUMENT_POSITION_FOLLOWING)found=clean(h.innerText||h.textContent)}return found}
+  function add(el,title,body,href){if(!el.id)el.id='search-item-'+(records.length+1);const category=categoryFor(el);records.push({el,title:clean(title),body:clean(body),category,href:href||'#'+el.id,hay:(clean(title)+' '+clean(body)+' '+category).toLowerCase()})}
+  document.querySelectorAll('main .portal,main .collection-card,main .principle,main .full-article-review').forEach(el=>{
+    const title=el.querySelector('h2,h3,strong')?.innerText||el.querySelector('h2,h3,strong')?.textContent||el.getAttribute('aria-label')||'Arcade Side B entry';
+    let body=clean(el.innerText||el.textContent);
+    const frame=el.querySelector('iframe.article-frame[srcdoc]');
+    if(frame){try{const doc=new DOMParser().parseFromString(frame.getAttribute('srcdoc'),'text/html');doc.querySelectorAll('script,style,noscript,svg').forEach(n=>n.remove());body+=' '+clean(doc.body?.innerText||doc.body?.textContent);title=doc.title||title}catch(e){}}
+    const anchor=el.matches('a[href^="#"]')?el.getAttribute('href'):null;
+    add(el,title,body,anchor||'#'+el.id);
+  });
+  function render(){const terms=clean(input.value).toLowerCase().split(/\s+/).filter(Boolean);output.replaceChildren();if(!terms.length){output.hidden=true;return}const matches=records.map(r=>({r,score:terms.reduce((n,t)=>n+(r.hay.includes(t)?1:0),0)+(r.title.toLowerCase().includes(terms.join(' '))?2:0)})).filter(x=>x.score===terms.length||x.r.hay.includes(terms.join(' '))).sort((a,b)=>b.score-a.score||a.r.title.localeCompare(b.r.title)).slice(0,12);output.hidden=false;if(!matches.length){const p=document.createElement('p');p.className='search-empty';p.textContent='No matches found. Try another title, company, person, or topic.';output.append(p);return}matches.forEach(({r})=>{const a=document.createElement('a');a.className='search-result';a.href=r.href;const category=document.createElement('small');category.textContent=r.category;const title=document.createElement('strong');title.textContent=r.title;const detail=document.createElement('span');detail.textContent=r.body.slice(0,220)+(r.body.length>220?'…':'');a.append(category,title,detail);output.append(a)})}
+  form.addEventListener('submit',e=>{e.preventDefault();render()});input.addEventListener('input',render);
+})();
+</script>
 </body>
 </html>
