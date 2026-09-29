@@ -1,2 +1,2 @@
-# arcade-obscura
-Arcade Obscura - The footnotes of Arcade History
+# Arcade Side B
+Arcade Side B - The Overlooked Side of Arcade History
