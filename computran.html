@@ -1,0 +1,587 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Computran Industries | Arcade Side B</title><meta name="description" content="Computran Industries of New Jersey: Super Tank, Port Man, Triple Punch, surviving cabinets and its connections to SMS Manufacturing."><link rel="canonical" href="https://arcadesideb.com/computran.html"><style>
+:root{
+  --bg:#090d12;--paper:#eee7d8;--paper2:#f5efe3;--ink:#232b30;--muted:#667075;
+  --line:#c8beab;--darkline:#303b45;--gold:#c28a32;--gold2:#d8b36b;
+  --green:#557b63;--cyan:#6f99aa;--max:1180px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:
+  radial-gradient(circle at 82% 10%,rgba(111,153,170,.09),transparent 28%),
+  linear-gradient(rgba(255,255,255,.012) 1px,transparent 1px),#090d12;
+  background-size:auto,100% 4px,auto;color:#dce2e5;font-family:Georgia,"Times New Roman",serif;
+}
+a{color:#a96f21}
+.mast{border-bottom:4px solid var(--gold);background:linear-gradient(135deg,#0a0f14,#13202a)}
+.mast-inner{width:min(calc(100% - 32px),var(--max));margin:auto;padding:17px 0;display:flex;justify-content:space-between;gap:20px;align-items:center}
+.brand{font-size:26px;font-weight:700;color:#f0ece4}
+.motto{font:700 10px Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#9ca8af;text-align:right}
+.crumb,.hero,.rule,.shell{width:min(calc(100% - 32px),var(--max));margin-left:auto;margin-right:auto}
+.crumb{padding-top:18px;color:#93a0a8;font:700 11px Arial,sans-serif}
+.crumb a{color:#d4ad67;text-decoration:none}
+.hero{padding:30px 0 26px}
+.eyebrow{color:var(--gold2);font:800 10px Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase}
+.hero h1{margin:7px 0 10px;font-size:clamp(44px,7vw,78px);line-height:.95;color:#f0ece4}
+.deck{max-width:930px;color:#b9c4ca;font-size:20px;line-height:1.5;margin:0}
+.meta{display:flex;gap:12px;flex-wrap:wrap;margin-top:17px;color:#9aa6ad;font:700 11px Arial,sans-serif}
+.badge{padding:6px 9px;border:1px solid currentColor;border-radius:999px;text-transform:uppercase}
+.living{color:#78a6b8}
+.rule{height:1px;background:#29343e}
+.shell{display:grid;grid-template-columns:275px minmax(0,1fr);gap:22px;padding:26px 0 50px;align-items:start}
+.sidebar{position:sticky;top:10px}
+.toc{border:1px solid #34404b;background:#111820;max-height:82vh;overflow:auto}
+.toc-title{padding:13px 15px;color:#d8dfe2;font:800 11px Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase}
+.toc a{display:block;border-top:1px solid #29343e;padding:9px 13px;color:#aebbc2;text-decoration:none;font:13px/1.35 Arial,sans-serif}
+.toc a:hover{color:#f0c57e}
+.sidebar-note{margin-top:12px;border:1px solid #34404b;background:#111820;padding:13px;color:#94a0a7;font:13px/1.45 Arial,sans-serif}
+article{background:var(--paper);color:var(--ink);border:1px solid #b9ae9a;box-shadow:0 18px 42px rgba(0,0,0,.25);padding:26px 34px 40px;min-width:0}
+.backhome{display:inline-block;margin-bottom:18px;padding:8px 10px;border:1px solid #9e927e;color:#745322;text-decoration:none;font:800 10px Arial,sans-serif;text-transform:uppercase;letter-spacing:.08em}
+.company-identity{margin:0 0 28px;border:1px solid #b8ad98;background:linear-gradient(135deg,rgba(194,138,50,.08),transparent 48%),#f3eddf;overflow:hidden}
+.company-mark{padding:24px 26px 20px;border-bottom:1px solid var(--line);position:relative}
+.company-mark:after{content:"COMPANY PROFILE";position:absolute;right:22px;top:18px;color:#8c8272;font:700 9px Arial,sans-serif;letter-spacing:.16em}
+.legal{color:#746b5f;font:700 10px Arial,sans-serif;letter-spacing:.13em;text-transform:uppercase;margin-bottom:7px}
+.wordmark{font-size:clamp(34px,5vw,58px);line-height:.95;color:#122331}
+.wordmark span{display:block;margin-top:7px;color:#8a6429;font:700 13px Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase}
+.company-snapshot{display:grid;grid-template-columns:repeat(4,1fr)}
+.snapshot-cell{padding:17px 18px;border-right:1px solid var(--line)}
+.snapshot-cell:last-child{border-right:0}
+.snapshot-label{display:block;color:#786f63;font:700 9px Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;margin-bottom:5px}
+.snapshot-value{display:block;color:#1c2d37;font-size:19px;line-height:1.2}
+.snapshot-note{display:block;margin-top:5px;color:#6e726f;font:11px/1.35 Arial,sans-serif}
+.overview-box{padding:18px 20px;background:#f8f2e7;border:1px solid #d2c5af;margin:0 0 26px}
+.overview-box h2{margin-top:0!important}
+article h2{margin:38px 0 13px;color:#172a35;font-size:31px;border-bottom:2px solid #b57f31;padding-bottom:7px}
+article h2:first-of-type{margin-top:0}
+article h3{margin:27px 0 9px;color:#2b3a41;font-size:24px}
+article p{font-size:18px;line-height:1.7;margin:14px 0}
+article li{font-size:17px;line-height:1.6;margin:6px 0}
+article blockquote{margin:18px 0;padding:10px 17px;border-left:4px solid var(--gold);background:#f7f0e3;color:#465156}
+article table{width:100%;border-collapse:collapse;margin:18px 0;font:14px/1.45 Arial,sans-serif}
+article th,article td{border:1px solid #c8beab;padding:8px 9px;vertical-align:top}
+article th{background:#ddd3c1;color:#24323a;text-align:left}
+article code{font-size:.88em}
+.src-tag{display:inline-block;color:#76531e;font:700 10px Arial,sans-serif;white-space:nowrap}
+.public-note{margin:0 0 25px;padding:15px 17px;border-left:5px solid var(--green);background:#e7efe8;color:#33433a;font:15px/1.5 Arial,sans-serif}
+.footer{border-top:1px solid #29343e;background:#07090c}
+.footer-inner{width:min(calc(100% - 32px),var(--max));margin:auto;padding:21px 0 27px;display:flex;justify-content:space-between;align-items:flex-end;gap:20px;color:#7f8b92;font:12px Arial,sans-serif}
+.footer-inner strong{color:#d9dfe2;font-family:Georgia,serif;font-size:15px}
+.site-counter{text-align:right;font:800 9px Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#748089}
+.site-counter img{display:block;margin:5px 0 0 auto;border:1px solid #303944}
+@media(max-width:920px){
+ .shell{grid-template-columns:1fr} .sidebar{position:static} .toc{max-height:none}
+ .company-snapshot{grid-template-columns:1fr 1fr}
+ .snapshot-cell:nth-child(2){border-right:0}
+ .snapshot-cell{border-bottom:1px solid var(--line)}
+ .snapshot-cell:nth-child(3),.snapshot-cell:nth-child(4){border-bottom:0}
+}
+@media(max-width:600px){
+ .mast-inner{align-items:flex-start;flex-direction:column} .motto{text-align:left}
+ .company-snapshot{grid-template-columns:1fr} .snapshot-cell{border-right:0;border-bottom:1px solid var(--line)!important}
+ .snapshot-cell:last-child{border-bottom:0!important}
+ article{padding:20px 16px 28px} article p{font-size:17px} article h2{font-size:27px}
+ .footer-inner{align-items:flex-start;flex-direction:column} .site-counter{text-align:left} .site-counter img{margin-left:0}
+}
+
+.elcon-visuals{
+  margin:28px 0 34px;
+}
+.elcon-visuals h2{
+  margin-top:0;
+}
+.flyer-pair{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+  align-items:start;
+}
+.archive-figure{
+  margin:0;
+  padding:10px;
+  border:1px solid #b8ad98;
+  background:#f8f3e8;
+}
+.archive-figure img{
+  width:100%;
+  height:auto;
+  display:block;
+  border:1px solid #c8beab;
+  background:#e9dfce;
+}
+.archive-figure figcaption{
+  padding:9px 4px 2px;
+  color:#5e6668;
+  font:12px/1.5 Arial,Helvetica,sans-serif;
+}
+.rights-hold{
+  margin:24px 0;
+  padding:15px 17px;
+  border:1px dashed #b69d72;
+  background:#f7efe1;
+  color:#5b554c;
+  font:13px/1.55 Arial,Helvetica,sans-serif;
+}
+.rights-hold strong{
+  color:#65471e;
+}
+@media(max-width:700px){
+  .flyer-pair{grid-template-columns:1fr}
+}
+
+
+/* ELTON/ELCON PUBLICATION VISUALS */
+.visual-section{
+  margin:20px 0 32px;
+}
+.visual-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+  margin:18px 0 24px;
+  align-items:start;
+}
+.visual-grid.brochure{
+  grid-template-columns:1fr 1fr;
+}
+.archive-figure{
+  margin:0;
+  padding:10px;
+  border:1px solid #b8ad98;
+  background:#f8f3e8;
+}
+.archive-figure img{
+  width:100%;
+  height:auto;
+  display:block;
+  border:1px solid #c8beab;
+  background:#e9dfce;
+}
+.archive-figure figcaption{
+  padding:9px 4px 2px;
+  color:#5e6668;
+  font:12px/1.5 Arial,Helvetica,sans-serif;
+}
+.visual-note{
+  margin:18px 0;
+  padding:14px 16px;
+  border-left:4px solid #b57f31;
+  background:#f7efe1;
+  color:#5b554c;
+  font:13px/1.55 Arial,Helvetica,sans-serif;
+}
+@media(max-width:760px){
+  .visual-grid,.visual-grid.brochure{grid-template-columns:1fr}
+}
+
+
+/* CONTEXTUAL ARCHIVAL FIGURES */
+.inline-archive-figure{
+  margin:22px auto 27px;
+  max-width:780px;
+  padding:10px;
+  border:1px solid #b8ad98;
+  background:#f8f3e8;
+  box-shadow:0 8px 18px rgba(64,52,34,.08);
+}
+.inline-archive-figure.narrow{max-width:560px}
+.inline-archive-figure img{
+  width:100%;
+  height:auto;
+  display:block;
+  border:1px solid #c8beab;
+  background:#e9dfce;
+}
+.inline-archive-figure figcaption{
+  padding:9px 4px 2px;
+  color:#5e6668;
+  font:12px/1.55 Arial,Helvetica,sans-serif;
+}
+.inline-archive-figure figcaption strong{color:#334047}
+.derivative-note{
+  display:inline-block;
+  margin-left:5px;
+  padding:2px 5px;
+  border:1px solid #b89a66;
+  color:#76531e;
+  font:700 8px Arial,Helvetica,sans-serif;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.context-note{
+  margin:18px 0 22px;
+  padding:13px 15px;
+  border-left:4px solid #b57f31;
+  background:#f7efe1;
+  color:#5b554c;
+  font:13px/1.55 Arial,Helvetica,sans-serif;
+}
+
+</style>
+<style>
+/* Reader-facing source and table containment */
+article a, .source-list a, .footnotes a { overflow-wrap:anywhere; }
+.table-scroll {max-width:100%;overflow-x:auto;}
+.table-scroll:focus-visible {outline:2px solid #d7b56d;outline-offset:3px;}
+</style>
+<style id="ao-company-profile-consistency">
+/* Exact shared company-profile presentation: Elcon is the house pattern. */
+.company-identity.company-profile-standard{
+  margin:0 0 28px!important;
+  padding:0!important;
+  border:1px solid #b8ad98!important;
+  border-radius:0!important;
+  background:linear-gradient(135deg,rgba(194,138,50,.08),transparent 48%),#f3eddf!important;
+  color:#20272c!important;
+  box-shadow:none!important;
+  overflow:hidden!important;
+  font-family:Georgia,"Times New Roman",serif!important;
+  font-size:16px!important;
+  line-height:normal!important;
+}
+.company-profile-standard .company-mark{
+  display:block!important;
+  position:relative!important;
+  padding:24px 26px 20px!important;
+  border:0!important;
+  border-bottom:1px solid #c8beab!important;
+  border-radius:0!important;
+  background:transparent!important;
+  color:#232b30!important;
+  font:400 16px/normal Georgia,"Times New Roman",serif!important;
+}
+.company-profile-standard .company-mark:after{
+  content:"COMPANY PROFILE"!important;
+  position:absolute!important;
+  right:22px!important;
+  top:18px!important;
+  display:block!important;
+  margin:0!important;
+  color:#8c8272!important;
+  font:700 9px/normal Arial,Helvetica,sans-serif!important;
+  letter-spacing:.16em!important;
+  text-transform:uppercase!important;
+}
+.company-profile-standard .legal{
+  display:block!important;
+  margin:0 0 7px!important;
+  padding:0!important;
+  color:#746b5f!important;
+  font:700 10px/11px Arial,Helvetica,sans-serif!important;
+  letter-spacing:.13em!important;
+  text-transform:uppercase!important;
+}
+.company-profile-standard .wordmark{
+  display:block!important;
+  margin:0!important;
+  padding:0!important;
+  color:#122331!important;
+  font:400 clamp(34px,5vw,58px)/.95 Georgia,"Times New Roman",serif!important;
+  letter-spacing:0!important;
+  text-transform:none!important;
+}
+.company-profile-standard .wordmark span{
+  display:block!important;
+  margin:7px 0 0!important;
+  padding:0!important;
+  color:#8a6429!important;
+  font:700 13px/normal Arial,Helvetica,sans-serif!important;
+  letter-spacing:.16em!important;
+  text-transform:uppercase!important;
+}
+.company-profile-standard .company-snapshot{
+  display:grid!important;
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  color:#232b30!important;
+  font:400 16px/normal Georgia,"Times New Roman",serif!important;
+}
+.company-profile-standard .snapshot-cell{
+  display:block!important;
+  min-width:0!important;
+  margin:0!important;
+  padding:17px 18px!important;
+  border:0!important;
+  border-right:1px solid #c8beab!important;
+  border-radius:0!important;
+  background:transparent!important;
+  color:#232b30!important;
+  font:400 16px/normal Georgia,"Times New Roman",serif!important;
+}
+.company-profile-standard .snapshot-cell:last-child{border-right:0!important}
+.company-profile-standard .snapshot-label{
+  display:block!important;
+  margin:0 0 5px!important;
+  padding:0!important;
+  color:#786f63!important;
+  font:700 9px/10px Arial,Helvetica,sans-serif!important;
+  letter-spacing:.12em!important;
+  text-transform:uppercase!important;
+}
+.company-profile-standard .snapshot-value{
+  display:block!important;
+  margin:0!important;
+  padding:0!important;
+  color:#1c2d37!important;
+  font:400 19px/22.8px Georgia,"Times New Roman",serif!important;
+}
+.company-profile-standard .snapshot-note{
+  display:block!important;
+  margin:5px 0 0!important;
+  padding:0!important;
+  color:#6e726f!important;
+  font:400 11px/14.85px Arial,Helvetica,sans-serif!important;
+}
+.hero .meta{
+  display:flex!important;
+  flex-direction:row!important;
+  flex-wrap:wrap!important;
+  align-items:center!important;
+  gap:10px!important;
+  margin:15px 0 0!important;
+  padding:0!important;
+}
+.hero .meta .badge,
+.hero .meta .updated{
+  display:inline-block!important;
+  position:static!important;
+  margin:0!important;
+  inset:auto!important;
+}
+.hero .meta .badge{
+  padding:6px 9px!important;
+  border:1px solid #78a6b8!important;
+  border-radius:999px!important;
+  background:transparent!important;
+  color:#9fc7d6!important;
+  font:700 11px/normal Arial,Helvetica,sans-serif!important;
+  letter-spacing:0!important;
+  text-transform:uppercase!important;
+}
+.hero .meta .updated{
+  padding:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  color:#9aa6ad!important;
+  font:700 11px/normal Arial,Helvetica,sans-serif!important;
+  letter-spacing:0!important;
+  text-transform:none!important;
+}
+@media(max-width:920px){
+  .company-profile-standard .company-snapshot{grid-template-columns:1fr 1fr!important}
+  .company-profile-standard .snapshot-cell{border-right:1px solid #c8beab!important;border-bottom:1px solid #c8beab!important}
+  .company-profile-standard .snapshot-cell:nth-child(2){border-right:0!important}
+  .company-profile-standard .snapshot-cell:nth-child(3),
+  .company-profile-standard .snapshot-cell:nth-child(4){border-bottom:0!important}
+  .company-profile-standard .snapshot-cell:last-child{border-right:0!important}
+}
+@media(max-width:600px){
+  .company-profile-standard .company-mark{
+    display:flex!important;
+    flex-direction:column!important;
+    padding:20px 18px 17px!important;
+  }
+  .company-profile-standard .company-mark:after{
+    position:static!important;
+    order:-1!important;
+    display:block!important;
+    margin:0 0 9px!important;
+  }
+  .company-profile-standard .wordmark{font-size:34px!important;overflow-wrap:anywhere!important}
+  .company-profile-standard .company-snapshot{grid-template-columns:1fr!important}
+  .company-profile-standard .snapshot-cell{
+    border-right:0!important;
+    border-bottom:1px solid #c8beab!important;
+  }
+  .company-profile-standard .snapshot-cell:nth-child(3){border-bottom:1px solid #c8beab!important}
+  .company-profile-standard .snapshot-cell:last-child{border-bottom:0!important}
+}
+</style><style>article{min-width:0}article p{line-height:1.7}article h2{margin-top:2.3rem}.archive-figure{margin:1.5rem 0;padding:1rem;background:#111b25;border:1px solid #485461}.archive-figure button{display:block;width:100%;border:0;background:transparent;cursor:zoom-in}.archive-figure img{display:block;width:100%;height:auto;max-height:640px;object-fit:contain}.archive-figure figcaption{font:14px/1.5 Arial,sans-serif;color:#c8d0d6;padding-top:.7rem}.computran-snapshot{padding:1.2rem;border:1px solid #59728a;border-radius:12px;background:#152b40;color:#f1f5f9}.computran-snapshot h3{color:#f8fafc;font-size:26px;line-height:1.2;margin:0 0 1rem}.computran-snapshot p,.computran-snapshot .snapshot-row{color:#f1f5f9;font:17px/1.6 Arial,Helvetica,sans-serif}.computran-snapshot strong{color:#f0c77b}.computran-snapshot .snapshot-row{padding:.8rem 0;border-top:1px solid #456077}.computran-snapshot .snapshot-row:first-of-type{border-top:0}.computran-snapshot .snapshot-row>strong:first-child{display:block;margin-bottom:.25rem}.archive-figure figcaption,.archive-figure figcaption strong{color:#dce5ec}.archive-figure figcaption a{color:#f0c77b}.toc a{line-height:1.4}dialog{background:#0e1720;color:#eee;max-width:96vw;max-height:96vh}dialog img{max-width:90vw;max-height:84vh;object-fit:contain}.rights{font:12px/1.6 Arial,sans-serif;max-width:1000px;margin:1rem auto;padding:1rem}h1:first-child{display:none}@media(max-width:700px){.shell{display:block;padding:0 16px}.sidebar{position:static}.archive-figure{padding:.5rem}.hero{padding:24px 16px}}</style></head><body><header class="mast"><div class="mast-inner"><div class="brand"><a href="index.html#companies" target="_parent">Arcade Side B</a></div><div class="motto">Preserve what others overlooked. Follow the evidence. Keep the record open.</div></div></header><div class="crumb"><a href="index.html#companies" target="_parent">Arcade Side B › Companies</a> › Computran Industries</div><section class="hero"><div class="eyebrow">Company history · New Jersey</div><h1 style="display:block">Computran Industries</h1><p class="deck">A New Jersey operator’s place in the arcade boom: licensed games, company-branded machines, surviving cabinets and an unfinished documentary trail.</p><div class="meta"><span class="badge living">Open to new evidence</span> · Last updated 10/01/2026</div></section><div class="shell"><aside class="sidebar"><nav class="toc" aria-label="Article contents"><div class="toc-title">On this page</div><a href="#company-snapshot">Company snapshot</a><a href="#the-company-between-the-game-and-the-arcade-floor">The company between the game and the arcade floor</a><a href="#an-operator-39-s-background">An operator&#39;s background</a><a href="#point-pleasant-beach-and-the-technical-address">Point Pleasant Beach and the technical address</a><a href="#super-tank-the-clearest-product-relationship">Super Tank: the clearest product relationship</a><a href="#port-man-a-licensed-game-and-an-uncertain-production-run">Port Man: a licensed game and an uncertain production run</a><a href="#triple-punch-the-name-inside-the-glove">Triple Punch: the name inside the glove</a><a href="#bull-frog-the-cabinet-with-the-strongest-unfinished-trail">Bull Frog: the cabinet with the strongest unfinished trail</a><a href="#amigo-a-repeated-attribution-without-the-original-company-bridge">Amigo: a repeated attribution without the original company bridge</a><a href="#cabinets-artwork-and-the-risk-of-counting-conversions">Cabinets, artwork and the risk of counting conversions</a><a href="#nintendo-39-s-1982-campaign-and-what-it-says-about-computran">Nintendo&#39;s 1982 campaign and what it says about Computran</a><a href="#still-visible-in-1983">Still visible in 1983</a><a href="#sms-manufacturing-continuity-with-an-overlap">SMS Manufacturing: continuity with an overlap</a><a href="#an-unrelated-computran">An unrelated Computran</a><a href="#what-remains-open">What remains open</a><a href="#documentary-notes-for-this-history">Documentary notes for this history</a><a href="#sources">Sources</a><a href="#contribute">Contribute</a></nav></aside><article><section class="company-profile-standard computran-snapshot" style="background:#ffffff!important;color:#152b40!important;border:2px solid #52718b!important;padding:20px!important"><h3 style="color:#152b40!important" id="company-snapshot">Company snapshot</h3>
+<div class="snapshot-row" style="color:#152b40!important;font:17px/1.6 Arial,sans-serif!important"><strong style="color:#183d60!important">Location:</strong> Point Pleasant Beach, New Jersey, United States.</div><div class="snapshot-row" style="color:#152b40!important;font:17px/1.6 Arial,sans-serif!important"><strong style="color:#183d60!important">Founding and incorporation:</strong> unknown; documented arcade activity in 1981. The research&#39;s corrected Super Tank copyright trail reports publication on January 22, 1981.</div><div class="snapshot-row" style="color:#152b40!important;font:17px/1.6 Arial,sans-serif!important"><strong style="color:#183d60!important">Last confirmed commercial listing:</strong> March 1, 1983. Exact shutdown and legal dissolution dates are unknown.</div><div class="snapshot-row" style="color:#152b40!important;font:17px/1.6 Arial,sans-serif!important"><strong style="color:#183d60!important">Verified title relationships:</strong> <strong style="color:#183d60!important">3 — Super Tank, Port Man, Triple Punch.</strong> This counts directly documented Computran manufacture, licensing or company-branded presentation. It does not mean three original Computran-developed games or three proven full-production releases.</div><div class="snapshot-row" style="color:#152b40!important;font:17px/1.6 Arial,sans-serif!important"><strong style="color:#183d60!important">Additional associations:</strong> Bull Frog, Amigo and Crazy Kong/Congorilla-family equipment; their precise company relationships remain unresolved.</div>
+</section><h2 id="the-company-between-the-game-and-the-arcade-floor">The company between the game and the arcade floor</h2>
+<p>Computran Industries is easiest to recognize through its machines. A tank game promoted under license from a West German company, a dockworker game with a Taito licensing line on its marquee, and a maze game whose company name is tucked into an illustrated glove form the securely documented core. Around them are woodgrain cabinets, frog artwork, derivative games and collector accounts that suggest a larger operation without supplying a complete production ledger.</p>
+<p>That combination is typical of the difficulty of recovering a small arcade business. Software survives in preservation projects; cabinets turn up in private collections; advertising preserves a mailing address; trade directories name an officer. The connections between those fragments are often what has disappeared. Computran&#39;s history therefore involves both the games themselves and the American business that gave imported or externally supplied games a physical and commercial identity.</p>
+<p>The strongest evidence does not describe a large original software studio. It describes a company working between other game suppliers and American operators. For Super Tank, Computran explicitly presented itself as the licensed manufacturer. For Port Man and Triple Punch, original-style artwork establishes company-branded presentations even though the complete commercial arrangements have not been recovered. Those are real historical roles. They deserve description without being inflated into development credits.</p>
+<p>Computran was publicly associated with Pasquale “Pat” Storino, an experienced coin-op operator whose amusement background preceded the company. Its Point Pleasant Beach address connected it to an established boardwalk business environment. This was a venture entering the video-game market from the operating side of the amusement industry, rather than a company that can presently be traced from a documented programmer&#39;s workshop to a series of original games.</p>
+<p>Its short visible history also crosses several different markets. Super Tank supplies a clear example of declared international licensing. Port Man suggests experimentation with a licensed product whose American rollout may have been extremely limited. Triple Punch shows how a title could acquire different commercial identities through its artwork and supplier channels. Bull Frog and Amigo raise hardware and attribution questions that dedicated cabinets alone cannot settle.</p>
+<p>The record then enters the intense copyright enforcement of 1982. A period report names Computran among parties affected by Nintendo&#39;s New Jersey injunction campaign. That fact belongs in the company history, but the report does not identify Computran&#39;s machines or supply a final judgment. Separately, SMS Manufacturing began operating with Storino participation while Computran remained in trade listings. The overlapping names complicate any simple story of an overnight closure or rename.</p>
+<p>Computran&#39;s importance lies in these connections. It helps show how arcade games reached players through businesses other than the most familiar developers and national manufacturers. It also demonstrates why a cabinet name, a program credit, a distributor listing and a legal allegation must be read as different kinds of evidence. Reconstructing the company means respecting what each surviving object can actually say.</p>
+<h2 id="an-operator-39-s-background">An operator&#39;s background</h2>
+<p>Pat Storino already knew the coin-operated amusement business when Computran appeared. The preserved research trail connects him with S&amp;S Amusement and with regional and national operator activity well before the video-game venture. Later Point Pleasant Beach interests placed him within the Jenkinson&#39;s boardwalk amusement environment. The company did not emerge in isolation from locations, maintenance work or supplier relationships.</p>
+<p>That background helps explain the kind of business Computran became. An operator&#39;s experience concerns the complete machine: how players recognize it, whether the controls feel right, how reliably it runs, how quickly a fault can be repaired and whether its earnings justify its floor space. Those concerns differ from writing the original game program, but they are part of bringing a commercial arcade product into service.</p>
+<p>This does not prove a particular internal business plan. No surviving formation document has been recovered that lays out Computran&#39;s intended production model. Nor does Storino&#39;s previous experience establish who financed every product, who owned the company&#39;s shares, or who constructed its cabinets. His documented operating background provides context; it cannot substitute for missing contracts and company records.</p>
+<p>The public leadership evidence is clearer. A Play Meter directory identifies Pat Storino as president and Reggie Alexander as engineering director. It gives the product line simply as video games. That entry places Computran within the industry&#39;s manufacturer directory and establishes two named responsibilities, without describing the size of the staff or the work performed by the engineering department.</p>
+<p>The directory has a significant dating trap. Its Computran page carries a March 1, 1981 footer, but it belongs to the March 1, 1982 Directory Issue, Volume 8, Number 5. The issue identification and cover settle the year. Accordingly, the entry is evidence for those offices in 1982; it should not be used to place Alexander in the job a year earlier.</p>
+<p>Alexander&#39;s title indicates that the company publicly claimed an engineering function. The available record does not identify a game he programmed or a board he designed. Imported-game evaluation, harness adaptation, power integration, troubleshooting and production testing are possible functions in such a business, but none should be assigned to him personally without evidence. His later career remains unidentified.</p>
+<p>The distinction is useful because Computran&#39;s games invite an easy assumption: a company with an engineering director must have developed their electronics or software. The documented Super Tank license points in a different direction. Engineering and manufacturing support could be meaningful even when the underlying game came from another company. The actual division of work is still an open question.</p>
+<h2 id="point-pleasant-beach-and-the-technical-address">Point Pleasant Beach and the technical address</h2>
+<p>Computran&#39;s best-established public address is 3 Broadway, with P.O. Box 1872, Point Pleasant Beach, New Jersey 08742. Its advertising and directory material use telephone 201-295-2777. Super Tank promotional material also supplies telex 132168. Together these details form a consistent commercial identity rather than a name that appears only in modern game databases.</p>
+<p>The Broadway address sat within the Storino and Jenkinson&#39;s amusement-property context. It was a place where the company could be contacted; the evidence does not yet show exactly what work occurred there. Calling it Computran&#39;s factory would go beyond the record. Office administration, storage, servicing or assembly may have taken place within the wider operation, but the allocation of space has not been established.</p>
+<p>A second address appears in the inherited Super Tank technical documentation: RD-2 Jackson Road, Vincentown, New Jersey 08088, accompanied by telephone 609-268-8044. This is a documented technical contact, not a verified second factory. Its relationship to the Broadway address has not been recovered from a contemporary company explanation.</p>
+<p>The rural-route designation is another caution. A later map or a modern street address cannot automatically identify the correct 1981 property. Nor does a technical mailing address tell us whether the recipient occupied a shop, a residence, a warehouse or a contractor&#39;s facility. The Vincentown address is useful because it shows a separate technical contact; its precise physical function remains unknown.</p>
+<p>These two address trails matter mainly where they explain the products. A complete machine requires more than a circuit board, and the Super Tank documentation suggests an organized means of answering installation and service questions. What remains unclear is whether Computran performed that work directly at one site, divided it between sites, or relied on an outside participant.</p>
+<p>The same limitation applies to the wooden cabinets. Surviving machines can show a consistent design, construction method or hardware mounting arrangement. They cannot establish the name of the woodshop merely by resembling one another. Computran may have commissioned shells, purchased completed cabinets or assembled some portion of the product itself. None of those possibilities should be promoted into a documented fact.</p>
+<h2 id="super-tank-the-clearest-product-relationship">Super Tank: the clearest product relationship</h2><figure class="archive-figure"><button type="button" class="enlarge" aria-label="Enlarge Computran’s 1981 Super Tank sales flyer, front. Preserved by the Arcade Flyer Archive, item 01579."><img loading="lazy" src="assets/computran/Computran_Super_Tank_Flyer_01579_01.jpg" alt="Computran’s 1981 Super Tank sales flyer, front. Preserved by the Arcade Flyer Archive, item 01579."></button><figcaption>Computran’s 1981 Super Tank sales flyer, front. Preserved by the Arcade Flyer Archive, item 01579. Click to enlarge.</figcaption></figure>
+<p>Super Tank is the anchor of the Computran story because the company states its role in its own advertising. The preserved two-page flyer identifies Computran as manufacturing the game under license from Video Games GmbH of Lich, West Germany. It also carries Computran&#39;s 1981 copyright line, address, telephone and telex number. The license is not an inference based on a cabinet&#39;s shape or a later collector&#39;s description.</p>
+<p>Video Games GmbH supplies the game&#39;s documented external source. Computran supplied its American commercial presentation and claimed licensed manufacture. This supports a U.S. manufacturing and marketing role, while leaving the exact division of cabinet construction, board procurement and assembly unresolved. The game should not be credited as original Computran software simply because its American flyer carries the company name.</p>
+<p>The flyer is also unusually useful as a description of the product. It includes gameplay images, complete-machine photographs and a short explanation of the action. Its second page therefore preserves both the game that players were being offered and the machines an operator could buy. That combination is more informative than a single surviving title screen.</p>
+<h3 id="what-the-player-does">What the player does</h3>
+<p>Super Tank combines movement through a field of hazards with tank combat. The player&#39;s tank can move in any direction, including backwards. The first task is to navigate the minefield, clear its mines and avoid or destroy the enemy red tanks. The screens in the Computran flyer show the small battlefield objects distributed around the play area rather than a simulated landscape viewed from inside a tank.</p>
+<p>Collecting glowing diamond objects gives a brief period of enhanced armor. During that protection the tank can survive dangers that would ordinarily threaten it. The advertised scoring opportunities come from clearing mines and destroying enemy tanks. The practical challenge is therefore both navigation and firing: the player has to move through the field rather than merely wait in a protected firing position.</p>
+<p>Clearing the field leads to an encounter with the larger Super Tank. The flyer identifies its nozzle as the target that must be hit. Destroying that opponent moves the player to another, more demanding screen. This makes the large tank a distinct culmination of the cycle, rather than simply another enemy of the same size and behavior.</p>
+<p>The advertising also explicitly promotes simultaneous two-player play. Two players can compete against the large tank and against each other. That detail is worth retaining because “two players” in a machine listing can otherwise be mistaken for alternating turns. Computran was selling the simultaneous feature as part of the machine&#39;s appeal and revenue potential.</p>
+<p>This description follows the period Computran flyer. It is not a newly measured gameplay test or a complete account of every setting and stage variation. The flyer establishes the basic actions and sales emphasis. Exact timing, collision behavior, scoring values and later-stage changes would require the relevant manual or program to be checked directly.</p>
+<h3 id="the-machines-computran-advertised">The machines Computran advertised</h3><figure class="archive-figure"><button type="button" class="enlarge" aria-label="Enlarge Super Tank flyer reverse: simultaneous play, cabinet forms and licensed manufacture. Computran, 1981; Arcade Flyer Archive, item 01579."><img loading="lazy" src="assets/computran/Computran_Super_Tank_Flyer_01579_02.jpg" alt="Super Tank flyer reverse: simultaneous play, cabinet forms and licensed manufacture. Computran, 1981; Arcade Flyer Archive, item 01579."></button><figcaption>Super Tank flyer reverse: simultaneous play, cabinet forms and licensed manufacture. Computran, 1981; Arcade Flyer Archive, item 01579. Click to enlarge.</figcaption></figure>
+<p>The flyer offers upright and cocktail forms. Its dimension table gives the upright as 30 inches deep, 25 inches wide and 68 inches high. The cocktail is listed as 23½ inches deep, 35 inches wide and 31 inches high. These are advertised dimensions for the pictured products; they should not be assumed to describe every later survivor or cabinet fitted with Super Tank hardware.</p>
+<p>The upright is presented with dedicated tank artwork and a conventional coin-operated front. The cocktail photograph emphasizes a different installation form, with the game housed in a low table-style cabinet. Offering both forms gave Computran more than one way to place the same licensed game in an arcade or another coin-op location. The flyer does not provide a production breakdown between them.</p>
+<p>Its sales language focuses on excitement, player appeal and earnings. That emphasis fits the intended operator audience. The product was being presented as a revenue-producing complete machine, not just as an interesting program or a bare circuit board. The company had to persuade a buyer that its game could attract players and justify a purchase.</p>
+<p>The front of the flyer uses a theatrical image: curtains, a covered cabinet and a startled model under the Super Tank title. It is a promotion built around unveiling a product. The reverse does the practical work of showing the machines, explaining the game and supplying contact information. Together the pages preserve the difference between attracting attention and answering an operator&#39;s immediate questions.</p>
+<h3 id="service-configuration-and-production-artwork">Service, configuration and production artwork</h3>
+<p>The inherited research record describes a Super Tank manual carrying Video Games and Computran branding. Its coverage includes wiring, edge connections, power requirements, operator settings, coinage, starting-tank and bonus options, and cocktail adaptations. The actual manual file still needs to be carried into the publication asset set, so unverified numerical settings should not be reproduced from memory.</p>
+<p>Nevertheless, that recorded scope supports a product with technical documentation and operator support. It reinforces the evidence that Computran handled complete installations. It does not establish that Computran designed the original circuit board, wrote the program or manufactured every power component shown in the documentation. Service literature records the supported system; it is not automatically a design credit.</p>
+<p>Surviving Super Tank artwork adds another participant. The preserved research identifies a bezel marked Willis Industries of San Jose, with R. Nelson initials. This is physical evidence of an artwork-production connection. It should be described at that level, without turning a printed mark into an invented contract history or assuming that Willis built the machine itself.</p>
+<p>The artwork connection also links the product to a wider industrial process. Cabinet graphics, screen surrounds and control presentation were manufactured objects with their own suppliers. A licensed foreign game could acquire a distinct American appearance through those parts. Computran&#39;s role is visible in that finished presentation even where the original software belongs elsewhere.</p>
+<h3 id="dates-copyright-records-and-distribution">Dates, copyright records and distribution</h3>
+<p>The corrected research trail identifies two Super Tank copyright records: PA0000114709 for visual material and TX0000763245 for the computer program. The prior verification reports Computran as claimant, Video Games GmbH in the work-for-hire authorship information, publication on January 22, 1981 and registration on August 12, 1981. Complete record exports remain a preservation target.</p>
+<p>The January date describes the reported publication of Super Tank, not Computran&#39;s incorporation. A business may exist before its first identified product, and a registration date may follow publication. The company&#39;s exact legal start therefore remains unknown even with a more precise game date. The reliable short description is documented arcade activity in 1981.</p>
+<p>A previously pursued registration, VA0000080165, was misattributed in the research trail. The later correction identifies it as a Russ Berrie textile character rather than a Computran work. It supplies no Computran date or title. This correction is retained in the evidence notes so the mistaken lead cannot silently return to the company&#39;s chronology.</p>
+<p>The inherited trade record also places Super Tank in U.S. Amusements advertising in December 1981. That establishes an offer for sale through another New Jersey business. It does not, without more documentation, prove a formal authorized distributorship, a direct purchase from Computran or the precise terms on which the machines were obtained.</p>
+<p>Super Tank thus remains the clearest example of Computran&#39;s legitimate declared licensing and product integration. It supplies the company&#39;s strongest attribution, usable period imagery, a basic gameplay account and advertised cabinet measurements. It also sets the standard against which the less securely documented games should be assessed: a company relationship can be direct and visible without becoming a claim of original development.</p>
+<h2 id="port-man-a-licensed-game-and-an-uncertain-production-run">Port Man: a licensed game and an uncertain production run</h2>
+<p>Port Man presents a different problem. Computran&#39;s connection is visible, but the scale and route of the product are not. Original-style marquee artwork carries the Computran name and a statement that the product was manufactured under license from Taito Corporation, Japan. That is stronger than a cabinet-family resemblance or a database attribution. It establishes a company-branded Taito licensing presentation.</p>
+<p>It does not establish how many machines Computran assembled, the dates on which it offered them, or whether the game entered a normal production run. The preserved story of a single trade-show example comes from a collector&#39;s account of a conversation with an unnamed former executive. That account is useful, but it is a different class of evidence from a period production ledger or a signed license.</p>
+<p>Port Man is generally dated to 1982 in the relevant game and flyer material. The game also appears in Taito and Nova contexts, and period research connects Glak with it. Those names should remain visible in its history. None can be reduced to a cabinet silhouette, and none should disappear merely because the Computran marquee offers the clearest local company mark.</p>
+<h3 id="a-dockworker-rather-than-a-space-pilot">A dockworker rather than a space pilot</h3>
+<p>The game&#39;s subject is cargo handling. The player moves a dockworker who catches luggage from an overhead conveyor and throws it into a ship&#39;s compartments while avoiding hazards. Another phase involves dynamite crates that must be intercepted. It is an unusual occupational theme for a period dominated by more familiar shooting and maze imagery, and helps explain the distinctive artwork.</p>
+<p>That broad description is orientation rather than a definitive account of the Computran survivor&#39;s program. Different title screens and supplier contexts have been reported. A full comparison of their software has not been performed in this company research. Exact variant differences, control behavior and stage rules should therefore be checked against the relevant game before a detailed standalone gameplay profile is published.</p>
+<p>The theme is useful to the company story because it represents product selection rather than demonstrated original development. Computran could present a game whose premise stood apart from its tank and maze offerings. Whether that selection was intended to broaden a regular catalog or simply to test interest at a show remains unresolved.</p>
+<h3 id="what-the-dedicated-survivor-proves">What the dedicated survivor proves</h3>
+<p>The best-known Computran-style survivor has coordinated Port Man presentation in a woodgrain upright. Its marquee and other artwork give it a recognizable product identity. This is more persuasive evidence of a deliberate company presentation than finding the game&#39;s board inside an otherwise generic cabinet decades later.</p>
+<p>The original-style marquee makes the company relationship especially clear. Its licensing line identifies Taito; its logo identifies Computran. Those markings should be preserved in any photograph or publication crop. Removing them to produce a cleaner illustration would remove exactly the information that gives the artifact historical value.</p>
+<p>Artwork on the survivor has also been reported as signed by Willis. That observation fits the broader interest in Computran&#39;s production graphics, but the precise supplier arrangement has not been recovered. An artwork signature is not a cabinet-maker&#39;s name, a software authorship credit or proof of the terms of a contract.</p>
+<p>In January 2015 the survivor&#39;s owner reported speaking to a former Computran executive who said the company made one machine for a trade show and chose not to begin production after weak interest. The account gives a possible explanation for the product&#39;s apparent scarcity. It does not identify the executive publicly, name the show or supply contemporary documents.</p>
+<p>The careful wording is therefore “reported trade-show machine or very limited presentation,” rather than an unqualified one-unit production total. Collector testimony can preserve information that otherwise disappears, but its specificity should not be mistaken for documentary verification. The absence of a normal sales trail makes the story plausible without proving every part of it.</p>
+<h3 id="the-nova-and-glak-complication">The Nova and Glak complication</h3>
+<p>A later survivor reported in 2025 is described in a Nova and Glak-style cabinet context while carrying Computran-branded artwork. That combination demonstrates why the product chain cannot be reconstructed from appearance alone. Artwork, cabinet, program and original seller may point toward different participants, especially after decades of repairs and conversions.</p>
+<p>It also changes how the “only one” account should be handled. A second machine carrying Computran artwork does not necessarily mean Computran assembled a second complete cabinet. Artwork could have circulated separately, been used by another assembler, or been transferred later. Conversely, the presence of those alternatives does not establish that only one was assembled.</p>
+<p>The documented position is a wider circulation of Computran-branded presentation material across more than one cabinet context. The quantity of Computran-built machines remains unknown. An earlier interpretation that the later survivor disproved the one-machine story was too strong and has been withdrawn. The oral account is unverified, not decisively refuted.</p>
+<p>Nova and Glak should likewise not be forced into an invented sequence. Period and surviving material connect them to Port Man, but the exact contracts and order of supply have not been recovered. A game can be licensed, marketed and assembled through several companies without any one surviving artifact describing the complete arrangement.</p>
+<p>One flyer lead further illustrates the danger of relying on archive labels. An entry cataloged in a Nova context was examined in the earlier research and found to contain Taito-branded material. The printed artifact takes priority over an archival metadata field when identifying that particular flyer. It does not erase Nova&#39;s separate place in the wider Port Man story.</p>
+<h3 id="port-man-39-s-place-in-the-total">Port Man&#39;s place in the total</h3>
+<p>Port Man belongs in the strict Computran title count because the company-branded licensing presentation is directly documented. Its inclusion does not mean that normal mass production has been proven. The count deliberately recognizes a documented product relationship while preserving the unresolved commercial status beside it.</p>
+<p>For a reader, the useful distinction is between the certainty of the branding and uncertainty of the rollout. Computran demonstrably attached its name to a Taito-licensed Port Man presentation. The trade-show explanation remains attributed oral testimony. Production quantity, precise show, board supply and the full Nova/Glak relationship remain questions for a future period document or original company record.</p>
+<h2 id="triple-punch-the-name-inside-the-glove">Triple Punch: the name inside the glove</h2>
+<p>Triple Punch&#39;s Computran connection was harder to confirm because the important mark is incorporated into the artwork. A surviving original-style marquee includes COMPUTRAN within its yellow glove or fist graphic. That small detail changes the evidence: the company is represented on the game&#39;s presentation itself, rather than merely supplied by a modern auction description.</p>
+<p>The title had previously been treated as a probable association. Cabinet resemblance and collector attribution suggested a relationship, but neither established it to the strict standard. The readable company mark supports the later upgrade to a verified Computran-branded product presentation. The earlier cautious status remains part of the research history, not the current title classification.</p>
+<h3 id="the-game-and-its-other-credits">The game and its other credits</h3>
+<p>Triple Punch is a maze game built around outlining boxes while avoiding pursuers. Its player character is described as a painter, with limited punches available to disable pursuing enemies temporarily. Its cataloged controls are a four-way joystick and one punch button, with alternating two-player turns and a vertically oriented color raster display. Those are game-level specifications, not measurements of a particular Computran cabinet.</p>
+<p>The preservation and software trail credits K.K. International. Period Play Meter coverage in July 1982 identifies Triple Punch as an attraction offered by Thomas Automatics. Those credits do not conflict with the existence of a Computran-branded presentation; they describe other portions of the commercial and software history. What is missing is a document explaining the agreement between the participants.</p>
+<p>The company article therefore retains all three names at their supported levels. K.K. International belongs to the game attribution trail. Thomas Automatics belongs to the period commercial trail. Computran belongs to the directly marked surviving presentation. The exact development, license, assembly and distribution arrangements cannot be collapsed into one simplified manufacturer field.</p>
+<h3 id="cabinet-evidence-and-the-auction-trail">Cabinet evidence and the auction trail</h3>
+<p>A modern auction catalog described a Triple Punch survivor in Computran and K.K. International terms. That wording was an acquisition lead, not primary proof of a license. The reviewed survivor imagery also showed a SANCO marking on a lower cabinet panel, complicating any attempt to derive the entire product&#39;s origin from one descriptive caption.</p>
+<p>The marquee supplied the more decisive company link. Its Computran name is part of the illustrated graphic. This is why it matters to preserve detailed photographs of apparently decorative areas: a logo can be overlooked when it is integrated into an image rather than placed in a conventional corner or manufacturer panel.</p>
+<p>Known Triple Punch and Bull Frog survivors also support a related woodgrain cabinet pattern. That resemblance is meaningful for the physical-product history. It may reflect a shared shell design, a supplier&#39;s cabinet line or common assembly practice. It does not identify the source of the woodwork or prove that every similarly shaped cabinet originally carried a Computran product.</p>
+<p>Nor does a marked marquee prove a regular production total. It demonstrates that Computran-branded artwork existed for the title. Establishing a licensed production run, territories, contract terms or quantities would require additional evidence. The correct product section can be definite about the company name while remaining cautious about the business arrangement.</p>
+<h3 id="why-this-title-matters">Why this title matters</h3>
+<p>Triple Punch adds a second kind of direct company evidence to the catalog. Super Tank is secured by Computran&#39;s own period sales literature. Triple Punch is secured by a surviving company-marked presentation artifact, supported by the separate commercial trail. Port Man supplies a company-marked licensing statement and a different scarcity problem.</p>
+<p>That mix is the reason the strict count has an explicit scope. The three titles are not all documented by the same type of source, and the available sources do not establish identical roles. What they share is sufficient direct Computran evidence to avoid relying entirely on cabinet-family inference or repeated modern attribution.</p>
+<h2 id="bull-frog-the-cabinet-with-the-strongest-unfinished-trail">Bull Frog: the cabinet with the strongest unfinished trail</h2>
+<p>Bull Frog is the most important title just outside the strict count. Its association with Computran is substantial, and its dedicated-looking presentation is well documented in collector material. What remains missing is the specific original company marking or period document that closes the attribution to the same standard as the three counted titles.</p>
+<p>The game belongs to the Frogger-derivative environment. Its familiar crossing theme is presented under its own frog identity. The surviving artwork includes a Bull Frog marquee, coordinated screen surround and side graphics, with the phrase “Jump for Your Life” appearing in the documented presentation. The woodgrain cabinet and compact controls give it a distinct physical form.</p>
+<p>Those features are evidence of a deliberate commercial presentation. They do not independently identify the programmer, circuit-board manufacturer or finished-machine supplier. An appealing and internally consistent cabinet can still lack the manufacturer plate or sales paperwork needed to assign the complete machine securely to a particular company.</p>
+<h3 id="the-held-cabinet-photograph">The held cabinet photograph</h3><figure class="archive-figure"><button type="button" class="enlarge" aria-label="Enlarge Bull Frog in a Computran-style cabinet. Photograph: DonPanetta, Museum of the Game collector album, posted 2025. Cabinet association does not establish original software development."><img loading="lazy" src="assets/computran/Bull_Frog_Computran_Cabinet_Profile_DonPanetta_2025.jpg" alt="Bull Frog in a Computran-style cabinet. Photograph: DonPanetta, Museum of the Game collector album, posted 2025. Cabinet association does not establish original software development."></button><figcaption>Bull Frog in a Computran-style cabinet. Photograph: DonPanetta, Museum of the Game collector album, posted 2025. Cabinet association does not establish original software development. Click to enlarge.</figcaption></figure>
+<p>The preserved image set includes one selected Bull Frog cabinet photograph from the collector trail. It is a usable physical reference, with provenance retained. It should be captioned as a surviving cabinet associated with the Computran investigation, rather than used as silent proof of every proposed supplier relationship.</p>
+<p>Other documented exterior and interior views suggest a common cabinet family and a paired-board assembly. Some images show enough to compare layout, but not enough to read every legend or ROM label. Board count and position can support a hardware hypothesis; they cannot establish authorship where the identifying markings are unreadable.</p>
+<p>The same care applies to controls. A known survivor has a green control-panel treatment, red ball-top joystick and white buttons. These are observations about that photographed example. They should not be promoted into a universal factory specification without comparison to an original sales sheet or other unaltered machines.</p>
+<h3 id="frog-and-video-games-gmbh">FROG and Video Games GmbH</h3>
+<p>The most useful documentary lead is a six-page manual described as “Frog (Bull Frog).” Earlier research traced its provenance to an owner who said in 2005 that he found the manual inside a Bull Frog cabinet and scanned it. The document&#39;s cover uses FROG and a capsule VIDEO GAMES logo; its technical sections describe FROG A and B boards.</p>
+<p>The logo is visually consistent with branding on the known Video Games GmbH Super Tank documentation. The two-board description also offers a meaningful comparison with the paired assembly seen in Bull Frog interior photographs. Taken together, these are better clues than a title-only database entry because they concern a physical manual, its reported location and a specific hardware arrangement.</p>
+<p>The missing step is direct identification. A manual found in a cabinet may have belonged to the installed game, but cabinets can retain paperwork through conversions. A matching logo can connect a document to a supplier, but it does not establish a license to Computran. A paired board can fit a manual&#39;s description without yet exposing a readable manufacturer name.</p>
+<p>The working hypothesis is therefore a Video Games GmbH connection for Bull Frog/FROG hardware or documentation. A direct Bull Frog/FROG–Computran–Video Games GmbH chain has not been verified. The manual is valuable precisely because it offers a way to test the hypothesis; it should not be described as the final proof of the whole commercial relationship.</p>
+<p>The Museum&#39;s catalog also labels the maker of the manual-associated Frog game as unknown. That is consistent with leaving the company bridge open. Its label does not defeat the physical clues, but it does not supply the absent original attribution either. The title and the document require further evidence to be matched securely.</p>
+<h3 id="a-surviving-machine-can-still-change-the-record">A surviving machine can still change the record</h3>
+<p>Dana owns a Bull Frog upright that may provide the missing first-party physical evidence. Its examination is a deferred preservation opportunity, not a dependency that prevents the company article from being written. The essential questions concern readable labels, board legends, ROM markings, manuals and the relationship between the wiring and the documented FROG A/B system.</p>
+<p>The most valuable future photographs would show the complete machine and its interior before any changes, then close views of identifying details. A label photographed only in close-up can lose its location; an interior photographed only from a distance can lose its text. Both context and legibility are needed to establish what belongs to what.</p>
+<p>Conversion evidence is equally important. Unused mounting holes, overlaid control graphics, mismatched connectors or earlier artwork can show that the cabinet and board did not begin life together. Such evidence would not make the machine unimportant. It would help distinguish original manufacture from the subsequent operating history preserved inside it.</p>
+<p>Until that bridge is found, Bull Frog remains strongly associated and discussed in full, but outside the strict three-title total. That is an attribution decision, not a judgment that the game lacked commercial circulation or that its dedicated cabinet is unworthy of preservation.</p>
+<h2 id="amigo-a-repeated-attribution-without-the-original-company-bridge">Amigo: a repeated attribution without the original company bridge</h2>
+<p>Amigo is the other significant associated title outside the strict total. Modern game references repeatedly connect it to Computran, and it appears in the inherited research&#39;s cabinet and hardware trail. Repetition alone, however, does not identify the original source of an attribution. A modern list may be repeating another list rather than preserving a company advertisement or readable manufacturer label.</p>
+<p>The game&#39;s broad relationship is to Amidar, the line-tracing maze game. Contemporary litigation discussed Amigo as an alleged Amidar infringement. That supplies period evidence about the name and the way the program was understood by investigators. It does not automatically identify Computran as the supplier of every Amigo board or machine mentioned in those proceedings.</p>
+<p>The hardware question remains open as well. The earlier research noted possible relationships among Amigo, Frogger-derived equipment and other maze-game boards. These are questions to be resolved by board layouts, readable labels, manuals and program comparison. A software title, a familiar control panel or a collector&#39;s cabinet attribution cannot establish a common manufacturer by itself.</p>
+<p>Preservation descriptions sometimes retain uncertainty explicitly, as in a Frogger bootleg described as running on “Amigo?” hardware. The question mark is part of the finding, not an inconvenience to remove. It tells the reader that the hardware-family relationship has not been treated as final. Even a confirmed hardware family would still require evidence to attach it to Computran&#39;s commercial role.</p>
+<p>Reviewed survivor imagery has not supplied an unmistakable original Computran marking that closes the gap for Amigo. A company advertisement, original manual, invoice, board label or manufacturer plate could change its status. Until then, Amigo deserves a place in the discussion of the company&#39;s associated catalog, accompanied by the reason it is not counted as verified.</p>
+<p>This treatment also avoids a misleading contrast with Triple Punch. Triple Punch was upgraded because a direct company name was found in the artwork. Amigo has not received that upgrade simply because its repeated attribution sounds established. The evidentiary standard is the same; the surviving evidence is different.</p>
+<h2 id="cabinets-artwork-and-the-risk-of-counting-conversions">Cabinets, artwork and the risk of counting conversions</h2>
+<p>The woodgrain cabinet family is a major part of Computran&#39;s surviving identity. Bull Frog and Triple Punch examples suggest a shared or closely related upright pattern: a narrow body, recessed display, projecting control area, coin door and title-specific graphics. Such similarities can reveal production choices even when the wooden shell&#39;s supplier is unknown.</p>
+<p>Cabinet evidence is strongest when several independent features agree. External profile alone is a weaker comparison than profile combined with dimensions, joinery, internal blocking, control-panel construction and original mounting points. Two machines can look alike because they came from the same cabinet maker, because one copied the other, or because both were converted from a common earlier product.</p>
+<p>Artwork introduces a further layer. A marquee can be swapped without replacing a cabinet; a control panel can be drilled for another game; side graphics can be applied over previous artwork. That flexibility made arcade equipment useful to operators. It also makes a surviving cabinet a record of its entire working life rather than necessarily a untouched record of its original sale.</p>
+<p>Collector albums associated with Computran include other titles, among them Naughty Boy and Pac-Man cabinet examples. These remain cabinet or conversion leads. They are not additions to the company&#39;s verified product count. The presence of a famous game&#39;s board inside a familiar shell does not prove Computran originally manufactured, licensed or marketed that installation.</p>
+<p>For the same reason, a census of surviving cabinets cannot be turned into a production total. Private collections are incomplete, their entries change, and some machines retain only part of their original identity. A company that assembled few units might have widely circulated artwork; a company that sold more machines might leave almost no intact survivors. The present record does not allow those quantities to be estimated reliably.</p>
+<p>The most useful cabinet investigation separates four subjects: the program, the board, the wooden and metal enclosure, and the seller or licensee. Sometimes one original label ties several of them together. Sometimes the evidence identifies only one. Computran&#39;s history is clearest when each is described separately rather than when every component is assigned the cabinet&#39;s most visible name.</p>
+<h2 id="nintendo-39-s-1982-campaign-and-what-it-says-about-computran">Nintendo&#39;s 1982 campaign and what it says about Computran</h2>
+<p>The September 18, 1982 Cash Box report places Computran within Nintendo&#39;s copyright-enforcement campaign. It reports Nintendo&#39;s account of preliminary injunctions in New Jersey involving roughly 100 defendants and seizures on July 27–29. Computran, Inc. is among the named targets. The article provides a consequential contemporary connection, but not a complete Computran case history.</p>
+<p>Its geographic structure matters. Crazy Kong and Gongorilla are named in a separate St. Louis paragraph. The New Jersey paragraph does not identify Computran&#39;s particular machines. Nor does the inspected article supply the previously repeated August 13 injunction date. Those details cannot be assigned to Computran from this report alone.</p>
+<p>The report also leaves damages claims pending. It should not be presented as a final court finding on Computran&#39;s conduct. “Nintendo reported an injunction naming Computran” is supported; statements about the company&#39;s seized inventory, supplier, sales volume or final liability require the missing original case papers.</p>
+<p>The article&#39;s shortened “Computran, Inc.” is consistent with the wider company context, but the full legal identity should still be checked against the defendant schedule when recovered. The period trade and product trail makes the connection meaningful. It does not eliminate the need to verify exact legal names in the underlying proceeding.</p>
+<h3 id="crazy-kong-gongorilla-and-congorilla">Crazy Kong, Gongorilla and Congorilla</h3>
+<p>The broader Crazy Kong history explains why genuine-looking boards and license labels can coexist with unauthorized commercial channels. The preserved legal research records Falcon&#39;s license restrictions as limited to Japan. A board associated with that arrangement does not automatically carry permission for an American distributor to sell it in the United States.</p>
+<p>The published Nintendo v. Elcon litigation supplies a separate supply-chain example: Elcon obtained Falcon-appearing Crazy Kong boards from Artic International in New Jersey. That is contextual evidence about the market. No direct Artic-to-Computran transaction has been established, and the Michigan proceeding is not a substitute for Computran&#39;s unidentified New Jersey case.</p>
+<p>Artic International is the correct name in that legal trail. It should not be silently changed to Arctic or merged with another similarly named firm. The distinction matters when searching original documents and when explaining how a board supplier differs from a finished-cabinet brand.</p>
+<p>The Japanese record adds related context. Earlier research recovered period reporting about limited manufacturing rights, an export ban, the transfer of rights to Falcon and Nintendo&#39;s subsequent action. Those events help explain the broader distribution dispute. They do not identify Computran as a direct buyer from Falcon or establish the board source of a particular surviving cabinet.</p>
+<p>Collector evidence connects Crazy Kong and Congorilla-family equipment with Computran-style cabinets. That association is worth preserving, but the term “style” must retain its meaning. It describes observed cabinet features or collector attribution, not an original invoice or an adjudicated distribution chain.</p>
+<p>A photographed Congorilla rear label refers to manufacture under Nintendo license and carries a TKG identifier. Its wording and position are valuable provenance clues. They do not establish who applied the label, whether the finished American cabinet was covered by permission, or whether Computran assembled that particular machine. A license claim printed on an object must be evaluated against the scope of the permission it invokes.</p>
+<p>Accordingly, Crazy Kong, Gongorilla and Congorilla remain associated context outside the strict Computran total. The company&#39;s name in an enforcement report is not a title-specific manufacturing credit. The original New Jersey complaint, defendant schedule, orders and any machine inventories could materially change this part of the history.</p>
+<h3 id="a-separate-fbi-trail">A separate FBI trail</h3>
+<p>Other contemporary material concerns FBI counterfeit-game investigations involving U.S. Amusements and Bagatelle Amusements. Some business names overlap with Nintendo&#39;s civil reporting, which makes it tempting to combine the events into one raid or one lawsuit. They should remain separate unless an actual record establishes the relationship.</p>
+<p>The inherited research includes a syndicated account mentioning two “Bull Frogs” in an undercover purchase. The name does not identify them as Computran machines. Their boards, cabinets, original suppliers and programs remain unestablished in that account. Treating those units as company output would make the same attribution mistake as treating every similar cabinet as a factory product.</p>
+<p>U.S. Amusements had also advertised Super Tank, which demonstrates that the business offered a known Computran-manufactured licensed product. That fact does not identify the supplier of its other games or prove that all its product lines came through Computran. Commercial proximity is an investigative lead, not a complete transaction history.</p>
+<p>The enforcement material is therefore retained for what it can explain: Computran&#39;s presence in a contested arcade market and the difficulty of reconstructing derivative-game distribution. It is not used to replace the product catalog with a list of allegations, or to turn a preliminary report into a final company verdict.</p>
+<h2 id="still-visible-in-1983">Still visible in 1983</h2>
+<p>Computran did not vanish from the trade record immediately after the 1982 enforcement report. A Play Meter list published in February 1983 names Computran Industries, Inc. among Amusement Operators Expo exhibitors, with the list stated to be current as of January 1. This documents planned or listed participation rather than confirmed physical attendance.</p>
+<p>The distinction is important because a show listing can outlive a change of plan. The research has not recovered a booth photograph, named representative, displayed product, floor-plan allocation or post-show account that confirms Computran&#39;s attendance. Nor has it established a withdrawal. The company should be described as listed for the show, leaving both possibilities open.</p>
+<p>More concrete commercial visibility appears in the March 1, 1983 directory. Eastern Coin Machine Ltd. of Baltimore lists Computran among the manufacturers it represented. This establishes a distributor connection in the published record. It does not identify the Computran titles Eastern Coin stocked, whether it was selling existing inventory, or whether fresh machines were still being manufactured.</p>
+<p>A later Eastern Coin manufacturer list in Cash Box, July 2, 1983, omits Computran. Because the later item actually lists represented lines, the omission is meaningful negative evidence. It is not a legal dissolution record and cannot supply an exact closure date. A change in representation can occur while a corporation remains in existence.</p>
+<p>The research has not established a dependable later Computran commercial appearance. That makes March 1983 the present last-positive boundary, not the proven final day of business. Later legal inactivity, cessation of production and formal dissolution are distinct events that may have occurred at different times.</p>
+<p>This is the strongest defensible endpoint for the company snapshot. “Represented in the March 1983 trade directory; exact end unknown” tells a reader what survives. “Closed in March 1983” would claim knowledge that the directory does not provide.</p>
+<h2 id="sms-manufacturing-continuity-with-an-overlap">SMS Manufacturing: continuity with an overlap</h2>
+<p>SMS Manufacturing is essential to explaining what followed Computran, but it is not presently documented as a simple new name for the same legal company. The New Jersey State Commission of Investigation report records Salvatore Mirando&#39;s account of forming SMS in 1982 with Vincent Storino and Pasquale Storino, each contributing $10,000. The statement is attributed testimony preserved in a government report.</p>
+<p>Period material places SMS at the same Broadway address, post-office box and telephone number used by Computran. The Storino participation supplies personnel continuity. The company&#39;s later use of telex 132168 supplies another connection with the earlier Super Tank advertising, extending the trail beyond a shared local address.</p>
+<p>Those are strong indicators of operational continuity. They show that the two businesses belonged to a connected commercial environment and shared infrastructure. They do not, by themselves, identify an asset-sale agreement, a merger, a parent-subsidiary structure or a formal legal rename.</p>
+<p>The chronology rules out a neat overnight replacement. SMS was operating in 1982 while Computran remained visible in early-1983 directories and exhibitor material. The two names overlapped. Whatever practical transfer, division or change of emphasis may have occurred, it was not simply a sequence in which one documented name ended before the other began.</p>
+<p>The inherited court and trade research records SMS offering Hi-Lo Double Up Joker Poker by September or October 1982. A later Play Meter profile describes its start in Point Pleasant in 1982. These sources support an independently described beginning for SMS, rather than supplying a statement that Computran merely changed its sign.</p>
+<h3 id="a-business-that-continued-beyond-the-computran-name">A business that continued beyond the Computran name</h3>
+<p>Later SMS material places it at 1000 Airport Road in Lakewood by December 1985 and at 601 Prospect Street by 1988. Its continued telex identifier is useful because the link survives a geographic move. The phone and street address connected the overlapping local ventures; the telex extends the infrastructure connection into the later business.</p>
+<p>SMS&#39;s product history also moved beyond a narrow reading of video poker. The preserved trade record includes merchandisers, redemption equipment and conventional coin-operated products as well as card games. It should not be described as exclusively a poker-machine company when explaining the broader manufacturing continuity.</p>
+<p>The company&#39;s later documents use both Manufacturing Corporation and Manufacturing Company, Inc. forms. Federal material records a doing-business-as relationship by 1990. The exact original New Jersey charter identity remains a filing question. This naming issue belongs in supporting documentation rather than being used to invent separate companies or a particular formation sequence.</p>
+<p>The later ownership history requires similar precision. Earlier summaries described a January 1990 transaction simply as Mirando buying out the Storinos. The more specific appellate account describes a contract division: Mirando retained the gambling-machine operation while the Storinos acquired Point Pleasant boardwalk properties. That account is retained as the more precise business-history wording.</p>
+<p>These later facts help show that the Storino manufacturing environment persisted after Computran ceased appearing in the accessible trade trail. They do not make every later SMS product part of Computran&#39;s catalog. Nor do they settle Computran&#39;s corporate end. Operational continuity and legal succession remain separate findings.</p>
+<h2 id="an-unrelated-computran">An unrelated Computran</h2>
+<p>Computran Systems Corporation of Hackensack, New Jersey belongs to a different history. It was associated with traffic-control engineering, not this Point Pleasant Beach arcade venture. Its records can appear in the same searches, and its New Jersey location can make the confusion seem plausible.</p>
+<p>The arcade company must not inherit that firm&#39;s patents, lawsuits, officers or corporate dates. A matching word in a company name is insufficient when address, business activity and legal identity differ. This namesake caution is especially important in a history whose incorporation and dissolution dates remain missing.</p>
+<p>A current online New Jersey name search did not surface the target arcade entity in the prior research. That result does not prove the business was never incorporated or that its records no longer exist. It establishes the limitation of that lookup. Older filings, name variants and archival records remain possible routes to the legal history.</p>
+<h2 id="what-remains-open">What remains open</h2>
+<p>The unresolved questions are specific. Computran&#39;s formation and dissolution dates still require corporate records. Its exact relationship to SMS still requires an original legal or business document. The 1982 Nintendo matter still requires the original New Jersey case identification and company-specific papers.</p>
+<p>For the games, the most important missing bridge is Bull Frog/FROG&#39;s direct company and supplier identification. Amigo needs comparable primary attribution. Port Man needs production and licensing-chain documentation. Triple Punch needs the agreement or sales material that explains the already visible company-branded presentation.</p>
+<p>For the machines, readable labels and original paperwork remain more valuable than another generic cabinet photograph. For the addresses, the unknown is their actual function during the period, not simply where they sit on a modern map. For personnel, Reggie Alexander&#39;s work matters where it explains a game or manufacturing task; a long unrelated biography would not resolve the catalog.</p>
+<p>These gaps are part of the historical result. They do not require the article to withhold everything already established. They also do not authorize filling in a clean founding date, a dramatic closure story or a large release list merely because readers might expect them.</p>
+<p>Computran&#39;s surviving record is small but distinctive. Its own Super Tank advertising establishes declared international licensing. Its marked Port Man and Triple Punch artwork establishes further product presentations. Its associated frog and maze games retain useful unfinished provenance trails. Its trade listings continue into 1983, while SMS appears alongside it and later carries connected personnel and infrastructure forward.</p>
+<p>That is a substantial history for a company largely remembered through cabinets and scattered title credits. Its place on arcade history&#39;s overlooked side is the work of turning other suppliers&#39; games into products for American locations—and the surviving evidence that still lets that work be examined, even when the business paperwork is incomplete.</p>
+<h2 id="documentary-notes-for-this-history">Documentary notes for this history</h2>
+<h3 id="reading-the-dates">Reading the dates</h3>
+<p>The company snapshot deliberately separates a game publication date, a directory date and a corporate formation date. The corrected copyright trail gives an early Super Tank publication point; the held flyer independently places the company in the 1981 product market. Neither establishes the day on which the New Jersey corporation was formed. Likewise, a distributor list published in March 1983 establishes a commercial reference at that point, not a formal date of dissolution.</p>
+<p>The erroneous 1981 footer on the 1982 directory is preserved in the source record rather than concealed. A single extracted page can make the wrong date look authoritative. Reading the issue cover and volume identification restores its context. The correction affects when the officer information is documented; it does not erase the independent evidence for Computran&#39;s 1981 product activity.</p>
+<h3 id="reading-commercial-roles">Reading commercial roles</h3>
+<p>The strict total recognizes three documented company title relationships. Super Tank has the strongest declared licensed-manufacture evidence. Port Man has a direct licensing presentation with uncertain rollout. Triple Punch has a direct company-marked presentation and an unresolved contract. This wording allows the three to be counted without claiming identical business roles or original software development.</p>
+<p>Bull Frog and Amigo are discussed because they are consequential associations, not because they have passed the same direct-attribution threshold. The Crazy Kong/Congorilla material is retained because it helps explain the enforcement and cabinet context. Its inclusion in the narrative is not inclusion in the verified total. The title count should always travel with this scope note.</p>
+<h3 id="reading-testimony-and-physical-objects">Reading testimony and physical objects</h3>
+<p>The Port Man one-machine account is preserved as a collector&#39;s report of an unnamed former executive&#39;s statement. The SMS founding account is attributed to Mirando&#39;s testimony summarized in the New Jersey report. Neither has been rewritten as an original charter or production ledger. Physical logos and license lines are more direct for the existence of a particular company-branded presentation, but remain limited in what they say about quantities and contracts.</p>
+<p>The Bull Frog manual&#39;s reported recovery from a cabinet is a useful provenance statement. Its logo and board descriptions can be compared with other material, but its presence in that cabinet does not prove an uninterrupted original installation. Future examination should preserve the difference between the object&#39;s markings, its observed location and the interpretation proposed for it.</p>
+<h3 id="source-families-behind-the-article">Source families behind the article</h3>
+<p>The principal company/product sources are the held 1981 Computran Super Tank flyer; the inherited Super Tank technical and copyright research; the March 1982 Play Meter directory; the marked Port Man and Triple Punch survivor artwork; period Triple Punch and Port Man commercial coverage; and the early-1983 exhibitor and Eastern Coin records. Collector material contributes cabinet observations and explicitly attributed oral accounts.</p>
+<p>The transition is supported by period SMS address and communications material, the held 1991 New Jersey State Commission of Investigation report, the inherited court record and later SMS trade coverage. The Nintendo passage is based on the September 18, 1982 Cash Box report with its geographic distinctions retained. Separate legal proceedings explain context and are not substituted for Computran&#39;s missing case file.</p>
+<p>The research notes preserve source locations, previously superseded wording and the limits of local file possession. A bibliographic lead is not necessarily a preserved document, and an image visible online is not necessarily included in the handoff. The article&#39;s text can be assessed against that trail without relying on a clean narrative to hide the surviving gaps.</p>
+<section id="sources"><h2>Sources and preserved objects</h2><p>The full research distinguishes period records, inherited findings, collector observations and unresolved leads. The following links provide access to selected objects discussed above.</p><ul><li><a href="https://forums.arcade-museum.com/media/triple-punch-computran-marquee-jpg.20492/" target="_blank" rel="noopener">Triple Punch marquee</a> — Direct Computran name in glove graphic</li><li><a href="https://forums.arcade-museum.com/media/computran-port-man-marquee-1-jpg.20510/" target="_blank" rel="noopener">Port Man marquee</a> — Computran and Taito licensing line</li><li><a href="https://forums.arcade-museum.com/media/congorilla-in-a-computran-cabinet-rear-tag-jpg.20529/" target="_blank" rel="noopener">Congorilla rear tag</a> — License wording; does not prove Computran manufacture</li><li><a href="https://forums.arcade-museum.com/media/albums/computran-arcade-cabinets.2351/" target="_blank" rel="noopener">Bull Frog exterior/interior variants</a> — Board-layout/cabinet comparison, creator DonPanetta</li><li><a href="https://forums.arcade-museum.com/threads/port-man-one-of-a-kind.334244/" target="_blank" rel="noopener">Port Man 2015 cabinet</a> — Dedicated survivor plus attributed oral history</li><li><a href="https://flyers.arcade-museum.com/videogames/show/6245" target="_blank" rel="noopener">Port Man Taito flyer</a> — Context, Taito-branded material, not Computran company proof</li><li><a href="https://flyers.arcade-museum.com/videogames/show/3360" target="_blank" rel="noopener">Triple Punch flyer</a> — Commercial context, company identity must be read from artifact</li></ul><p>Photographic acknowledgment: DonPanetta / Museum of the Game. Flyer preservation: Arcade Flyer Archive.</p></section><section id="contribute"><h2>Have a piece of the Computran story?</h2><p>Flyers, manuals, company records, photographs, production labels and firsthand memories can help resolve the remaining questions. Contributions are reviewed before publication; contributors may be credited with permission or remain anonymous.</p><a href="mailto:arcadeobscura@gmail.com?subject=Computran%20history">Email Arcade Side B</a><p>Email: arcadeobscura@gmail.com</p></section><p><a href="index.html#companies" target="_parent">← Back to Companies</a></p></article></div><footer class="footer"><div class="rights"><strong>Rights &amp; Archival Material Notice</strong><p>Arcade Side B is a noncommercial historical research and preservation project. Some archival images, scans, publications, advertisements, artwork, screenshots, manuals, trademarks, and other materials presented or linked here may remain protected by copyright or other rights. Unless specifically stated otherwise, Arcade Side B does not claim ownership of third-party material and may not have a redistribution agreement with the applicable rights holder. Materials are presented in the interest of historical documentation, research, criticism, education, and preservation. Rights holders who have concerns about material appearing here are welcome to contact Arcade Side B to request attribution, correction, restriction, or removal.</p></div></footer><dialog id="image-viewer"><button type="button">Close ×</button><img alt=""></dialog><script>const v=document.querySelector('#image-viewer');document.querySelectorAll('.enlarge').forEach(b=>b.onclick=()=>{const i=b.querySelector('img');if(parent!==window&&parent.openArchiveImage){parent.openArchiveImage(i.src,i.alt);return}v.querySelector('img').src=i.src;v.querySelector('img').alt=i.alt;v.showModal()});v.querySelector('button').onclick=()=>v.close();</script></body></html>
