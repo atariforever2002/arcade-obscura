@@ -1,0 +1,689 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>EVOGA Entertainment | Arcade Side B</title><meta name="description" content="EVOGA Entertainment’s Mexican arcade history: Evolution Soccer, Rage of the Dragons, Japanese collaborations, unreleased projects and its later revival."><link rel="canonical" href="https://arcadesideb.com/evoga.html"><style>
+:root{
+  --bg:#090d12;--paper:#eee7d8;--paper2:#f5efe3;--ink:#232b30;--muted:#667075;
+  --line:#c8beab;--darkline:#303b45;--gold:#c28a32;--gold2:#d8b36b;
+  --green:#557b63;--cyan:#6f99aa;--max:1180px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:
+  radial-gradient(circle at 82% 10%,rgba(111,153,170,.09),transparent 28%),
+  linear-gradient(rgba(255,255,255,.012) 1px,transparent 1px),#090d12;
+  background-size:auto,100% 4px,auto;color:#dce2e5;font-family:Georgia,"Times New Roman",serif;
+}
+a{color:#a96f21}
+.mast{border-bottom:4px solid var(--gold);background:linear-gradient(135deg,#0a0f14,#13202a)}
+.mast-inner{width:min(calc(100% - 32px),var(--max));margin:auto;padding:17px 0;display:flex;justify-content:space-between;gap:20px;align-items:center}
+.brand{font-size:26px;font-weight:700;color:#f0ece4}
+.motto{font:700 10px Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#9ca8af;text-align:right}
+.crumb,.hero,.rule,.shell{width:min(calc(100% - 32px),var(--max));margin-left:auto;margin-right:auto}
+.crumb{padding-top:18px;color:#93a0a8;font:700 11px Arial,sans-serif}
+.crumb a{color:#d4ad67;text-decoration:none}
+.hero{padding:30px 0 26px}
+.eyebrow{color:var(--gold2);font:800 10px Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase}
+.hero h1{margin:7px 0 10px;font-size:clamp(44px,7vw,78px);line-height:.95;color:#f0ece4}
+.deck{max-width:930px;color:#b9c4ca;font-size:20px;line-height:1.5;margin:0}
+.meta{display:flex;gap:12px;flex-wrap:wrap;margin-top:17px;color:#9aa6ad;font:700 11px Arial,sans-serif}
+.badge{padding:6px 9px;border:1px solid currentColor;border-radius:999px;text-transform:uppercase}
+.living{color:#78a6b8}
+.rule{height:1px;background:#29343e}
+.shell{display:grid;grid-template-columns:275px minmax(0,1fr);gap:22px;padding:26px 0 50px;align-items:start}
+.sidebar{position:sticky;top:10px}
+.toc{border:1px solid #34404b;background:#111820;max-height:82vh;overflow:auto}
+.toc-title{padding:13px 15px;color:#d8dfe2;font:800 11px Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase}
+.toc a{display:block;border-top:1px solid #29343e;padding:9px 13px;color:#aebbc2;text-decoration:none;font:13px/1.35 Arial,sans-serif}
+.toc a:hover{color:#f0c57e}
+.sidebar-note{margin-top:12px;border:1px solid #34404b;background:#111820;padding:13px;color:#94a0a7;font:13px/1.45 Arial,sans-serif}
+article{background:var(--paper);color:var(--ink);border:1px solid #b9ae9a;box-shadow:0 18px 42px rgba(0,0,0,.25);padding:26px 34px 40px;min-width:0}
+.backhome{display:inline-block;margin-bottom:18px;padding:8px 10px;border:1px solid #9e927e;color:#745322;text-decoration:none;font:800 10px Arial,sans-serif;text-transform:uppercase;letter-spacing:.08em}
+.company-identity{margin:0 0 28px;border:1px solid #b8ad98;background:linear-gradient(135deg,rgba(194,138,50,.08),transparent 48%),#f3eddf;overflow:hidden}
+.company-mark{padding:24px 26px 20px;border-bottom:1px solid var(--line);position:relative}
+.company-mark:after{content:"COMPANY PROFILE";position:absolute;right:22px;top:18px;color:#8c8272;font:700 9px Arial,sans-serif;letter-spacing:.16em}
+.legal{color:#746b5f;font:700 10px Arial,sans-serif;letter-spacing:.13em;text-transform:uppercase;margin-bottom:7px}
+.wordmark{font-size:clamp(34px,5vw,58px);line-height:.95;color:#122331}
+.wordmark span{display:block;margin-top:7px;color:#8a6429;font:700 13px Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase}
+.company-snapshot{display:grid;grid-template-columns:repeat(4,1fr)}
+.snapshot-cell{padding:17px 18px;border-right:1px solid var(--line)}
+.snapshot-cell:last-child{border-right:0}
+.snapshot-label{display:block;color:#786f63;font:700 9px Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;margin-bottom:5px}
+.snapshot-value{display:block;color:#1c2d37;font-size:19px;line-height:1.2}
+.snapshot-note{display:block;margin-top:5px;color:#6e726f;font:11px/1.35 Arial,sans-serif}
+.overview-box{padding:18px 20px;background:#f8f2e7;border:1px solid #d2c5af;margin:0 0 26px}
+.overview-box h2{margin-top:0!important}
+article h2{margin:38px 0 13px;color:#172a35;font-size:31px;border-bottom:2px solid #b57f31;padding-bottom:7px}
+article h2:first-of-type{margin-top:0}
+article h3{margin:27px 0 9px;color:#2b3a41;font-size:24px}
+article p{font-size:18px;line-height:1.7;margin:14px 0}
+article li{font-size:17px;line-height:1.6;margin:6px 0}
+article blockquote{margin:18px 0;padding:10px 17px;border-left:4px solid var(--gold);background:#f7f0e3;color:#465156}
+article table{width:100%;border-collapse:collapse;margin:18px 0;font:14px/1.45 Arial,sans-serif}
+article th,article td{border:1px solid #c8beab;padding:8px 9px;vertical-align:top}
+article th{background:#ddd3c1;color:#24323a;text-align:left}
+article code{font-size:.88em}
+.src-tag{display:inline-block;color:#76531e;font:700 10px Arial,sans-serif;white-space:nowrap}
+.public-note{margin:0 0 25px;padding:15px 17px;border-left:5px solid var(--green);background:#e7efe8;color:#33433a;font:15px/1.5 Arial,sans-serif}
+.footer{border-top:1px solid #29343e;background:#07090c}
+.footer-inner{width:min(calc(100% - 32px),var(--max));margin:auto;padding:21px 0 27px;display:flex;justify-content:space-between;align-items:flex-end;gap:20px;color:#7f8b92;font:12px Arial,sans-serif}
+.footer-inner strong{color:#d9dfe2;font-family:Georgia,serif;font-size:15px}
+.site-counter{text-align:right;font:800 9px Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#748089}
+.site-counter img{display:block;margin:5px 0 0 auto;border:1px solid #303944}
+@media(max-width:920px){
+ .shell{grid-template-columns:1fr} .sidebar{position:static} .toc{max-height:none}
+ .company-snapshot{grid-template-columns:1fr 1fr}
+ .snapshot-cell:nth-child(2){border-right:0}
+ .snapshot-cell{border-bottom:1px solid var(--line)}
+ .snapshot-cell:nth-child(3),.snapshot-cell:nth-child(4){border-bottom:0}
+}
+@media(max-width:600px){
+ .mast-inner{align-items:flex-start;flex-direction:column} .motto{text-align:left}
+ .company-snapshot{grid-template-columns:1fr} .snapshot-cell{border-right:0;border-bottom:1px solid var(--line)!important}
+ .snapshot-cell:last-child{border-bottom:0!important}
+ article{padding:20px 16px 28px} article p{font-size:17px} article h2{font-size:27px}
+ .footer-inner{align-items:flex-start;flex-direction:column} .site-counter{text-align:left} .site-counter img{margin-left:0}
+}
+
+.elcon-visuals{
+  margin:28px 0 34px;
+}
+.elcon-visuals h2{
+  margin-top:0;
+}
+.flyer-pair{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+  align-items:start;
+}
+.archive-figure{
+  margin:0;
+  padding:10px;
+  border:1px solid #b8ad98;
+  background:#f8f3e8;
+}
+.archive-figure img{
+  width:100%;
+  height:auto;
+  display:block;
+  border:1px solid #c8beab;
+  background:#e9dfce;
+}
+.archive-figure figcaption{
+  padding:9px 4px 2px;
+  color:#5e6668;
+  font:12px/1.5 Arial,Helvetica,sans-serif;
+}
+.rights-hold{
+  margin:24px 0;
+  padding:15px 17px;
+  border:1px dashed #b69d72;
+  background:#f7efe1;
+  color:#5b554c;
+  font:13px/1.55 Arial,Helvetica,sans-serif;
+}
+.rights-hold strong{
+  color:#65471e;
+}
+@media(max-width:700px){
+  .flyer-pair{grid-template-columns:1fr}
+}
+
+
+/* ELTON/ELCON PUBLICATION VISUALS */
+.visual-section{
+  margin:20px 0 32px;
+}
+.visual-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+  margin:18px 0 24px;
+  align-items:start;
+}
+.visual-grid.brochure{
+  grid-template-columns:1fr 1fr;
+}
+.archive-figure{
+  margin:0;
+  padding:10px;
+  border:1px solid #b8ad98;
+  background:#f8f3e8;
+}
+.archive-figure img{
+  width:100%;
+  height:auto;
+  display:block;
+  border:1px solid #c8beab;
+  background:#e9dfce;
+}
+.archive-figure figcaption{
+  padding:9px 4px 2px;
+  color:#5e6668;
+  font:12px/1.5 Arial,Helvetica,sans-serif;
+}
+.visual-note{
+  margin:18px 0;
+  padding:14px 16px;
+  border-left:4px solid #b57f31;
+  background:#f7efe1;
+  color:#5b554c;
+  font:13px/1.55 Arial,Helvetica,sans-serif;
+}
+@media(max-width:760px){
+  .visual-grid,.visual-grid.brochure{grid-template-columns:1fr}
+}
+
+
+/* CONTEXTUAL ARCHIVAL FIGURES */
+.inline-archive-figure{
+  margin:22px auto 27px;
+  max-width:780px;
+  padding:10px;
+  border:1px solid #b8ad98;
+  background:#f8f3e8;
+  box-shadow:0 8px 18px rgba(64,52,34,.08);
+}
+.inline-archive-figure.narrow{max-width:560px}
+.inline-archive-figure img{
+  width:100%;
+  height:auto;
+  display:block;
+  border:1px solid #c8beab;
+  background:#e9dfce;
+}
+.inline-archive-figure figcaption{
+  padding:9px 4px 2px;
+  color:#5e6668;
+  font:12px/1.55 Arial,Helvetica,sans-serif;
+}
+.inline-archive-figure figcaption strong{color:#334047}
+.derivative-note{
+  display:inline-block;
+  margin-left:5px;
+  padding:2px 5px;
+  border:1px solid #b89a66;
+  color:#76531e;
+  font:700 8px Arial,Helvetica,sans-serif;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.context-note{
+  margin:18px 0 22px;
+  padding:13px 15px;
+  border-left:4px solid #b57f31;
+  background:#f7efe1;
+  color:#5b554c;
+  font:13px/1.55 Arial,Helvetica,sans-serif;
+}
+
+</style>
+<style>
+/* Reader-facing source and table containment */
+article a, .source-list a, .footnotes a { overflow-wrap:anywhere; }
+.table-scroll {max-width:100%;overflow-x:auto;}
+.table-scroll:focus-visible {outline:2px solid #d7b56d;outline-offset:3px;}
+</style>
+<style id="ao-company-profile-consistency">
+/* Exact shared company-profile presentation: Elcon is the house pattern. */
+.company-identity.company-profile-standard{
+  margin:0 0 28px!important;
+  padding:0!important;
+  border:1px solid #b8ad98!important;
+  border-radius:0!important;
+  background:linear-gradient(135deg,rgba(194,138,50,.08),transparent 48%),#f3eddf!important;
+  color:#20272c!important;
+  box-shadow:none!important;
+  overflow:hidden!important;
+  font-family:Georgia,"Times New Roman",serif!important;
+  font-size:16px!important;
+  line-height:normal!important;
+}
+.company-profile-standard .company-mark{
+  display:block!important;
+  position:relative!important;
+  padding:24px 26px 20px!important;
+  border:0!important;
+  border-bottom:1px solid #c8beab!important;
+  border-radius:0!important;
+  background:transparent!important;
+  color:#232b30!important;
+  font:400 16px/normal Georgia,"Times New Roman",serif!important;
+}
+.company-profile-standard .company-mark:after{
+  content:"COMPANY PROFILE"!important;
+  position:absolute!important;
+  right:22px!important;
+  top:18px!important;
+  display:block!important;
+  margin:0!important;
+  color:#8c8272!important;
+  font:700 9px/normal Arial,Helvetica,sans-serif!important;
+  letter-spacing:.16em!important;
+  text-transform:uppercase!important;
+}
+.company-profile-standard .legal{
+  display:block!important;
+  margin:0 0 7px!important;
+  padding:0!important;
+  color:#746b5f!important;
+  font:700 10px/11px Arial,Helvetica,sans-serif!important;
+  letter-spacing:.13em!important;
+  text-transform:uppercase!important;
+}
+.company-profile-standard .wordmark{
+  display:block!important;
+  margin:0!important;
+  padding:0!important;
+  color:#122331!important;
+  font:400 clamp(34px,5vw,58px)/.95 Georgia,"Times New Roman",serif!important;
+  letter-spacing:0!important;
+  text-transform:none!important;
+}
+.company-profile-standard .wordmark span{
+  display:block!important;
+  margin:7px 0 0!important;
+  padding:0!important;
+  color:#8a6429!important;
+  font:700 13px/normal Arial,Helvetica,sans-serif!important;
+  letter-spacing:.16em!important;
+  text-transform:uppercase!important;
+}
+.company-profile-standard .company-snapshot{
+  display:grid!important;
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  color:#232b30!important;
+  font:400 16px/normal Georgia,"Times New Roman",serif!important;
+}
+.company-profile-standard .snapshot-cell{
+  display:block!important;
+  min-width:0!important;
+  margin:0!important;
+  padding:17px 18px!important;
+  border:0!important;
+  border-right:1px solid #c8beab!important;
+  border-radius:0!important;
+  background:transparent!important;
+  color:#232b30!important;
+  font:400 16px/normal Georgia,"Times New Roman",serif!important;
+}
+.company-profile-standard .snapshot-cell:last-child{border-right:0!important}
+.company-profile-standard .snapshot-label{
+  display:block!important;
+  margin:0 0 5px!important;
+  padding:0!important;
+  color:#786f63!important;
+  font:700 9px/10px Arial,Helvetica,sans-serif!important;
+  letter-spacing:.12em!important;
+  text-transform:uppercase!important;
+}
+.company-profile-standard .snapshot-value{
+  display:block!important;
+  margin:0!important;
+  padding:0!important;
+  color:#1c2d37!important;
+  font:400 19px/22.8px Georgia,"Times New Roman",serif!important;
+}
+.company-profile-standard .snapshot-note{
+  display:block!important;
+  margin:5px 0 0!important;
+  padding:0!important;
+  color:#6e726f!important;
+  font:400 11px/14.85px Arial,Helvetica,sans-serif!important;
+}
+.hero .meta{
+  display:flex!important;
+  flex-direction:row!important;
+  flex-wrap:wrap!important;
+  align-items:center!important;
+  gap:10px!important;
+  margin:15px 0 0!important;
+  padding:0!important;
+}
+.hero .meta .badge,
+.hero .meta .updated{
+  display:inline-block!important;
+  position:static!important;
+  margin:0!important;
+  inset:auto!important;
+}
+.hero .meta .badge{
+  padding:6px 9px!important;
+  border:1px solid #78a6b8!important;
+  border-radius:999px!important;
+  background:transparent!important;
+  color:#9fc7d6!important;
+  font:700 11px/normal Arial,Helvetica,sans-serif!important;
+  letter-spacing:0!important;
+  text-transform:uppercase!important;
+}
+.hero .meta .updated{
+  padding:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  color:#9aa6ad!important;
+  font:700 11px/normal Arial,Helvetica,sans-serif!important;
+  letter-spacing:0!important;
+  text-transform:none!important;
+}
+@media(max-width:920px){
+  .company-profile-standard .company-snapshot{grid-template-columns:1fr 1fr!important}
+  .company-profile-standard .snapshot-cell{border-right:1px solid #c8beab!important;border-bottom:1px solid #c8beab!important}
+  .company-profile-standard .snapshot-cell:nth-child(2){border-right:0!important}
+  .company-profile-standard .snapshot-cell:nth-child(3),
+  .company-profile-standard .snapshot-cell:nth-child(4){border-bottom:0!important}
+  .company-profile-standard .snapshot-cell:last-child{border-right:0!important}
+}
+@media(max-width:600px){
+  .company-profile-standard .company-mark{
+    display:flex!important;
+    flex-direction:column!important;
+    padding:20px 18px 17px!important;
+  }
+  .company-profile-standard .company-mark:after{
+    position:static!important;
+    order:-1!important;
+    display:block!important;
+    margin:0 0 9px!important;
+  }
+  .company-profile-standard .wordmark{font-size:34px!important;overflow-wrap:anywhere!important}
+  .company-profile-standard .company-snapshot{grid-template-columns:1fr!important}
+  .company-profile-standard .snapshot-cell{
+    border-right:0!important;
+    border-bottom:1px solid #c8beab!important;
+  }
+  .company-profile-standard .snapshot-cell:nth-child(3){border-bottom:1px solid #c8beab!important}
+  .company-profile-standard .snapshot-cell:last-child{border-bottom:0!important}
+}
+</style>
+<style>article{min-width:0}article p{line-height:1.7}article h2{margin-top:2.3rem}.archive-figure{margin:1.5rem 0;padding:1rem;background:#111b25;border:1px solid #485461}.archive-figure button{display:block;width:100%;border:0;background:transparent;cursor:zoom-in}.archive-figure img{display:block;width:100%;height:auto;max-height:640px;object-fit:contain}.archive-figure figcaption{font:14px/1.5 Arial,sans-serif;color:#c8d0d6;padding-top:.7rem}.archive-figure figcaption,.archive-figure figcaption strong{color:#dce5ec}.archive-figure figcaption a{color:#f0c77b}.toc a{line-height:1.4}dialog{background:#0e1720;color:#eee;max-width:96vw;max-height:96vh}dialog img{max-width:90vw;max-height:84vh;object-fit:contain}.rights{font:12px/1.6 Arial,sans-serif;max-width:1000px;margin:1rem auto;padding:1rem}@media(max-width:700px){.shell{display:block;padding:0 16px}.sidebar{position:static}.archive-figure{padding:.5rem}.hero{padding:24px 16px}}</style><style>.hero h1,article code{overflow-wrap:anywhere}</style></head><body><header class="mast"><div class="mast-inner"><div class="brand"><a href="index.html#companies" target="_parent">Arcade Side B</a></div><div class="motto">Preserve what others overlooked. Follow the evidence. Keep the record open.</div></div></header><div class="crumb"><a href="index.html#companies" target="_parent">Arcade Side B › Companies</a> › EVOGA Entertainment</div><section class="hero"><div class="eyebrow">Company history · Mexico</div><h1 style="display:block">EVOGA Entertainment</h1><p class="deck">Mexico’s brief bridge into Japanese arcade production: two released games, a cross-border creative team and a much larger slate of unfinished ambitions.</p><div class="meta"><span class="badge living">Open to new evidence</span> · Last updated 10/02/2026</div></section><div class="shell"><aside class="sidebar"><nav class="toc" aria-label="Article contents"><div class="toc-title">On this page</div><a href="#company-snapshot">Company snapshot</a><a href="#mexico-s-brief-bridge-into-the-neo-geo-world">Mexico’s brief bridge into the Neo Geo world</a><a href="#evoga-at-a-glance">EVOGA at a glance</a><a href="#chronology">Chronology</a><a href="#before-evoga-a-fan-circle-becomes-useful-to-the-arcade-business">Before EVOGA: a fan circle becomes useful to the arcade business</a><a href="#plus-electronics-incubator-employer-and-business-bridge">Plus Electronics: incubator, employer and business bridge</a><a href="#evolution-soccer-the-first-mexican-japanese-production-bridge">Evolution Soccer: the first Mexican-Japanese production bridge</a><a href="#project-dd-from-double-dragon-idea-to-rage-of-the-dragons">Project DD: from Double Dragon idea to Rage of the Dragons</a><a href="#the-double-dragon-connection-what-the-evidence-actually-says">The Double Dragon connection — what the evidence actually says</a><a href="#evoga-and-the-king-of-fighters-influence-without-ownership">EVOGA and The King of Fighters: influence without ownership</a><a href="#mexican-ideas-inside-somebody-elses-series">Mexican ideas inside somebody else&#39;s series</a><a href="#a-much-larger-slate-that-never-reached-arcades">A much larger slate that never reached arcades</a><a href="#the-projects-behind-the-unreleased-slate">The projects behind the unreleased slate</a><a href="#the-abrupt-end-of-the-original-evoga-team">The abrupt end of the original EVOGA team</a><a href="#evoga-came-back-at-least-on-the-web">EVOGA came back — at least on the web</a><a href="#reading-the-surviving-2007-page">Reading the surviving 2007 page</a><a href="#the-brand-after-the-arcade-company">The brand after the arcade company</a><a href="#what-survives-today">What survives today</a><a href="#a-note-on-the-first-latin-american-videogame-company-label">A note on the “first Latin American videogame company” label</a><a href="#why-evoga-belongs-on-arcade-side-b">Why EVOGA belongs on Arcade Side B</a><a href="#complete-arcade-catalog">Complete arcade catalog</a><a href="#released-evoga-arcade-products-count-2">Released EVOGA arcade products — count: 2</a><a href="#associated-contributions-not-counted-as-evoga-games">Associated contributions — not counted as EVOGA games</a><a href="#character-reuse-associated-lineage-not-counted">Character reuse / associated lineage — not counted</a><a href="#unreleased-proposed-evoga-projects-not-counted">Unreleased / proposed EVOGA projects — not counted</a><a href="#people-and-credit-names">People and credit names</a><a href="#the-people-behind-the-credit-names">The people behind the credit names</a><a href="#open-questions">Open questions</a><a href="#sources">Sources</a><a href="#contribute">Contribute</a></nav></aside><article><section id="company-snapshot" aria-label="EVOGA Entertainment company profile" class="company-identity company-profile-standard">
+<div class="company-mark"><div class="legal">EVOGA ENTERTAIMENT, S.A. de C.V.</div><div class="wordmark">EVOGA Entertainment<span>Mexico</span></div></div>
+<div class="company-snapshot">
+<div class="snapshot-cell"><span class="snapshot-label">Earliest documented activity</span><span class="snapshot-value">2000</span><span class="snapshot-note">HEPTA’s precursor work began earlier. The EVOGA operating team crystallized after the September 2000 Osaka trip; legal incorporation date remains unknown.</span></div>
+<div class="snapshot-cell"><span class="snapshot-label">Last confirmed original development</span><span class="snapshot-value">2002</span><span class="snapshot-note">The original development operation collapsed in mid-2002. Later brand activity and trademark records do not establish uninterrupted studio operation.</span></div>
+<div class="snapshot-cell"><span class="snapshot-label">Released arcade output</span><span class="snapshot-value">2 titles</span><span class="snapshot-note">Evolution Soccer (2001) and Rage of the Dragons (2002). Associated KOF work, character reuse and unreleased projects are excluded.</span></div>
+<div class="snapshot-cell"><span class="snapshot-label">Company character</span><span class="snapshot-value">Creative co-development</span><span class="snapshot-note">Mexican planning, design and production through Plus Electronics, with BrezzaSoft and Noise Factory as Japanese development partners.</span></div>
+</div></section><h2 id="mexico-s-brief-bridge-into-the-neo-geo-world">Mexico’s brief bridge into the Neo Geo world</h2>
+<p>EVOGA Entertainment left behind only two released arcade games. On paper, that should make it a small story.</p>
+<p>It is not.</p>
+<p>EVOGA grew out of a Mexican circle of arcade players, anime fans and SNK enthusiasts who became testers and event collaborators around Plus Electronics, SNK&#39;s Mexican business network and the late-1990s arcade trade. Within a remarkably short period, members of that circle were sitting in meetings in Osaka, designing characters and game systems for Japanese arcade hardware, working alongside BrezzaSoft and Noise Factory, and receiving visible company credit on commercial machines sold internationally.</p>
+<p>The result was <em>Evolution Soccer</em> in 2001 and <em>Rage of the Dragons</em> in 2002. Neither was the work of a conventional self-contained studio. Both were products of a cross-border development pipeline in which creative direction, planning, graphics, programming, sound, hardware expertise, investment and publishing were divided among companies on opposite sides of the Pacific.</p>
+<p>That production structure is what makes EVOGA historically important. Its story shows how arcade games could be created outside the familiar Japanese and American centers at the end of the Neo Geo era — and how fragile that opportunity could be.</p>
+<p>The company also left behind a larger shadow catalog: an unfinished <em>Rage of the Dragons 2</em>, a three-on-three basketball concept, a platform game called <em>Geometrics</em>, other early concepts, a proposed console conversion, and, years later, a documented attempt to revive <em>Evolution Soccer</em> as <em>Evolution Soccer Club Edition</em>. Some of those projects existed only on paper. Others appear to have reached more advanced planning. None changed EVOGA&#39;s released arcade total.</p>
+<p>For Arcade Side B, that distinction matters. EVOGA&#39;s history is not a hidden ten-game catalog. It is the story of how a Mexican creative team made its way into Japanese arcade production, released two games, built a much larger set of ambitions around them, and then disappeared almost as quickly as it had arrived.</p>
+<h2 id="evoga-at-a-glance">EVOGA at a glance</h2>
+<div class="table-scroll" role="region" tabindex="0" aria-label="Company facts"><table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Historical position</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Country</td>
+<td>Mexico</td>
+</tr>
+<tr>
+<td>Original arcade-development cycle</td>
+<td>2000–2002</td>
+</tr>
+<tr>
+<td>Name meaning</td>
+<td>EVOGA = <strong>Evolution Games</strong>, per director Ángel Torres</td>
+</tr>
+<tr>
+<td>Precursor group</td>
+<td>HEPTA, a seven-person project circle drawn from Mexican arcade/anime/SNK enthusiasts and testers</td>
+</tr>
+<tr>
+<td>Business bridge</td>
+<td>Plus Electronics</td>
+</tr>
+<tr>
+<td>Released arcade games</td>
+<td><strong>2</strong></td>
+</tr>
+<tr>
+<td>First release</td>
+<td><em>Evolution Soccer</em> (2001), with BrezzaSoft</td>
+</tr>
+<tr>
+<td>Second release</td>
+<td><em>Rage of the Dragons</em> (2002), with Noise Factory; published by Playmore</td>
+</tr>
+<tr>
+<td>Associated but not EVOGA games</td>
+<td><em>The King of Fighters 2001</em>, <em>The King of Fighters 2002</em>, <em>Power Instinct Matrimelee</em></td>
+</tr>
+<tr>
+<td>Major unreleased work</td>
+<td><em>Rage of the Dragons 2</em>, <em>Geometrics</em>, unnamed basketball/shooter/adventure projects, <em>Evolution Soccer Club Edition</em></td>
+</tr>
+<tr>
+<td>Legal identity confirmed</td>
+<td><strong>EVOGA ENTERTAIMENT, S.A. de C.V.</strong> in Mexican trademark records</td>
+</tr>
+<tr>
+<td>2007 return</td>
+<td>Official EVOGA site displayed <strong>Evolution Soccer Club Edition</strong> and “Coming Soon 2007”</td>
+</tr>
+<tr>
+<td>Current status</td>
+<td>EVOGA-branded web presence active again in 2026; uninterrupted corporate continuity not established</td>
+</tr>
+</tbody></table></div>
+<h3 id="chronology">Chronology</h3>
+<p><strong>Mid-1990s:</strong> the future EVOGA circle forms around anime, videogames and Mexican arcade culture.<br><strong>1999–2000:</strong> Plus Electronics brings the group into the BrezzaSoft/Crystal System opportunity; the seven-person project group uses the name HEPTA.<br><strong>September 2000:</strong> Ángel Torres and Mario Vargas travel to BrezzaSoft in Osaka; the surviving core is brought into full-time work and EVOGA emerges as the operating identity.<br><strong>2001:</strong> <em>Evolution Soccer</em> reaches arcades on the Crystal System. EVOGA also contributes ideas/testing to <em>The King of Fighters 2001</em>.<br><strong>June 2002:</strong> <em>Rage of the Dragons</em> reaches Neo Geo MVS arcades.<br><strong>Mid-2002:</strong> Vargas places the collapse of the original EVOGA development operation here; residual office/advertising work continues later in the year.<br><strong>2004:</strong> later secondary histories place EVOGA’s broader business closure here, but no primary bankruptcy/dissolution record has yet been recovered.<br><strong>2006–2007:</strong> Konami challenges EVOGA’s <em>Evolution Soccer</em> trademark for non-use; the official record still names EVOGA ENTERTAIMENT, S.A. de C.V. as owner.<br><strong>2007:</strong> EVOGA’s official site returns and visibly presents <em>Evolution Soccer Club Edition</em> with a separate “Coming Soon 2007” message.<br><strong>2020:</strong> Piko Interactive publicly acquires rights connected with <em>Rage of the Dragons</em>.<br><strong>2026:</strong> an official EVOGA-branded site is active again, while the legal continuity between eras remains unresolved.</p>
+<h3 id="before-evoga-a-fan-circle-becomes-useful-to-the-arcade-business">Before EVOGA: a fan circle becomes useful to the arcade business</h3>
+<p>Mario Vargas, credited in EVOGA&#39;s games as <strong>Mr.Vo</strong>, later described the company&#39;s beginnings as a group of seven friends connected by anime, videogames and the Mexican arcade scene. The core group was Sergio (&quot;Serg&quot;), Ángel (&quot;Angel Sword&quot;), Erick (&quot;Darb&quot;), Eduardo (&quot;Edu&quot;), Mario (&quot;Mr.Vo&quot;), José Luis (&quot;Bel-Mont&quot;) and Valen or Valente.</p>
+<p>This group did not begin as a formal game studio. It grew into the business through the existing arcade and distribution network around <strong>Plus Electronics</strong>. Vargas recalled the group helping with SNK-related events, testing and market feedback. When Plus began exploring a project with the Japanese company BrezzaSoft, the seven friends were asked to develop ideas for a game aimed at the local market. Because there were seven of them, they used the name <strong>HEPTA</strong> while working on the project in their spare time.</p>
+<p>That precursor matters because later summaries often flatten the story into a neat founding date: EVOGA was created in 2000, then it made two games. Vargas&#39;s account is messier and more useful. The organization evolved in stages.</p>
+<p>The first stage was the fan/tester circle. The second was HEPTA, a seven-person part-time project group. The third came after the project became serious enough to require regular office work and travel to Japan.</p>
+<p>Ángel Torres later explained the company name itself: <strong>EVOGA meant “Evolution Games.”</strong> He said the longer name was rejected and that the group briefly considered <strong>EVOGAM</strong> before settling on EVOGA. That explanation comes from EVOGA&#39;s own director rather than a later reconstruction.</p>
+<p>In September 2000, Vargas and Ángel Torres traveled to BrezzaSoft&#39;s headquarters in Osaka for the project that would become <em>Evolution Soccer</em>. Vargas says that when they returned to Mexico, Plus decided the group needed to be more deeply involved and hired the remaining members full-time. Several of the original seven had already begun leaving for personal reasons. Vargas describes the surviving core at that point as Ángel, Eduardo and himself — and says that EVOGA had just been born.</p>
+<p>That does not mean the other members became irrelevant. Several names from the original circle recur in credits and later EVOGA activity. It does mean that the neat phrase &quot;seven founders of EVOGA&quot; hides an important transition. For publication purposes, it is more accurate to describe the seven as the <strong>HEPTA precursor/original project circle</strong>, with the full-time EVOGA operating team crystallizing after the 2000 Osaka trip.</p>
+<h3 id="plus-electronics-incubator-employer-and-business-bridge">Plus Electronics: incubator, employer and business bridge</h3><figure class="archive-figure"><button type="button" class="enlarge" aria-label="Enlarge How EVOGA’s collaborations were organized. Original Arcade Side B editorial diagram, 2026, based on staff interviews and game credits; not a period company document."><img loading="lazy" src="assets/evoga/EVOGA_collaboration_pipeline_web.webp" alt="How EVOGA’s collaborations were organized. Original Arcade Side B editorial diagram, 2026, based on staff interviews and game credits; not a period company document."></button><figcaption>How EVOGA’s collaborations were organized. Original Arcade Side B editorial diagram, 2026, based on staff interviews and game credits; not a period company document. Click to enlarge.</figcaption></figure>
+<p>EVOGA&#39;s relationship with Plus Electronics is one of the areas where later accounts have become oversimplified.</p>
+<p>The evidence does not support treating EVOGA as nothing more than a Plus trade name. It also does not yet prove that EVOGA was a wholly owned Plus subsidiary.</p>
+<p>What can be supported is a two-layer relationship.</p>
+<p>Operationally, Plus was essential. Vargas says Plus called the HEPTA group into the BrezzaSoft project, provided office space, hired the remaining team full-time after the September 2000 Osaka visit, financed or invested in the Japanese collaborations, and handled high-level business negotiations. Plus was the bridge that turned a group of enthusiasts and testers into a professional development operation.</p>
+<p>Legally, however, EVOGA acquired its own identity. A Mexican federal trademark notice published in 2007 identifies <strong>EVOGA ENTERTAIMENT, S.A. de C.V.</strong> as the registered owner of the <em>E S Evolution Soccer y Diseño</em> trademark. The spelling &quot;ENTERTAIMENT&quot; is the spelling in the official record and should be preserved when referring specifically to the legal entity.</p>
+<p>That government record rules out one common oversimplification: EVOGA was not merely an informal label used inside Plus. EVOGA held intellectual property in its own corporate name.</p>
+<p>The exact ownership structure remains unresolved. No incorporation deed or shareholder record has yet been recovered showing whether Plus owned EVOGA outright, held a partial stake, or simply financed and employed the group while a separate company was established.</p>
+<p>The safest summary is therefore also the most informative: <strong>EVOGA grew out of Plus Electronics&#39; SNK distribution and testing network; Plus recruited, employed and financed the development group and served as the business bridge to Japan, while EVOGA subsequently operated under its own Mexican corporate identity.</strong></p>
+<h3 id="evolution-soccer-the-first-mexican-japanese-production-bridge">Evolution Soccer: the first Mexican-Japanese production bridge</h3><figure class="archive-figure"><button type="button" class="enlarge" aria-label="Enlarge Evolution Soccer title screen, showing the EVOGA and BrezzaSoft marks and 2001 copyright notice. Preservation capture from the libretro MAME thumbnail collection; capture date unknown."><img loading="lazy" src="assets/evoga/soccer-title.png" alt="Evolution Soccer title screen, showing the EVOGA and BrezzaSoft marks and 2001 copyright notice. Preservation capture from the libretro MAME thumbnail collection; capture date unknown."></button><figcaption>Evolution Soccer title screen, showing the EVOGA and BrezzaSoft marks and 2001 copyright notice. Preservation capture from the libretro MAME thumbnail collection; capture date unknown. Click to enlarge.</figcaption></figure><figure class="archive-figure"><button type="button" class="enlarge" aria-label="Enlarge Evolution Soccer match in progress. Preservation gameplay capture from the libretro MAME thumbnail collection; not an editorial reconstruction."><img loading="lazy" src="assets/evoga/soccer-gameplay.png" alt="Evolution Soccer match in progress. Preservation gameplay capture from the libretro MAME thumbnail collection; not an editorial reconstruction."></button><figcaption>Evolution Soccer match in progress. Preservation gameplay capture from the libretro MAME thumbnail collection; not an editorial reconstruction. Click to enlarge.</figcaption></figure><figure class="archive-figure"><button type="button" class="enlarge" aria-label="Enlarge The two released arcade games and their production roles. Original Arcade Side B editorial graphic, 2026. The associated KOF titles and unreleased concepts do not enlarge this total."><img loading="lazy" src="assets/evoga/EVOGA_two_game_catalog_web.webp" alt="The two released arcade games and their production roles. Original Arcade Side B editorial graphic, 2026. The associated KOF titles and unreleased concepts do not enlarge this total."></button><figcaption>The two released arcade games and their production roles. Original Arcade Side B editorial graphic, 2026. The associated KOF titles and unreleased concepts do not enlarge this total. Click to enlarge.</figcaption></figure>
+<p>The first released EVOGA game was <em>Evolution Soccer</em>, released for BrezzaSoft&#39;s Crystal System hardware in 2001. Preservation databases date the arcade release to <strong>August 31, 2001</strong>; the surviving software identifies itself as © 2001 Evoga Entertainment. The game is preserved today in MAME as a four-player-capable Crystal/Zealer-board title with an eight-way joystick and four action buttons.</p>
+<p>The hardware context is worth remembering. BrezzaSoft was trying to establish the Crystal System as a new 2D arcade platform at exactly the moment the old SNK/Neo Geo business was fragmenting. <em>Evolution Soccer</em> therefore was not just EVOGA&#39;s first game; it was tied to an attempted post-Neo-Geo arcade platform whose commercial life proved very short.</p>
+<p>Database descriptions have often made the development attribution look contradictory. Some list EVOGA as developer. Others emphasize BrezzaSoft. The game&#39;s own credits and the surviving interviews show why both names appear: <em>Evolution Soccer</em> was a co-production whose responsibilities crossed company lines.</p>
+<p>The game credits identify EVOGA as producer and carry a 2001 EVOGA Entertainment copyright. The staff list includes <strong>Radel</strong> as director, <strong>Edu</strong> as planner, programmers YuritaRo and Hara, a mixed graphics team, research credits including Zhila and CasDom V, and voice credits including Zhila and Furank.</p>
+<p>The strongest current interpretation is that <strong>EVOGA led the creative, planning and production side, while BrezzaSoft supplied the Crystal System environment and substantial programming/technical support</strong>.</p>
+<p>That interpretation is reinforced by Vargas&#39;s account. He says Plus originally asked the Mexican team to develop concepts for a local-market game with BrezzaSoft. BrezzaSoft&#39;s programmers favored a football game because of budget, schedule and existing experience. The September 2000 Osaka trip then pulled the Mexican group much further into the project than simply delivering local ideas.</p>
+<p>The finished game also retained a distinctly Mexican component. The software supports a Mexico region alongside the overseas configuration, and the Mexican setting includes local club-style teams in addition to the international tournament structure. The use of altered names and logos in some local content reflects the familiar licensing compromises of arcade sports games rather than a different product lineage.</p>
+<p>The important point for EVOGA&#39;s history is not that the company wrote every line of code. It did not. The important point is that the Mexican team had crossed the line from market consultation into credited game production.</p>
+<h4 id="how-evolution-soccer-played">How Evolution Soccer played</h4>
+<p><em>Evolution Soccer</em> was built as a four-player arcade football game rather than a home-console simulation transplanted unchanged into a cabinet. The preserved machine definition gives each player an eight-way joystick and four buttons. Those buttons cover low passing/shooting/sliding, high passing/tackling, turbo, and special techniques. The software runs at 320×240 and is preserved under the MAME machine ID <code>evosocc</code>; current preservation records still flag imperfect sound emulation, which is useful to note when comparing emulated play with original hardware.</p>
+<p>The game also contains an unusually visible regional split. In its Mexico configuration it includes Mexican club-style teams alongside the international sides, while the overseas configuration focuses on national teams. That is a small technical detail, but historically it fits the way the project began: Plus and the future EVOGA group were not simply asked to imitate an existing Japanese sports title. They were being brought in precisely because they could supply local-market ideas and references that the Japanese partner did not have on its own.</p>
+<p>The game&#39;s staff list tells the same story from another angle. EVOGA-linked handles appear in direction, planning, research and voice work, while the programming and portions of the art pipeline are shared with Japanese personnel. The credits therefore look mixed because the production actually was mixed. Treating the game as exclusively Mexican or exclusively Japanese erases the most interesting thing about it.</p>
+<h4 id="why-the-crystal-system-matters">Why the Crystal System matters</h4>
+<p>The Crystal System was a very different starting point from the Neo Geo hardware EVOGA would use next. The preserved <em>Evolution Soccer</em> board family uses a SE3208 main CPU and MagicEyes VRender0 technology rather than SNK&#39;s familiar MVS architecture. For EVOGA, that meant the first commercial project was inseparable from BrezzaSoft&#39;s technical environment and from an arcade platform that never became an enduring standard.</p>
+<p>That short platform life is one reason <em>Evolution Soccer</em> is easily overlooked today. The game did not acquire the decades of hardware familiarity, ports, cartridge collecting and tournament memory that helped preserve the visibility of many Neo Geo titles. Yet it is the game that proves EVOGA had already become more than a localization or testing group before <em>Rage of the Dragons</em> existed.</p>
+<p>That distinction becomes even clearer with EVOGA&#39;s next project.</p>
+<h3 id="project-dd-from-double-dragon-idea-to-rage-of-the-dragons">Project DD: from Double Dragon idea to Rage of the Dragons</h3><figure class="archive-figure"><button type="button" class="enlarge" aria-label="Enlarge Rage of the Dragons title screen with the EVOGA and Playmore marks and 2002 copyright notice. Preservation capture from the libretro MAME thumbnail collection; capture date unknown."><img loading="lazy" src="assets/evoga/rage-title.png" alt="Rage of the Dragons title screen with the EVOGA and Playmore marks and 2002 copyright notice. Preservation capture from the libretro MAME thumbnail collection; capture date unknown."></button><figcaption>Rage of the Dragons title screen with the EVOGA and Playmore marks and 2002 copyright notice. Preservation capture from the libretro MAME thumbnail collection; capture date unknown. Click to enlarge.</figcaption></figure><figure class="archive-figure"><button type="button" class="enlarge" aria-label="Enlarge Rage of the Dragons gameplay, with Pupa facing Jimmy. Preservation capture from the libretro MAME thumbnail collection."><img loading="lazy" src="assets/evoga/rage-gameplay.png" alt="Rage of the Dragons gameplay, with Pupa facing Jimmy. Preservation capture from the libretro MAME thumbnail collection."></button><figcaption>Rage of the Dragons gameplay, with Pupa facing Jimmy. Preservation capture from the libretro MAME thumbnail collection. Click to enlarge.</figcaption></figure><figure class="archive-figure"><button type="button" class="enlarge" aria-label="Enlarge Rage of the Dragons English instruction card: controls, tag actions and special systems. Scan preserved in the libretro MAME collection. The repository labels this file as box art; the pictured object is an instruction card. Small print is limited by the surviving scan resolution."><img loading="lazy" src="assets/evoga/rage-instruction-card.png" alt="Rage of the Dragons English instruction card: controls, tag actions and special systems. Scan preserved in the libretro MAME collection. The repository labels this file as box art; the pictured object is an instruction card. Small print is limited by the surviving scan resolution."></button><figcaption>Rage of the Dragons English instruction card: controls, tag actions and special systems. Scan preserved in the libretro MAME collection. The repository labels this file as box art; the pictured object is an instruction card. Small print is limited by the surviving scan resolution. Click to enlarge.</figcaption></figure>
+<p>Development of what became <em>Rage of the Dragons</em> began while <em>Evolution Soccer</em> was still in progress.</p>
+<p>Vargas recalled arriving in Osaka in early 2001 with a very small preliminary design and character concept for a fighting game. The project was developed with <strong>Noise Factory</strong>, a Japanese studio with experience on Neo Geo hardware. The original concept was connected to the 1995 Neo Geo <em>Double Dragon</em> fighting game.</p>
+<p>A contemporary EVOGA interview from August 2002 is especially valuable because it was published while the game was current, not reconstructed years later. EVOGA said the project had begun in November 2000 with the first meeting with the Japanese team and had taken roughly a year to develop. The interview identifies an EVOGA-side team and separately describes a Noise Factory team of programmers, testers and dot/pixel staff, with additional sound and voice contributors.</p>
+<p>Most importantly, EVOGA itself explained the practical division of labor. Noise Factory handled the <strong>Neo Geo programming, pixel-level character production, sound work, and gameplay/planning tuning</strong>. EVOGA supplied much of the <strong>game system, character concepts, move and power concepts, story, character profiles, stage design, graphics and other creative planning</strong>.</p>
+<p>The ROM-derived credits line up unusually well with that account.</p>
+<p>Ángel Torres appears as <strong>Angel Sword</strong> among the directors. Mario Vargas appears as <strong>Mr.Vo</strong> as sub-director, planner and artist. <strong>Edu</strong> is credited in planning and character design. <strong>Bel Mont</strong>, <strong>Darb</strong>, <strong>Hikaru Suf</strong>, <strong>Shin Ryu</strong> and other EVOGA-associated handles appear across character art, background work, testing and special thanks. On the programming side, Hidenari Mamoto, Kazuaki Ezato and Hiroshi Hishikawa appear in roles consistent with Noise Factory&#39;s technical contribution. The game closes with the credit <strong>Presented by Evoga Entertainment</strong>.</p>
+<p>A period Game Watch item also linked Noise Factory&#39;s site directly to a March 2002 <em>Rage of the Dragons</em> location test at Neo Geo Land Esaka, independently confirming Noise Factory&#39;s public development role.</p>
+<p>The result is one of the clearest examples in EVOGA&#39;s history of why a simple &quot;developer&quot; field is inadequate.</p>
+<p>The arcade/MVS release is generally dated <strong>June 6, 2002</strong>, while the Neo Geo AES home cartridge followed on <strong>September 20, 2002</strong>. This distinction also helps explain why some later databases collapse the arcade and home dates into a single September release.</p>
+<p><em>Rage of the Dragons</em> was not merely designed in Mexico and coded anonymously in Japan, nor was EVOGA a name attached to a Noise Factory game. It was a genuine cross-border co-development whose responsibilities can be reconstructed in unusual detail.</p>
+<h4 id="how-rage-of-the-dragons-played">How Rage of the Dragons played</h4>
+<p>The finished game is a two-player, four-button Neo Geo fighter built around teams of two. Fourteen fighters are selectable in normal play, with Abubo and Johann filling boss roles. The standard Neo Geo layout maps weak and strong punches and kicks across the familiar A–D buttons. Preservation records identify the MVS game as NGM-264.</p>
+<p>The tag structure was more than a presentation gimmick. Players could switch partners, recover some health while a character rested, and perform team-based attacks. The design also used a universal launcher/combo mechanic commonly called <strong>First Impact</strong>, giving every character a route into a preset follow-up sequence. Stage-edge objects and other environmental touches helped the fights feel less like a straight copy of SNK&#39;s own one-on-one formula.</p>
+<p>That design choice makes sense in light of EVOGA&#39;s documented responsibilities. The Mexican side was heavily involved in character concepts, move ideas, system planning, story and stages; Noise Factory translated and tuned those ideas inside a mature Neo Geo production pipeline. The result feels much closer to a deliberate game-design collaboration than <em>Evolution Soccer</em>, where EVOGA had entered an already-defined sports/hardware project.</p>
+<p>The roster itself also carries the project&#39;s international character. Fighters include characters associated with Mexico and Latin America alongside Japanese, American and other archetypes, while names such as Billy, Jimmy and Abubo preserve traces of the abandoned <em>Double Dragon</em> lineage. EVOGA&#39;s team was not hiding its influences; it was reworking them into a property it could actually ship.</p>
+<h4 id="from-experimental-hardware-to-a-mature-arcade-platform">From experimental hardware to a mature arcade platform</h4>
+<p>The hardware change between EVOGA&#39;s two released games is revealing. <em>Evolution Soccer</em> depended on BrezzaSoft&#39;s short-lived Crystal System. <em>Rage of the Dragons</em> moved onto the enormously well-understood Neo Geo MVS platform. That did not make the second project simple, but it let the production divide responsibilities more cleanly: Noise Factory already knew how to make the Neo Geo perform, while EVOGA could push deeper into design, character art, planning and presentation.</p>
+<p>That is also why the phrase “developed by EVOGA” can be simultaneously understandable and incomplete. EVOGA was central to what <em>Rage of the Dragons</em> <strong>was</strong>; Noise Factory was central to making that design function as a finished Neo Geo product. Playmore then occupied the publishing/rightsholder position on the commercial release. The surviving evidence supports all three layers.</p>
+<h3 id="the-double-dragon-connection-what-the-evidence-actually-says">The Double Dragon connection — what the evidence actually says</h3>
+<p>The relationship to <em>Double Dragon</em> is often repeated in simplified form: EVOGA wanted to make an official sequel, failed to obtain the rights, and converted the project into an homage.</p>
+<p>The first part is solid. EVOGA&#39;s own 2002 interview says the project was developed as a sequel to the 1995 Neo Geo <em>Double Dragon</em> fighting game before the concept changed. The finished game preserved obvious echoes of that lineage in names, character ideas and visual references.</p>
+<p>The more specific story that EVOGA formally sought the rights and was refused is much harder to document directly. Later sources repeat it frequently, but the strongest period EVOGA material does not clearly establish the exact legal negotiation.</p>
+<p>For Arcade Side B, the distinction is worth preserving. The project <strong>began as a Double Dragon sequel concept</strong>; the finished game was not an official Double Dragon product; the exact rights-negotiation story should be attributed cautiously rather than presented as an independently proven fact.</p>
+<p>EVOGA also said in 2002 that no former Technōs Japan personnel had participated in the development.</p>
+<h3 id="evoga-and-the-king-of-fighters-influence-without-ownership">EVOGA and The King of Fighters: influence without ownership</h3>
+<p>EVOGA&#39;s relationship with SNK and the post-SNK production network produced another historical trap: games that include EVOGA ideas or staff influence are sometimes folded into the company&#39;s output.</p>
+<p>That should not be done.</p>
+<p>Ángel Torres later described EVOGA&#39;s contribution to <strong>The King of Fighters 2001</strong> as ideas, testing and one character. Later retrospective accounts connect the team to Mexican cultural references and to the inclusion of the character Ángel.</p>
+<p>For <strong>The King of Fighters 2002</strong>, Torres described EVOGA&#39;s involvement more modestly: ideas and testing. EVOGA also supported Mexican presentations and distribution activity around those games.</p>
+<p>Those are meaningful historical contributions, especially for understanding the Mexico-Japan relationship, but neither title becomes an EVOGA-developed arcade game.</p>
+<p>The same rule applies in the opposite direction to <strong>Power Instinct Matrimelee</strong>. Several <em>Rage of the Dragons</em> characters later appeared there because Noise Factory reused them. Torres said EVOGA was not consulted in advance and chose not to make a dispute of the matter.</p>
+<p>That makes <em>Matrimelee</em> part of the EVOGA story, but not part of the EVOGA catalog.</p>
+<p>The controlled released count remains two.</p>
+<h2 id="mexican-ideas-inside-somebody-elses-series">Mexican ideas inside somebody else&#39;s series</h2>
+<p>The KOF connection becomes more informative when its individual contributions are described without changing their category. Torres characterized the 2001 work as ideas, testing and one character. A later Atomix retrospective, checked with Torres, Vargas and José Luis Corona Belmont, supplies additional cultural context: material relating to Mexican lucha libre and a book that helped inspire the use of Mexico City&#39;s Franz Mayer Museum. These are examples of local knowledge entering an established Japanese fighting-game series through the Mexican collaboration.</p>
+<p>Torres&#39;s account of the character Ángel also retains the atmosphere of the relationship. He linked the inclusion to competitive KOF sessions and a wager made around the time Rage was being negotiated. That is a participant&#39;s retrospective recollection and should be read as such. He expressly said the character did not look like him. The released game&#39;s Japanese-side art credits provide another reason to distinguish the request or influence behind a character&#39;s inclusion from the work that produced its final appearance and animation.</p>
+<p>For KOF 2002, his description is narrower: ideas and testing. He also recalled supporting the Mexican presentations and distribution of both games. Those commercial and promotional activities are relevant to EVOGA&#39;s relationship with the audience that had helped bring the group into the business. They remain distinct from responsibility for programming, the complete art pipeline or formal development of the KOF products.</p>
+<p>Matrimelee carries the connection forward through four characters: Jimmy, Lynn, Elias and Mr. Jones. Torres said Noise Factory used them without first consulting EVOGA, and that EVOGA chose not to make a dispute of it. Vargas remembered learning of the appearances after the game had been released, following the loss of contact with Noise Factory. His uncertainty about the selection should remain intact. Their recollections describe character reuse and the relationship&#39;s aftermath, not a documented new co-development agreement.</p>
+<p>This distinction gives EVOGA a presence in a larger arcade history without artificially enlarging its own output. Ideas, testing, distribution support, character inclusion and later character reuse each tell a different part of the story. None requires the claim that EVOGA developed KOF 2001, KOF 2002 or Matrimelee. The original two releases remain the places where the company&#39;s creative production role can be reconstructed most fully.</p>
+<h3 id="a-much-larger-slate-that-never-reached-arcades">A much larger slate that never reached arcades</h3>
+<p>Two released games can make EVOGA look smaller than the ambitions visible in the surviving material.</p>
+<p>Vargas says he began work on <strong>Rage of the Dragons 2</strong> and continued on it until EVOGA&#39;s end. Later preservation work records concept-art development for the sequel as well. The current evidence supports a real preproduction project, but not a confirmed playable arcade prototype.</p>
+<p>A <strong>three-on-three basketball game</strong> also advanced beyond a vague idea. Vargas remembered a <em>Street Hoop</em>-style concept that would reuse ideas from <em>Evolution Soccer</em> and feature guest KOF characters. Later dossier material describes specific three-player teams and suggests the design reached an advanced conceptual stage. The popular title <strong>The King of Basketball</strong> remains unverified and should not be treated as EVOGA&#39;s confirmed project name.</p>
+<p>A platform project called <strong>Geometrics</strong> is also supported by the preservation dossier, which describes gameplay and mapping work. The later name <strong>Geometric&#39;s Aztec</strong> is not supported by the stronger evidence and should remain rejected unless an original source appears.</p>
+<p>Vargas additionally remembered an unnamed shooter and an unnamed side-scrolling adventure project. Other material points to another football concept after <em>Rage of the Dragons</em>. A proposed PlayStation 2 version of <em>Rage</em> also appears in the wider EVOGA record.</p>
+<p>These projects belong on the company page because they show that EVOGA was trying to create a second wave of products. They do not belong in the released arcade count.</p>
+<h2 id="the-projects-behind-the-unreleased-slate">The projects behind the unreleased slate</h2>
+<p>EVOGA&#39;s abandoned projects survive at different levels of detail. Some are remembered directly by a designer who worked on them. Others are described in a later dossier drawing on staff material and design documents. A project may have had character designs, mapping ideas or a substantial proposal while still lacking a playable program. Those distinctions matter especially for a company whose released catalog is so small: the unpublished slate can easily be made to sound larger and more complete than the evidence allows.</p>
+<p>Rage of the Dragons 2 has the strongest firsthand foundation among the original team&#39;s unrealized games. Vargas recalled beginning it after working on the first game&#39;s North American and Latin American campaign and continuing until EVOGA ended. He also connected the decision to proceed with favorable location-test feedback. The later dossier describes sequel concept-art work after the team returned to Mexico. Together, those accounts establish a genuine follow-up effort. They do not establish a finished game, an executable prototype, a specific hardware target or a reliably scheduled release.</p>
+<p>The basketball project is more detailed than a simple entry in a cancellation list. Vargas remembered a Street Hoop-like game that would draw on ideas from Evolution Soccer and include KOF guests. The later dossier describes two three-person teams: Terry, Yuri and Blue Mary on one side, with Brian Battler, Heavy D. and Lucky on the other. Those names reveal how closely the proposal remained connected to the team&#39;s SNK relationships. They describe a planned roster, however, rather than a recovered playable selection screen.</p>
+<p>The dossier&#39;s description of advanced conceptual progress should also be read at that level. Its percentage estimate concerns the concept, not proof that a corresponding percentage of the software had been completed. Character access and licensing negotiations are described in retrospective material, but a signed contract has not been recovered. The proposal can be discussed as a serious design effort without treating the guest characters as an approved commercial license or turning the later label The King of Basketball into an authenticated EVOGA title.</p>
+<p>Geometrics represents another direction the company hoped to pursue. The dossier describes a platform-game concept with gameplay and mapping ideas that attracted attention from managers associated with KOF. That gives the project more substance than a name in a modern database. It also identifies the limit: the described design work did not become a released product, and no playable build or settled hardware target is established by the current record. The unsupported Aztec subtitle should not be used to supply missing theme or setting details.</p>
+<p>The unnamed shooter and side-scrolling adventure have a more modest evidentiary footprint. Vargas remembered them as early work. Their genres can be retained because they come from his account, but names, settings, platforms and intended dates cannot be supplied from imagination. They show the range of proposals being considered after Evolution Soccer; they do not show that the studio had two additional games close to production.</p>
+<p>The later football concept is a separate problem. The dossier describes post-Rage football concept art, while the archived EVOGA website documents Evolution Soccer Club Edition in 2007. Both belong in the company&#39;s broader history, but the intervening years and operational collapse prevent an automatic connection. An original design document, an archived announcement explicitly explaining the lineage, or staff testimony linking the projects would be needed to show that the unnamed proposal became Club Edition.</p>
+<p>The proposed PlayStation 2 conversion of Rage raises a different kind of boundary. Moving an existing game to a console would have extended the property&#39;s audience and the company&#39;s business opportunities. The dossier mentions planning or negotiation, but there is no EVOGA PS2 release to add to the catalog. A proposed conversion is neither another original arcade title nor proof that a console-development team had been established. It remains part of the attempted second wave that did not produce a surviving commercial product.</p>
+<p>Read together, the slate suggests a company trying to move beyond two initial collaborations into a repeatable development business. That is an interpretation of the varied proposals, not evidence of a single approved production schedule. The planned sequel, sports game, platformer, early genre experiments and possible conversion reveal ambition. Their uneven survival also makes clear why a released-game count and a project inventory must remain separate. EVOGA shipped two arcade games; it considered and worked on more than two ideas.</p>
+<h3 id="the-abrupt-end-of-the-original-evoga-team">The abrupt end of the original EVOGA team</h3><figure class="archive-figure"><button type="button" class="enlarge" aria-label="Enlarge EVOGA’s development cycle, surviving corporate records and later brand activity. Original Arcade Side B editorial timeline, 2026. The 2002 operational endpoint is distinct from the unproven legal closure date."><img loading="lazy" src="assets/evoga/EVOGA_timeline_web.webp" alt="EVOGA’s development cycle, surviving corporate records and later brand activity. Original Arcade Side B editorial timeline, 2026. The 2002 operational endpoint is distinct from the unproven legal closure date."></button><figcaption>EVOGA’s development cycle, surviving corporate records and later brand activity. Original Arcade Side B editorial timeline, 2026. The 2002 operational endpoint is distinct from the unproven legal closure date. Click to enlarge.</figcaption></figure>
+<p>The company&#39;s endpoint is one of the areas where later summaries create the most confusion.</p>
+<p>Many secondary accounts say EVOGA went bankrupt and closed in <strong>2004</strong>. No primary bankruptcy or dissolution document has yet been found to prove that statement in legal terms.</p>
+<p>Vargas&#39;s firsthand account gives a much earlier operational endpoint. He says the EVOGA development operation effectively shut down in <strong>mid-June 2002</strong>, shortly after <em>Rage of the Dragons</em> reached arcades. The team split up, although some former members continued doing unrelated advertising work from the office until around December.</p>
+<p>Ángel Torres&#39;s 2016 account points in the same general direction without assigning a legal closing date. He said <strong>EVOGA “as such” ended its cycle when sales of <em>Rage of the Dragons</em> and <em>Evolution Soccer</em> were finished</strong>. He added that part of the staff continued developing casino and portable-platform games under another corporate name. That firsthand statement is more useful than simply repeating the later phrase “bankrupt in 2004,” because it separates the end of EVOGA&#39;s game-development cycle from whatever corporate or IP residue survived afterward.</p>
+<p>A later Cultura NeoGeo reconstruction places a broader company close in 2004 and associates former staff with later casino-oriented work, including Fire Token. Because that specific company linkage has not yet been independently verified from a primary corporate or staff source, it is best treated as a lead rather than as a locked successor-company claim.</p>
+<p>At first those dates seem irreconcilable. A federal trademark record makes them easier to understand.</p>
+<p>In October 2006, Konami Digital Entertainment filed an administrative action seeking lapse of EVOGA&#39;s <em>Evolution Soccer</em> trademark. The January 2007 Mexican government notice identifies <strong>EVOGA ENTERTAIMENT, S.A. de C.V.</strong> as the recorded owner. The cited legal provision concerned non-use of a registered mark during the preceding three years.</p>
+<p>That record does not show an active game studio in 2007. It shows that EVOGA&#39;s corporate/IP identity remained present in the trademark system after the original development team had collapsed.</p>
+<p>The best current chronology is therefore layered:</p>
+<ul>
+<li><strong>2000–mid-2002:</strong> original EVOGA arcade-development operation.</li>
+<li><strong>mid/late 2002:</strong> development team breaks apart; residual non-game office activity continues briefly.</li>
+<li><strong>2004:</strong> later sources place the broader business wind-down here, but no primary legal dissolution record is yet in hand.</li>
+<li><strong>2006–2007:</strong> EVOGA remains the recorded owner of the <em>Evolution Soccer</em> trademark while Konami seeks lapse for alleged non-use.</li>
+<li><strong>2007 and later:</strong> the EVOGA name reappears publicly, creating a separate continuity question.</li>
+</ul>
+<p>It is less tidy than the familiar “2000–2004” shorthand, but it fits the surviving evidence better.</p>
+<h3 id="evoga-came-back-at-least-on-the-web">EVOGA came back — at least on the web</h3><figure class="archive-figure"><button type="button" class="enlarge" aria-label="Enlarge Editorial reconstruction of the 2007 evidence, prepared for Arcade Side B in 2026. This is not an original screenshot or the original ESCE title image. The archived first-party page establishes an announcement, not a completed playable game."><img loading="lazy" src="assets/evoga/EVOGA_2007_return_evidence_web.webp" alt="Editorial reconstruction of the 2007 evidence, prepared for Arcade Side B in 2026. This is not an original screenshot or the original ESCE title image. The archived first-party page establishes an announcement, not a completed playable game."></button><figcaption>Editorial reconstruction of the 2007 evidence, prepared for Arcade Side B in 2026. This is not an original screenshot or the original ESCE title image. The archived first-party page establishes an announcement, not a completed playable game. Click to enlarge.</figcaption></figure>
+<p>The strangest part of the EVOGA chronology is no longer based only on a later wiki claim.</p>
+<p>In June 2007, a contemporary report noted that EVOGA&#39;s official website had returned with a <strong>Coming Soon 2007</strong> message and imagery that appeared to point toward a new <em>Evolution Soccer</em> project.</p>
+<p>The archived official site can now be examined directly enough to go further.</p>
+<p>The first successful 2007 Wayback capture of the <code>evogae.com</code> homepage is dated <strong>June 29, 2007</strong>. A July 13 archived rendering exposes the original page&#39;s image calls. Among them is a file named:</p>
+<p><code>/images/esce.gif</code></p>
+<p>Initially, that filename was useful but still inferential. A direct browser inspection of the archived asset resolves the ambiguity: <strong>the image itself visibly reads “EVOLUTION SOCCER Club Edition.”</strong> It shows the familiar ES lettering beneath a soccer ball and laurel motif, with “Club Edition” written below the main title. The archived landing page separately displays <strong>“Coming Soon 2007.”</strong></p>
+<p>Wayback&#39;s CDX index independently confirms that <code>http://www.evogae.com/images/esce.gif</code> was successfully archived on <strong>October 19, 2007</strong> as an 83,531-byte GIF.</p>
+<p>A historical Neo-Geo.com entry later identifies an image called <strong>Evolution soccer club edition.gif</strong> and records an announced but cancelled <strong>Evolution Soccer Club Edition</strong>.</p>
+<p>Taken together, the evidence is now direct rather than circumstantial.</p>
+<p><strong>Evolution Soccer Club Edition was a real EVOGA-branded 2007 project publicly shown by name on EVOGA&#39;s own website.</strong></p>
+<p>What the evidence does not prove is equally important. A title graphic and “Coming Soon” page do <strong>not</strong> establish that a finished arcade build existed, that playable code survived, or even that the project progressed beyond presentation/preproduction material. The evidence also does not show that the original 2000–2002 development team had reconvened, and it does not establish uninterrupted corporate continuity between the original operation and the 2007 revival.</p>
+<p>That ambiguity is exactly why the project belongs in the afterlife section of the EVOGA story rather than being quietly inserted next to the two released arcade games.</p>
+<blockquote>
+<p><strong>Arcade Side B evidence box — The 2007 return</strong></p>
+<p>The key artifact is no longer a later database claim. EVOGA&#39;s archived official site contains a title image that visibly reads <strong>EVOLUTION SOCCER Club Edition</strong>, while the landing page separately says <strong>Coming Soon 2007</strong>. That proves the name and the public announcement. It does <strong>not</strong> prove that a playable arcade build was completed.</p>
+</blockquote>
+<h3 id="reading-the-surviving-2007-page">Reading the surviving 2007 page</h3>
+<p>The archival evidence has several separate dates because a website and its component images are not necessarily captured together. The first successful 2007 homepage capture is dated June 29. The July 13 rendering exposes the image path, while the surviving metadata for the title GIF records an October 19 capture. These are dates of preservation, not three independently announced projects or three development milestones. They should not be used to invent a production timetable for Club Edition.</p>
+<p>The research project&#39;s direct inspection recorded more than a filename. The graphic carried the words Evolution, Soccer and Club Edition, together with a soccer ball, laurel or wreath motif and ES lettering. It also had a purple-and-green glow treatment and Press Start text at the upper corners. Those observations are useful because they identify what was actually visible. The separate Coming Soon message belonged to the landing page. Combining the observations establishes a named public presentation; it does not establish that the graphic was a captured screen from a running game.</p>
+<p>The archive index recorded an image/gif response of 83,531 bytes and an archive digest for the asset. Those details identify an archived web image. They are not evidence that the same archive held a game program, a cartridge image or a playable prototype. The distinction is easy to miss when a title graphic looks convincingly like an arcade attract screen. A screen-like design can be promotional material even when no running product has been demonstrated.</p>
+<p>The original historical file was verified during research but was not delivered as a raw local asset in the final package. The illustration on this page therefore explains the evidence in a newly made editorial card. Its caption identifies that status. It should never acquire the authority of the missing original simply because both use the same project name. Recovering the archived GIF would improve the documentary presentation; recovering software or a staff account of development would answer a different and larger historical question.</p>
+<p>The Mexican trademark record likewise identifies a surviving fragment rather than the whole business. It specifies registration 726211, E S Evolution Soccer y Diseño, and records Konami&#39;s application on October 2, 2006. Its January 29, 2007 publication is the notice date, distinct from the filing date and from the original game&#39;s release. The notice preserves the recorded corporate owner&#39;s name. It does not supply EVOGA&#39;s shareholders, its legal incorporation date or the final result of the trademark dispute. Those are still separate missing records.</p>
+<h3 id="the-brand-after-the-arcade-company">The brand after the arcade company</h3>
+<p>The EVOGA name continued to surface after 2007.</p>
+<p>The current official EVOGA website is active again in 2026. It says EVOGA is &quot;evolving,&quot; that a new site and updated content are being prepared, and that more project news is coming. It links to the <code>@EVOGAE</code> account and carries a current EVOGA Entertainment copyright line.</p>
+<p>That is genuine present-day EVOGA-branded activity, but it does not establish that the same legal corporation has operated continuously since 2000.</p>
+<p>The distinction is especially important because EVOGA&#39;s old intellectual property has also moved independently of the brand. Piko Interactive announced acquisition of <em>Rage of the Dragons</em> rights in 2020, leading eventually to modern rerelease activity outside the original EVOGA development operation.</p>
+<p>Modern releases therefore belong in the afterlife of the property, not in EVOGA&#39;s original arcade-output count.</p>
+<h3 id="what-survives-today">What survives today</h3>
+<p>EVOGA&#39;s two released games have very different preservation footprints.</p>
+<p><em>Evolution Soccer</em> survives in emulation and database records, but the Crystal System is far less familiar to collectors than Neo Geo MVS. The current MAME-derived machine record recognizes the game as runnable and identifies the hardware and controls, while still flagging sound emulation as imperfect. That matters because the game can be researched and played today without pretending preservation is technically finished.</p>
+<p><em>Rage of the Dragons</em> benefited from the Neo Geo ecosystem. MVS and AES cartridges, ROM preservation, contemporary credits, soundtrack material and later rereleases have made it much easier to trace than <em>Evolution Soccer</em>. Modern ownership of the property moved beyond the original EVOGA operation, culminating in Piko Interactive&#39;s acquisition announcement and later rerelease work.</p>
+<p>The imbalance between the two games is itself part of EVOGA&#39;s historical problem. The more famous title has a strong preservation afterlife; the first title, which is crucial for understanding how EVOGA actually became a developer, is the one most likely to be reduced to a database line. Arcade Side B should resist that imbalance.</p>
+<h3 id="a-note-on-the-first-latin-american-videogame-company-label">A note on the “first Latin American videogame company” label</h3>
+<p>Later writing has sometimes called EVOGA the first videogame company in Latin America, and a 2009 UNAM thesis described it as the first Latin American company focused on the videogame industry. That is a useful indication of how EVOGA was remembered in Mexico, but the absolute claim depends heavily on definitions of “videogame company,” “developer,” and earlier electronic-game activity.</p>
+<p>For that reason this profile does <strong>not</strong> use “the first Latin American videogame company” as a settled headline fact. The stronger and less disputable point is already remarkable enough: EVOGA was an early Mexican development company that entered commercial Japanese arcade production, worked directly with Japanese partners, and shipped internationally distributed arcade software.</p>
+<h3 id="why-evoga-belongs-on-arcade-side-b">Why EVOGA belongs on Arcade Side B</h3>
+<p>EVOGA is easy to underestimate because it does not fit the usual measure of an arcade company.</p>
+<p>It did not leave dozens of games. It did not build a famous hardware platform. It did not become a long-lived publisher. Its most important product was released during one of the most unstable periods in the Neo Geo business.</p>
+<p>But the company gives us something rarer: a well-documented example of <strong>international arcade production from the creative side</strong>.</p>
+<p>The surviving interviews and credits let us see the pipeline itself.</p>
+<p>A Mexican fan/tester circle enters the commercial arcade network through a local distributor. The group is asked to contribute market ideas. Its members travel to Japan. Their role expands into planning and production. A football game is built with BrezzaSoft. A fighting game is designed with Noise Factory. Mexican artists and planners create characters, systems, stages and story concepts; Japanese specialists turn much of that material into Neo Geo code, pixel animation, sound and final gameplay. The company receives visible product credit. Then the business relationship collapses before the planned second wave can become a stable catalog.</p>
+<p>That is the overlooked side of EVOGA.</p>
+<p>The company was not important because it was secretly large. It was important because, briefly, a small Mexican team gained a genuine seat inside Japanese arcade production — and left enough evidence behind for us to reconstruct how that collaboration actually worked.</p>
+<hr>
+<h2 id="complete-arcade-catalog">Complete arcade catalog</h2>
+<h3 id="released-evoga-arcade-products-count-2">Released EVOGA arcade products — count: 2</h3>
+<p><strong>Evolution Soccer (2001)</strong><br>Arcade release: preservation sources date it to August 31, 2001.<br>Hardware: BrezzaSoft Crystal System / Zealer-family platform.<br>Controlled role: EVOGA creative direction, planning, production and co-development; BrezzaSoft supplied the Crystal System environment and substantial programming/technical support.<br>Publication caution: Do not reduce the role to either &quot;EVOGA alone developed it&quot; or &quot;BrezzaSoft alone developed it.&quot;</p>
+<p><strong>Rage of the Dragons (2002)</strong><br>Arcade/MVS release: generally dated June 6, 2002; AES home cartridge: September 20, 2002.<br>Hardware: Neo Geo MVS / AES.<br>Publisher/rightsholder on original release: Playmore.<br>Controlled role: EVOGA concept, planning, game-system and character/stage/story design work; Noise Factory handled major Neo Geo programming, pixel production, sound and gameplay tuning.<br>Publication caution: Treat as genuine EVOGA–Noise Factory co-development.</p>
+<h3 id="associated-contributions-not-counted-as-evoga-games">Associated contributions — not counted as EVOGA games</h3>
+<p><strong>The King of Fighters 2001</strong> — ideas, testing and character/cultural contribution; not an EVOGA-developed product.<br><strong>The King of Fighters 2002</strong> — ideas and testing; not an EVOGA-developed product.</p>
+<h3 id="character-reuse-associated-lineage-not-counted">Character reuse / associated lineage — not counted</h3>
+<p><strong>Power Instinct Matrimelee (2003)</strong> — Noise Factory reused several <em>Rage of the Dragons</em> characters. EVOGA was not a co-developer.</p>
+<h3 id="unreleased-proposed-evoga-projects-not-counted">Unreleased / proposed EVOGA projects — not counted</h3>
+<ul>
+<li><strong>Rage of the Dragons 2</strong> — confirmed preproduction/concept project.</li>
+<li><strong>Unnamed three-on-three basketball game</strong> — advanced concept; popular title <em>The King of Basketball</em> unverified.</li>
+<li><strong>Geometrics</strong> — platform-game concept; later &quot;Aztec&quot; subtitle unsupported by stronger evidence.</li>
+<li><strong>Unnamed shooter</strong> — early concept remembered by Vargas.</li>
+<li><strong>Unnamed side-scrolling adventure</strong> — early concept remembered by Vargas.</li>
+<li><strong>Unnamed later football project</strong> — relationship to 2007 Club Edition unresolved.</li>
+<li><strong>Rage of the Dragons PlayStation 2 conversion</strong> — proposed/cancelled.</li>
+<li><strong>Evolution Soccer Club Edition (2007)</strong> — first-party EVOGA web evidence now recovered; announced/revival-era project, not released.</li>
+</ul>
+<hr>
+<h2 id="people-and-credit-names">People and credit names</h2><figure class="archive-figure"><button type="button" class="enlarge" aria-label="Enlarge Another Rage of the Dragons match, with Elias and Pupa at the school-bus stage. This distinct preservation capture documents character and stage art; source: libretro MAME thumbnail collection, capture date unknown."><img loading="lazy" src="assets/evoga/rage-stage.png" alt="Another Rage of the Dragons match, with Elias and Pupa at the school-bus stage. This distinct preservation capture documents character and stage art; source: libretro MAME thumbnail collection, capture date unknown."></button><figcaption>Another Rage of the Dragons match, with Elias and Pupa at the school-bus stage. This distinct preservation capture documents character and stage art; source: libretro MAME thumbnail collection, capture date unknown. Click to enlarge.</figcaption></figure>
+<p><strong>Ángel Torres / Angel Sword</strong> — director/planner; central EVOGA leadership figure.<br><strong>Mario Vargas / Mr.Vo</strong> — designer, art director, sub-director/planner on <em>Rage of the Dragons</em>; key firsthand historian of the company.<br><strong>Eduardo d&#39; Palma / Haruma Edo / Edu</strong> — planner and character designer; associated with direction/planning on <em>Evolution Soccer</em>.<br><strong>José Luis Belmont / Bel-Mont</strong> — character design/testing and other EVOGA work.<br><strong>Erick / Darb</strong> — original HEPTA circle; graphics/background work.<br><strong>Sergio / Serg</strong> — original HEPTA circle.<br><strong>Valen / Valente</strong> — original HEPTA circle; full identity remains unresolved.</p>
+<p>The following mappings remain secondary/provisional and should not be stated as hard biographical fact unless stronger evidence emerges:</p>
+<ul>
+<li>Radel = Eduardo d&#39; Palma / Haruma Edo</li>
+<li>Zhila = José Luis Belmont</li>
+<li>Furank / Fukkie = Fabián Roldán</li>
+<li>Vic Dom Cas = Víctor Domínguez</li>
+</ul>
+<hr>
+<h2 id="the-people-behind-the-credit-names">The people behind the credit names</h2>
+<p>The names on EVOGA&#39;s games preserve the way the team worked, but they also create a problem for later historians. Many contributors appear under handles rather than the names found in a company register or employment record. Some handles can be connected securely to people through interviews. Others remain credit names whose real identities have not been established. Keeping both kinds visible is more useful than replacing every alias with an attractive but uncertain biography.</p>
+<p>The August 2002 EVOGA interview provides an unusually useful period roster. It identifies Angel Sword as director and planner, Mr.Vo as character and graphic designer, and Edu as planner and character designer. Bel-Mont appears in character design and testing, Darb in graphics and demo design, and Hikaru Suf in character design. Orochi and Shin Ryu are listed in testing and demo color work. Vic Dom Cas, Tozani and Eri San appear in backup roles. These are responsibilities given in a contemporary account of the team, rather than reconstructed from a later fan list.</p>
+<p>That roster shows that the EVOGA side extended beyond the three-person core Vargas remembered at the transition into full-time work. It also shows why the seven-person HEPTA circle, the surviving early operating core and the staff credited on a released game should not be treated as interchangeable lists. They describe different moments and different kinds of participation. A person can belong to the original circle without holding the same role throughout production; another can contribute to the later game without being one of the original seven.</p>
+<p>Ángel Torres and Mario Vargas can be connected firmly to Angel Sword and Mr.Vo. Vargas supplied the identities in his firsthand account, and the released-game credits and contemporary interview agree with their creative leadership roles. José Luis Belmont is similarly supported as Bel-Mont or Bel Mont. Eduardo&#39;s connection to Edu and Haruma Edo is supported by converging interviews and credit records. The fuller name Eduardo d&#39; Palma also appears in the later preservation dossier; the identification of the separate director credit Radel remains more provisional.</p>
+<p>Erick&#39;s connection to Darb is secure at the first-name and handle level. Later researched material supplies Erick Daniel Sánchez as the fuller identity, but that should remain attributed to the later dossier. The same distinction applies to Sergio, called Serg by Vargas and identified more fully as Sergio Pérez or Sergio Pérez Segovia in later material. Valen or Valente remains an unresolved member of the original circle. A missing surname is a gap in the surviving record, not a reason to remove that person from the history.</p>
+<p>Some tempting alias matches deserve particular caution. The equation of Zhila with José Luis Belmont is not firmly established, and the Rage credits use Zhila and Bel Mont in different positions. That does not prove they were different people, but it prevents a confident merger. The mappings of Furank or Fukkie to Fabián Roldán and of Vic Dom Cas to Víctor Domínguez remain provisional. Eri San should not be equated with Erick merely because their names seem compatible: the 2002 interview lists Eri San and Darb separately within the same team.</p>
+<p>On Evolution Soccer, the mixed staff list is especially revealing. Yosh Jinno appears as executive producer, Radel as director, and Edu as planner. YuritaRo and Hara receive programming credits. Research credits include Zhila, CasDomV and Panda; voice credits include Zhila and Furank. The closing acknowledgment includes the staffs of both EVOGA and BrezzaSoft. It would be misleading to turn every name in that shared production into an EVOGA employee. The credits establish participation and responsibility more securely than they establish the contributor&#39;s employer.</p>
+<p>Rage of the Dragons likewise places people from both countries inside its production hierarchy. Its directors include Angel Sword, Mamaro and Hidenari Mamoto; the sub-directors include Mr.Vo and Tetsu. Mr.Vo and Edu appear in planning. Mamoto receives the main-programmer credit, with Kazuaki Ezato and Hiroshi Hishikawa as sub-programmers. Character and background credits mix EVOGA-associated contributors with Japanese personnel. The game therefore preserves the collaboration inside its individual credits as well as in the company names attached to it.</p>
+<p>Sound and illustration add further layers. Studio Aqua and Toshikazu Tanaka belong to the sound-production side of Rage&#39;s record. Bunshichirō Ōma receives an illustration credit. Neither the presence of a memorable illustration nor a name on the soundtrack makes its contributor a member of EVOGA&#39;s Mexican staff. Their work belongs in the production history because the game depended on several connected groups, each contributing a different part of the finished result.</p>
+<p>The point of retaining these distinctions is recognition. EVOGA&#39;s creative work deserves to be visible without absorbing the Japanese programmers, pixel artists, sound contributors and other specialists who helped realize it. Noise Factory&#39;s contribution deserves equal precision without reducing the Mexican team to a logo on somebody else&#39;s game. The surviving period roster, credits and interviews allow a much more informative account than either shortcut.</p>
+<h2 id="open-questions">Open questions</h2>
+<ol>
+<li>What was the exact ownership/shareholding relationship between Plus Electronics and EVOGA ENTERTAIMENT, S.A. de C.V.?</li>
+<li>Was there a formal 2004 bankruptcy/liquidation, or is 2004 only the later remembered business-close date?</li>
+<li>What was the final outcome of Konami&#39;s 2006–07 <em>Evolution Soccer</em> trademark lapse proceeding?</li>
+<li>Can the archived 2007 <code>esce.gif</code> itself be recovered as a local publication asset rather than only verified through archive metadata?</li>
+<li>Who was behind the 2007 EVOGA revival, and how much personnel continuity existed with the original development team?</li>
+<li>What is the exact legal/corporate relationship between the current 2026 EVOGA brand/site and the historical company?</li>
+<li>Can the remaining aliases be resolved from primary credits or staff testimony without relying on later fan compilations?</li>
+</ol>
+<hr>
+<section id="sources"><h2>Sources and further reading</h2><p>The history draws on period interviews, firsthand recollections, released-game credits, government records and preservation work. Contemporary evidence and later memories answer different questions; the article keeps those distinctions visible.</p><ol class="source-list"><li id="source-s01"><a href="https://foro.arcades.mx/viewtopic.php?p=11106" target="_blank" rel="noopener">Mario Vargas / Mr.Vo interview transcript</a>. 2019-09-21; Firsthand retrospective, Arcades MX preservation of interview. Used for Origins, HEPTA, Plus relationship, Japan trips, production split, shutdown, unreleased projects.</li><li id="source-s02"><a href="https://doubledragon.kontek.net/interviews/evoga-rotd.html" target="_blank" rel="noopener">Interview with EVOGA Entertainment: Creators of Rage of the Dragons</a>. 2002-08-21; Contemporary EVOGA interview, Double Dragon Dojo. Used for Rage team roster, EVOGA/Noise Factory division, Double Dragon origin.</li><li id="source-s03"><a href="https://bonusstage.mx/evoga-entertainment-entrevista/" target="_blank" rel="noopener">Entrevista con Ángel Torres, director de EVOGA Entertainment</a>. 2016-05-03; Firsthand retrospective, Bonus Stage MX. Used for EVOGA name = Evolution Games; two-game co-production statement; KOF contributions; Matrimelee reuse; reasons for leaving arcades; EVOGA cycle ending; later staff activity.</li><li id="source-s04"><a href="https://www.mobygames.com/game/91260/es-evolution-soccer/credits/arcade/" target="_blank" rel="noopener">ES: Evolution Soccer arcade credits</a>. 2001 artifact / modern transcription; Artifact-derived credits, MobyGames. Used for Produced by EVOGA, staff credits, copyright.</li><li id="source-s05"><a href="https://www.mobygames.com/game/67480/rage-of-the-dragons/credits/arcade/" target="_blank" rel="noopener">Rage of the Dragons arcade/Neo Geo credits</a>. 2002 artifact / modern transcription; Artifact-derived credits, MobyGames. Used for Staff roles, Presented by EVOGA, programming/art split.</li><li id="source-s06"><a href="https://game.watch.impress.co.jp/docs/digest/200203.htm" target="_blank" rel="noopener">Game Watch March 2002 digest / ROTD location test</a>. 2002-03; Contemporary trade/news evidence, Game Watch. Used for Noise Factory public development/location-test role.</li><li id="source-s07"><a href="https://dof.gob.mx/copias.php?acc=ajaxPaginas&amp;paginas=103&amp;seccion=PRIMERA&amp;edicion=210572&amp;ed=MATUTINO&amp;fecha=29/01/2007" target="_blank" rel="noopener">IMPI / Diario Oficial trademark notice for EVOGA ENTERTAIMENT, S.A. de C.V.</a>. 2007-01-29; Primary government record, Diario Oficial de la Federación. Used for Legal entity name, Evolution Soccer trademark ownership, Konami lapse filing.</li><li id="source-s08"><a href="https://www.wipo.int/wipolex/es/legislation/details/7870" target="_blank" rel="noopener">Mexico Industrial Property Law, Article 152(II)</a>. 2006 version; Primary legal text, WIPO Lex. Used for Meaning of trademark lapse/non-use basis.</li><li id="source-s09"><a href="https://www.neogeofans.com/leforum/forum/le-forum/forum-general/47549-dossier-evoga-et-la-production-de-rage-of-the-dragons" target="_blank" rel="noopener">EVOGA / Rage of the Dragons production dossier</a>. Later preservation / retrospective; Secondary dossier using staff material, Cultura NeoGeo / Neo-Geo Fans mirror. Used for Unreleased projects, staff, concept material, 2004 close claim.</li><li id="source-s10"><a href="https://gamercafe.cl/2007/06/14/evoga-entertainment-renace-de-las-cenizas/" target="_blank" rel="noopener">EVOGA Entertainment renace de las cenizas</a>. 2007-06-14; Contemporary secondary report, GamerCafe. Used for 2007 site return, Coming Soon 2007, apparent new Evolution Soccer.</li><li id="source-s11"><a href="https://web.archive.org/web/20070713062237/http://www.evogae.com/" target="_blank" rel="noopener">Official EVOGA 2007 homepage archive</a>. 2007-07-13 capture; Archived first-party website, Internet Archive Wayback Machine. Used for First-party revival-site evidence; exposes /images/esce.gif.</li><li id="source-s12"><a href="https://web.archive.org/cdx/search/cdx?url=www.evogae.com/images/esce.gif&amp;output=json&amp;filter=statuscode:200&amp;filter=mimetype:image/gif" target="_blank" rel="noopener">Wayback CDX record for /images/esce.gif</a>. 2007-10-19 capture; Archive metadata for first-party asset, Internet Archive Wayback Machine. Used for Confirms ESCE GIF capture, size and digest.</li><li id="source-s13"><a href="https://www.evogae.com/" target="_blank" rel="noopener">Current official EVOGA site</a>. 2026; First-party current website, EVOGA Entertainment. Used for Modern brand activity / epilogue; not proof of uninterrupted continuity.</li><li id="source-s14"><a href="https://neo-geo.com/wiki/index.php?title=Evolution_Soccer" target="_blank" rel="noopener">Evolution Soccer historical entry</a>. Modern preservation; Secondary reference, Neo-Geo.com. Used for Club Edition announced/cancelled claim and gallery filename.</li><li id="source-s15"><a href="https://www.4gamer.net/games/999/G999905/20200511033/" target="_blank" rel="noopener">Piko Interactive acquisition coverage</a>. 2020-05; Contemporary industry/news evidence, 4Gamer. Used for Modern Rage of the Dragons IP afterlife.</li><li id="source-s16"><a href="https://www.culturaneogeo.com/creditos" target="_blank" rel="noopener">Cultura NeoGeo credits / content ownership terms</a>. Current site policy; First-party source agreement, Cultura NeoGeo. Used for Explicit restriction on reproducing site contents without authorization.</li><li id="source-s17"><a href="https://www.arcade-museum.com/tech-center/machine/evosocc" target="_blank" rel="noopener">Evolution Soccer MAME/arcade preservation record</a>. 2001 artifact / current preservation; Preservation technical record, Arcade Museum / MAME data. Used for Crystal System hardware, 2001 date, four-player capability, controls; release date cross-check.</li><li id="source-s18"><a href="https://www.mobygames.com/game/67480/rage-of-the-dragons/releases/" target="_blank" rel="noopener">Rage of the Dragons release record</a>. 2002 artifact / modern catalog; Preservation release record, MobyGames / Arcade-History cross-check. Used for MVS/arcade June 6, 2002 and AES September 20, 2002 date distinction.</li><li id="source-s19"><a href="https://web.archive.org/web/20070713062237/http://www.evogae.com/" target="_blank" rel="noopener">Direct archived-site visual inspection of EVOGA 2007 ESCE asset</a>. 2007-07-13 page; 2007-10-19 GIF archive; First-party archived visual artifact inspected through live browser, EVOGA Entertainment / Internet Archive. Used for Direct visual confirmation that esce.gif reads EVOLUTION SOCCER Club Edition; homepage separately displays Coming Soon 2007.</li><li id="source-s20"><a href="https://www.arcade-history.com/game/2161/rage-of-the-dragons-model-ngm-264" target="_blank" rel="noopener">Rage of the Dragons [Model NGM-264] technical/preservation record</a>. 2002 artifact / current preservation; Preservation technical record, Arcade-History. Used for MVS hardware ID, two-player/four-button controls, June 2002 arcade date, staff-credit cross-check.</li><li id="source-s21"><a href="https://tesiunamdocumentos.dgb.unam.mx/ptd2009/marzo/0641811/0641811.pdf" target="_blank" rel="noopener">UNAM thesis discussion of the Mexican videogame industry</a>. 2009; Academic secondary source, Universidad Nacional Autónoma de México. Used for Documents the later Mexican claim that EVOGA was the first Latin American company focused on videogames; used as historiography, not as an uncontested absolute.</li></ol><p>Additional cultural-detail source: <a href="https://atomix.vg/feature-the-king-of-fighters-2001-dreamcast-retro-review" target="_blank" rel="noopener">Atomix’s 2016 KOF 2001 retrospective</a>, prepared with checking from EVOGA participants. The fuller personnel and project discussions also draw on the research record preserved with this handoff.</p><p>Historical image leads: <a href="https://gamesdb.launchbox-app.com/games/images/36111-es-evolution-soccer" target="_blank" rel="noopener">Evolution Soccer image collection</a> and <a href="https://gamesdb.launchbox-app.com/games/images/27139-rage-of-the-dragons" target="_blank" rel="noopener">Rage of the Dragons image collection</a>, LaunchBox Games Database. These linked images have not been reproduced here. Cultura NeoGeo’s development material is likewise linked through the research sources; its stated reproduction restriction remains applicable.</p><p>Acknowledgments: EVOGA participants Ángel Torres and Mario Vargas; the interview preservation work of Arcades MX, Double Dragon Dojo and Bonus Stage MX; Cultura NeoGeo and the Neo-Geo Fans preservation dossier; Internet Archive; MAME and the cited arcade preservation databases. Four displayed illustrations are original Arcade Side B editorial graphics supplied in the completed research handoff. Six additional historical images come from the <a href="https://github.com/libretro-thumbnails/MAME" target="_blank" rel="noopener">libretro MAME thumbnail collection</a>: two title screens, three gameplay captures and an English instruction card. Game imagery remains the property of its respective rights holders; repository hosting does not establish a redistribution license.</p></section><section id="contribute"><h2>Have a piece of the EVOGA story?</h2><p>Original flyers, design documents, staff photographs, credits, corporate records and firsthand recollections could help resolve the remaining questions. Evidence connecting the 2007 revival to the original team would be especially useful. Contributions are reviewed before publication; contributors may be credited with permission or remain anonymous.</p><a href="mailto:arcadeobscura@gmail.com?subject=EVOGA%20history">Email Arcade Side B</a><p>Email: arcadeobscura@gmail.com</p></section><p><a href="index.html#companies" target="_parent">← Back to Companies</a></p></article></div><footer class="footer"><div class="rights"><strong>Rights &amp; Archival Material Notice</strong><p>Arcade Side B is a noncommercial historical research and preservation project. Some archival images, scans, publications, advertisements, artwork, screenshots, manuals, trademarks, and other materials presented or linked here may remain protected by copyright or other rights. Unless specifically stated otherwise, Arcade Side B does not claim ownership of third-party material and may not have a redistribution agreement with the applicable rights holder. Materials are presented in the interest of historical documentation, research, criticism, education, and preservation. Rights holders who have concerns about material appearing here are welcome to contact Arcade Side B to request attribution, correction, restriction, or removal.</p></div></footer><dialog id="image-viewer"><button type="button">Close ×</button><img alt=""></dialog><script>const v=document.querySelector('#image-viewer');document.querySelectorAll('.enlarge').forEach(b=>b.onclick=()=>{const i=b.querySelector('img');if(parent!==window&&parent.openArchiveImage){parent.openArchiveImage(i.src,i.alt);return}v.querySelector('img').src=i.src;v.querySelector('img').alt=i.alt;v.showModal()});v.querySelector('button').onclick=()=>v.close();</script></body></html>
