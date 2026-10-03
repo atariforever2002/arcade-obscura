@@ -1,0 +1,617 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Minky Monkey | Arcade Side B</title><style>
+:root{
+  --bg:#090d12;
+  --bg2:#0f1720;
+  --card:#eee7d8;
+  --card2:#f4ede1;
+  --ink:#222a2f;
+  --muted:#687174;
+  --line:#c8beab;
+  --navy:#13202a;
+  --navy2:#1b2b36;
+  --bronze:#c28a32;
+  --bronze2:#d8b36b;
+  --green:#486756;
+  --green-soft:#e3eee6;
+  --amber:#8a6532;
+  --amber-soft:#f5ead3;
+  --red:#86504b;
+  --red-soft:#f2e3e0;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:Georgia,"Times New Roman",serif;
+  background:
+    radial-gradient(circle at 80% 8%,rgba(112,164,184,.08),transparent 24%),
+    linear-gradient(rgba(255,255,255,.012) 1px,transparent 1px),
+    var(--bg);
+  background-size:auto,100% 4px,auto;
+  color:#dfe4e6;
+}
+a{color:#d9b46f}
+.mast{
+  background:linear-gradient(135deg,#0a0f14,#13202a);
+  border-bottom:4px solid var(--bronze);
+}
+.wrap{width:min(1120px,calc(100% - 32px));margin:0 auto}
+.topline{
+  display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  padding:18px 0 6px;
+  color:#bac3c8;
+  font:700 11px Arial,Helvetica,sans-serif;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+}
+.hero{
+  padding:10px 0 28px;
+}
+.crumb{
+  color:#93a0a8;
+  font:700 12px Arial,Helvetica,sans-serif;
+  margin:0 0 14px;
+}
+.crumb a{color:#d9b46f;text-decoration:none}
+.hero h1{
+  margin:0;
+  color:#f1ede5;
+  font-size:clamp(40px,8vw,74px);
+  line-height:.95;
+}
+.deck{
+  max-width:850px;
+  margin:16px 0 0;
+  color:#bdc7cc;
+  font-size:21px;
+  line-height:1.45;
+}
+.meta{
+  margin-top:12px;
+  color:#9facb4;
+  font:700 12px Arial,Helvetica,sans-serif;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.page{
+  width:min(1120px,calc(100% - 32px));
+  margin:24px auto 44px;
+}
+.backlinks{
+  display:flex;gap:10px;flex-wrap:wrap;
+  margin-bottom:18px;
+}
+.backhome{
+  display:inline-block;
+  padding:9px 11px;
+  border:1px solid #46525c;
+  color:#d7b774;
+  text-decoration:none;
+  font:700 11px Arial,Helvetica,sans-serif;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+}
+.backhome:hover{color:white;border-color:#687680}
+.game-identity{
+  margin:0 0 24px;
+  border:1px solid #b8ad98;
+  background:linear-gradient(135deg,rgba(194,138,50,.08),transparent 48%),#f3eddf;
+  color:#20272c;
+  box-shadow:0 16px 34px rgba(0,0,0,.18);
+  overflow:hidden;
+}
+.marquee-wrap{
+  padding:22px 24px 20px;
+  border-bottom:1px solid var(--line);
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 230px;
+  gap:18px;
+  align-items:center;
+}
+.marquee{
+  padding:20px 20px 18px;
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.06),transparent 45%),
+    linear-gradient(135deg,#11181f,#162733);
+  border:4px solid var(--bronze);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.08);
+}
+.marquee-small{
+  color:#cab48a;
+  font:700 11px Arial,Helvetica,sans-serif;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  margin-bottom:8px;
+}
+.marquee-title{
+  color:#f2efe8;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(40px,6vw,72px);
+  line-height:.9;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  text-shadow:0 1px 0 rgba(255,255,255,.1);
+}
+.marquee-sub{
+  margin-top:10px;
+  color:#b7c3ca;
+  font:700 11px Arial,Helvetica,sans-serif;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+.marquee-note{
+  color:#675f54;
+  font:12px/1.45 Arial,Helvetica,sans-serif;
+}
+.marquee-note strong{
+  display:block;
+  color:#1d2b35;
+  margin-bottom:6px;
+  font:700 11px Arial,Helvetica,sans-serif;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+.game-snapshot{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+}
+.snapshot-cell{
+  padding:17px 18px 18px;
+  border-right:1px solid var(--line);
+  min-width:0;
+}
+.snapshot-cell:last-child{border-right:0}
+.snapshot-label{
+  display:block;
+  color:#786f63;
+  font:700 9px Arial,Helvetica,sans-serif;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  margin-bottom:5px;
+}
+.snapshot-value{
+  display:block;
+  color:#1c2d37;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:19px;
+  line-height:1.2;
+}
+.snapshot-note{
+  display:block;
+  margin-top:5px;
+  color:#6e726f;
+  font:11px/1.35 Arial,Helvetica,sans-serif;
+}
+.shell{
+  display:grid;
+  grid-template-columns:280px minmax(0,1fr);
+  gap:22px;
+  align-items:start;
+}
+.sidebar .toc{
+  position:sticky;top:14px;
+  background:#121922;
+  border:1px solid #33404b;
+  box-shadow:0 12px 28px rgba(0,0,0,.22);
+}
+.toc-title{
+  padding:14px 16px 10px;
+  color:#c7d0d5;
+  font:700 13px Arial,Helvetica,sans-serif;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.toc a{
+  display:block;
+  padding:11px 16px;
+  color:#b8c3c9;
+  border-top:1px solid #28343d;
+  text-decoration:none;
+  font:15px/1.35 Arial,Helvetica,sans-serif;
+}
+.toc a:hover{color:#f0c57e}
+.sidebar-note{
+  margin-top:12px;
+  background:#151c23;
+  color:#9da8ae;
+  border:1px solid #303c46;
+  padding:13px 14px;
+  font:14px/1.45 Arial,Helvetica,sans-serif;
+}
+article{
+  background:var(--card);
+  color:var(--ink);
+  border:1px solid #bdb29e;
+  box-shadow:0 20px 44px rgba(0,0,0,.26);
+  padding:30px 34px 38px;
+}
+.section + .section{margin-top:34px}
+.section h2{
+  margin:0 0 12px;
+  color:#162631;
+  font-size:34px;
+  border-bottom:2px solid #b57f31;
+  padding-bottom:8px;
+}
+.section h3{
+  margin:24px 0 10px;
+  color:#26353c;
+  font-size:26px;
+}
+.lead{
+  font-size:22px;
+  line-height:1.55;
+  color:#35444a;
+}
+p{font-size:20px;line-height:1.72;margin:16px 0}
+.quick{display:flex;gap:8px;flex-wrap:wrap}
+.quick span{
+  background:#ddd4c5;
+  color:#394950;
+  padding:6px 10px;
+  border-radius:999px;
+  font:700 11px Arial,Helvetica,sans-serif;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.figure{margin:22px 0}
+.figure img{
+  width:100%;
+  height:auto;
+  display:block;
+  border:1px solid #b7ab96;
+  background:#ddd6c8;
+}
+.caption{
+  font:14px/1.55 Arial,Helvetica,sans-serif;
+  color:#5c6568;
+  margin-top:8px;
+}
+.imgfallback{
+  display:none;
+  border:1px dashed #ae9f85;
+  background:#f7f1e4;
+  color:#6f695f;
+  padding:16px;
+  font:14px/1.5 Arial,Helvetica,sans-serif;
+}
+.callout{
+  margin:22px 0;
+  padding:16px 18px;
+  border-left:5px solid;
+  background:#faf7ef;
+}
+.callout p{margin:10px 0 0;font-size:19px}
+.label{
+  font:700 11px Arial,Helvetica,sans-serif;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+.confirmed{border-color:var(--green);background:var(--green-soft)}
+.confirmed .label{color:var(--green)}
+.open{border-color:var(--amber);background:var(--amber-soft)}
+.open .label{color:var(--amber)}
+.pull{
+  margin:22px 0;
+  padding:16px 18px;
+  background:#f6efe2;
+  border:1px solid #d9cab1;
+  color:#35444a;
+  font-size:23px;
+  line-height:1.5;
+}
+footer{
+  margin-top:34px;
+  border-top:1px solid #28343d;
+  color:#7f8b92;
+  background:#070a0d;
+}
+.footer-inner{
+  width:min(1120px,calc(100% - 32px));
+  margin:0 auto;
+  padding:20px 0 26px;
+  font:14px/1.55 Arial,Helvetica,sans-serif;
+}
+.footer-inner strong{color:#d9dfe2}
+@media(max-width:980px){
+  .marquee-wrap{grid-template-columns:1fr}
+  .game-snapshot{grid-template-columns:1fr 1fr}
+  .snapshot-cell{border-bottom:1px solid var(--line)}
+  .snapshot-cell:nth-child(2),
+  .snapshot-cell:nth-child(4){border-right:0}
+  .snapshot-cell:nth-child(5){grid-column:1 / -1;border-bottom:0}
+  .shell{grid-template-columns:1fr}
+  .sidebar .toc{position:static}
+}
+@media(max-width:600px){
+  .wrap,.page,.footer-inner{width:min(calc(100% - 20px),1120px)}
+  .hero{padding-bottom:22px}
+  .deck{font-size:18px}
+  article{padding:20px 16px 26px}
+  .section h2{font-size:28px}
+  .section h3{font-size:23px}
+  p,.lead{font-size:18px}
+  .game-snapshot{grid-template-columns:1fr}
+  .snapshot-cell{border-right:0 !important;border-bottom:1px solid var(--line)}
+  .snapshot-cell:last-child{border-bottom:0}
+  .marquee-wrap{padding:18px}
+}
+
+.footer-inner.footer-row{display:flex;align-items:flex-end;justify-content:space-between;gap:22px}
+.site-counter{flex:0 0 auto;text-align:right;font:800 9px Arial,Helvetica,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#748089}
+.site-counter .counter-label{margin-bottom:5px}
+.site-counter img{display:block;margin-left:auto;border:1px solid #303944;box-shadow:0 4px 12px rgba(0,0,0,.28)}
+@media(max-width:620px){
+  .footer-inner.footer-row{align-items:flex-start;flex-direction:column}
+  .site-counter{text-align:left}
+  .site-counter img{margin-left:0}
+}
+
+
+
+/* Reader-facing source and table containment */
+article a, .source-list a, .footnotes a { overflow-wrap:anywhere; }
+.table-scroll {max-width:100%;overflow-x:auto;}
+.table-scroll:focus-visible {outline:2px solid #d7b56d;outline-offset:3px;}
+
+article{min-width:0}article a{color:#79511c}h2{overflow-wrap:anywhere}.technical{background:#dceaf0;border:1px solid #95b0bf;border-radius:14px;padding:20px}.technical li{font:16px/1.65 Arial,sans-serif}.archive-figure{margin:26px auto;max-width:100%;padding:10px;background:#faf6ed;border:1px solid #bbae96}.enlarge{padding:0;border:0;background:transparent;display:block;margin:auto;max-width:100%;cursor:zoom-in}.archive-figure img{display:block;max-width:100%;width:auto;height:auto;max-height:none;margin:auto}.archive-figure.pixel img{width:512px;image-rendering:pixelated}.archive-figure.pixel{max-width:536px}figcaption{font:13px/1.6 Arial,sans-serif;color:#515c61;margin:10px 2px}figcaption span{font-weight:bold}.translation{padding:12px;border-left:3px solid #ae7c34;background:#ede4d4}.translation strong{font:700 11px Arial,sans-serif;color:#79571f;text-transform:uppercase}.translation p{font:14px/1.6 Arial,sans-serif;margin:7px 0}.section{margin-bottom:38px}li{font-size:18px;line-height:1.65}.sources{overflow-wrap:anywhere}.sources p,.sources li{font:14px/1.65 Arial,sans-serif}.sources h3{font-size:23px}details{margin:22px 0;padding:14px;background:#f8f1e5;border:1px solid #c8bba1}summary{cursor:pointer;font:700 16px/1.5 Arial,sans-serif}.rights{font:12px/1.65 Arial,sans-serif}.supplement img{max-width:100%}.image-dialog{width:min(96vw,1400px);max-width:96vw;max-height:95vh;background:#101820;color:white;border:1px solid #ab8040;padding:14px}.image-dialog::backdrop{background:#000d}.image-dialog img{display:block;max-width:100%;height:auto;margin:auto}.image-dialog button{position:sticky;top:0;float:right;background:#f0c57e;border:0;padding:12px;cursor:pointer}.image-dialog p{font:14px Arial,sans-serif}a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #ba802f;outline-offset:4px}.top-return{text-align:center;margin:18px 0}.hero .deck{max-width:850px}.toc{max-height:none}.sidebar{min-width:0}.source-table{overflow:auto}table{border-collapse:collapse;max-width:100%}td,th{border:1px solid #c8beab;padding:8px;font:13px/1.5 Arial,sans-serif}@media(max-width:600px){.archive-figure.pixel img{width:256px}.technical{padding:14px}.section h2{font-size:27px}.topline{font-size:9px}.image-dialog{padding:8px}.page{width:calc(100% - 16px)}}
+
+article{min-width:0}article a{color:#74501e}figure{margin:24px 0}figure img{display:block;width:100%;height:auto;max-height:640px;object-fit:contain;background:#10171d}figure button{display:block;padding:0;border:0;background:transparent;width:100%;cursor:zoom-in}figcaption{font:14px/1.55 Arial,sans-serif;color:#566167;margin-top:8px}.pair{display:grid;grid-template-columns:1fr 1fr;gap:18px}.pair figure{min-width:0}.marquee-photo{max-width:1030px;margin:22px auto 0}.marquee-photo img{max-height:320px;object-fit:contain}.marquee-photo figcaption{color:#a8b4bb}li{font-size:19px;line-height:1.65;margin:8px 0}blockquote{border-left:4px solid #bd8d3c;margin:24px 0;padding:2px 20px;background:#f7f0e1}.technical{background:#deebf5;border:1px solid #aac1d2;border-radius:16px;padding:22px;margin:26px 0}.technical dl{display:grid;grid-template-columns:1fr 1fr;gap:18px}.technical dt{font:700 11px Arial;text-transform:uppercase;color:#405e73;letter-spacing:.08em}.technical dd{margin:5px 0 0;font:17px/1.45 Arial}.translation{border-left:4px solid #bd8d3c;padding-left:18px}.review-note{text-align:center;padding:9px;background:#3b2e17;color:#f4dbac;font:12px Arial}.toc summary{cursor:pointer;padding:14px 16px;font:700 14px Arial;color:#d9b46f}dialog{width:min(1200px,96vw);max-height:94vh;padding:16px;background:#10171d;color:white;border:1px solid #aa803b}dialog::backdrop{background:rgba(0,0,0,.88)}dialog img{max-width:100%;height:auto;display:block;margin:auto}dialog button{position:sticky;top:0;float:right;padding:10px 14px;cursor:pointer}dialog p{font:14px/1.5 Arial}.lightbox-link{color:#e0bc7e}h1,h2,h3{overflow-wrap:anywhere}table{width:100%;border-collapse:collapse}td,th{border-bottom:1px solid #bcb09c;padding:10px;text-align:left}.backlinks{justify-content:center}.sources li{overflow-wrap:anywhere}@media(max-width:650px){.pair,.technical dl{grid-template-columns:1fr}.section h2{font-size:27px}.hero h1{font-size:43px;line-height:1.05}figure img{max-height:520px}.technical{padding:16px}li{font-size:18px}}</style><meta name="description" content="Minky Monkey: Technos Japan’s first arcade game, its eight repeating layouts, fruit-delivery strategy, hardware and surviving historical evidence.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://arcadesideb.com/minky-monkey.html">
+<meta property="og:title" content="Minky Monkey | Arcade Side B">
+<meta property="og:description" content="Minky Monkey: Technos Japan’s first arcade game, its eight repeating layouts, fruit-delivery strategy, hardware and surviving historical evidence.">
+<meta property="og:url" content="https://arcadesideb.com/minky-monkey.html">
+<style>.archive-figure.pixel img{image-rendering:pixelated;max-height:none}.pair .archive-figure.pixel{margin:16px 0}.archive-figure.pixel img{width:100%;max-width:480px}.technical dl{margin:0}.table-scroll table{min-width:450px}</style></head><body><header class="mast"><div class="wrap"><div class="topline"><span>Arcade history · Research · Preservation</span><span>A living archive of arcade history</span></div><div class="top-return"><a class="backhome" href="https://arcadesideb.com/#games">← Back to Games</a></div><div class="hero"><div class="crumb"><a href="https://arcadesideb.com/">Arcade Side B</a> › Games › Minky Monkey</div><h1>Minky Monkey</h1><p class="deck">Technos Japan’s first arcade game hides a fruit-delivery puzzle beneath its odd little jungle chase.</p><div class="meta">©1982 · Technos Japan / Roller Tron · Release date qualified</div><div class="marquee-photo"><figure class="archive-figure"><button class="enlarge" aria-label="Enlarge Surviving Minky Monkey marquee artwork. Source: LaunchBox Games Database; historical Technos artwork."><img src="assets/minky-monkey/01_marquee_3840x1179.jpg" alt="Surviving Minky Monkey marquee artwork. Source: LaunchBox Games Database; historical Technos artwork." loading="lazy" width="3840" height="1179"></button><figcaption>Surviving Minky Monkey marquee artwork. Source: LaunchBox Games Database; historical Technos artwork. <span>Click to enlarge.</span></figcaption></figure></div></div></div></header><main class="page"><div class="shell"><aside class="sidebar"><details class="toc"><summary>Inside the article</summary><nav><a href="#technical">Technical snapshot</a><a href="#section-1">Minky Monkey at a glance</a><a href="#section-2">Success, failure, and the pressure of the assignment</a><a href="#section-3">Moving before the game finishes telling you what to do</a><a href="#section-4">The bottle power-up and the dragon</a><a href="#section-5">Movement is simple until the layouts stop being simple</a><a href="#section-6">Eight layouts, endlessly recycled at higher stakes</a><a href="#section-7">Scoring: why the later loop matters</a><a href="#section-8">Lives, continues, and operator configuration</a><a href="#section-9">Hardware</a><a href="#section-10">The people behind the game</a><a href="#section-11">The 1982 / March 1983 date conflict</a><a href="#section-12">Technos begins under a legal cloud — reported, not primary-proven</a><a href="#section-13">How rare is original Minky Monkey hardware?</a><a href="#section-14">Preservation and modern access</a><a href="#section-15">What the game sounds and looks like</a><a href="#section-16">Hints from the Arcade</a><a href="#section-17">Why Minky Monkey deserves the page</a><a href="#section-18">Operator settings: what an arcade owner could change</a><a href="#section-19">Versions and the limits of the Japanese-set warning</a><a href="#section-20">Open questions and missing artifacts</a><a href="#sources">Sources & further reading</a></nav></details><div class="sidebar-note">Eight layouts. Five successes. A familiar board becomes more valuable each time it returns.</div></aside><article><div id="technical"><section class="technical" aria-label="Technical snapshot"><h2>Technical snapshot</h2><dl><div><dt>Developer / associate</dt><dd>Technos Japan / Roller Tron</dd></div><div><dt>Dating</dt><dd>©1982; March 1983 Japanese release reported by some sources</dd></div><div><dt>Players & controls</dt><dd>1–2 alternating · 4-way joystick + one button</dd></div><div><dt>Structure</dt><dd>Eight repeating layouts; level counter continues</dd></div><div><dt>Processors</dt><dd>DECO C10707, 1.5 MHz · 6502 audio, 500 kHz</dd></div><div><dt>Video & sound</dt><dd>Vertical 240 × 240 · about 57.44 Hz · two AY-3-8910A chips</dd></div></dl></section></div><section class="section substantive" id="section-1"><h2>Minky Monkey at a glance</h2>
+<p>Minky Monkey is one of those arcade games whose historical importance is easier to recognize than its actual design. It is repeatedly identified as Technos Japan&#39;s first game, created before the company became associated with Kunio-kun, Renegade, Double Dragon, Super Dodge Ball, and the later Technos catalog. That fact alone is enough to make it interesting to company-history collectors. What makes it worth a proper profile, however, is that the game itself is stranger and more carefully structured than the usual one-line summaries suggest.</p><figure class="archive-figure pixel"><button class="enlarge" aria-label="Enlarge Title screen naming Technos Japan and Roller Tron, with the 1982 copyright and staff credits. Source: preserved research collection."><img src="assets/minky-monkey/02_title_screen_240x256.png" alt="Title screen naming Technos Japan and Roller Tron, with the 1982 copyright and staff credits. Source: preserved research collection." loading="lazy" width="240" height="256"></button><figcaption>Title screen naming Technos Japan and Roller Tron, with the 1982 copyright and staff credits. Source: preserved research collection. <span>Click to enlarge.</span></figcaption></figure>
+<p>The title screen credits Technos Japan and Roller Tron and carries a 1982 copyright. Modern sources disagree on whether 1982 should also be treated as the release year. Arc System Works&#39; current Technos archive lists Minky Monkey as an AC title from 1982, as do several databases. Arcade History-derived records and MobyGames instead report a Japanese release in March 1983. The safest historical treatment is therefore to keep both facts visible: <strong>copyright 1982; Japanese release reported by some sources as March 1983</strong>. The exact dating is discussed again below because it remains an unresolved source conflict rather than something an account should flatten into a single confident date.</p>
+<p>The core of the game is a series of changing assignments. You control a small red-clad character on a vertical single-screen playfield of poles, platforms, side rails, fruit, and open gaps. A large bordered message area fills the top of the screen. A small monkey writes an instruction there, typically naming fruit and telling the player to BRING UP or BRING DOWN. A destination window appears on the appropriate side of the board. Carry out the command and the SUCCESS counter advances.</p>
+<p>Five successes complete the stage.</p>
+<p>That sounds simple until the rest of the rules begin working against you.</p>
+</section><section class="section substantive" id="section-2"><h2>Success, failure, and the pressure of the assignment</h2>
+<p>Minky, the active monkey moving around the playfield, is not merely an enemy to avoid. She interferes directly with the objective. Modern player accounts and narrated gameplay show her moving toward fruit, knocking or destroying needed pieces, pursuing the player, and throwing projectiles. If she ruins fruit needed for the current assignment, the player can be forced into a failure. The top of the playfield tracks failures separately from lives.</p><figure class="archive-figure pixel"><button class="enlarge" aria-label="Enlarge The opening playfield: assignments, success and failure counters, fruit and climbing routes share one screen. Source: preserved research collection."><img src="assets/minky-monkey/04_gameplay_level1_native_240x256.png" alt="The opening playfield: assignments, success and failure counters, fruit and climbing routes share one screen. Source: preserved research collection." loading="lazy" width="240" height="256"></button><figcaption>The opening playfield: assignments, success and failure counters, fruit and climbing routes share one screen. Source: preserved research collection. <span>Click to enlarge.</span></figcaption></figure>
+<p>Five failures cost a life.</p>
+<p>This is an important distinction. A single spoiled instruction does not immediately end the player&#39;s turn, but repeated disruption eventually does. At the same time, several hazards can kill the player directly: contact with Minky, being hit by one of her thrown objects, contact with the later dragon hazard when unprotected, and falling all the way to the floor at the bottom of the playfield.</p>
+<p>The success/failure system gives the game a rhythm that a quick screenshot does not communicate. Each instruction becomes a small race. The player needs to complete five successful jobs before five failures accumulate, while also preserving lives against direct hazards. Sometimes a bad assignment may be better treated as a lost cause than as an excuse to throw away a life trying to rescue it.</p>
+<p>A narrated playthrough demonstrates another layer: some assignments require <strong>two fruit deliveries as part of one success</strong>. The research project’s own screen capture of Level 4 confirms this directly, showing a banana and watermelon both marked BRING UP in the same instruction display. That means Minky Monkey is not just randomly choosing one object and one destination over and over. The job structure itself can become more demanding.</p>
+<p>A modern player account also reports that touching fruit not involved in the active instruction can cause it to fall. This observation should remain identified as modern gameplay evidence rather than period-manual proof, but it helps explain why experienced play is less about blindly grabbing everything and more about managing the fruit supply.</p>
+</section><section class="section substantive" id="section-3"><h2>Moving before the game finishes telling you what to do</h2>
+<p>One of the most useful discoveries in modern play is that the player does not have to stand still while the instruction is slowly being written. Movement and fruit collection can begin before the command is completely visible. The same modern account reports that the character can carry <strong>two fruits at once</strong>.</p>
+<p>Those two mechanics change the character of the game.</p>
+<p>At first, Minky Monkey looks purely reactive: wait for the command, locate the correct fruit, fetch it, deliver it, repeat. Once the player starts moving early and carrying extra fruit, the game becomes a route-planning exercise. A good player can position near useful objects, reduce return trips, and begin solving an instruction before a new player has even finished reading it.</p>
+<p>This is especially important because Minky does not wait for the player to catch up. James at Cheap Retro Gaming notes that after the first two levels Minky commonly moves faster than the player and appears to react before the slowly written instruction is fully readable. He also describes periods with no clear instruction when Minky simply pursues the player. That is a modern player&#39;s interpretation of the behavior, not a program-level analysis, but it matches the feeling reported in the two supplied gameplay transcripts: the monkey creates pressure because she is already moving while the player is still working out the job.</p>
+<p>The strategy is therefore not simply “be fast.” It is to reduce the amount of movement the game forces you to make. Carrying two fruits, anticipating which side of the board is useful, and learning the eight layouts all serve that purpose.</p>
+</section><section class="section substantive" id="section-4"><h2>The bottle power-up and the dragon</h2>
+<p>A temporary bottle appears during play. Different modern players have called it soda, sauce, and even beer, so Arcade Side B should avoid pretending the bottle&#39;s exact fictional contents are documented unless a period source turns up. The useful fact is its effect.</p>
+<p>Collecting the bottle gives temporary protection. While powered up, the player can contact Minky and remove her from play for a short time instead of dying. That makes the bottle offensive as well as defensive. A well-timed pickup can clear Minky out long enough to finish a difficult delivery or reposition fruit without her interference.</p>
+<p>The bottle becomes more important from the second layout onward, when a flying green dragon/lizard enters the playfield. The narrated playthrough describes it as appearing from Stage 2 onward, and the research project’s Level 2 capture shows it on the first screen of that layout. The dragon moves independently through the open space. Contact is normally fatal. Narrated play says the bottle protects the player from the dragon but does not make the dragon removable the way Minky is.</p>
+<p>That difference gives the two hazards distinct roles. Minky is the active spoiler who can sometimes be temporarily knocked out. The dragon is a persistent moving obstacle to route around.</p>
+</section><section class="section substantive" id="section-5"><h2>Movement is simple until the layouts stop being simple</h2>
+<p>The control scheme is minimal: a four-way joystick and one button. The button is used for jumping. The player climbs the hanging poles, moves along platforms, and jumps or drops between routes.</p>
+<p>Dropping is not automatically safe. The narrated playthrough demonstrates that the character can fall from one platform onto another and survive, but falling all the way to the bottom floor costs a life. He also complains that simply walking from a ledge with a pole below does not automatically make the character grab that pole. Whatever one thinks of the feel of the controls, the practical lesson is that landing position matters. The player needs to know what is actually beneath the character before stepping off.</p>
+<p>The third layout is where several modern players say the movement challenge becomes noticeably harsher. The screen replaces the opening board&#39;s dense network with widely spaced vertical poles and large gaps. The Cheap Retro Gaming review calls Stage 3 a major difficulty spike and says Minky usually becomes faster than the player after the first two stages. The research project’s captures visually confirm the large-gap change even if the exact enemy-speed behavior remains player-reported rather than program-verified.</p>
+</section><section class="section substantive" id="section-6"><h2>Eight layouts, endlessly recycled at higher stakes</h2>
+<p>The most important new finding from this research pass is the game&#39;s stage structure.</p><div class="pair"><figure class="archive-figure pixel"><button class="enlarge" aria-label="Enlarge Layout 1: Dense hanging poles. Source: Old Classic Retro Gaming recorded play; research captures supplied by Dana. Capture overlays retained where present."><img src="assets/minky-monkey/level01.png" alt="Layout 1: Dense hanging poles. Source: Old Classic Retro Gaming recorded play; research captures supplied by Dana. Capture overlays retained where present." loading="lazy" width="1088" height="1063"></button><figcaption>Layout 1: Dense hanging poles. Source: Old Classic Retro Gaming recorded play; research captures supplied by Dana. Capture overlays retained where present. <span>Click to enlarge.</span></figcaption></figure><figure class="archive-figure pixel"><button class="enlarge" aria-label="Enlarge Layout 2: Scattered horizontal platforms and the flying creature. Source: Old Classic Retro Gaming recorded play; research captures supplied by Dana. Capture overlays retained where present."><img src="assets/minky-monkey/level02.png" alt="Layout 2: Scattered horizontal platforms and the flying creature. Source: Old Classic Retro Gaming recorded play; research captures supplied by Dana. Capture overlays retained where present." loading="lazy" width="749" height="740"></button><figcaption>Layout 2: Scattered horizontal platforms and the flying creature. Source: Old Classic Retro Gaming recorded play; research captures supplied by Dana. Capture overlays retained where present. <span>Click to enlarge.</span></figcaption></figure><figure class="archive-figure pixel"><button class="enlarge" aria-label="Enlarge Layout 3: Wide gaps between vertical poles. Source: Old Classic Retro Gaming recorded play; research captures supplied by Dana. Capture overlays retained where present."><img src="assets/minky-monkey/level03.png" alt="Layout 3: Wide gaps between vertical poles. Source: Old Classic Retro Gaming recorded play; research captures supplied by Dana. Capture overlays retained where present." loading="lazy" width="749" height="740"></button><figcaption>Layout 3: Wide gaps between vertical poles. Source: Old Classic Retro Gaming recorded play; research captures supplied by Dana. Capture overlays retained where present. <span>Click to enlarge.</span></figcaption></figure><figure class="archive-figure pixel"><button class="enlarge" aria-label="Enlarge Layout 4: Mixed routes and a two-fruit instruction. Source: Old Classic Retro Gaming recorded play; research captures supplied by Dana. Capture overlays retained where present."><img src="assets/minky-monkey/level04_two_fruit.png" alt="Layout 4: Mixed routes and a two-fruit instruction. Source: Old Classic Retro Gaming recorded play; research captures supplied by Dana. Capture overlays retained where present." loading="lazy" width="749" height="739"></button><figcaption>Layout 4: Mixed routes and a two-fruit instruction. Source: Old Classic Retro Gaming recorded play; research captures supplied by Dana. Capture overlays retained where present. <span>Click to enlarge.</span></figcaption></figure><figure class="archive-figure pixel"><button class="enlarge" aria-label="Enlarge Layout 5: Staggered pole routes. Source: Old Classic Retro Gaming recorded play; research captures supplied by Dana. Capture overlays retained where present."><img src="assets/minky-monkey/level05.png" alt="Layout 5: Staggered pole routes. Source: Old Classic Retro Gaming recorded play; research captures supplied by Dana. Capture overlays retained where present." loading="lazy" width="749" height="740"></button><figcaption>Layout 5: Staggered pole routes. Source: Old Classic Retro Gaming recorded play; research captures supplied by Dana. Capture overlays retained where present. <span>Click to enlarge.</span></figcaption></figure><figure class="archive-figure pixel"><button class="enlarge" aria-label="Enlarge Layout 6: Stair-step platforms. Source: Old Classic Retro Gaming recorded play; research captures supplied by Dana. Capture overlays retained where present."><img src="assets/minky-monkey/level06.png" alt="Layout 6: Stair-step platforms. Source: Old Classic Retro Gaming recorded play; research captures supplied by Dana. Capture overlays retained where present." loading="lazy" width="749" height="740"></button><figcaption>Layout 6: Stair-step platforms. Source: Old Classic Retro Gaming recorded play; research captures supplied by Dana. Capture overlays retained where present. <span>Click to enlarge.</span></figcaption></figure><figure class="archive-figure pixel"><button class="enlarge" aria-label="Enlarge Layout 7: Sparse routes around a middle platform. Source: Old Classic Retro Gaming recorded play; research captures supplied by Dana. Capture overlays retained where present."><img src="assets/minky-monkey/level07.png" alt="Layout 7: Sparse routes around a middle platform. Source: Old Classic Retro Gaming recorded play; research captures supplied by Dana. Capture overlays retained where present." loading="lazy" width="749" height="738"></button><figcaption>Layout 7: Sparse routes around a middle platform. Source: Old Classic Retro Gaming recorded play; research captures supplied by Dana. Capture overlays retained where present. <span>Click to enlarge.</span></figcaption></figure><figure class="archive-figure pixel"><button class="enlarge" aria-label="Enlarge Layout 8: Two long platforms and open space. Source: Old Classic Retro Gaming recorded play; research captures supplied by Dana. Capture overlays retained where present."><img src="assets/minky-monkey/level08.png" alt="Layout 8: Two long platforms and open space. Source: Old Classic Retro Gaming recorded play; research captures supplied by Dana. Capture overlays retained where present." loading="lazy" width="749" height="740"></button><figcaption>Layout 8: Two long platforms and open space. Source: Old Classic Retro Gaming recorded play; research captures supplied by Dana. Capture overlays retained where present. <span>Click to enlarge.</span></figcaption></figure></div><div class="pair"><figure class="archive-figure pixel"><button class="enlarge" aria-label="Enlarge Level 9 returns to Layout 1 while keeping the higher level number. Source: Old Classic Retro Gaming recorded play; research captures supplied by Dana. Capture overlays retained where present."><img src="assets/minky-monkey/level09_layout1_returns.png" alt="Level 9 returns to Layout 1 while keeping the higher level number. Source: Old Classic Retro Gaming recorded play; research captures supplied by Dana. Capture overlays retained where present." loading="lazy" width="749" height="740"></button><figcaption>Level 9 returns to Layout 1 while keeping the higher level number. Source: Old Classic Retro Gaming recorded play; research captures supplied by Dana. Capture overlays retained where present. <span>Click to enlarge.</span></figcaption></figure><figure class="archive-figure pixel"><button class="enlarge" aria-label="Enlarge Level 10 returns to Layout 2: a second confirmation that the geometry repeats. Source: Old Classic Retro Gaming recorded play; research captures supplied by Dana. Capture overlays retained where present."><img src="assets/minky-monkey/level10_layout2_returns.png" alt="Level 10 returns to Layout 2: a second confirmation that the geometry repeats. Source: Old Classic Retro Gaming recorded play; research captures supplied by Dana. Capture overlays retained where present." loading="lazy" width="741" height="740"></button><figcaption>Level 10 returns to Layout 2: a second confirmation that the geometry repeats. Source: Old Classic Retro Gaming recorded play; research captures supplied by Dana. Capture overlays retained where present. <span>Click to enlarge.</span></figcaption></figure></div>
+<p>A full-playthrough description had claimed that Minky Monkey contained eight levels before returning to the beginning. Rather than simply repeat that claim, The research capture project documented the run stage by stage. Those screenshots establish eight distinct board designs and show what happens after the eighth one.</p>
+<p>The level counter does <strong>not</strong> reset to 1.</p>
+<p>Level 9 visibly returns to the first board layout while the counter reads LEVEL 9. Level 10 then returns to the second board layout while the counter reads LEVEL 10. This means Minky Monkey uses an <strong>eight-layout repeating sequence</strong> while the numerical level counter continues upward. A MAME-history derivative independently describes the game as “LEVELS: 8 (endless),” strongly supporting the visual conclusion.</p>
+<p>The eight layouts are:</p>
+<h3>Layout 1 — dense hanging poles</h3>
+<p>The opening board is dominated by numerous vertical hanging poles, side rails, and a long platform near the bottom. It introduces the climb-and-deliver rhythm without the later dragon appearing in the research project’s recorded sequence.</p>
+<h3>Layout 2 — scattered horizontal platforms</h3>
+<p>The board changes radically. Small horizontal platforms sit at several heights with much more open space between them. The flying dragon/lizard is present. The later Level 10 capture returns to this same basic arrangement, confirming the cycle.</p>
+<h3>Layout 3 — wide vertical gaps</h3>
+<p>This screen is built around separated vertical poles and large empty spaces. It is the board associated with the well-documented modern-player difficulty spike. Precise jumps and drops matter more because a missed route can send the character to the deadly floor.</p>
+<h3>Layout 4 — mixed poles and platforms</h3>
+<p>This board combines vertical climbing routes and small horizontal platforms. The research project’s captured instruction here is especially valuable because it directly shows a two-fruit task: banana BRING UP and watermelon BRING UP simultaneously.</p>
+<h3>Layout 5 — staggered vertical route</h3>
+<p>The fifth board returns to a pole-dominant design, but the poles form a different staggered progression across the playfield. The research project’s captured Level 5 clear also provides one of the clearest scoring examples in the game.</p>
+<h3>Layout 6 — stair-step platforms</h3>
+<p>Small horizontal platforms descend across the screen in a staircase-like pattern. The dragon remains in play. This layout emphasizes hopping between isolated landing points rather than moving through a dense climbing network.</p>
+<h3>Layout 7 — sparse routes</h3>
+<p>This is one of the most stripped-down boards: side rails, two prominent long vertical poles, and a large horizontal platform through the middle. The simplicity is deceptive because fewer alternate paths can make Minky and the dragon harder to route around.</p>
+<h3>Layout 8 — two long platforms and open space</h3>
+<p>The final distinct board in the cycle is even more open, built around two long horizontal platforms and the outer rails while the dragon roams through the middle. The research project’s captured run completed five successes as the timer reached zero, advanced to the next stage, and then displayed SORRY NO BONUS.</p>
+<h3>Level 9 and Level 10 — proof of the loop</h3>
+<p>Level 9 is the decisive screenshot: Layout 1 returns but the game labels it Level 9. Level 10 then brings back Layout 2. The layouts repeat; the level number does not.</p>
+<p>This is more than a visual curiosity because the level number directly affects scoring.</p>
+</section><section class="section substantive" id="section-7"><h2>Scoring: why the later loop matters</h2>
+<p>The stage-clear formula is shown plainly on the game&#39;s bonus screen:</p><div class="pair"><figure class="archive-figure pixel"><button class="enlarge" aria-label="Enlarge The displayed formula: 5 × 97 × 100 = 48,500. Source: Old Classic Retro Gaming recorded play; research captures supplied by Dana. Capture overlays retained where present."><img src="assets/minky-monkey/level05_bonus_48500.png" alt="The displayed formula: 5 × 97 × 100 = 48,500. Source: Old Classic Retro Gaming recorded play; research captures supplied by Dana. Capture overlays retained where present." loading="lazy" width="749" height="766"></button><figcaption>The displayed formula: 5 × 97 × 100 = 48,500. Source: Old Classic Retro Gaming recorded play; research captures supplied by Dana. Capture overlays retained where present. <span>Click to enlarge.</span></figcaption></figure><figure class="archive-figure pixel"><button class="enlarge" aria-label="Enlarge The same formula at Level 7: 7 × 89 × 100 = 62,300. Source: Old Classic Retro Gaming recorded play; research captures supplied by Dana. Capture overlays retained where present."><img src="assets/minky-monkey/level07_bonus_62300.png" alt="The same formula at Level 7: 7 × 89 × 100 = 62,300. Source: Old Classic Retro Gaming recorded play; research captures supplied by Dana. Capture overlays retained where present." loading="lazy" width="749" height="766"></button><figcaption>The same formula at Level 7: 7 × 89 × 100 = 62,300. Source: Old Classic Retro Gaming recorded play; research captures supplied by Dana. Capture overlays retained where present. <span>Click to enlarge.</span></figcaption></figure></div><figure class="archive-figure pixel"><button class="enlarge" aria-label="Enlarge SORRY NO BONUS in the captured zero-time completion sequence; observed once, rather than established as a frame-accurate boundary rule. Source: Old Classic Retro Gaming recorded play; research captures supplied by Dana. Capture overlays retained where present."><img src="assets/minky-monkey/level08_sorry_no_bonus.png" alt="SORRY NO BONUS in the captured zero-time completion sequence; observed once, rather than established as a frame-accurate boundary rule. Source: Old Classic Retro Gaming recorded play; research captures supplied by Dana. Capture overlays retained where present." loading="lazy" width="749" height="766"></button><figcaption>SORRY NO BONUS in the captured zero-time completion sequence; observed once, rather than established as a frame-accurate boundary rule. Source: Old Classic Retro Gaming recorded play; research captures supplied by Dana. Capture overlays retained where present. <span>Click to enlarge.</span></figcaption></figure>
+<p><strong>LEVEL × TIME REMAINING × 100 = BONUS</strong></p>
+<p>The research capture project documented three useful examples:</p>
+<ul>
+<li>Level 1 with 38 seconds remaining: <strong>1 × 38 × 100 = 3,800</strong></li>
+<li>Level 5 with 97 seconds remaining: <strong>5 × 97 × 100 = 48,500</strong></li>
+<li>Level 7 with 89 seconds remaining: <strong>7 × 89 × 100 = 62,300</strong></li>
+</ul>
+<p>The jump is enormous. This formula is the reason the seemingly small high-level techniques matter. Starting to move before the command finishes, carrying two fruits, learning the layouts, avoiding needless climbs, keeping Minky away from required fruit, and using the bottle aggressively all preserve time. Later in the game, preserving time can be worth tens of thousands of points.</p>
+<p>The endless layout cycle magnifies this. When Layout 1 returns as Level 9, it is no longer the low-value opening stage. The same familiar geometry now carries a much larger level multiplier. A player who has memorized the first cycle can use that knowledge for substantially higher bonuses in subsequent cycles.</p>
+<p>The captured Level 8 finish also exposes a timing edge case. The run reaches SUCCESS 5 at TIME 0, proceeds to Level 9, and displays SORRY NO BONUS. The most reasonable reading is that the fifth success registered in time for the level to count but left no time value for the bonus. Because we have only one captured sequence and not a frame-level test, this is best described as <strong>observed behavior in the recorded run</strong>, not as an absolute timing rule.</p>
+</section><section class="section substantive" id="section-8"><h2>Lives, continues, and operator configuration</h2>
+<p>The two supplied narrated playthroughs were uncertain about extra-life behavior. Current MAME-derived machine configuration resolves much of that uncertainty.</p>
+<p>The default lives setting is <strong>3</strong>, with an operator option for <strong>5</strong>.</p>
+<p>The default bonus-life setting is <strong>20,000 points</strong>. Operator alternatives are <strong>every 15,000</strong>, <strong>every 30,000</strong>, or <strong>none</strong>. This explains why one narrated playthrough repeatedly suggested an extra life around 20,000: 20,000 is indeed the default MAME DIP configuration.</p>
+<p>MAME also exposes Easy, Medium, and Hard difficulty settings, with Medium as default, plus a Level Skip Mode marked as a cheat. Coinage options include 2 coins/1 credit, 1 coin/1 credit, 1 coin/2 credits, and 1 coin/3 credits, along with Free Play.</p>
+<p>A modern player account at Cheap Retro Gaming says successful-command progress persists across continues: the player can complete some successes on one credit, continue, and finish the remaining successes later. A narrated playthrough also states that a continue can resume from the stage where play ended. These are useful observations, but the exact continue rules deserve a clean MAME test before they can be stated as formal behavior.</p>
+<p>MAME includes a Control Panel DIP with Upright and Cocktail settings. That is strong evidence the software supports cocktail-style control behavior. It is <strong>not</strong> by itself proof that a dedicated production cocktail Minky Monkey cabinet has been documented. The surviving cabinet record is too thin to make that leap.</p>
+</section><section class="section substantive" id="section-9"><h2>Hardware</h2>
+<p>The current MAME driver models the main program processor as a Data East DECO C10707, a 6502-family device, running at approximately 1.5 MHz. The sound processor is a 6502 at approximately 500 kHz. Earlier database descriptions often simplify the main processor to “6502”; the more specific driver identification is retained here. Audio uses two General Instrument AY-3-8910A chips at approximately 1.5 MHz, with mono output and discrete elements in the current machine definition.</p>
+<p>The video is vertical raster at 240 × 240 with a refresh around 57.44 Hz and a very small eight-color palette in the MAME metadata. The MAME-derived records consulted during the September 2026 research rated the main set good for emulation, graphics, color, and sound. The Japanese set entered MAME much later. The current driver marks one borrowed RAS/CAS timing PROM as BAD DUMP because it has not been dumped for this set; the driver comments say this PROM is not used. That warning should not be read as a blanket statement that the Japanese program ROMs are bad.</p>
+<p>The MAME XML lineage places the game in the BurgerTime-family driver (<code>btime</code>), and System16 also groups Minky Monkey with Data East Burger Time hardware. This is useful technical context, especially given Technos&#39;s founders&#39; Data East background, but it is important to avoid turning emulator-driver lineage into a claim that Data East manufactured or licensed the Minky Monkey board unless primary hardware documentation establishes that.</p>
+<p>A circuit-board image is indexed by LaunchBox at 473 × 379. It was viewable during research but could not be transferred into the artifact filesystem in this session, so the research record preserves its source URL; the photograph is not reproduced here. Its attribution and positive identification still need checking.</p>
+</section><section class="section substantive" id="section-10"><h2>The people behind the game</h2>
+<p>The surviving credit information is unusually valuable for such an obscure title.</p>
+<p><strong>Noriyuki Tomiyama</strong> is credited as director and programmer. <strong>T. Tako</strong> is sound director. <strong>H. Fukuda</strong> and <strong>M. Kogoma</strong> are credited as art designers. These names appear in Arcade History-derived records and on the title-screen credit presentation preserved in the game&#39;s graphics.</p>
+<p>The game is consistently identified as Technos Japan&#39;s first title. The title screen says it was produced by Technos Japan Corp. and Roller Tron Corp. Modern records describe the relationship in slightly different ways: Arcade History-derived data says “produced in association with Roller Tron,” while MobyGames credits both companies as developers and its Roller Tron company page shows Roller Tron connected to five games from 1982–1983, including Minky Monkey and Dommy with Technos.</p>
+<p>Arcade History&#39;s Wood Pecker entry adds another useful piece of context, describing Roller Tron as a company connected to Technos around 1983 and saying Roller Tron distributed Dommy and Minky Monkey along with games from other companies. Until stronger corporate records surface, the safest approach is to describe Roller Tron as a documented production/distribution associate rather than force a single corporate role.</p>
+</section><section class="section substantive" id="section-11"><h2>The 1982 / March 1983 date conflict</h2>
+<p>The sources genuinely disagree, and the conflict remains part of the history.</p>
+<p>Evidence for <strong>1982</strong> includes:</p>
+<ul>
+<li>the original title-screen copyright;</li>
+<li>the current Arc System Works Technos archive, which lists ミンキーモンキー as AC 1982;</li>
+<li>Museum of the Game, GameFAQs, and various MAME-oriented records.</li>
+</ul>
+<p>Evidence for <strong>March 1983</strong> includes:</p>
+<ul>
+<li>Arcade History-derived trivia reproduced by Arcade Database;</li>
+<li>MobyGames, which lists a March 1983 Japanese arcade release.</li>
+</ul>
+<p>These facts can coexist. A 1982 copyright does not necessarily prove commercial release in 1982, while an official modern archive can also simplify or inherit legacy year data. No period trade announcement or dated operator document was located in this research pass that conclusively settles the first commercial release. The dating used here is:</p>
+<p><strong>Copyright 1982; release usually cataloged as 1982, with Arcade History/MobyGames reporting a March 1983 Japanese release.</strong></p>
+<p>That is more honest than choosing one database and erasing the conflict.</p>
+</section><section class="section substantive" id="section-12"><h2>Technos begins under a legal cloud — reported, not primary-proven</h2>
+<p>Later histories of Technos report that the company was founded in 1981 by three former Data East staff members and initially operated from a very small apartment. Those same histories say that a few months after Technos was founded, Data East sued the new company, alleging that data from Data East&#39;s arcade game Pro Tennis had been taken for use in producing and selling bootleg copies. The companies are reported to have settled in August 1983.</p>
+<p>This story appears in multiple later retellings, including English and Japanese-language company histories, and it is interesting context for Technos&#39;s first year. It should <strong>not</strong> be written as though a court filing has been examined for this project. No primary complaint, settlement document, or period trade account confirming the full details was located in the current research. It is therefore best framed as a <strong>reported early-Technos legal dispute</strong>, not as a proven development story for Minky Monkey itself.</p>
+<p>It is also important not to misstate the allegation. The modern histories tie the dispute to Data East&#39;s <strong>Pro Tennis</strong> data and alleged bootleg production, not specifically to the code or assets of Minky Monkey. One supplied video transcript loosely connected the lawsuit to “resources for this game,” but the broader source record does not justify that stronger claim.</p>
+</section><section class="section substantive" id="section-13"><h2>How rare is original Minky Monkey hardware?</h2>
+<p>Museum of the Game&#39;s VAPS census at the research access date gives us a useful but narrow preservation snapshot. As accessed September 11, 2026, it reports no complete Minky Monkey machine owned by an active participating member. Former members held two boards. No active member has a machine for sale; a former member previously had one board for sale. One active member is looking for a Minky Monkey circuit-board set. The site places the game at 1/100 on its ownership-frequency scale and 2/100 on its want-list scale.</p>
+<p>That is strong evidence that Minky Monkey is rarely represented in this particular preservation census. It is <strong>not</strong> proof of production quantity, worldwide survivor count, or monetary value, and Museum of the Game itself cautions against using rarity/popularity figures as a direct value measure.</p>
+<p>Museum of the Game catalogs the game as an Upright/Standard machine and lists “unique” as its conversion class. LaunchBox also indexes a cabinet image, but the image found there appears to be a modern composite/mockup with generic modern controls and non-period artwork. It must not be used as an authentic cabinet photograph. The surviving record therefore supports a conservative account: original marquee/flyer material is known; software supports an upright/cocktail mode; but a well-proven original complete cabinet photographic record has not yet been assembled.</p>
+</section><section class="section substantive" id="section-14"><h2>Preservation and modern access</h2>
+<p>The main Minky Monkey set entered MAME with version <strong>0.35b13</strong>, released May 24, 1999. MAME history credits Zsolt Vasvari with the addition and records a May 9, 1999 color fix. The Japanese set is recorded in the research sources as entering with <strong>MAME 0.218</strong> in 2020.</p>
+<p>MAME-history-derived documentation describes the game as “LEVELS: 8 (endless),” an especially useful independent corroboration of the research project’s screenshot reconstruction.</p>
+<p>Modern commercial preservation has also brought the game back into circulation. MobyGames records an Antstream release in 2019 and lists the game in Technos Arcade 1 (2021). The Technos Super Pocket game-list material preserved in the research record also includes Minky Monkey. These modern releases are useful for access, but this history keeps the historical arcade version distinct from modern front ends and control overlays. In particular, a LaunchBox “Controls Information” image found during research is a modern emulator-style two-player control diagram and is not period control-panel documentation.</p>
+</section><section class="section substantive" id="section-15"><h2>What the game sounds and looks like</h2>
+<p>Minky Monkey has the limited palette and compact sprites one would expect from an early-1980s single-screen game, but the characters communicate more personality than the technical simplicity suggests. The player character has exaggerated jumping and defeat poses. Minky&#39;s constant movement makes her feel less like a stationary hazard and more like another participant in the assignment. The later green dragon is immediately readable against the dark blue field.</p><figure class="archive-figure"><button class="enlarge" aria-label="Enlarge Japanese multi-game promotional sheet featuring Minky Monkey alongside Wood Pecker and Fire Dozer. Source: LaunchBox Games Database, preserved from the profile master. Japanese copy is shown as archival material; no unverified translation is supplied."><img src="assets/minky-monkey/03_japanese_promotional_flyer_1118x1398.png" alt="Japanese multi-game promotional sheet featuring Minky Monkey alongside Wood Pecker and Fire Dozer. Source: LaunchBox Games Database, preserved from the profile master. Japanese copy is shown as archival material; no unverified translation is supplied." loading="lazy" width="1118" height="1398"></button><figcaption>Japanese multi-game promotional sheet featuring Minky Monkey alongside Wood Pecker and Fire Dozer. Source: LaunchBox Games Database, preserved from the profile master. Japanese copy is shown as archival material; no unverified translation is supplied. <span>Click to enlarge.</span></figcaption></figure>
+<p>A modern player review specifically praises the jumping animation and notes the repeating gameplay tune and distinct effects for walking, jumping, and fruit collection. The same reviewer finds the death effect louder than the rest of the mix. Those are subjective observations, but they provide a useful bridge between the two AY-3-8910 chips listed in the hardware and what a player actually hears.</p>
+<p>The promotional flyer is also historically useful because Minky Monkey appears alongside Wood Pecker and Fire Dozer. It shows the game&#39;s jungle/explorer concept art and describes the fruit-protection premise. The large surviving marquee is one of the strongest visual assets available for the website and is suitable for a wide hero treatment.</p>
+</section><section class="section substantive" id="section-16"><h2>Hints from the Arcade</h2>
+<p>The following tips draw on modern recorded play. They are player observations, rather than instructions transcribed from a period manual.</p>
+<p><strong>Watch both counters.</strong> Five successes clear the stage; five failures cost a life. Do not confuse a failed instruction with an immediate lost life.</p>
+<p><strong>Move before the message finishes.</strong> Experienced modern players report that the character can move and collect fruit before the entire instruction has been written. That is one of the easiest ways to save time.</p>
+<p><strong>Carry two fruits when useful.</strong> Modern play reports that two fruits can be carried simultaneously. This can eliminate an entire crossing of the board and becomes more valuable as the level multiplier increases.</p>
+<p><strong>Read BRING UP and BRING DOWN as route information.</strong> The command tells you which vertical direction the requested fruit must travel and the destination window appears accordingly.</p>
+<p><strong>Expect multiple deliveries.</strong> Level 4 captured play proves that at least some assignments call for two different fruits during the same success attempt.</p>
+<p><strong>Protect the required fruit from Minky.</strong> The shortest path is not always the right path if your movement gives Minky an easier route to the fruit you still need.</p>
+<p><strong>Use the bottle aggressively.</strong> Its protection can be converted into time: remove Minky temporarily, then use the safer window to complete a difficult delivery.</p>
+<p><strong>The dragon is not just another Minky.</strong> From Layout 2 onward, the dragon becomes a separate roaming hazard. Player commentary says the bottle protects against contact but does not remove it.</p>
+<p><strong>Know what is below you before dropping.</strong> A drop to another platform is survivable; a fall to the bottom floor is not.</p>
+<p><strong>Stage 3 deserves respect.</strong> The wide pole gaps produce a major early execution test, and modern player evidence says Minky also becomes faster after the first two stages.</p>
+<p><strong>Learn the eight layouts.</strong> The board sequence repeats after Layout 8 while the numerical level keeps increasing. Route knowledge from the first loop pays off again at Level 9 and beyond.</p>
+<p><strong>Play for time once survival is stable.</strong> The bonus formula makes seconds dramatically more valuable at higher levels. Level 7 with 89 seconds remaining was worth 62,300 bonus points in the captured run.</p>
+<p><strong>Do not assume an irrelevant fruit is harmless to touch.</strong> Modern player commentary reports that unneeded fruit can be knocked down. Treat the playfield as an inventory, not a pile of free pickups.</p>
+</section><section class="section substantive" id="section-17"><h2>Why Minky Monkey deserves the page</h2>
+<p>Minky Monkey matters historically because it is the beginning of Technos. It deserves an Arcade Side B page because it is more than that beginning.</p>
+<p>The game&#39;s central idea is genuinely unusual: a fixed playfield is repeatedly reinterpreted through written delivery assignments while an active opponent tries to invalidate those assignments. The success/failure counters create pressure without making every mistake immediately fatal. The bottle changes the balance temporarily. The dragon adds a persistent second threat. The eight-layout cycle changes the geometry, then turns familiar boards into higher-value scoring opportunities when they return under larger level multipliers.</p>
+<p>None of those individual systems is enormous. Together they make a game that is easy to dismiss on a first credit and much more interesting once its structure is understood.</p>
+<p>The preservation record also makes it a natural fit for Arcade Side B. Original machines are almost absent from the VAPS census, the release year is still inconsistent across modern sources, the exact Roller Tron role remains fuzzy, and even the eight-layout structure is not well explained in ordinary database entries. The screenshot work done for this profile directly fills one of those gaps.</p>
+<p>Minky Monkey is still awkward, punishing, and very much a product of early-1980s arcade design. It also has an identity of its own. That is exactly the sort of game Arcade Side B exists to document.</p>
+</section><section class="section substantive" id="section-18"><h2>Operator settings: what an arcade owner could change</h2>
+<p>The operator switches show why two players can remember different difficulty or extra-life behavior without either memory necessarily being wrong. Starting lives, the extra-life award and difficulty are configurable. The table below transcribes the current MAME driver; it is software documentation, not a newly discovered factory manual.</p>
+<div class="table-scroll" tabindex="0" aria-label="Operator settings table"><table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Default</th>
+<th>Available alternatives</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Coin A</td>
+<td>1 coin / 1 credit</td>
+<td>2 coins / 1 credit; 1 coin / 2 credits; 1 coin / 3 credits</td>
+</tr>
+<tr>
+<td>Coin B</td>
+<td>1 coin / 1 credit</td>
+<td>Same alternatives as Coin A</td>
+</tr>
+<tr>
+<td>Free play</td>
+<td>Off</td>
+<td>On</td>
+</tr>
+<tr>
+<td>Control panel</td>
+<td>Upright</td>
+<td>Cocktail</td>
+</tr>
+<tr>
+<td>Starting lives</td>
+<td>3</td>
+<td>5</td>
+</tr>
+<tr>
+<td>Bonus life</td>
+<td>20,000 points</td>
+<td>Every 15,000; every 30,000; none</td>
+</tr>
+<tr>
+<td>Difficulty</td>
+<td>Medium</td>
+<td>Easy; Hard; Level Skip Mode (Cheat)</td>
+</tr>
+<tr>
+<td>Service mode</td>
+<td>Off</td>
+<td>On</td>
+</tr>
+</tbody></table></div>
+<p>The wording matters for the bonus-life options. The 15,000- and 30,000-point choices explicitly say “Every”; the default 20,000-point entry does not. It is misleading to turn all three into an identical repeating award. The level-skip option is explicitly labeled a cheat in the driver and should not be mistaken for the normal arcade progression.</p>
+<p>The cocktail setting describes input and screen behavior supported by the program. It cannot supply the missing historical photograph, sales sheet or cabinet record needed to establish a dedicated cocktail product. The same distinction applies to coin inputs: two independently configurable coin schedules describe operator flexibility, not proof of a particular surviving cabinet arrangement.</p>
+</section><section class="section substantive" id="section-19"><h2>Versions and the limits of the Japanese-set warning</h2>
+<p>MAME lists a main set, <code>mmonkey</code>, and a Japanese clone, <code>mmonkeyj</code>. Both are credited to Technos Japan / Roller Tron and cataloged as 1982. “Clone” here is an emulator relationship describing related ROM sets; it does not mean the Japanese version is an unauthorized copy.</p>
+<p>The current ROM definitions preserve a useful comparison. Two of the four Japanese main-program ROMs share the main set’s checksums, while the other two differ. The audio ROM and six graphics ROMs have matching checksums across the definitions. This establishes shared software and graphic material with some program variation. It does not, by itself, identify every regional text change, rule change or bug fix.</p>
+<p>The Japanese set’s BAD DUMP annotation applies to one 32-byte RAS/CAS logic PROM borrowed for the definition because that component has not been dumped for this set. MAME’s own comment identifies it as not used. The program ROMs are not individually marked BAD DUMP in that definition. A short database warning can obscure that narrower situation, so the component-level explanation is more useful than describing the whole Japanese set as an unreliable dump.</p>
+<p>No ROM disassembly was performed for this website conversion. The comparison above comes from the public driver’s labels and checksums. The untouched research handoff remains preserved, and this clarification supplements its earlier database-based wording.</p>
+</section><section class="section substantive" id="section-20"><h2>Open questions and missing artifacts</h2>
+<p>The following questions remain open. They do not block a qualified history, but new documents or clean gameplay tests could improve it.</p>
+<h3>1. Was the commercial release 1982 or March 1983?</h3>
+<p><strong>Status: unresolved source conflict.</strong></p>
+<ul>
+<li>Original title-screen copyright: 1982.</li>
+<li>Current Arc System Works Technos archive: AC 1982.</li>
+<li>Museum of the Game and several databases: 1982.</li>
+<li>Arcade History-derived data and MobyGames: March 1983 Japan.
+Need: period trade notice, distributor price sheet, dated operator flyer, or other primary release evidence.</li>
+</ul>
+<h3>2. What exactly was Roller Tron&#39;s role?</h3>
+<p><strong>Status: association is firm; exact corporate role is fuzzy.</strong></p>
+<ul>
+<li>Title screen names Roller Tron with Technos.</li>
+<li>Arcade History-derived source says produced in association.</li>
+<li>MobyGames credits both as developers.</li>
+<li>Arcade History&#39;s Wood Pecker page describes Roller Tron as distributing Minky Monkey and Dommy.
+The documented association is described here as production/distribution involvement; stronger corporate records could refine that role.</li>
+</ul>
+<h3>3. What exactly was in the bottle?</h3>
+<p><strong>Status: effect understood; object name uncertain.</strong>
+Modern players call it soda, sauce, or beer. No period English manual was obtained to settle the fictional contents. This history calls it “the bottle” or “bottle power-up” unless a primary source identifies it.</p>
+<h3>4. Is the dragon officially a dragon, lizard, or something else?</h3>
+<p><strong>Status: visual identity clear; official naming not located.</strong>
+Modern narrators call it a dragon or flying lizard. Use “flying dragon/lizard” or “green flying creature” if strict.</p>
+<h3>5. Exact enemy AI and speed changes</h3>
+<p><strong>Status: player-observed.</strong>
+Cheap Retro Gaming says Minky usually becomes faster after the first two levels and can act on instructions before the player can read them. This has not been measured from ROM code or frame timing.</p>
+<h3>6. Continue behavior</h3>
+<p><strong>Status: modern play evidence, not formal verification.</strong>
+One modern reviewer says SUCCESS progress persists between continues. A narrated playthrough says the game can continue from the stage where play ended. A clean MAME test should verify exact rules, coin cost, life reset, timer state, and whether all operator settings affect continue behavior.</p>
+<h3>7. Level 8 TIME 0 edge case</h3>
+<p><strong>Status: directly observed once.</strong>
+The research project’s captured sequence shows SUCCESS 5 / TIME 0, then SORRY NO BONUS, then Level 9. It appears the fifth success counted while the time bonus did not. Frame-accurate testing would be required to define the exact boundary rule.</p>
+<h3>8. Production cabinet formats</h3>
+<p><strong>Status: software support exceeds surviving photographic proof.</strong>
+Museum of the Game catalogs upright/standard. MAME has Upright/Cocktail control-panel mode. That does not prove a dedicated cocktail Minky Monkey machine was commercially produced. Need a period flyer/manual/distributor sheet or authenticated survivor photo.</p>
+<h3>9. Original cabinet appearance</h3>
+<p><strong>Status: unresolved.</strong>
+A LaunchBox cabinet image reviewed during research is a modern composite/mockup and is rejected as evidence. It is excluded from this article. A period photo or authenticated survivor could fill that gap.</p>
+<h3>10. Original control panel</h3>
+<p><strong>Status: unresolved.</strong>
+LaunchBox “Controls Information” is a modern emulator-style panel and must not be treated as historical. The only firm control facts are the 4-way joystick and one button plus software/player configuration.</p>
+<h3>11. PCB provenance</h3>
+<p><strong>Status: image exists, source provenance not fully established.</strong>
+LaunchBox indexes a 473×379 circuit-board image and it was visually accessible in research. It could not be transferred into the ZIP via the artifact filesystem. Direct URL recorded in source list. Before prominent publication, establish who photographed it and whether it is positively identified as Minky Monkey hardware.</p>
+<h3>12. Data East lawsuit</h3>
+<p><strong>Status: reported later history; primary documents absent.</strong>
+Multiple later sources repeat a suit alleging use of Data East Pro Tennis data for bootleg production, settled August 1983. No primary filing/settlement was found. The evidence does not establish a lawsuit over Minky Monkey.</p>
+<h3>13. Original pricing / operator economics</h3>
+<p><strong>Status: not found.</strong>
+No verified original cabinet/kit price, distributor cost, or operator earnings data surfaced. A period price comparison cannot be made from the present evidence.</p>
+<h3>14. Production quantities / geographic distribution</h3>
+<p><strong>Status: not found.</strong>
+VAPS scarcity is not a production count. Roller Tron association suggests distribution history worth pursuing, but no territory-by-territory sales record was located.</p>
+<h3>15. Period reviews / trade coverage</h3>
+<p><strong>Status: no strong period review found in this pass.</strong>
+Museum of the Game eLibrary remains a promising avenue. Search Japanese Amusement Industry / Amusement Journal issues around late 1982 through spring 1983, plus operator yearbooks and distributor advertising.</p>
+</section><section class="section sources" id="sources"><h2>Sources & further reading</h2><p>Original game screens and promotional artwork provide direct evidence. Recorded play documents the layout cycle and bonus examples. MAME supplies hardware, switch and ROM-definition evidence. Modern databases and later histories are identified as secondary sources; their release-date and corporate-role disagreements remain visible.</p><ol><li><a href="https://github.com/mamedev/mame/blob/master/src/mame/dataeast/btime.cpp" target="_blank" rel="noopener">MAME — current BurgerTime-family driver and Minky Monkey definitions</a></li><li><a href="https://www.arcade-museum.com/Videogame/minky-monkey" target="_blank" rel="noopener">Museum of the Game</a></li><li><a href="https://adb.arcadeitalia.net/dettaglio_mame.php?game_name=mmonkey" target="_blank" rel="noopener">Arcade Database main</a></li><li><a href="https://adb.arcadeitalia.net/dettaglio_mame.php?game_name=mmonkeyj&amp;lang=en" target="_blank" rel="noopener">Arcade Database Japan</a></li><li><a href="https://www.gamesdatabase.org/mame-rom/mmonkey" target="_blank" rel="noopener">Games Database MAME record</a></li><li><a href="https://www.mobygames.com/game/190447/minky-monkey/" target="_blank" rel="noopener">MobyGames game</a></li><li><a href="https://www.mobygames.com/game/190447/minky-monkey/releases/" target="_blank" rel="noopener">MobyGames releases</a></li><li><a href="https://www.mobygames.com/company/51086/roller-tron-corp/" target="_blank" rel="noopener">MobyGames Roller Tron</a></li><li><a href="https://www.system16.com/list.php" target="_blank" rel="noopener">System16 list</a></li><li><a href="https://www.arcsystemworks.jp/technos/archive/" target="_blank" rel="noopener">Arc System Works Technos archive</a></li><li><a href="https://manuals.plus/m/7342b3a3320104cf44f6867fd7a186c00d93428b9e644db72cf58293e83b905b" target="_blank" rel="noopener">Technos Super Pocket game-list source found</a></li><li><a href="https://gamesdb.launchbox-app.com/games/details/37637-minky-monkey" target="_blank" rel="noopener">LaunchBox game</a></li><li><a href="https://gamesdb.launchbox-app.com/games/images/37637-minky-monkey" target="_blank" rel="noopener">LaunchBox image page</a></li><li><a href="https://images.launchbox-app.com/a089ba19-113a-4ae1-9223-508bac3f74ad.jpg" target="_blank" rel="noopener">Japanese instruction-style scan</a></li><li><a href="https://images.launchbox-app.com/80a04cf0-5836-464d-9e87-4467752e68f4.png" target="_blank" rel="noopener">High-score screenshot</a></li><li><a href="https://images.launchbox-app.com/96d984a0-6c6f-47f5-92ba-3844588823e7.png" target="_blank" rel="noopener">Game Over screenshot</a></li><li><a href="https://www.youtube.com/watch?v=Uha4kxYy2iY" target="_blank" rel="noopener">Full playthrough used for Dana stage captures</a></li><li><a href="https://cheapretrogaming.com/2026/01/08/minky-monkey-review-technos-first-game-weird-puzzle-platformer-hybrid/" target="_blank" rel="noopener">Cheap Retro Gaming review</a></li><li><a href="https://en.wikipedia.org/wiki/Techn%C5%8Ds_Japan" target="_blank" rel="noopener">Wikipedia Technos Japan</a></li><li><a href="https://www.jmediawiki.org/%E3%83%86%E3%82%AF%E3%83%8E%E3%82%B9%E3%82%B8%E3%83%A3%E3%83%91%E3%83%B3/Technos_Japan" target="_blank" rel="noopener">Japanese JMediaWiki Technos history</a></li><li><a href="https://electronicsandbooks.com/edt/manual/Magazine/R/Retro%20Gamer%20UK/Retro%20Gamer%20-%20Technos%20%5B12%5D.pdf" target="_blank" rel="noopener">Retro Gamer Technos profile PDF</a></li><li><a href="https://www.arcade-history.com/?id=294915&amp;n=wood-pecker&amp;page=detail" target="_blank" rel="noopener">Arcade History Wood Pecker / Roller Tron context</a></li></ol><p>Research access date for the collector census: September 11, 2026. Driver and official Technos archive rechecked October 2, 2026. Player commentary supports observed techniques, not manufacturer-confirmed rules. No new claim is made about production quantity, original price, court documents or the worldwide number of surviving machines.</p></section></article></div></main><footer><div class="footer-inner"><div class="backlinks"><a class="backhome" href="https://arcadesideb.com/#games" target="_top">← Back to Games</a></div><strong>Arcade Side B</strong> · The Overlooked Side of Arcade History<br>Minky Monkey · Prepared October 2, 2026 · <a href="mailto:arcadeobscura@gmail.com">Contribute a correction or source</a></div><div class="footer-inner rights">Arcade Side B is a noncommercial historical research and preservation project. Historical artwork, screenshots, scans, trademarks and other third-party materials may remain protected by copyright. Arcade Side B does not claim ownership or imply that attribution grants permission. Rights holders may contact us for attribution, correction, restriction or removal.</div></footer><dialog id="viewer"><button id="close-viewer" aria-label="Close enlarged image">Close ✕</button><p id="image-caption"></p><p><a id="image-original" class="lightbox-link" target="_blank" rel="noopener">Open image at full size</a></p><img id="full-image" alt=""></dialog><script>document.querySelectorAll('.enlarge').forEach(b=>b.addEventListener('click',()=>{const i=b.querySelector('img');document.querySelector('#full-image').src=i.src;document.querySelector('#full-image').alt=i.alt;document.querySelector('#image-caption').textContent=i.alt;document.querySelector('#image-original').href=i.src;document.querySelector('#viewer').showModal()}));document.querySelector('#close-viewer').addEventListener('click',()=>document.querySelector('#viewer').close());document.querySelector('.toc').open=matchMedia('(min-width:981px)').matches;</script></body></html>
