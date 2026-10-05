@@ -1,0 +1,775 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Ramtek Corporation | Arcade Side B</title><meta name="description" content="Ramtek Corporation of California: Volly, Clean Sweep, Sea Battle, Hit Me, M-79 Ambush, Star Cruiser and a thirteen-game video catalog."><link rel="canonical" href="https://arcadesideb.com/ramtek.html"><meta name="robots" content="index,follow"><meta property="og:type" content="article"><meta property="og:site_name" content="Arcade Side B"><meta property="og:title" content="Ramtek Corporation | Arcade Side B"><meta property="og:description" content="Ramtek Corporation of California: Volly, Clean Sweep, Sea Battle, Hit Me, M-79 Ambush, Star Cruiser and a thirteen-game video catalog."><meta property="og:url" content="https://arcadesideb.com/ramtek.html"><style>
+:root{
+  --bg:#090d12;--paper:#eee7d8;--paper2:#f5efe3;--ink:#232b30;--muted:#667075;
+  --line:#c8beab;--darkline:#303b45;--gold:#c28a32;--gold2:#d8b36b;
+  --green:#557b63;--cyan:#6f99aa;--max:1180px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:
+  radial-gradient(circle at 82% 10%,rgba(111,153,170,.09),transparent 28%),
+  linear-gradient(rgba(255,255,255,.012) 1px,transparent 1px),#090d12;
+  background-size:auto,100% 4px,auto;color:#dce2e5;font-family:Georgia,"Times New Roman",serif;
+}
+a{color:#a96f21}
+.mast{border-bottom:4px solid var(--gold);background:linear-gradient(135deg,#0a0f14,#13202a)}
+.mast-inner{width:min(calc(100% - 32px),var(--max));margin:auto;padding:17px 0;display:flex;justify-content:space-between;gap:20px;align-items:center}
+.brand{font-size:26px;font-weight:700;color:#f0ece4}
+.motto{font:700 10px Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#9ca8af;text-align:right}
+.crumb,.hero,.rule,.shell{width:min(calc(100% - 32px),var(--max));margin-left:auto;margin-right:auto}
+.crumb{padding-top:18px;color:#93a0a8;font:700 11px Arial,sans-serif}
+.crumb a{color:#d4ad67;text-decoration:none}
+.hero{padding:30px 0 26px}
+.eyebrow{color:var(--gold2);font:800 10px Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase}
+.hero h1{margin:7px 0 10px;font-size:clamp(44px,7vw,78px);line-height:.95;color:#f0ece4}
+.deck{max-width:930px;color:#b9c4ca;font-size:20px;line-height:1.5;margin:0}
+.meta{display:flex;gap:12px;flex-wrap:wrap;margin-top:17px;color:#9aa6ad;font:700 11px Arial,sans-serif}
+.badge{padding:6px 9px;border:1px solid currentColor;border-radius:999px;text-transform:uppercase}
+.living{color:#78a6b8}
+.rule{height:1px;background:#29343e}
+.shell{display:grid;grid-template-columns:275px minmax(0,1fr);gap:22px;padding:26px 0 50px;align-items:start}
+.sidebar{position:sticky;top:10px}
+.toc{border:1px solid #34404b;background:#111820;max-height:82vh;overflow:auto}
+.toc-title{padding:13px 15px;color:#d8dfe2;font:800 11px Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase}
+.toc a{display:block;border-top:1px solid #29343e;padding:9px 13px;color:#aebbc2;text-decoration:none;font:13px/1.35 Arial,sans-serif}
+.toc a:hover{color:#f0c57e}
+.sidebar-note{margin-top:12px;border:1px solid #34404b;background:#111820;padding:13px;color:#94a0a7;font:13px/1.45 Arial,sans-serif}
+article{background:var(--paper);color:var(--ink);border:1px solid #b9ae9a;box-shadow:0 18px 42px rgba(0,0,0,.25);padding:26px 34px 40px;min-width:0}
+.backhome{display:inline-block;margin-bottom:18px;padding:8px 10px;border:1px solid #9e927e;color:#745322;text-decoration:none;font:800 10px Arial,sans-serif;text-transform:uppercase;letter-spacing:.08em}
+.company-identity{margin:0 0 28px;border:1px solid #b8ad98;background:linear-gradient(135deg,rgba(194,138,50,.08),transparent 48%),#f3eddf;overflow:hidden}
+.company-mark{padding:24px 26px 20px;border-bottom:1px solid var(--line);position:relative}
+.company-mark:after{content:"COMPANY PROFILE";position:absolute;right:22px;top:18px;color:#8c8272;font:700 9px Arial,sans-serif;letter-spacing:.16em}
+.legal{color:#746b5f;font:700 10px Arial,sans-serif;letter-spacing:.13em;text-transform:uppercase;margin-bottom:7px}
+.wordmark{font-size:clamp(34px,5vw,58px);line-height:.95;color:#122331}
+.wordmark span{display:block;margin-top:7px;color:#8a6429;font:700 13px Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase}
+.company-snapshot{display:grid;grid-template-columns:repeat(4,1fr)}
+.snapshot-cell{padding:17px 18px;border-right:1px solid var(--line)}
+.snapshot-cell:last-child{border-right:0}
+.snapshot-label{display:block;color:#786f63;font:700 9px Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;margin-bottom:5px}
+.snapshot-value{display:block;color:#1c2d37;font-size:19px;line-height:1.2}
+.snapshot-note{display:block;margin-top:5px;color:#6e726f;font:11px/1.35 Arial,sans-serif}
+.overview-box{padding:18px 20px;background:#f8f2e7;border:1px solid #d2c5af;margin:0 0 26px}
+.overview-box h2{margin-top:0!important}
+article h2{margin:38px 0 13px;color:#172a35;font-size:31px;border-bottom:2px solid #b57f31;padding-bottom:7px}
+article h2:first-of-type{margin-top:0}
+article h3{margin:27px 0 9px;color:#2b3a41;font-size:24px}
+article p{font-size:18px;line-height:1.7;margin:14px 0}
+article li{font-size:17px;line-height:1.6;margin:6px 0}
+article blockquote{margin:18px 0;padding:10px 17px;border-left:4px solid var(--gold);background:#f7f0e3;color:#465156}
+article table{width:100%;border-collapse:collapse;margin:18px 0;font:14px/1.45 Arial,sans-serif}
+article th,article td{border:1px solid #c8beab;padding:8px 9px;vertical-align:top}
+article th{background:#ddd3c1;color:#24323a;text-align:left}
+article code{font-size:.88em}
+.src-tag{display:inline-block;color:#76531e;font:700 10px Arial,sans-serif;white-space:nowrap}
+.public-note{margin:0 0 25px;padding:15px 17px;border-left:5px solid var(--green);background:#e7efe8;color:#33433a;font:15px/1.5 Arial,sans-serif}
+.footer{border-top:1px solid #29343e;background:#07090c}
+.footer-inner{width:min(calc(100% - 32px),var(--max));margin:auto;padding:21px 0 27px;display:flex;justify-content:space-between;align-items:flex-end;gap:20px;color:#7f8b92;font:12px Arial,sans-serif}
+.footer-inner strong{color:#d9dfe2;font-family:Georgia,serif;font-size:15px}
+.site-counter{text-align:right;font:800 9px Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#748089}
+.site-counter img{display:block;margin:5px 0 0 auto;border:1px solid #303944}
+@media(max-width:920px){
+ .shell{grid-template-columns:1fr} .sidebar{position:static} .toc{max-height:none}
+ .company-snapshot{grid-template-columns:1fr 1fr}
+ .snapshot-cell:nth-child(2){border-right:0}
+ .snapshot-cell{border-bottom:1px solid var(--line)}
+ .snapshot-cell:nth-child(3),.snapshot-cell:nth-child(4){border-bottom:0}
+}
+@media(max-width:600px){
+ .mast-inner{align-items:flex-start;flex-direction:column} .motto{text-align:left}
+ .company-snapshot{grid-template-columns:1fr} .snapshot-cell{border-right:0;border-bottom:1px solid var(--line)!important}
+ .snapshot-cell:last-child{border-bottom:0!important}
+ article{padding:20px 16px 28px} article p{font-size:17px} article h2{font-size:27px}
+ .footer-inner{align-items:flex-start;flex-direction:column} .site-counter{text-align:left} .site-counter img{margin-left:0}
+}
+
+.elcon-visuals{
+  margin:28px 0 34px;
+}
+.elcon-visuals h2{
+  margin-top:0;
+}
+.flyer-pair{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+  align-items:start;
+}
+.archive-figure{
+  margin:0;
+  padding:10px;
+  border:1px solid #b8ad98;
+  background:#f8f3e8;
+}
+.archive-figure img{
+  width:100%;
+  height:auto;
+  display:block;
+  border:1px solid #c8beab;
+  background:#e9dfce;
+}
+.archive-figure figcaption{
+  padding:9px 4px 2px;
+  color:#5e6668;
+  font:12px/1.5 Arial,Helvetica,sans-serif;
+}
+.rights-hold{
+  margin:24px 0;
+  padding:15px 17px;
+  border:1px dashed #b69d72;
+  background:#f7efe1;
+  color:#5b554c;
+  font:13px/1.55 Arial,Helvetica,sans-serif;
+}
+.rights-hold strong{
+  color:#65471e;
+}
+@media(max-width:700px){
+  .flyer-pair{grid-template-columns:1fr}
+}
+
+
+/* ELTON/ELCON PUBLICATION VISUALS */
+.visual-section{
+  margin:20px 0 32px;
+}
+.visual-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+  margin:18px 0 24px;
+  align-items:start;
+}
+.visual-grid.brochure{
+  grid-template-columns:1fr 1fr;
+}
+.archive-figure{
+  margin:0;
+  padding:10px;
+  border:1px solid #b8ad98;
+  background:#f8f3e8;
+}
+.archive-figure img{
+  width:100%;
+  height:auto;
+  display:block;
+  border:1px solid #c8beab;
+  background:#e9dfce;
+}
+.archive-figure figcaption{
+  padding:9px 4px 2px;
+  color:#5e6668;
+  font:12px/1.5 Arial,Helvetica,sans-serif;
+}
+.visual-note{
+  margin:18px 0;
+  padding:14px 16px;
+  border-left:4px solid #b57f31;
+  background:#f7efe1;
+  color:#5b554c;
+  font:13px/1.55 Arial,Helvetica,sans-serif;
+}
+@media(max-width:760px){
+  .visual-grid,.visual-grid.brochure{grid-template-columns:1fr}
+}
+
+
+/* CONTEXTUAL ARCHIVAL FIGURES */
+.inline-archive-figure{
+  margin:22px auto 27px;
+  max-width:780px;
+  padding:10px;
+  border:1px solid #b8ad98;
+  background:#f8f3e8;
+  box-shadow:0 8px 18px rgba(64,52,34,.08);
+}
+.inline-archive-figure.narrow{max-width:560px}
+.inline-archive-figure img{
+  width:100%;
+  height:auto;
+  display:block;
+  border:1px solid #c8beab;
+  background:#e9dfce;
+}
+.inline-archive-figure figcaption{
+  padding:9px 4px 2px;
+  color:#5e6668;
+  font:12px/1.55 Arial,Helvetica,sans-serif;
+}
+.inline-archive-figure figcaption strong{color:#334047}
+.derivative-note{
+  display:inline-block;
+  margin-left:5px;
+  padding:2px 5px;
+  border:1px solid #b89a66;
+  color:#76531e;
+  font:700 8px Arial,Helvetica,sans-serif;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.context-note{
+  margin:18px 0 22px;
+  padding:13px 15px;
+  border-left:4px solid #b57f31;
+  background:#f7efe1;
+  color:#5b554c;
+  font:13px/1.55 Arial,Helvetica,sans-serif;
+}
+
+</style>
+<style>
+/* Reader-facing source and table containment */
+article a, .source-list a, .footnotes a { overflow-wrap:anywhere; }
+.table-scroll {max-width:100%;overflow-x:auto;}
+.table-scroll:focus-visible {outline:2px solid #d7b56d;outline-offset:3px;}
+</style>
+<style id="ao-company-profile-consistency">
+/* Exact shared company-profile presentation: Elcon is the house pattern. */
+.company-identity.company-profile-standard{
+  margin:0 0 28px!important;
+  padding:0!important;
+  border:1px solid #b8ad98!important;
+  border-radius:0!important;
+  background:linear-gradient(135deg,rgba(194,138,50,.08),transparent 48%),#f3eddf!important;
+  color:#20272c!important;
+  box-shadow:none!important;
+  overflow:hidden!important;
+  font-family:Georgia,"Times New Roman",serif!important;
+  font-size:16px!important;
+  line-height:normal!important;
+}
+.company-profile-standard .company-mark{
+  display:block!important;
+  position:relative!important;
+  padding:24px 26px 20px!important;
+  border:0!important;
+  border-bottom:1px solid #c8beab!important;
+  border-radius:0!important;
+  background:transparent!important;
+  color:#232b30!important;
+  font:400 16px/normal Georgia,"Times New Roman",serif!important;
+}
+.company-profile-standard .company-mark:after{
+  content:"COMPANY PROFILE"!important;
+  position:absolute!important;
+  right:22px!important;
+  top:18px!important;
+  display:block!important;
+  margin:0!important;
+  color:#8c8272!important;
+  font:700 9px/normal Arial,Helvetica,sans-serif!important;
+  letter-spacing:.16em!important;
+  text-transform:uppercase!important;
+}
+.company-profile-standard .legal{
+  display:block!important;
+  margin:0 0 7px!important;
+  padding:0!important;
+  color:#746b5f!important;
+  font:700 10px/11px Arial,Helvetica,sans-serif!important;
+  letter-spacing:.13em!important;
+  text-transform:uppercase!important;
+}
+.company-profile-standard .wordmark{
+  display:block!important;
+  margin:0!important;
+  padding:0!important;
+  color:#122331!important;
+  font:400 clamp(34px,5vw,58px)/.95 Georgia,"Times New Roman",serif!important;
+  letter-spacing:0!important;
+  text-transform:none!important;
+}
+.company-profile-standard .wordmark span{
+  display:block!important;
+  margin:7px 0 0!important;
+  padding:0!important;
+  color:#8a6429!important;
+  font:700 13px/normal Arial,Helvetica,sans-serif!important;
+  letter-spacing:.16em!important;
+  text-transform:uppercase!important;
+}
+.company-profile-standard .company-snapshot{
+  display:grid!important;
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  color:#232b30!important;
+  font:400 16px/normal Georgia,"Times New Roman",serif!important;
+}
+.company-profile-standard .snapshot-cell{
+  display:block!important;
+  min-width:0!important;
+  margin:0!important;
+  padding:17px 18px!important;
+  border:0!important;
+  border-right:1px solid #c8beab!important;
+  border-radius:0!important;
+  background:transparent!important;
+  color:#232b30!important;
+  font:400 16px/normal Georgia,"Times New Roman",serif!important;
+}
+.company-profile-standard .snapshot-cell:last-child{border-right:0!important}
+.company-profile-standard .snapshot-label{
+  display:block!important;
+  margin:0 0 5px!important;
+  padding:0!important;
+  color:#786f63!important;
+  font:700 9px/10px Arial,Helvetica,sans-serif!important;
+  letter-spacing:.12em!important;
+  text-transform:uppercase!important;
+}
+.company-profile-standard .snapshot-value{
+  display:block!important;
+  margin:0!important;
+  padding:0!important;
+  color:#1c2d37!important;
+  font:400 19px/22.8px Georgia,"Times New Roman",serif!important;
+}
+.company-profile-standard .snapshot-note{
+  display:block!important;
+  margin:5px 0 0!important;
+  padding:0!important;
+  color:#6e726f!important;
+  font:400 11px/14.85px Arial,Helvetica,sans-serif!important;
+}
+.hero .meta{
+  display:flex!important;
+  flex-direction:row!important;
+  flex-wrap:wrap!important;
+  align-items:center!important;
+  gap:10px!important;
+  margin:15px 0 0!important;
+  padding:0!important;
+}
+.hero .meta .badge,
+.hero .meta .updated{
+  display:inline-block!important;
+  position:static!important;
+  margin:0!important;
+  inset:auto!important;
+}
+.hero .meta .badge{
+  padding:6px 9px!important;
+  border:1px solid #78a6b8!important;
+  border-radius:999px!important;
+  background:transparent!important;
+  color:#9fc7d6!important;
+  font:700 11px/normal Arial,Helvetica,sans-serif!important;
+  letter-spacing:0!important;
+  text-transform:uppercase!important;
+}
+.hero .meta .updated{
+  padding:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  color:#9aa6ad!important;
+  font:700 11px/normal Arial,Helvetica,sans-serif!important;
+  letter-spacing:0!important;
+  text-transform:none!important;
+}
+@media(max-width:920px){
+  .company-profile-standard .company-snapshot{grid-template-columns:1fr 1fr!important}
+  .company-profile-standard .snapshot-cell{border-right:1px solid #c8beab!important;border-bottom:1px solid #c8beab!important}
+  .company-profile-standard .snapshot-cell:nth-child(2){border-right:0!important}
+  .company-profile-standard .snapshot-cell:nth-child(3),
+  .company-profile-standard .snapshot-cell:nth-child(4){border-bottom:0!important}
+  .company-profile-standard .snapshot-cell:last-child{border-right:0!important}
+}
+@media(max-width:600px){
+  .company-profile-standard .company-mark{
+    display:flex!important;
+    flex-direction:column!important;
+    padding:20px 18px 17px!important;
+  }
+  .company-profile-standard .company-mark:after{
+    position:static!important;
+    order:-1!important;
+    display:block!important;
+    margin:0 0 9px!important;
+  }
+  .company-profile-standard .wordmark{font-size:34px!important;overflow-wrap:anywhere!important}
+  .company-profile-standard .company-snapshot{grid-template-columns:1fr!important}
+  .company-profile-standard .snapshot-cell{
+    border-right:0!important;
+    border-bottom:1px solid #c8beab!important;
+  }
+  .company-profile-standard .snapshot-cell:nth-child(3){border-bottom:1px solid #c8beab!important}
+  .company-profile-standard .snapshot-cell:last-child{border-bottom:0!important}
+}
+</style><style>article{min-width:0}article p{line-height:1.7}article h2{margin-top:2.3rem}.archive-figure{margin:1.5rem 0;padding:1rem;background:#111b25;border:1px solid #485461}.archive-figure button{display:block;width:100%;border:0;background:transparent;cursor:zoom-in}.archive-figure img{display:block;width:100%;height:auto;max-height:640px;object-fit:contain}.archive-figure figcaption{font:14px/1.5 Arial,sans-serif;color:#c8d0d6;padding-top:.7rem}.computran-snapshot{padding:1.2rem;border:1px solid #59728a;border-radius:12px;background:#152b40;color:#f1f5f9}.computran-snapshot h3{color:#f8fafc;font-size:26px;line-height:1.2;margin:0 0 1rem}.computran-snapshot p,.computran-snapshot .snapshot-row{color:#f1f5f9;font:17px/1.6 Arial,Helvetica,sans-serif}.computran-snapshot strong{color:#f0c77b}.computran-snapshot .snapshot-row{padding:.8rem 0;border-top:1px solid #456077}.computran-snapshot .snapshot-row:first-of-type{border-top:0}.computran-snapshot .snapshot-row>strong:first-child{display:block;margin-bottom:.25rem}.archive-figure figcaption,.archive-figure figcaption strong{color:#dce5ec}.archive-figure figcaption a{color:#f0c77b}.toc a{line-height:1.4}dialog{background:#0e1720;color:#eee;max-width:96vw;max-height:96vh}dialog img{max-width:90vw;max-height:84vh;object-fit:contain}.rights{font:12px/1.6 Arial,sans-serif;max-width:1000px;margin:1rem auto;padding:1rem}h1:first-child{display:none}@media(max-width:700px){.shell{display:block;padding:0 16px}.sidebar{position:static}.archive-figure{padding:.5rem}.hero{padding:24px 16px}}</style></head><body><header class="mast"><div class="mast-inner"><div class="brand"><a href="index.html#companies" target="_parent">Arcade Side B</a></div><div class="motto">Preserve what others overlooked. Follow the evidence. Keep the record open.</div></div></header><div class="crumb"><a href="index.html#companies" target="_parent">Arcade Side B › Companies</a> › Ramtek Corporation</div><section class="hero"><div class="eyebrow">Company history · California</div><h1 style="display:block">Ramtek Corporation</h1><p class="deck">The early display-equipment company that turned television engineering into a thirteen-game arcade program.</p><div class="meta"><span class="badge living">Open to new evidence</span> · Last updated 10/05/2026</div></section><div class="shell"><aside class="sidebar"><nav class="toc" aria-label="Article contents"><div class="toc-title">On this page</div><a href="#company-snapshot">Company snapshot</a><a href="#the-company-before-the-arcade">The company before the arcade</a><a href="#a-new-use-for-the-television-screen">A new use for the television screen</a><a href="#the-move-beyond-paddle-play">The move beyond paddle play</a><a href="#a-broader-arcade-vocabulary">A broader arcade vocabulary</a><a href="#the-arcade-program-and-the-rest-of-ramtek">The arcade program and the rest of Ramtek</a><a href="#sources">Sources</a></nav></aside><article><section id="company-snapshot" aria-label="Ramtek Corporation company profile" class="company-identity company-profile-standard"><div class="company-mark"><div class="legal">RAMTEK CORPORATION</div><div class="wordmark">Ramtek Corporation<span>California, United States</span></div></div><div class="company-snapshot"><div class="snapshot-cell"><span class="snapshot-label">Started</span><span class="snapshot-value">September 1971</span><span class="snapshot-note">Exact day remains unsettled between incorporation and founder-history accounts.</span></div><div class="snapshot-cell"><span class="snapshot-label">Arcade output</span><span class="snapshot-value">13 released video games</span><span class="snapshot-note">Ramtek-branded arcade video games only; aliases and related projects excluded.</span></div><div class="snapshot-cell"><span class="snapshot-label">Video-game exit</span><span class="snapshot-value">1979</span><span class="snapshot-note">Ramtek left the video-game field while related amusement and service activity continued.</span></div><div class="snapshot-cell"><span class="snapshot-label">Corporate end</span><span class="snapshot-value">Reported dissolved 1996</span><span class="snapshot-note">The underlying filing remains a future document-recovery task.</span></div></div></section><section class="visual-section" aria-label="Selected Ramtek archival visuals"><h2>Selected archival visuals</h2><p class="visual-note">The handoff preserves period flyers, alternate scans, catalog images and historical photographs. Captions identify source and qualification; inclusion here does not establish unrestricted republication rights.</p><div class="visual-grid"><figure class="archive-figure"><button type="button" class="enlarge" aria-label="Enlarge archival image: Hit Me cocktail flyer scan, 1976 listing. Period sales material; source and reuse status remain qualified."><img loading="lazy" src="assets/ramtek/hit-me-02443-01.jpg" alt="Hit Me cocktail flyer scan, 1976 listing. Period sales material; source and reuse status remain qualified."></button><figcaption>Hit Me cocktail flyer scan, 1976 listing. Period sales material; source and reuse status remain qualified. Click to enlarge.</figcaption></figure><figure class="archive-figure"><button type="button" class="enlarge" aria-label="Enlarge archival image: Soccer regional flyer scan, archive record 00954. This is a regional variant, not the U.S. flyer."><img loading="lazy" src="assets/ramtek/soccer-00954-01.jpg" alt="Soccer regional flyer scan, archive record 00954. This is a regional variant, not the U.S. flyer."></button><figcaption>Soccer regional flyer scan, archive record 00954. This is a regional variant, not the U.S. flyer. Click to enlarge.</figcaption></figure><figure class="archive-figure"><button type="button" class="enlarge" aria-label="Enlarge archival image: M-79 Ambush flyer scan, archive record 02440. Alternate scan preserved separately from the related page."><img loading="lazy" src="assets/ramtek/m-79-ambush-02440-01.jpg" alt="M-79 Ambush flyer scan, archive record 02440. Alternate scan preserved separately from the related page."></button><figcaption>M-79 Ambush flyer scan, archive record 02440. Alternate scan preserved separately from the related page. Click to enlarge.</figcaption></figure><figure class="archive-figure"><button type="button" class="enlarge" aria-label="Enlarge archival image: Baseball flyer scan. The visible title is Baseball; it is not captioned as Deluxe Baseball."><img loading="lazy" src="assets/ramtek/deluxe-baseball-02438-01.jpg" alt="Baseball flyer scan. The visible title is Baseball; it is not captioned as Deluxe Baseball."></button><figcaption>Baseball flyer scan. The visible title is Baseball; it is not captioned as Deluxe Baseball. Click to enlarge.</figcaption></figure><figure class="archive-figure"><button type="button" class="enlarge" aria-label="Enlarge archival image: Additional Ramtek catalog image preserved in the final handoff; attribution remains subject to the asset register."><img loading="lazy" src="assets/ramtek/b5f34e77-c43e-4513-baf5-909b9d208385.jpg" alt="Additional Ramtek catalog image preserved in the final handoff; attribution remains subject to the asset register."></button><figcaption>Additional Ramtek catalog image preserved in the final handoff; attribution remains subject to the asset register. Click to enlarge.</figcaption></figure></div></section>
+<h2 id="company-snapshot">Company snapshot</h2>
+<p><strong>California, United States | Started September 1971 | 13 released Ramtek-branded arcade video games | Exited video games in 1979 | Reported dissolved in 1996</strong></p>
+<p>Ramtek Corporation was one of the first established electronics companies to turn the new television game into a commercial product. It began as a computer-display manufacturer, built coin-operated video games during the first half of the 1970s, and then left the field while continuing its work in graphics, imaging, and display systems. Its arcade story is brief, but the company’s importance is larger than its catalog: Ramtek helped translate display-terminal engineering into equipment that operators could install, service, and earn money with.</p>
+<p>The company’s arcade record is best understood as a defined product program within a wider business. It released thirteen Ramtek-branded video games from 1973 through 1977. Its catalog moved from straightforward two-player sports into ball-and-paddle variations, a more ambitious baseball simulation, a quiz game, naval combat, a blocking maze, a gun game, and finally a microprocessor-based space battle. Ramtek also developed at least one game released under another manufacturer’s name, tested an unreleased game, and built electro-mechanical attractions. Those related projects matter, but they should not be collapsed into the thirteen-game figure.</p>
+<p>The distinction is useful because early arcade credits are often blurred. A company might design a game, assemble its electronics, build the cabinet, license a program, or distribute another firm’s product. Ramtek did more than one of these things at different points. A careful account identifies the role title by title rather than treating every nearby association as proof of authorship.</p>
+<h2 id="the-company-before-the-arcade">The company before the arcade</h2>
+<p>Ramtek was established in September 1971 in California. The exact founding day remains unsettled. A corporate-record lead gives September 28, 1971 as the incorporation date, while a later company history gives September 4 as the founders’ start date. These dates describe different possible events and should not be forced into a false agreement. “Started September 1971” is the most defensible short form until the underlying corporate filing and founding account can be examined together.</p>
+<p>Charles McEwan and John Metzler are consistently identified with Ramtek’s formation. Jack Teeters, an attorney, is also named among the founders. The company emerged from the Bay Area’s concentration of electronics and computing firms. Its original commercial problem was not how to entertain a player, but how to display information. Ramtek made display terminals and related equipment for customers who needed computer-generated images on a screen. This work demanded knowledge of video signals, raster displays, timing, and the electronics that could turn changing data into a visible picture.</p>
+<p>The company’s early locations reflect its movement through the region’s growing technology corridor. The first address associated with its formation was in Palo Alto. Its amusement-game operation later used a Sunnyvale address. Ramtek’s own <em>Clean Sweep</em> and <em>Star Cruiser</em> sales materials give <strong>292 Commercial Street, Sunnyvale, California 94086</strong>. That period address is stronger evidence for the operating game business than directory listings that may refer to a later corporate office or use a variant street description.</p>
+<p>Ramtek was not founded as an arcade-game company. It entered coin-op when its existing technical experience could be applied to a fast-growing market. The move was opportunistic, but it was not a hobby project: Ramtek manufactured and marketed commercial machines, advertised them to operators, and supported a line that extended across several years. Its broader business remained electronics. That wider identity would shape the company’s later decision to leave games.</p>
+<p>The trade press later looked back on Ramtek’s entry as a move made on the heels of <em>Pong</em>. A 1979 <em>Play Meter</em> report says the company entered the video field in 1972, while its first product, <em>Volly</em>, is generally dated to March 1973. Those statements can fit together: companies begin engineering, testing, and organizing a product before the first commercial release. The difference also warns against treating “company entered the field” and “first game shipped” as interchangeable dates.</p>
+<h2 id="a-new-use-for-the-television-screen">A new use for the television screen</h2>
+<p>The arrival of <em>Pong</em> demonstrated that a simple electronic image could sustain repeat play and bring money into a location. Ramtek personnel saw Atari’s game at Andy Capp’s Tavern in Sunnyvale, according to later historical accounts. That story is often retold as a moment of revelation. It is plausible and fits the timing, but it should be treated as a retrospective account rather than a contemporaneous record of a formal corporate decision.</p>
+<p>John Metzler is credited with leading development of Ramtek’s first game, <em>Volly</em>. The title appeared in March 1973, only a few months after the first wave of commercial Pong-style games began reshaping the coin-op business. Ramtek’s entry was therefore both a response to the market and a demonstration that a display-equipment firm could move quickly from professional screens to amusement machines.</p>
+<p>The first Ramtek games used familiar sports as an interface between the new technology and players. Volleyball, hockey, and soccer were recognizable activities. On-screen objects and simple controls made each game understandable without a long explanation. This was a commercial strength in a location where customers might approach an unfamiliar machine for only a short time. The game had to make its purpose visible immediately.</p>
+<p>Ramtek’s early flyers sold the cabinets to operators, not only the play experience to customers. Their language emphasized a machine as a route asset: a product with controls, cabinet construction, service considerations, and an expected earning life. This operator-facing perspective is an important part of the company’s history. Ramtek had to make the game legible as entertainment and as business equipment.</p>
+<p>The surviving <em>Hockey</em> flyer makes that pitch concrete. It describes a single knob controlling both the goalie on defense and the forwards on offense, giving one player a dexterity challenge or two players a direct contest. The flyer also advertises realistic hockey sound, a vertical cabinet intended to use less floor space, solid-state logic, a commercial television monitor, and a one-year logic-board warranty. These are company claims, but they tell us how Ramtek packaged the game: easy-to-read controls, a recognizable sport, and an operator argument about reliability and square-foot economics.</p>
+<p>The <em>Soccer</em> flyer describes another configuration. It says the game could support two or four players, giving a location more ways to involve a group. Ramtek promoted its vertical cabinet, low-maintenance solid-state design, commercial-quality monitor, and service response. This is a useful contrast with <em>Hockey</em>: the games belonged to a common line, but their player counts and control arrangements created different social experiences. The flyers show that Ramtek was already thinking about how multiplayer involvement could encourage replays.</p>
+<h2 id="from-sports-to-variations-on-a-theme">From sports to variations on a theme</h2>
+<p>Ramtek’s early catalog followed the market’s first proven format, then began to test how much variety could be created from it. <em>Volly</em>, <em>Hockey</em>, and <em>Soccer</em> established the line. <em>Wipe Out</em> and <em>Clean Sweep</em> explored alternatives to a direct sports match. <em>Baseball</em> attempted a more elaborate representation of a team sport. The later games moved further away from a paddle-and-ball template.</p>
+<p>The sequence shows a small manufacturer learning in public. Ramtek could reuse a technological foundation while varying the rules, theme, cabinet, and control arrangement. That practice was not unique to Ramtek; it was a defining feature of the early video-game business. The new medium had few settled conventions. Makers had to discover which differences mattered to players and operators, often by placing machines into the market and observing the response.</p>
+<p><em>Clean Sweep</em> is one of the clearest examples of Ramtek’s design imagination. Instead of trying to reproduce a familiar sport, it gave the player a field of dots to remove. The ball-and-paddle interaction remained understandable, but the target changed the meaning of each rally. The player was not simply returning a ball; the ball’s path cleared a visual pattern. Ramtek’s trade advertising described it through a comparison with pinball, borrowing a familiar phrase to explain the game’s action to operators.</p>
+<p>The game also sits within the design conversation that led to Atari’s <em>Breakout</em>. Historical writing has connected <em>Clean Sweep</em> to the ideas discussed by Atari designers while they considered a single-player brick-clearing game. This should not be simplified into the claim that <em>Clean Sweep</em> alone “invented” <em>Breakout</em>. The evidence supports influence and awareness within a developing design conversation; it does not erase the subsequent work that shaped Atari’s game. The value of the connection is that it shows how rapidly ideas moved between companies in the early arcade business.</p>
+<p>Ramtek’s unreleased <em>Knockout</em> is part of that history but not part of its released catalog. Trade reporting describes it as a test-marketed game with more pinball-like elements. A recurring suggestion says <em>Knockout</em> became Midway’s <em>TV Flipper</em>, a later title credited to Ramtek as developer. The connection is tempting, but the available evidence does not establish that they were the same project. This master keeps the two records separate: <em>Knockout</em> is an unreleased Ramtek test; <em>TV Flipper</em> is a Midway release with a Ramtek development credit.</p>
+<p>The commercial context is visible in an unusual source: a December 1974 <em>Marketplace</em> inventory price list. It places Ramtek <em>Hockey</em> and <em>Clean Sweep</em> among the machines operators and dealers were buying and reselling, alongside products from Atari, Midway, Allied Leisure, Chicago Coin, and other firms. The same page lists two- and four-player <em>Hockey</em> models and a one- or two-player <em>Clean Sweep</em>. This does not establish the original factory price or sales volume. It does show that Ramtek machines circulated in a working second-hand market and that player capacity was part of how the trade described inventory.</p>
+<p>Later price pages provide another, limited kind of evidence. In 1977, <em>Play Meter</em> inventory lists still offered Ramtek <em>Soccer</em> or <em>Hockey</em>, <em>Clean Sweep</em>, <em>Baseball</em>, <em>Hit Me</em>, and <em>Trivia</em>. Such listings do not tell us how many units were on location, how well they earned, or how many were being actively serviced. They do show that several Ramtek titles remained recognizable products years after their initial introduction. Used-equipment visibility is one reason a short catalog can outlive its maker’s active production program.</p>
+<h2 id="the-move-beyond-paddle-play">The move beyond paddle play</h2>
+<p>By 1974, Ramtek’s catalog had begun to widen. <em>Baseball</em> required a more ambitious visual and mechanical vocabulary than a pair of paddles. It tried to render a team sport as an arcade contest, with multiple on-screen elements standing for players and play actions. Contemporary sources and later accounts describe it as an early effort at a fuller sports simulation, although exact details about every version require care because the title appeared in more than one cabinet and commercial arrangement.</p>
+<p>Ramtek then offered <em>Deluxe Baseball</em>, a separate marketed product in the catalog. It should not be erased as a mere cabinet option: the company advertised it as a named game and the period record treats it separately. At the same time, the connection to the earlier <em>Baseball</em> is obvious, and the two should be grouped as a product family when discussing design continuity. Counting them as two distinct released Ramtek-branded titles is consistent with the company’s own product naming.</p>
+<p>The following year’s <em>Trivia</em> marked another shift. The player’s task was no longer to return a ball or represent a familiar sport. The attraction was answering questions. A quiz format brought a different kind of challenge to the cabinet and made the video screen a prompt-and-response surface. It also broadened the potential audience: players could compete through knowledge and recall rather than reflexes alone.</p>
+<p><em>Trivia</em> illustrates a recurring problem in writing early game histories. A title can be easy to name and hard to reconstruct. The company flyer and trade notices establish the product’s existence and marketed identity. They do not, by themselves, settle every question about its software architecture, question-bank organization, number of versions, or distribution. A responsible account should describe the game at the level the evidence supports and leave deeper technical detail open until manuals, boards, or software can be examined.</p>
+<h2 id="a-broader-arcade-vocabulary">A broader arcade vocabulary</h2>
+<p>Ramtek’s 1976 line included <em>Sea Battle</em> and <em>Hit Me</em>. The former carried the company into naval combat; the latter used blackjack as its central idea. Together they demonstrate that Ramtek was not limited to sports or paddle games. The screen could depict a battlefield, or it could structure a gambling-style contest around recognizable rules.</p>
+<p>These games also show how manufacturers used familiar subjects as a design shortcut. Players knew what a sea battle suggested and understood blackjack. The machine could spend its limited visual resources on the particular action that mattered. That approach was especially valuable in an era when simple graphics were a constraint and an asset at once: the player could quickly understand the scene, while the designer could focus on timing and decisions rather than elaborate imagery.</p>
+<p>A contemporary May 1976 trade report describes <em>Sea Battle</em> in much more detail than a short title listing. Ramtek introduced it at the distributor meeting as a game for two, three, or four players. The 23-inch screen showed colored waves and destroyers around the monitor’s border, with ships, caves, and islands in the play area. Four control handles maneuvered ships that could hide, attack other ships, and blast through islands, removing them piece by piece. The advertised sound effects included exploding shells, revving engines, and colliding ships; volume, coinage, and play length were operator-adjustable. These details distinguish the game from a generic “naval combat” label and show that multiplayer spectacle was central to the sales pitch.</p>
+<p>The same account mentions a six-month board guarantee and a promise to ship replacement boards quickly when a distributor reported a failure. That is company-promotional reporting, but it gives direct evidence about how Ramtek tried to reduce operator anxiety around a relatively sophisticated multiplayer machine. The story was not only about what players saw; it was also about the maintenance promise behind an installation.</p>
+<p>The report’s description of <em>Hit Me</em> is equally useful. Ramtek called it a video version of Twenty-One, designed for one to four players. For a quarter, it dealt five hands and gave the player forty chips or points to begin. The operator could adjust the number of hands and points. Players selected an ante and used small buttons to choose whether to hit or stand. If the player failed to choose, the game continued dealing until the player busted. Ramtek argued that this rule made the title a game of skill. Its preliminary Greenville, North Carolina test reportedly collected $40 to $80 per night in March 1976. That figure was a company-reported test result, not an independently audited average, and should be presented with that limitation every time it is used.</p>
+<p>The 1976 article also records a regulatory concern. Ramtek’s marketing representative told distributors that the company’s attorneys had reviewed the game, while noting that Chicago and New York required licenses. This is evidence of how Ramtek presented the compliance question to its sales network, not a complete legal survey of every state or local jurisdiction. The game’s inclusion illustrates why skill-versus-chance questions were not abstract: a cabinet’s design and its location could affect whether an operator needed permission.</p>
+<p>The change in subject matter did not mean that every Ramtek game used the same technology. The product record spans discrete logic, evolving solid-state electronics, and eventually microprocessor-based equipment. The visible progression from a basic sports screen to a feature-rich late cabinet reflects broader change across the industry. Ramtek’s competence in displays gave it a strong starting position, but the market increasingly rewarded software, specialized controls, sound, and spectacle.</p>
+<p><em>Barricade</em>, introduced in 1977, framed play around a blocking or maze-like contest. Its name became part of a trademark dispute with Gremlin Industries, whose <em>Blockade</em> had established a similar name in the market. In April 1977, <em>Play Meter</em> reported that Gremlin had sued Ramtek, that a preliminary injunction had been denied, and that Ramtek had agreed to pause production of games designated <em>Barricade</em> while the case proceeded. Ramtek said any blocking game it manufactured in the interim would be called <em>Brickyard</em>. Thus <em>Brickyard</em> is best recorded as a temporary designation for the same type of blocking game during the dispute, not as an independent title. The report does not establish the full court outcome, so that remains a separate records task.</p>
+<p>Two further 1977 titles, <em>M-79 Ambush</em> and <em>Star Cruiser</em>, show a company operating in a different arcade landscape from the one it entered in 1973. <em>M-79 Ambush</em> brought a gun-game premise. <em>Star Cruiser</em> advertised a 23-inch monitor, microprocessor boards, vehicle and explosion sounds, dual hand controls, and foot pedals. Its large screen and control arrangement made the cabinet an event in itself. The product was still designed for coin-op operation, but the player’s physical relationship to it was far removed from <em>Volly</em>.</p>
+<p>The <em>Star Cruiser</em> flyer offers unusually useful company evidence. It preserves a detailed specification list and repeats the 292 Commercial Street address. The language presents Ramtek’s technical choices as reasons for operators to buy the game: visible scale, sound, controls, and serviceable construction. Those points help bridge the game record and the corporate story. Ramtek’s final video release was still being sold through the identity of an engineering company.</p>
+<h2 id="the-arcade-program-and-the-rest-of-ramtek">The arcade program and the rest of Ramtek</h2>
+<p>Video games were only one part of Ramtek’s amusement activity. The company also developed electro-mechanical attractions. These should be recorded in a separate catalog because they were not video games, even where the products shared staff, facilities, distribution, or a corporate division.</p>
+<p>The known electro-mechanical titles include <em>Horoscope</em>, a fortune-themed game; <em>Boom Ball</em>; <em>Dark Invader</em>; and <em>GT Roadster</em>. <em>Lie Detector</em> and <em>Test Driver</em> appear as unreleased projects in secondary compilations and should remain leads unless stronger period documentation is recovered. Their presence demonstrates that Ramtek’s amusement division was broader than its arcade-video catalog.</p>
+<p>The video total in the snapshot is intentionally narrow: thirteen released Ramtek-branded arcade video games. It does not include the electro-mechanical games, the unreleased <em>Knockout</em>, or <em>TV Flipper</em>, which was released by Midway despite a Ramtek development credit. Nor does it count <em>Brickyard</em> separately from <em>Barricade</em>. This definition makes the number repeatable and prevents the snapshot from drifting between pages.</p>
+<p>The amusement division had its own identity and organizational story. A May 1976 <em>Play Meter</em> article describes Ramtek Games holding its first annual distributor meeting in San Mateo. More than fifty distributors attended. The report identifies Chuck Arnold as vice-president of marketing/games and Charles McEwan as president of Ramtek Games. McEwan told distributors that the games and graphics businesses would split and operate as two separate companies. The game business would remain in Sunnyvale while the graphics business moved.</p>
+<p>The same report says the games operation expected to become a four-game-per-year manufacturer. That remark is a statement of intent, not a record that four games were actually released each year. It offers a valuable middle point between the 1973 start and the 1979 withdrawal: by 1976, Ramtek was telling distributors that it wanted a more focused games company with a deliberate release pace. The plan highlights the scale of investment and organization required to stay competitive. A successful early run had not removed the need to build a sustained pipeline.</p>
+<p>The contemporary account also captures Ramtek’s view of the games business. McEwan emphasized stability, profitability, and not introducing games the company did not expect to make money on. Those are promotional remarks delivered at a distributor meeting, so they should not be treated as audited results. They are still evidence of how Ramtek wanted distributors to understand its decisions. The firm represented itself as a measured maker that valued dependable products, not as a company chasing novelty at any cost.</p>
+<p>At the same meeting, company president Charles McEwan said Ramtek had delivered more than 20,000 games during the preceding three years. The article does not break the total down by title or distinguish video cabinets from all other game products. It should therefore be preserved as a company-reported output figure, not presented as a count of Ramtek arcade video machines. Its scale still matters. By 1976, the company was telling distributors that it had moved a substantial volume of games and had enough production experience to position itself as a stable supplier.</p>
+<p>The separate records also prevent a misleading story about the company’s exit. Ramtek stopped producing electronic games in 1979, but not every amusement activity ended on the same day. The amusement operation and remaining assets continued through a later transition. “Video-game production ended in 1979” is therefore more accurate than saying that all amusement activity ceased then.</p>
+<h2 id="fire-recovery-and-a-changing-company">Fire, recovery, and a changing company</h2>
+<p>In November 1975, a fire damaged Ramtek’s Sunnyvale manufacturing operation. Contemporary newspaper and trade reports described the incident and the subsequent recovery. The fire matters because Ramtek’s game business depended on physical production as well as engineering. A destroyed or damaged plant could interrupt output, put employees under pressure, and complicate the balance between amusement products and the company’s other electronics work.</p>
+<p>Later accounts describe employees and families helping recover equipment and rebuild. The detail is human and memorable, but it should be narrated carefully unless the contemporary reports are quoted directly. What can be said securely from the current source register is that the fire was reported contemporaneously and that Ramtek later operated from a North Mary Avenue facility. The exact impact on each game’s production schedule remains a research question rather than something to infer from the fire alone.</p>
+<p>The same period brought increasing attention to Ramtek’s professional graphics business. The company’s display technology had commercial uses outside amusement. Its graphics and imaging systems served industrial and medical contexts, including X-ray imaging. These markets could support higher-value systems and long-term customer relationships. Arcade machines, by contrast, were entering a crowded market where new games appeared quickly and operators could shift attention from one product to the next.</p>
+<p>Ramtek went public in 1978. The transition placed new weight on strategic focus and investor expectations. In 1979, trade reporting stated that the company would leave electronic-games production because it was unwilling to commit the resources needed to compete. The October 1 <em>Play Meter</em> article attributed the decision to rising competition and quoted Mel McEwan, general manager of the recreational-products division, saying Ramtek had decided not to make the larger commitment required by the current video-game market. The article framed the public-company transition as a turning point: after Ramtek became public in November 1978, shareholders favored concentrating effort on display systems, including systems used with contemporary X-ray equipment.</p>
+<p>The same report gives a revealing workforce snapshot. The recreational-products division had thirty employees, about one tenth of Ramtek’s total. Five had already transferred to other Ramtek positions, while twenty-five remained with the division. Those workers were expected to continue making <em>Boom Ball</em> “at least in the near future.” Ramtek also designated Electronic Amusement Service of San Francisco to handle parts and service for existing Ramtek games. This evidence requires a precise description of the exit. Ramtek withdrew from video-game production, but the transition did not mean every amusement product instantly stopped or that support for installed games ended on the same date.</p>
+<p>The first three years of game activity, 1972–1975, were described by <em>Play Meter</em> as Ramtek’s most successful. The article called <em>Boom Ball</em> a hit as the company prepared to depart from game manufacturing. This appears paradoxical only if video and amusement are treated as a single undifferentiated line. Ramtek could stop investing in competitive video products while continuing to manufacture a current electro-mechanical attraction and transferring support for earlier video machines. Its product categories and obligations wound down on different schedules.</p>
+<p>This explanation is more precise than saying that Ramtek simply “failed” in games. The company had created a real product line, developed recognizable titles, and operated in a market whose economics and competitive demands were changing. Leadership chose to direct investment toward the products it believed offered a better future. That choice ended Ramtek’s role as a video-game producer, but it did not erase the engineering experience or the amusement assets that passed to others.</p>
+<h2 id="people-and-the-transfer-of-experience">People and the transfer of experience</h2>
+<p>The surviving story of Ramtek’s game program is tied to a small group of engineers, managers, and entrepreneurs. John Metzler is associated with the development of <em>Volly</em>. Charles McEwan appears as a founder and senior figure. Pete Kauffman is linked to the company’s early marketing and to the later formation of Exidy. Howell Ivy appears in accounts of Ramtek’s game development and the subsequent movement of ideas and personnel across early arcade firms.</p>
+<p>These connections matter because the first video-game companies were not isolated factories. People moved between small firms, carried design knowledge with them, and built new companies around the opportunities they saw. Exidy’s origins are connected to people with Ramtek experience, including Kauffman, Metzler, and Ivy. The relationship is a personnel and industry-history connection; it should not be mistaken for a claim that every Exidy product descended directly from a Ramtek machine.</p>
+<p>Ramtek also helps explain why the early industry cannot be understood only through the firms that grew largest. The company had display expertise, manufacturing capability, and the means to reach operators. It contributed to a network of people and technical ideas before concentrating again on its core electronics markets. In that sense, its influence was partly embodied in later companies and partly in the design possibilities it helped normalize.</p>
+<h2 id="the-end-of-the-arcade-chapter">The end of the arcade chapter</h2>
+<p>Ramtek’s departure from video games occurred in 1979, after the company had built a compact but varied catalog. The decision was strategic: the business required continuing investment to keep pace, and Ramtek elected to focus its resources elsewhere. Existing game parts and service did not vanish immediately. The amusement operation and assets later continued through a transfer associated with Mel McEwan’s Meltec.</p>
+<p>This post-1979 transition should not be described as a straightforward continuation of Ramtek under a new name without evidence. Meltec was a later enterprise associated with amusement assets and products, including <em>Boom Ball</em>. The succession of assets and operation is relevant; it does not mean that every later machine or activity was manufactured by Ramtek itself.</p>
+<p>The company’s corporate story continued in graphics and imaging after games ended. Ramtek later experienced financial trouble and corporate changes. A dissolution date of April 15, 1996 is widely repeated, but the original dissolution filing has not been recovered for this project. Until that record is examined, the responsible wording is “reported dissolved in 1996” or the concise range “1971–1996,” with a note that the specific filing remains unverified here.</p>
+<h2 id="why-ramtek-matters">Why Ramtek matters</h2>
+<p>Ramtek’s arcade contribution is not a simple tale of a company that made Pong clones and disappeared. It began from a different technical base than many amusement firms. Its engineers already understood how to produce moving images on a screen. The first games applied that skill to an emerging market; later titles explored new genres and increasingly elaborate cabinets.</p>
+<p>The company also shows how unstable the boundary between “game maker” and “technology company” was in the early 1970s. Ramtek could sell graphics systems, build amusement equipment, and experiment with ideas that later appeared in other companies’ products. It could develop a game for Midway without adding that release to its own cabinet count. It could test a title that never reached general release. It could leave video games while continuing to build other attractions. The history only makes sense when those roles remain distinct.</p>
+<p>Its best-documented games are valuable for different reasons. <em>Volly</em> places Ramtek near the beginning of commercial video amusement. <em>Clean Sweep</em> belongs in the early design story of ball-and-paddle games and the subsequent breakout of single-player variants. <em>Baseball</em> and <em>Deluxe Baseball</em> show the attempt to represent a complex sport. <em>Trivia</em> and <em>Hit Me</em> demonstrate subject matter beyond reflex play. <em>Star Cruiser</em> reveals the technical and marketing ambitions of the later line.</p>
+<p>Ramtek’s short arcade period also helps explain how rapidly the industry changed. The company’s earliest products appeared when even a simple tennis-like screen felt new. Its last video flyers were selling larger monitors, microprocessor boards, sound, and specialized controls. In four years, the question had shifted from whether a television game could attract a player to how a company could keep its products competitive. Ramtek decided that its future lay elsewhere.</p>
+<p>The resulting catalog is small enough to study title by title. That makes accuracy especially important. A prototype should not become a release through repetition. A renamed game should not become two entries. A development credit should not be mistaken for a manufacturer credit. An electro-mechanical attraction should not be added to a video-game total. The more clearly those distinctions are kept, the more useful Ramtek becomes as a case study of the first arcade era.</p>
+<h2 id="reconciled-arcade-video-catalog">Reconciled arcade-video catalog</h2>
+<p>The thirteen titles below are the released Ramtek-branded arcade video games currently supported by the project record. Dates use year-level precision in the summary table because month-level notices are not uniformly available in the underlying packet. The detailed notes indicate where the history is secure and where further source review is needed.</p>
+<h3 id="section">1973</h3>
+<h4 id="volly">1. <em>Volly</em></h4>
+<p><strong>Date:</strong> March 1973<br />
+<strong>Role:</strong> Ramtek-developed and marketed release<br />
+<strong>Confidence:</strong> Strongly supported</p>
+<p><em>Volly</em> was Ramtek’s first known coin-operated video game. Its title evokes volleyball, and the game belongs to the first wave of paddle-and-ball contests that followed <em>Pong</em>. John Metzler is credited with leading its development. A March 1973 release date places it near the beginning of the commercial arcade-video market, when companies were still learning how to turn an electronic demonstration into a durable location-based product.</p>
+<p>The game’s significance is not that it broke completely from the new template. It made the template legible and gave Ramtek a platform from which to build. The sport theme supplied an immediate explanation, while the screen reduced a familiar contest to a compact exchange of motion and reaction. That was a useful design compromise in a period when visual detail and computing resources were limited.</p>
+<p>Some lists use <em>Volly: Power-Play</em> as an additional title or variation. The project does not count that name as a separate released game without evidence of a distinct product. It remains an alternate or version lead for comparison against period advertisements and surviving machines. Canadian distribution through Volly Industries is also recorded in secondary histories; this relationship should be described as a distribution arrangement, not as proof that Volly Industries developed the game.</p>
+<h4 id="hockey">2. <em>Hockey</em></h4>
+<p><strong>Date:</strong> 1973<br />
+<strong>Role:</strong> Ramtek release<br />
+<strong>Confidence:</strong> Verified as a marketed title; exact release month should be cited to the original trade notice</p>
+<p>Ramtek’s <em>Hockey</em> carried the early paddle format into another sport. The choice was commercially intuitive: players understood the objective, and the game could reproduce the fast back-and-forth rhythm associated with hockey without needing a detailed rink or animated skaters. A paired-play contest also worked naturally in bars and other locations where customers could challenge one another.</p>
+<p>The surviving period flyer gives more than a game name. It documents how Ramtek framed the machine for the coin-op market and preserves a visual record of the cabinet-era product identity. It belongs alongside <em>Volly</em> and <em>Soccer</em> as evidence of Ramtek’s first product family, even though the titles should not be treated as identical games. Their shared sports framing reflects a common strategy; the rules and play experience distinguish them.</p>
+<p>The current project source register lists the original flyer as a scan preserved by the International Arcade Museum / Arcade Flyer Archive. The scan is appropriate for editorial use with the required source credit. Additional cabinet and control details should be added only when tied to a specific manual, photograph, or surviving example rather than generalized from the flyer.</p>
+<h4 id="soccer">3. <em>Soccer</em></h4>
+<p><strong>Date:</strong> 1973<br />
+<strong>Role:</strong> Ramtek release<br />
+<strong>Confidence:</strong> Verified as a marketed title; exact release month should be cited to the original trade notice</p>
+<p><em>Soccer</em> completed the first known Ramtek sports trio. Like <em>Hockey</em>, it translated an established game into a format that could be played in short turns on a glowing screen. The theme made the rules approachable, while the pace allowed two players to read the opponent’s moves and respond quickly.</p>
+<p>The title is useful for understanding how the early video-game market expanded. In the beginning, many products differentiated themselves through sport, cabinet appearance, or subtle changes in control and ball behavior rather than through complex software. This was not a lack of ambition so much as an adaptation to the technical and commercial conditions of the moment. Operators needed recognizable attractions that could be explained at a glance; manufacturers needed designs they could produce reliably.</p>
+<p>The archive flyer is part of the project’s preserved visual evidence. It supports the title’s marketed identity and provides a period view of Ramtek’s advertising. Assertions about the game’s exact internal design, sales volume, or ranking should be kept separate from what the flyer itself establishes.</p>
+<h3 id="section-1">1974</h3>
+<h4 id="wipe-out">4. <em>Wipe Out</em></h4>
+<p><strong>Date:</strong> 1974<br />
+<strong>Role:</strong> Ramtek release<br />
+<strong>Confidence:</strong> Strongly supported</p>
+<p>With <em>Wipe Out</em>, Ramtek continued to experiment within the established ball-and-paddle field. The title suggests a more goal-oriented contest than a simple exchange, but the exact distinction should be grounded in the game itself or technical documentation. The surviving period material establishes it as a Ramtek video-game product and provides a visual record of how it was presented to operators.</p>
+<p>The flyer describes a two- or four-player elimination game. A “frustration bumper” sends the ball off in less predictable patterns, while a selectable target from five to seven points gives each goal value. When the ball passes a player’s goal, that player loses a point; play ends when all but one player have been reduced to zero. That rule changes the paddle-game rhythm. Players defend a goal while trying to outlast several opponents, so a rally can threaten more than one player and the outcome can shift quickly.</p>
+<p>Ramtek presented unpredictability as protection against repetition: the bumper made each round feel different. This is an advertising claim about the intended appeal, but the underlying rules are specific enough to distinguish <em>Wipe Out</em> from a generic Pong variant. Its place in the chronology matters: Ramtek was not treating its first three sports games as a finished catalog. It continued to introduce variants and search for a hook that could make an operator’s next purchase feel meaningfully different from the existing machines on the route. This kind of iterative product strategy characterized the wider industry throughout the first arcade boom.</p>
+<p>The game’s place in the chronology matters: Ramtek was not treating its first three sports games as a finished catalog. It continued to introduce variants and search for a hook that could make an operator’s next purchase feel meaningfully different from the existing machines on the route. This kind of iterative product strategy would characterize the wider industry throughout the first arcade boom.</p>
+<p>The preserved flyer is credited to an archive contributor in the asset register. It should be captioned as a period sales flyer courtesy of the International Arcade Museum / Arcade Flyer Archive. The present research packet does not contain enough primary technical evidence to assign a named designer or to make a strong claim about sales performance.</p>
+<h4 id="clean-sweep">5. <em>Clean Sweep</em></h4>
+<p><strong>Date:</strong> 1974<br />
+<strong>Role:</strong> Ramtek-developed and marketed release<br />
+<strong>Confidence:</strong> Strongly supported; period trade advertising and the company’s flyer survive</p>
+<p><em>Clean Sweep</em> reworked the ball-and-paddle idea by giving the player a field of targets to erase. Each successful return changed the playfield, making progress visible and giving the rally a clear purpose. The game used a familiar control relationship but attached it to a single-player objective that could be understood immediately.</p>
+<p>Ramtek’s flyer identifies it as a one- or two-player game. A joystick moved the paddle horizontally, and each dot cleared added a point. The operator could set a game to three or five balls per player and could choose whether a high score earned a free game. The flyer also offered 25- and 50-cent play settings, described all-solid-state electronics and a commercial TV monitor, and promised a one-year logic-board warranty. Ramtek told operators replacement boards could be sent by air within twenty-four hours. These specifics reveal a mature product pitch: the player saw a simple objective, while the operator was offered adjustable earnings, a bonus setting, service commitments, and lower-maintenance electronics.</p>
+<p>Ramtek’s sales language connected the game to pinball, describing its action in terms operators already knew. The comparison was a marketing device, but it also captures the design’s appeal: the ball ricocheted through a field, the player influenced its path, and the screen registered the result. The flyer emphasizes reliability, service considerations, and commercial value, showing that the company pitched the machine as a practical earning device as well as an entertaining game.</p>
+<p>Later design histories associate <em>Clean Sweep</em> with the thinking that led to Atari’s <em>Breakout</em>. Atari’s January 1975 brainstorming notes reportedly include a <em>Clean Sweep</em>-like idea among possible single-player games. This supports an influence connection, not a one-to-one derivation. <em>Breakout</em> was subsequently designed and refined by Atari’s team; Ramtek’s game belongs to the preceding conversation that helped make the concept visible.</p>
+<p>The title is also connected to <em>Knockout</em>, an unreleased Ramtek test, and Midway’s <em>TV Flipper</em>. The exact relationship among those projects is unresolved. Do not say that <em>Knockout</em> became <em>TV Flipper</em> as established fact. Ramtek’s flyer scan is associated with a Ramtek owner submission in the archive metadata and preserves the Sunnyvale business address used in the company snapshot.</p>
+<h4 id="baseball">6. <em>Baseball</em></h4>
+<p><strong>Date:</strong> 1974<br />
+<strong>Role:</strong> Ramtek release<br />
+<strong>Confidence:</strong> Strongly supported</p>
+<p><em>Baseball</em> attempted to represent a more complicated sport than the early paddle games. Instead of reducing the action to a ball exchanged between two sides, the design sought to suggest a team contest through multiple screen elements and player actions. The game therefore belongs to an important line of experimentation: how much of a real sport could be translated into an electronic cabinet before graphics and controls became confusing?</p>
+<p>The title appears in period trade material and later game histories. The company’s product line included both <em>Baseball</em> and <em>Deluxe Baseball</em>, which the current catalog treats as two named releases. The latter should be discussed as a related product rather than as evidence that the first title was only a prototype or cabinet variant. Further work should compare flyers, manuals, and surviving boards to establish exactly which game mechanics and hardware distinguished the two.</p>
+<p>The game’s historical value is partly in its ambition and partly in the problems it exposed. Later commentary characterizes Ramtek’s baseball effort as difficult or unsuccessful, but such judgments need to be tied to specific operator or sales evidence. The safe claim is that Ramtek made an early attempt at a fuller baseball simulation and then marketed a deluxe follow-up. The project should not repeat a colorful “failure” anecdote without confirming its source and meaning.</p>
+<h3 id="section-2">1975</h3>
+<h4 id="deluxe-baseball">7. <em>Deluxe Baseball</em></h4>
+<p><strong>Date:</strong> 1975<br />
+<strong>Role:</strong> Ramtek release<br />
+<strong>Confidence:</strong> Strongly supported</p>
+<p><em>Deluxe Baseball</em> extended Ramtek’s exploration of electronic sports. The name presents it as a distinct product and the period record treats it separately from <em>Baseball</em>. Its place in the catalog is evidence that Ramtek believed the subject had enough promise to justify another version or edition.</p>
+<p>The word “Deluxe” should not be overinterpreted. It signals a marketed distinction, but the exact differences may involve rules, cabinet, display, controls, or another product feature. No <em>Deluxe Baseball</em> flyer is currently included in the image set; the included archive scan is explicitly titled <em>Baseball</em>. Compare a correctly identified Deluxe flyer, manuals, and surviving boards before describing the distinction. Where sources do not explain a detail, the master leaves the question open rather than filling it in from assumptions about how deluxe versions were normally sold.</p>
+<p>This title also clarifies the way game counts should be built. A second named commercial product can be counted as a distinct catalog entry when contemporary material supports it, even if it shares a theme and perhaps technical components with an earlier game. Conversely, <em>Brickyard</em> should not be counted as a separate release when the contemporary record describes it as an interim designation during the <em>Barricade</em> dispute. The distinction rests on product evidence, not on a preference for a larger or smaller total.</p>
+<h4 id="trivia">8. <em>Trivia</em></h4>
+<p><strong>Date:</strong> 1975<br />
+<strong>Role:</strong> Ramtek release<br />
+<strong>Confidence:</strong> Verified as a marketed title; further hardware and content research remains open</p>
+<p><em>Trivia</em> shifted the player’s challenge from timing and spatial control toward knowledge and recall. A quiz game depended on questions and answers, so it made the screen a conversational interface: the machine presented a prompt, the player responded, and the game judged the result. This was a meaningful change in the kind of skill a video cabinet could test.</p>
+<p>The surviving flyer gives a concrete technical feature: the questions and answers were stored on Ramtek eight-track tape cartridges. The advertised game offered more than two hundred questions in four selectable categories, with play length and extended bonus play selected by the operator. Ramtek offered a free back-up tape and head-cleaning tape, and argued that new cartridges could refresh the question set and extend the machine’s earning life. This made the content replaceable in a way a fixed logic-board game was not. The claim of long-term earning power is promotional wording, but the cartridge system itself is an important distinction that should anchor any technical description of the title.</p>
+<p>The game also widened Ramtek’s commercial vocabulary. Sports and reflex play had offered one route into the market; questions could attract players who were less interested in paddle contests. In a public location, a quiz cabinet could support competition among friends and spectators because the question itself was visible. The attraction was not only the player’s private score but the social comparison around the answer.</p>
+<p>Ramtek’s period flyer is preserved in the asset set. It establishes the marketed identity and is a strong visual source, but the project does not yet have a verified complete question set, operator manual, or board-level analysis. The exact subject mix, number of questions, and any regional revisions therefore remain unresolved. A future evidence pass should prioritize physical documentation or ROM examination if a reliable program dump becomes available.</p>
+<h3 id="section-3">1976</h3>
+<h4 id="sea-battle">9. <em>Sea Battle</em></h4>
+<p><strong>Date:</strong> 1976<br />
+<strong>Role:</strong> Ramtek release<br />
+<strong>Confidence:</strong> Strongly supported; contemporary trade notices are identified</p>
+<p><em>Sea Battle</em> moved the subject matter into naval combat. The title offered an immediately readable conflict and a setting quite different from the previous sports and quiz machines. It shows Ramtek still searching for ways to make the video screen represent a dramatic situation rather than just a ball, paddle, or question.</p>
+<p>The flyer adds physical information absent from the short trade notice: the crated cabinet was listed as 67 inches high, 40 inches wide, and 31 inches deep, with a shipping weight of 280 pounds. The uncrated depth was 29 inches. These dimensions frame the machine as a substantial location piece and help explain why its multi-player setup and 23-inch monitor mattered to operators: the cabinet occupied floor space, so its ability to draw several players at once was part of the investment case.</p>
+<p>The game arrived during a period when the arcade market was filling with increasingly varied concepts. A naval theme could lend itself to tactical choices and a clear division between attacker and defender. The exact game structure should be described from a surviving flyer, manual, or gameplay record. The present asset register preserves a period flyer, which supports the marketed identity and offers a usable visual source.</p>
+<p>Trade reporting in April 1976 announced the game. This is the kind of contemporary evidence that anchors the release chronology more strongly than later database dates. A precise release month should still be tied to the actual notice or shipping report before it is used in a condensed timeline. The current master uses the year in its public catalog pending a citation-ready transcription.</p>
+<h4 id="hit-me">10. <em>Hit Me</em></h4>
+<p><strong>Date:</strong> 1976<br />
+<strong>Role:</strong> Ramtek release<br />
+<strong>Confidence:</strong> Strongly supported</p>
+<p><em>Hit Me</em> brought blackjack to the arcade. It is a gambling-themed video game, and its title plays on a familiar phrase from the card table. The subject differed sharply from Ramtek’s early sports line, but it offered another advantage: the rules were already known to many potential players.</p>
+<p>The title needs careful wording because its card-game theme and coin-op operation raised questions about gambling regulation. Ramtek explicitly framed it as a skill game: the player chose whether to hit or stand, and failing to decide led the machine to continue dealing until the player busted. The contemporary distributor-meeting report says the game used points or “chips,” not a cash payout. Its regulatory statement was Ramtek’s sales position to distributors, not a legal determination for all jurisdictions. The available evidence supports calling it a blackjack-style skill game; it does not support describing it as a cash gambling machine.</p>
+<p>By translating a card game into a coin-operated video cabinet, Ramtek could focus the screen on dealing, scoring, and the decision to take another card or stop. The game’s appeal depended on pacing and judgment more than on athletic reflexes. It sits beside <em>Trivia</em> as evidence that Ramtek was willing to test non-sports formats for a wider audience.</p>
+<p>The original source register identifies contemporary notices in <em>Cash Box</em> and other trade publications as evidence. The public narrative should distinguish the game’s blackjack theme from claims about gambling outcomes, payout behavior, or regulatory status. No claim about cash prizes or payout mechanisms is made here without a manual or direct inspection of the machine.</p>
+<h3 id="section-4">1977</h3>
+<h4 id="barricade">11. <em>Barricade</em></h4>
+<p><strong>Date:</strong> 1977<br />
+<strong>Role:</strong> Ramtek release<br />
+<strong>Confidence:</strong> Strongly supported</p>
+<p><em>Barricade</em> moved Ramtek toward a blocking game built around movement and obstruction. The title describes the central idea plainly. Rather than relying on a familiar sport, the game asked players to manage space and avoid becoming trapped by the barriers created during play.</p>
+<p>The <em>Barricade</em> name became the subject of a legal dispute with Gremlin Industries. <em>Play Meter</em> reported in April 1977 that Gremlin had filed suit over the similarity between Gremlin’s <em>Blockade</em> and Ramtek’s <em>Barricade</em>. At the preliminary-injunction stage, Ramtek had agreed to stop producing games under the <em>Barricade</em> designation while the case was pending. Ramtek said it would call any blocking game produced in the interim <em>Brickyard</em>. The article reported that Gremlin’s temporary-injunction requests had been denied. It does not give the eventual final disposition, so the litigation outcome remains open.</p>
+<p>This record corrects the overly tidy description sometimes found in later summaries. <em>Brickyard</em> was not necessarily a formal permanent renaming of <em>Barricade</em>. It was a temporary name Ramtek said it would use to protect customers from the dispute while it contested the trademark claim. The current released-game total still treats the blocking game as one title. No separate <em>Brickyard</em> entry should be added unless evidence of a distinct release or program turns up.</p>
+<p>The <em>Barricade</em> flyer survives in the asset folder and is credited to an archive contributor. It is valuable for showing Ramtek’s late-line marketing and for preserving the exact name on the product. Claims about a trademark dispute or legal context should remain in research notes until court records, period reporting, or correspondence is examined; the title itself is not enough to establish a legal story.</p>
+<h4 id="m-79-ambush">12. <em>M-79 Ambush</em></h4>
+<p><strong>Date:</strong> 1977<br />
+<strong>Role:</strong> Ramtek release<br />
+<strong>Confidence:</strong> Strongly supported</p>
+<p><em>M-79 Ambush</em> gave Ramtek a gun-game entry. The title evokes a military setting and a particular weapon, placing the player within a direct combat scenario. It differed from the abstract paddles and sports screens that defined the first part of Ramtek’s catalog.</p>
+<p>Ramtek’s flyer describes tanks, jeeps, and motorcycles in battle, with two cannons at the front of the scene. It emphasizes two-player operation and characterizes a 50-cent game as a way to raise earnings. The advertising promises a full sequence when an enemy is hit, accompanied by gunfire, whistles, and whines. Here Ramtek was selling both the physical act of firing and the screen’s response: the hit needed to feel visible and audible. The specific claim that the game “compels” people to play is advertising hyperbole; the two-player setup, price point, targets, cannons, and sound claims are concrete product features.</p>
+<p>Period trade notices announced the game in June 1977, and the company marketed it as a gun game. The preserved flyer helps identify how Ramtek presented the product to operators. The name should be reproduced with its hyphen and capitalization as shown in the original marketing unless a specific version uses a different form.</p>
+<p>The current research record does not establish every control, target, or cabinet configuration for <em>M-79 Ambush</em>. These details should come from the flyer, manual, cabinet photographs, or a playable surviving unit. Until then, the safe account is that Ramtek released a military-themed gun game in 1977 and continued its shift toward visually explicit, action-oriented themes.</p>
+<h4 id="star-cruiser">13. <em>Star Cruiser</em></h4>
+<p><strong>Date:</strong> 1977<br />
+<strong>Role:</strong> Ramtek-developed and marketed release<br />
+<strong>Confidence:</strong> Verified as a marketed title; detailed specifications survive in a period flyer</p>
+<p><em>Star Cruiser</em> was Ramtek’s most conspicuously ambitious video release. Its flyer advertises a 23-inch solid-state monitor, microprocessor boards, vehicle and explosion sounds, dual hand controls, and pedals. The cabinet’s size and interface invited the player to sit or stand within a more physical simulation than the early sports games.</p>
+<p>The product demonstrates how far arcade video had moved since <em>Volly</em>. The basic novelty of a moving object on a television was no longer enough. Manufacturers sold spectacle, sound, specialized input, and a promise of depth. Ramtek used its technical heritage as part of the sales case: the large monitor and electronics were presented as concrete features rather than invisible engineering.</p>
+<p>The flyer also repeats Ramtek’s Sunnyvale address, providing an important link between the company and its late video line. The game’s release is recorded in September 1977 by contemporary trade notices. Although it is the last released Ramtek-branded video game in the current catalog, it did not mark the immediate end of all amusement activity. Ramtek continued producing other types of electronic and electro-mechanical games, and its 1979 exit was a later corporate decision.</p>
+<h2 id="related-and-excluded-products">Related and excluded products</h2>
+<h3 id="knockout-unreleased-test"><em>Knockout</em> — unreleased test</h3>
+<p><em>Knockout</em> appears in period reporting as a Ramtek test-market or experimental game, not as a general released title. It reportedly used more pinball-like elements than <em>Clean Sweep</em>. Its connection to <em>TV Flipper</em> is often presented as an assumed evolution. That relationship remains unproven in the project record. Keep <em>Knockout</em> visible in the research catalog as a withdrawn or unreleased project; do not add it to the thirteen released games.</p>
+<h3 id="tv-flipper-midway-release-ramtek-development-credit"><em>TV Flipper</em> — Midway release, Ramtek development credit</h3>
+<p>Midway released <em>TV Flipper</em> in 1975. Historical work credits Ramtek with development. This is a significant relationship because it shows that Ramtek’s engineering could appear in another company’s product. It is not a fourteenth Ramtek-branded release, and its presence should not be confused with the status of <em>Knockout</em>. The project retains the possibility of a relationship between them but does not claim identity without direct documentation.</p>
+<h3 id="electro-mechanical-amusement-games">Electro-mechanical amusement games</h3>
+<p>The following products belong to Ramtek’s amusement history, but not its arcade-video total:</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Title</th>
+<th>Current status</th>
+<th>Research note</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><em>Horoscope</em></td>
+<td>Released electro-mechanical game</td>
+<td>A fortune/astrology attraction announced in 1976.</td>
+</tr>
+<tr class="even">
+<td><em>Boom Ball</em></td>
+<td>Released electro-mechanical game</td>
+<td>Continued into the later amusement-asset transition.</td>
+</tr>
+<tr class="odd">
+<td><em>Dark Invader</em></td>
+<td>Released electro-mechanical game</td>
+<td>Announced/shipped in 1978; keep separate from video games.</td>
+</tr>
+<tr class="even">
+<td><em>GT Roadster</em></td>
+<td>Released electro-mechanical game</td>
+<td>Period reports place it in the 1979 amusement line.</td>
+</tr>
+<tr class="odd">
+<td><em>Lie Detector</em></td>
+<td>Unreleased or unconfirmed project</td>
+<td>Appears in later compilations; primary release evidence not located.</td>
+</tr>
+<tr class="even">
+<td><em>Test Driver</em></td>
+<td>Unreleased or unconfirmed project</td>
+<td>Appears in later compilations; primary release evidence not located.</td>
+</tr>
+</tbody>
+</table>
+<p>This separation is more than bookkeeping. Video games used a raster or television-like display as their principal play surface; electro-mechanical games used different mechanisms and should not be folded into a count presented specifically as arcade video. A combined amusement catalog can include both, but it needs separate categories and confidence labels.</p>
+<h2 id="working-chronology">Working chronology</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Date</th>
+<th>Event</th>
+<th>Evidence status</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>September 1971</td>
+<td>Ramtek begins in California; incorporation and founders’ start dates differ by several weeks.</td>
+<td>September is supported; exact day unresolved.</td>
+</tr>
+<tr class="even">
+<td>March 1973</td>
+<td><em>Volly</em> enters the commercial market.</td>
+<td>Strongly supported by period trade chronology.</td>
+</tr>
+<tr class="odd">
+<td>1973</td>
+<td><em>Hockey</em> and <em>Soccer</em> expand the first sports line.</td>
+<td>Marketed titles verified; month-level dates need direct notice transcription.</td>
+</tr>
+<tr class="even">
+<td>1974</td>
+<td><em>Wipe Out</em>, <em>Clean Sweep</em>, and <em>Baseball</em> appear.</td>
+<td>Supported by company advertising and trade reporting.</td>
+</tr>
+<tr class="odd">
+<td>1974</td>
+<td><em>Knockout</em> is test-marketed but not established as a general release.</td>
+<td>Unreleased/test status supported; relation to later games unresolved.</td>
+</tr>
+<tr class="even">
+<td>1975</td>
+<td><em>Deluxe Baseball</em> and <em>Trivia</em> expand the line; Midway releases <em>TV Flipper</em> with Ramtek development credit in later histories.</td>
+<td>Strongly supported; project relationships need primary-file review.</td>
+</tr>
+<tr class="odd">
+<td>November 1975</td>
+<td>Fire damages Ramtek’s Sunnyvale manufacturing operation.</td>
+<td>Contemporary newspaper/trade reports identified.</td>
+</tr>
+<tr class="even">
+<td>1976</td>
+<td><em>Sea Battle</em> and <em>Hit Me</em> extend the video catalog; <em>Horoscope</em> represents electro-mechanical amusement.</td>
+<td>Period notices identified.</td>
+</tr>
+<tr class="odd">
+<td>1977</td>
+<td><em>Barricade</em>, <em>M-79 Ambush</em>, and <em>Star Cruiser</em> complete the confirmed video line.</td>
+<td>Period notices and flyers identified.</td>
+</tr>
+<tr class="even">
+<td>1978</td>
+<td>Ramtek becomes a public corporation; <em>Dark Invader</em> belongs to its separate amusement line.</td>
+<td>Public-market and trade records identified; detail review needed.</td>
+</tr>
+<tr class="odd">
+<td>1979</td>
+<td>Ramtek decides to stop producing electronic games and focus resources on graphics and imaging.</td>
+<td>Contemporary <em>Play Meter</em> report is the key source.</td>
+</tr>
+<tr class="even">
+<td>1980</td>
+<td>Amusement assets and operation continue through a later Meltec-related transfer.</td>
+<td>Secondary and trade-history leads; exact transaction record not recovered.</td>
+</tr>
+<tr class="odd">
+<td>1996</td>
+<td>Ramtek’s dissolution is commonly reported in later records.</td>
+<td>Specific dissolution filing not yet recovered.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="evidence-and-confidence-notes">Evidence and confidence notes</h2>
+<p>The public narrative relies most heavily on period company flyers, contemporary trade reporting, and the preserved record of the 1979 exit. These materials answer different questions. A flyer establishes what Ramtek advertised and how it wanted operators to understand a product; it does not establish sales numbers. A trade notice can anchor an announcement or shipping date; it may not explain the game’s design. A later company history can connect people and events; it must be checked against contemporary evidence wherever possible.</p>
+<p>Dates in the compact catalog are mostly year-level because the source packet does not yet include a fully transcribed, page-cited chronology for every title. Some online lists provide specific months. Those dates should be promoted into the master only after the original notices have been opened and the difference between announcement, test market, shipment, and general release has been recorded.</p>
+<p>The thirteen-game total uses a reproducible definition: released, Ramtek-branded arcade video titles. It excludes unreleased <em>Knockout</em>, separately published <em>TV Flipper</em>, electro-mechanical attractions, and the temporary <em>Brickyard</em> designation associated with the <em>Barricade</em> trademark dispute. This is a defensible current catalog, not a claim that every historical ambiguity has vanished. New evidence may change individual role assignments or identify a separate product, in which case the count and snapshot must be reconciled together.</p>
+<p>The corporate end date is less secure than the arcade exit. The 1979 video-game withdrawal is directly supported by contemporary trade reporting. The frequently repeated April 15, 1996 dissolution date has not been checked against the original California corporate filing. Publication should either state “reported dissolved in 1996” or use the broader 1971–1996 range without giving the exact day.</p>
+<h2 id="image-plan-and-captions">Image plan and captions</h2>
+<p>The project archive now preserves 28 image files: period flyer scans, regional and alternate scans, cabinet/catalog images, and historical photographs. They are source material, not decorative stock images. Credit TAFA scans “Period sales flyer courtesy of the International Arcade Museum / Arcade Flyer Archive”; cite LaunchBox and the historical-photo source separately. Do not describe any of these files as public domain or rights-cleared. See the asset register for identity and rights qualifications.</p>
+<p>Recommended image sequence:</p>
+<ol type="1">
+<li>The included Volly cabinet image can introduce the first release if LaunchBox credit and reuse permission are confirmed; the asset is catalog imagery, not a period company flyer.</li>
+<li><em>Hockey</em> and <em>Soccer</em> flyers as a paired view of the opening sports line.</li>
+<li><em>Clean Sweep</em> flyer beside a short note on its ball-and-target design and the influence question.</li>
+<li>The <em>Baseball</em> flyer for the move toward team-sport simulation; the included scan is visibly titled <em>Baseball</em> and should not be captioned as <em>Deluxe Baseball</em>.</li>
+<li><em>Trivia</em> flyer to make the genre shift visible.</li>
+<li><em>Sea Battle</em> and <em>Barricade</em> flyers for Ramtek’s mid-to-late catalog variety.</li>
+<li><em>M-79 Ambush</em> flyer as the gun-game entry.</li>
+<li><em>Star Cruiser</em> flyer as the technical and marketing endpoint of the video line.</li>
+</ol>
+<p>Captions should identify the document as a company sales flyer and use the date in the asset register. Where a flyer supplies a technical claim, phrase it as a claim made in Ramtek’s own advertising. This distinguishes company promotion from independently measured performance.</p>
+<h2 id="source-notes-and-bibliography">Source notes and bibliography</h2>
+<h3 id="contemporary-company-and-trade-evidence">Contemporary company and trade evidence</h3>
+<ul>
+<li>Ramtek, <em>Clean Sweep</em> sales flyer, 1974. Preserved by the International Arcade Museum / Arcade Flyer Archive. Company-issued evidence for product identity, address, and sales language.</li>
+<li>Ramtek, <em>Star Cruiser</em> sales flyer, 1977. Preserved by the International Arcade Museum / Arcade Flyer Archive. Company-issued evidence for address, cabinet dimensions, monitor, controls, sound, and microprocessor-board claims.</li>
+<li>Ramtek flyers for <em>Hockey</em>, <em>Soccer</em>, <em>Wipe Out</em>, <em>Baseball</em>, <em>Trivia</em>, <em>Sea Battle</em>, <em>Barricade</em>, and <em>M-79 Ambush</em>. Preserved in the project asset set; see the asset register for contributor and provenance notes. The included Baseball scan does not establish a <em>Deluxe Baseball</em> flyer.</li>
+<li><em>Play Meter</em>, May 1976, pp. 20–21, distributor meeting and product descriptions: <a href="https://elibrary.arcade-museum.com/Play-Meter/1976-May/20">page 20</a> and <a href="https://elibrary.arcade-museum.com/Play-Meter/1976-May/21">page 21</a>. Contemporary reporting with management and company-representative statements.</li>
+<li><em>Play Meter</em>, April 22, 1977, p. 1, Gremlin Industries / Ramtek dispute over <em>Blockade</em> and <em>Barricade</em>: <a href="https://elibrary.arcade-museum.com/Play-Meter/1977-April-22/1">eLibrary page</a>.</li>
+<li><em>Play Meter Update Edition</em>, October 1, 1979, “Ramtek bows out,” p. 1: <a href="https://elibrary.arcade-museum.com/Play-Meter/1979-October-01/1">eLibrary page</a>. Primary trade reporting on the decision to exit electronic games, the recreation-products division, continued <em>Boom Ball</em> production during transition, parts/service transfer, and Ramtek’s focus on display and imaging products.</li>
+<li><em>Marketplace</em>, December 30, 1974, p. 57: <a href="https://elibrary.arcade-museum.com/Marketplace/1974-December-30/57">eLibrary page</a>. Used-market listing for Ramtek <em>Hockey</em> and <em>Clean Sweep</em>.</li>
+<li><em>Play Meter</em>, April 1977, p. 54: <a href="https://elibrary.arcade-museum.com/classic/Play-Meter/1977-April/54">eLibrary page</a>. Dealer inventory listing with several Ramtek titles.</li>
+<li><em>Cash Box</em>, <em>Vending Times</em>, <em>RePlay</em>, and <em>Play Meter</em> title announcements and notices from 1973–1979. The project source register identifies these as the period record for the game chronology; a final scholarly edition should attach issue, page, and notice transcription to every month-level date.</li>
+<li><em>Palo Alto Times</em>, November 15 and December 16, 1975; <em>Computerworld</em>, December 24, 1975. Contemporary reports identified for the Sunnyvale fire and recovery.</li>
+</ul>
+<h3 id="archival-and-reference-sources">Archival and reference sources</h3>
+<ul>
+<li>International Arcade Museum / Arcade Flyer Archive entries for Ramtek titles. Useful for flyer provenance and scan access; title metadata should be checked against the original documents.</li>
+<li>Brian Sutton-Smith Library and Archives of Play at The Strong, Larry Bieza coin-op and amusements history collection, Series III: Video games, Ramtek flyer folder, 1974–1977 and undated. Confirms the preservation of Ramtek flyers in an institutional archival collection.</li>
+<li>Current MAME source for Ramtek games. Useful for machine identities and emulation status, but not a substitute for contemporary evidence on release dates, sales, or corporate roles.</li>
+<li>The Golden Age Arcade Historian, “Early Video Game Companies — Incorporation Dates.” Secondary lead for the September 28, 1971 incorporation date; use with the underlying filing when recovered.</li>
+<li>Alexander Smith, <em>They Create Worlds: The Story of the People and Companies That Shaped the Video Game Industry</em>. Secondary synthesis for people, design context, and company relationships; specific assertions should be tied to the cited contemporary sources or archival documents.</li>
+</ul>
+<h3 id="key-unresolved-source-tasks">Key unresolved source tasks</h3>
+<ol type="1">
+<li>Obtain and inspect the California incorporation record and the dissolution filing. Resolve the exact start and end dates or retain month/year wording.</li>
+<li>Transcribe the identified trade notices title by title, with issue dates and page numbers. Separate announcement, test market, shipment, and release.</li>
+<li>Inspect the full October 1, 1979 <em>Play Meter</em> article and preserve a page image or stable citation with the final wording of the exit decision.</li>
+<li>Locate manuals, schematics, and surviving hardware photographs for the thirteen games. Prioritize <em>Trivia</em>, <em>Baseball</em>, and <em>Deluxe Baseball</em>, where public descriptions are least complete.</li>
+<li>Compare <em>Volly</em> and <em>Volly: Power-Play</em> references to determine whether the latter denotes a version, alternate title, or separate marketed product.</li>
+<li>Examine primary documentation for <em>Knockout</em> and Midway’s <em>TV Flipper</em>. Keep their possible relationship open unless a direct source resolves it.</li>
+<li>Review trade and corporate records for the transfer of amusement assets to the later Meltec operation. Distinguish asset transfer from corporate succession.</li>
+</ol>
+<h2 id="publication-closeout">Publication closeout</h2>
+<p><strong>Catalog status:</strong> Thirteen released Ramtek-branded arcade video games are presently reconciled under the stated counting rule. Related and unreleased work is preserved in separate categories.</p>
+<p><strong>Image status:</strong> Twenty-eight image files are included, with source and attribution qualifications recorded. Preserve the required archive credit for TAFA scans; separately credit the LaunchBox and historical-photo sources and confirm reuse rights before publication. The supplied Baseball flyer is titled <em>Baseball</em>, and the Volly-associated flyer reads <em>Scoring</em>.</p>
+<p><strong>Research status:</strong> The company narrative and catalog are ready for Arcade Side B integration as a full working master. Exact month-level release dates, the corporate dissolution filing, several technical descriptions, and the <em>Knockout</em>–<em>TV Flipper</em> relationship remain open and are explicitly marked above. “Ready for website integration” does not mean those unresolved items have been proven; it means the publication text states the current evidence boundaries clearly and does not depend on unsupported certainty.</p>
+<p><a href="index.html#companies" target="_parent">← Back to Companies</a></p></article></div><footer class="footer"><div class="rights"><strong>Rights &amp; Archival Material Notice</strong><p>Arcade Side B is a noncommercial historical research and preservation project. Some archival images, scans, publications, advertisements, artwork, screenshots, manuals, trademarks, and other materials presented or linked here may remain protected by copyright or other rights. Unless specifically stated otherwise, Arcade Side B does not claim ownership of third-party material and may not have a redistribution agreement with the applicable rights holder. Materials are presented in the interest of historical documentation, research, criticism, education, and preservation. Rights holders who have concerns about material appearing here are welcome to contact Arcade Side B to request attribution, correction, restriction, or removal.</p></div></footer><dialog id="image-viewer"><button type="button">Close ×</button><img alt=""></dialog><script>const v=document.querySelector('#image-viewer');document.querySelectorAll('.enlarge').forEach(b=>b.onclick=()=>{const i=b.querySelector('img');if(parent!==window&&parent.openArchiveImage){parent.openArchiveImage(i.src,i.alt);return}v.querySelector('img').src=i.src;v.querySelector('img').alt=i.alt;v.showModal()});v.querySelector('button').onclick=()=>v.close();</script></body></html>
