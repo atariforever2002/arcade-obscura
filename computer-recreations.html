@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Computer Recreations and Galaxy Game | Arcade Side B</title>
+<meta name="description" content="The Pitts–Tuck Galaxy Game venture: its two systems, disputed chronology, engineering, operation and preservation history.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://arcadesideb.com/computer-recreations.html">
+<meta property="og:title" content="Computer Recreations and Galaxy Game | Arcade Side B">
+<meta property="og:description" content="The Pitts–Tuck Galaxy Game venture, its two systems, disputed chronology, engineering and preservation history.">
+<meta property="og:url" content="https://arcadesideb.com/computer-recreations.html">
+<style>
+:root{--paper:#eee7d8;--ink:#242c31;--gold:#c28a32;--max:1180px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(circle at 86% 7%,rgba(83,126,150,.11),transparent 28%),#090d12;color:#dce2e5;font-family:Georgia,"Times New Roman",serif;line-height:1.72}
+a{color:#a86e20;text-underline-offset:3px}
+.mast{border-bottom:4px solid var(--gold);background:linear-gradient(135deg,#0a0f14,#14202a)}
+.mast-inner,.hero,.shell,.rule{width:min(calc(100% - 32px),var(--max));margin:auto}
+.mast-inner{padding:16px 0;display:flex;justify-content:space-between;gap:20px;align-items:center}
+.brand{font-size:26px;font-weight:700;color:#f0ece4}.motto{font:700 10px Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#9ca8af;text-align:right}
+.hero{padding:34px 0 28px}.crumb{font:700 10px Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#8d999f;margin-bottom:16px}
+.company-wordmark{border:1px solid #52606a;background:linear-gradient(90deg,rgba(194,138,50,.10),transparent 42%),#0e171f;padding:22px 24px 18px;margin-bottom:18px}
+.company-wordmark h1{margin:0;color:#f2eee5;font:800 clamp(42px,8vw,84px)/.92 Arial,sans-serif;letter-spacing:.075em}
+.company-wordmark .sub{margin-top:11px;color:#b8c1c6;font:700 12px Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase}
+.hero-meta{display:flex;gap:9px;flex-wrap:wrap;margin:15px 0 0}.status,.updated{font:800 10px Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;border:1px solid #46535d;padding:6px 8px}
+.status{color:#d8b36b;border-color:#8c682f;background:#1c1911}.updated{color:#a9b4ba}
+.snapshot{margin-top:24px;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#39434b;border:1px solid #39434b}
+.snapshot>div{background:#111920;padding:14px 16px;min-height:82px}.snapshot dt{font:800 9px Arial,sans-serif;text-transform:uppercase;letter-spacing:.12em;color:#7f8b92}.snapshot dd{margin:7px 0 0;color:#f0ece4;font-size:18px;line-height:1.25}
+.intro-note{margin-top:18px;color:#aeb8bd;font-size:15px;max-width:920px}.rule{border-top:1px solid #26313a}.shell{padding:28px 0 64px}
+.toc{background:#101820;border:1px solid #34404a;padding:14px 16px;margin-bottom:24px}.toc-label{font:800 9px Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#c39751;margin-bottom:8px}.toc-links{display:flex;flex-wrap:wrap;gap:7px 13px}.toc-links a{color:#aeb8bd;text-decoration:none;font:700 10px Arial,sans-serif}
+.article{background:var(--paper);color:var(--ink);border:1px solid #c5baa6;box-shadow:0 12px 34px rgba(0,0,0,.22);padding:clamp(24px,5vw,62px)}
+.article p,.article li{font-size:17px}.article h1{font-size:32px;line-height:1.15;margin:58px 0 18px;padding-top:12px;border-top:3px solid #263a46;color:#172831}.article h1:first-child{margin-top:0}.article h2{font-size:23px;line-height:1.22;margin:35px 0 12px;color:#2a404b}
+.article table{width:100%;border-collapse:collapse;margin:18px 0 25px;font-size:14px}.article th,.article td{border:1px solid #c8beab;padding:9px 10px;vertical-align:top}.article th{background:#e2d9c9;text-align:left;font:700 11px Arial,sans-serif;text-transform:uppercase;letter-spacing:.05em}
+.article blockquote{margin:22px 0;border-left:4px solid #a87a35;padding:2px 0 2px 16px;color:#505b61}
+.visual-pair,.visual-gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin:24px 0 30px}
+.archive-figure{margin:0;padding:9px;border:1px solid #b8ad98;background:#faf5eb;box-shadow:0 7px 18px rgba(65,52,31,.07);align-self:start}
+.archive-figure img{display:block;width:100%;height:auto;background:#111;border:1px solid #c9bfad}.archive-figure.screen img{image-rendering:pixelated;max-height:510px;object-fit:contain}
+.archive-figure figcaption{padding:9px 4px 3px;color:#59636a;font:12px/1.55 Arial,sans-serif}.archive-figure figcaption strong{color:#303a40}
+.derivative,.provisional{display:inline-block;margin-left:6px;border:1px solid #af8a51;color:#7c591e;padding:1px 5px;font:800 8px Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase}.provisional{border-color:#9b6962;color:#7c413b}
+.public-note{margin:20px 0;padding:14px 16px;border-left:4px solid #b57f31;background:#f5ead8;color:#565148;font:13px/1.55 Arial,sans-serif}
+.footer{width:min(calc(100% - 32px),var(--max));margin:0 auto;padding:0 0 30px;color:#7b868c;font:10px/1.6 Arial,sans-serif}.rights{padding-top:15px;border-top:1px solid #29343c}.rights strong{color:#9ba5aa;text-transform:uppercase;letter-spacing:.06em}
+@media(max-width:760px){.snapshot{grid-template-columns:1fr 1fr}.visual-pair,.visual-gallery{grid-template-columns:1fr}.article{padding:24px 18px}.mast-inner{align-items:flex-start;flex-direction:column}.motto{text-align:left}}
+
+/* Editorial working successor: source disclosures and restored catalog. */
+.sources{margin:24px 0;padding:12px 16px;border:1px solid #c8beab;background:#e8dfcf}
+.sources summary{cursor:pointer;font:700 15px/1.5 Arial,sans-serif;color:#303a40}
+.sources summary:focus-visible,.catalog-scroll:focus-visible{outline:3px solid #805413;outline-offset:4px}
+.sources p{font-size:15px}
+.catalog-scroll{max-width:100%;overflow-x:auto}
+.catalog-scroll table{min-width:720px}
+.catalog-scroll caption{text-align:left;font-weight:bold;padding:12px 0}
+.catalog-scroll tbody th{font:inherit;text-transform:none;letter-spacing:normal;background:transparent}
+</style>
+<style>
+/* Reader-facing source and table containment */
+article a, .source-list a, .footnotes a { overflow-wrap:anywhere; }
+.table-scroll {max-width:100%;overflow-x:auto;}
+.table-scroll:focus-visible {outline:2px solid #d7b56d;outline-offset:3px;}
+</style>
+<style>.translation-box{margin-top:14px;padding:14px 16px;background:rgba(130,111,68,.09);border-left:3px solid #a88a50;color:inherit}.translation-box strong{font:600 14px Arial,sans-serif}.translation-box p{font-size:15px;line-height:1.6;margin:8px 0 0}</style>
+<style>@media(max-width:420px){.company-wordmark h1{font-size:clamp(22px,7.4vw,32px);line-height:1.04;letter-spacing:.04em;overflow-wrap:anywhere}}</style>
+<style>
+/* Shared company-page pattern, standardized on the approved Elcon article. */
+.crumb,.hero,.rule,.shell{width:min(calc(100% - 32px),1180px)!important;margin-left:auto!important;margin-right:auto!important;max-width:none!important}
+.crumb{padding:18px 0 0!important;color:#93a0a8!important;font:700 11px Arial,sans-serif!important;letter-spacing:0!important;text-transform:none!important}
+.hero{padding:30px 0 26px!important;color:#eff2f3!important}
+.hero .eyebrow{color:#d4ad67;font:800 11px Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase}
+.hero h1{margin:7px 0 10px!important;padding:0!important;border:0!important;background:none!important;font-family:Georgia,serif!important;font-size:clamp(44px,7vw,78px)!important;font-weight:700!important;letter-spacing:0!important;line-height:.95!important;color:#f0ece4!important;text-transform:none!important}
+.hero .deck{max-width:930px;margin:0!important;color:#c3ccd0!important;font:19px/1.55 Georgia,serif!important}
+.hero .meta{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:15px!important}
+.hero .badge{display:inline-block;padding:6px 10px;border:1px solid #6691a3;border-radius:999px;color:#8fc1d3;font:800 10px Arial,sans-serif;text-transform:uppercase;letter-spacing:.05em}
+.hero .updated{color:#aab4b9;font:700 11px Arial,sans-serif!important;text-transform:none!important;letter-spacing:0!important}
+.shell{display:grid!important;grid-template-columns:275px minmax(0,1fr)!important;gap:22px!important;padding:26px 0 50px!important;align-items:start!important}
+.sidebar{display:block!important;position:sticky!important;top:10px!important;margin:0!important;align-self:start!important}
+.toc{display:block!important;margin:0!important;padding:0!important;border:1px solid #34404b!important;border-radius:0!important;background:#111820!important;max-height:82vh!important;overflow:auto!important;box-shadow:none!important}
+.toc-title{display:block!important;margin:0!important;padding:13px 15px!important;color:#d8dfe2!important;font:800 11px Arial,sans-serif!important;letter-spacing:.12em!important;text-transform:uppercase!important}
+.toc>a{display:block!important;border-top:1px solid #29343e!important;padding:9px 13px!important;color:#aebbc2!important;text-decoration:none!important;font:13px/1.35 Arial,sans-serif!important}
+.toc>a:hover{color:#f0c57e!important}
+article.article{width:100%!important;margin:0!important;background:#eee7d8!important;color:#232b30!important;border:1px solid #b9ae9a!important;box-shadow:0 18px 42px rgba(0,0,0,.25)!important;padding:26px 34px 40px!important;min-width:0!important}
+.backhome{display:inline-block;margin-bottom:18px;padding:8px 10px;border:1px solid #9e927e;color:#745322;text-decoration:none;font:800 10px Arial,sans-serif;text-transform:uppercase;letter-spacing:.08em}
+.company-identity{margin:0 0 28px!important;border:1px solid #b8ad98!important;background:linear-gradient(135deg,rgba(194,138,50,.08),transparent 48%),#f3eddf!important;color:#20272c!important;box-shadow:none!important;overflow:hidden!important}
+.company-mark{padding:24px 26px 20px;border-bottom:1px solid #c8beab;position:relative}
+.company-mark:after{content:"COMPANY PROFILE";position:absolute;right:22px;top:18px;color:#8c8272;font:700 9px Arial,sans-serif;letter-spacing:.16em}
+.legal{color:#746b5f;font:700 10px Arial,sans-serif;letter-spacing:.13em;text-transform:uppercase;margin-bottom:7px}
+.wordmark{font-family:Georgia,serif;font-size:clamp(34px,5vw,58px);line-height:.95;color:#122331}
+.wordmark span{display:block;margin-top:7px;color:#8a6429;font:700 13px Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase}
+.company-snapshot{display:grid!important;grid-template-columns:repeat(4,1fr)!important}
+.snapshot-cell{padding:17px 18px!important;border-right:1px solid #c8beab!important;min-width:0}
+.snapshot-cell:last-child{border-right:0!important}
+.snapshot-label{display:block;color:#786f63;font:700 9px Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;margin-bottom:5px}
+.snapshot-value{display:block;color:#1c2d37;font:19px/1.2 Georgia,serif}
+.snapshot-note{display:block;margin-top:5px;color:#6e726f;font:11px/1.35 Arial,sans-serif}
+.company-evidence{margin:0 0 25px;padding:15px 17px;border-left:5px solid #66836e;background:#e7efe8;color:#33433a;font:15px/1.5 Arial,sans-serif}
+@media(max-width:920px){
+ .shell{grid-template-columns:1fr!important}
+ .sidebar{position:static!important}
+ .toc{max-height:none!important}
+ .company-snapshot{grid-template-columns:1fr 1fr!important}
+ .snapshot-cell{border-bottom:1px solid #c8beab!important}
+ .snapshot-cell:nth-child(2){border-right:0!important}
+ .snapshot-cell:nth-child(3),.snapshot-cell:nth-child(4){border-bottom:0!important}
+}
+@media(max-width:600px){
+ article.article{padding:20px 16px 28px!important}
+ .company-snapshot{grid-template-columns:1fr!important}
+ .snapshot-cell{border-right:0!important;border-bottom:1px solid #c8beab!important}
+ .snapshot-cell:last-child{border-bottom:0!important}
+ .company-mark:after{position:static;display:block;margin-bottom:9px;content:"COMPANY PROFILE"}
+ .company-mark{display:flex;flex-direction:column;padding:20px 18px 17px}
+ .company-mark:after{order:-1}
+ .hero h1{font-size:clamp(38px,12vw,56px)!important;overflow-wrap:anywhere}
+ .hero .deck{font-size:17px!important}
+}
+</style>
+<style id="ao-company-profile-consistency">
+/* Exact shared company-profile presentation: Elcon is the house pattern. */
+.company-identity.company-profile-standard{
+  margin:0 0 28px!important;
+  padding:0!important;
+  border:1px solid #b8ad98!important;
+  border-radius:0!important;
+  background:linear-gradient(135deg,rgba(194,138,50,.08),transparent 48%),#f3eddf!important;
+  color:#20272c!important;
+  box-shadow:none!important;
+  overflow:hidden!important;
+  font-family:Georgia,"Times New Roman",serif!important;
+  font-size:16px!important;
+  line-height:normal!important;
+}
+.company-profile-standard .company-mark{
+  display:block!important;
+  position:relative!important;
+  padding:24px 26px 20px!important;
+  border:0!important;
+  border-bottom:1px solid #c8beab!important;
+  border-radius:0!important;
+  background:transparent!important;
+  color:#232b30!important;
+  font:400 16px/normal Georgia,"Times New Roman",serif!important;
+}
+.company-profile-standard .company-mark:after{
+  content:"COMPANY PROFILE"!important;
+  position:absolute!important;
+  right:22px!important;
+  top:18px!important;
+  display:block!important;
+  margin:0!important;
+  color:#8c8272!important;
+  font:700 9px/normal Arial,Helvetica,sans-serif!important;
+  letter-spacing:.16em!important;
+  text-transform:uppercase!important;
+}
+.company-profile-standard .legal{
+  display:block!important;
+  margin:0 0 7px!important;
+  padding:0!important;
+  color:#746b5f!important;
+  font:700 10px/11px Arial,Helvetica,sans-serif!important;
+  letter-spacing:.13em!important;
+  text-transform:uppercase!important;
+}
+.company-profile-standard .wordmark{
+  display:block!important;
+  margin:0!important;
+  padding:0!important;
+  color:#122331!important;
+  font:400 clamp(34px,5vw,58px)/.95 Georgia,"Times New Roman",serif!important;
+  letter-spacing:0!important;
+  text-transform:none!important;
+}
+.company-profile-standard .wordmark span{
+  display:block!important;
+  margin:7px 0 0!important;
+  padding:0!important;
+  color:#8a6429!important;
+  font:700 13px/normal Arial,Helvetica,sans-serif!important;
+  letter-spacing:.16em!important;
+  text-transform:uppercase!important;
+}
+.company-profile-standard .company-snapshot{
+  display:grid!important;
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  color:#232b30!important;
+  font:400 16px/normal Georgia,"Times New Roman",serif!important;
+}
+.company-profile-standard .snapshot-cell{
+  display:block!important;
+  min-width:0!important;
+  margin:0!important;
+  padding:17px 18px!important;
+  border:0!important;
+  border-right:1px solid #c8beab!important;
+  border-radius:0!important;
+  background:transparent!important;
+  color:#232b30!important;
+  font:400 16px/normal Georgia,"Times New Roman",serif!important;
+}
+.company-profile-standard .snapshot-cell:last-child{border-right:0!important}
+.company-profile-standard .snapshot-label{
+  display:block!important;
+  margin:0 0 5px!important;
+  padding:0!important;
+  color:#786f63!important;
+  font:700 9px/10px Arial,Helvetica,sans-serif!important;
+  letter-spacing:.12em!important;
+  text-transform:uppercase!important;
+}
+.company-profile-standard .snapshot-value{
+  display:block!important;
+  margin:0!important;
+  padding:0!important;
+  color:#1c2d37!important;
+  font:400 19px/22.8px Georgia,"Times New Roman",serif!important;
+}
+.company-profile-standard .snapshot-note{
+  display:block!important;
+  margin:5px 0 0!important;
+  padding:0!important;
+  color:#6e726f!important;
+  font:400 11px/14.85px Arial,Helvetica,sans-serif!important;
+}
+.hero .meta{
+  display:flex!important;
+  flex-direction:row!important;
+  flex-wrap:wrap!important;
+  align-items:center!important;
+  gap:10px!important;
+  margin:15px 0 0!important;
+  padding:0!important;
+}
+.hero .meta .badge,
+.hero .meta .updated{
+  display:inline-block!important;
+  position:static!important;
+  margin:0!important;
+  inset:auto!important;
+}
+.hero .meta .badge{
+  padding:6px 9px!important;
+  border:1px solid #78a6b8!important;
+  border-radius:999px!important;
+  background:transparent!important;
+  color:#9fc7d6!important;
+  font:700 11px/normal Arial,Helvetica,sans-serif!important;
+  letter-spacing:0!important;
+  text-transform:uppercase!important;
+}
+.hero .meta .updated{
+  padding:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  color:#9aa6ad!important;
+  font:700 11px/normal Arial,Helvetica,sans-serif!important;
+  letter-spacing:0!important;
+  text-transform:none!important;
+}
+@media(max-width:920px){
+  .company-profile-standard .company-snapshot{grid-template-columns:1fr 1fr!important}
+  .company-profile-standard .snapshot-cell{border-right:1px solid #c8beab!important;border-bottom:1px solid #c8beab!important}
+  .company-profile-standard .snapshot-cell:nth-child(2){border-right:0!important}
+  .company-profile-standard .snapshot-cell:nth-child(3),
+  .company-profile-standard .snapshot-cell:nth-child(4){border-bottom:0!important}
+  .company-profile-standard .snapshot-cell:last-child{border-right:0!important}
+}
+@media(max-width:600px){
+  .company-profile-standard .company-mark{
+    display:flex!important;
+    flex-direction:column!important;
+    padding:20px 18px 17px!important;
+  }
+  .company-profile-standard .company-mark:after{
+    position:static!important;
+    order:-1!important;
+    display:block!important;
+    margin:0 0 9px!important;
+  }
+  .company-profile-standard .wordmark{font-size:34px!important;overflow-wrap:anywhere!important}
+  .company-profile-standard .company-snapshot{grid-template-columns:1fr!important}
+  .company-profile-standard .snapshot-cell{
+    border-right:0!important;
+    border-bottom:1px solid #c8beab!important;
+  }
+  .company-profile-standard .snapshot-cell:nth-child(3){border-bottom:1px solid #c8beab!important}
+  .company-profile-standard .snapshot-cell:last-child{border-bottom:0!important}
+}
+</style>
+<style id="company-page-additions">
+.visual-gallery.one{grid-template-columns:1fr}
+.visual-gallery.one .archive-figure img{max-height:1100px;object-fit:contain}
+.source-ref{font:700 10px Arial,sans-serif;vertical-align:super}
+.source-ref a{text-decoration:none}
+.public-bibliography{margin-top:54px;padding-top:14px;border-top:3px solid #263a46}
+.public-bibliography ol{padding-left:22px}
+.public-bibliography li{font-size:13px;margin-bottom:10px;overflow-wrap:anywhere}
+@media(max-width:760px){.visual-gallery{grid-template-columns:1fr!important}}
+</style></head><body>
+<header class="mast"><div class="mast-inner"><div class="brand">Arcade Side B</div><div class="motto">Preserve what others overlooked. Follow the evidence. Keep the record open.</div></div></header>
+<div class="crumb">Arcade Side B  ›  Companies  ›  Computer Recreations and Galaxy Game</div>
+<section class="hero"><div class="eyebrow">Company history</div><h1>Computer Recreations and Galaxy Game</h1><p class="deck">The Pitts–Tuck venture that brought Spacewar’s laboratory tradition to a Stanford coin-op audience—and built two strikingly different Galaxy Game systems.</p><div class="meta"><span class="badge living">Open to new evidence</span> <span class="updated">Last updated: October 4, 2026</span></div></section><div class="rule"></div>
+<main class="shell"><aside class="sidebar"><nav aria-label="Computer Recreations article contents" class="toc"><div class="toc-title">On this page</div><a href="#from-spacewar-to-a-paying-audience">1. From Spacewar to a paying audience</a><a href="#the-first-machine-and-its-arrival">2. The first machine and its arrival</a><a href="#playing-galaxy-game">3. Playing Galaxy Game</a><a href="#redesigning-the-system">4. Redesigning the system</a><a href="#a-popular-installation-and-an-expensive-experiment">5. A popular installation and an expensive experiment</a><a href="#survival-restoration-and-software-preservation">6. Survival, restoration and software preservation</a><a href="#what-the-company-made-and-what-it-did-not">7. What the company made—and what it did not</a><a href="#company-identity-and-the-scope-of-the-catalog">8. Company identity and the scope of the catalog</a><a href="#the-first-cabinet-and-the-revised-system">9. The first cabinet and the revised system</a><a href="#financing-components-and-local-reception">10. Financing, components and local reception</a><a href="#how-the-playable-evidence-is-used">11. How the playable evidence is used</a><a href="#preservation-chronology-and-attribution">12. Preservation chronology and attribution</a><a href="#questions-left-for-future-evidence">13. Questions left for future evidence</a><a href="#sources">Sources and further reading</a></nav></aside><article class="article"><a class="backhome" href="index.html#companies">← Back to Companies</a><section aria-label="Computer Recreations company profile" class="company-identity company-profile-standard"><div class="company-mark"><div class="legal">Computer Recreations attribution / Pitts–Tuck Galaxy Game venture</div><div class="wordmark">Computer Recreations<span>Stanford / Palo Alto area, California, United States</span></div></div><div class="company-snapshot">
+<div class="snapshot-cell"><span class="snapshot-label">Established</span><span class="snapshot-value">June 1971 (reported)</span><span class="snapshot-note">Venture formation is reported; a legal incorporation date has not been verified.</span></div>
+<div class="snapshot-cell"><span class="snapshot-label">Latest documented arcade activity</span><span class="snapshot-value">1972 system revision</span><span class="snapshot-note">The revised multi-console system followed the first Stanford installation.</span></div>
+<div class="snapshot-cell"><span class="snapshot-label">End / dissolution</span><span class="snapshot-value">Unknown</span><span class="snapshot-note">The machine's removal in 1979 is not a company dissolution date.</span></div>
+<div class="snapshot-cell"><span class="snapshot-label">Confirmed video output</span><span class="snapshot-value">1 game family</span><span class="snapshot-note">Galaxy Game; two major system generations, not two separate titles.</span></div>
+</div></section>
+<div class="company-evidence"><strong>Evidence boundary.</strong> The evidence supports a Pitts–Tuck venture associated with Galaxy Game, development, system/cabinet design and location operation, with contracted display engineering and fiberglass fabrication. The precise legal relationship between Computer Recreations, Inc. and Mini-Computer Applications remains unresolved.</div>
+<div class="public-note"><strong>About the illustrations.</strong> Ten archival and preservation images are included, with individual credits and source links. Rights remain with their identified sources or rights holders; attribution does not imply ownership. The three MAME views are modern emulation images, not photographs of the original display.</div><p>Computer Recreations belongs to the history of arcade games through one project: Galaxy Game. Bill Pitts and Hugh Tuck adapted the Spacewar tradition for a coin-operated installation at Stanford, then redesigned the equipment to serve more players from one computer. Their venture did not develop into a conventional arcade manufacturer with a catalog of machines sold through distributors. Its surviving story instead joins experimental engineering, location operation, student play and several generations of preservation.</p>
+<p>The compact company record is necessarily qualified. The venture is reported to have begun in June 1971. Computer Recreations, Incorporated is the name attached to the machine in preservation records, while a surviving early-1972 business plan has been reported under Mini-Computer Applications. The precise legal relationship between those names is unresolved. No defensible dissolution date has been established. The confirmed arcade output is one game family with two major physical and system generations, first placed on location in 1971 and revised in 1972.</p>
+<p>Those qualifications do not diminish the game’s importance. They explain what kind of enterprise it was, and prevent the familiar story of an early machine from being mistaken for a fully documented corporate history.</p>
+<h2 id="from-spacewar-to-a-paying-audience">From Spacewar to a paying audience</h2>
+<p>Galaxy Game grew from an existing game culture. Spacewar originated at MIT and circulated among institutions with suitable computers and displays. Stanford’s Artificial Intelligence Laboratory provided the immediate setting for Pitts’s interest. The Galaxy program was a PDP-11 adaptation of that tradition, rather than the invention of space combat from scratch.</p>
+<p>The distinction matters for credits. Steve Russell and the other contributors to the original Spacewar belong in the account of the source game. They should not become Computer Recreations employees simply because a later database carries both sets of names. The Pitts–Tuck project had its own engineering work, hardware decisions, controls, enclosure and operating circumstances.</p>
+<p>The minicomputer made a coin-operated version conceivable, but did not make it cheap. A computer capable of supporting the familiar experience still represented an exceptional investment for a machine earning small coins. The venture’s technical ambition and its economic difficulty were closely connected: much of what made the game attractive to computer enthusiasts also made the equipment expensive.</p>
+<p>Pitts handled programming and electrical/system work; Tuck, a mechanical engineer and his high-school friend, designed the enclosures. Later accounts describe a conscious decision to use the name Galaxy Game rather than Spacewar in the climate of antiwar feeling on campus. That explanation comes from retrospective testimony, not an inspected contemporary naming memorandum.</p>
+<h2 id="the-first-machine-and-its-arrival">The first machine and its arrival</h2>
+<p>The original console had a walnut-veneered, angular enclosure and seated players. The computing equipment was separate from the console, connected by a long cable. The first-system specification consistently reported in the stronger accounts is a DEC PDP-11/20 with an HP 1300A electrostatic X-Y display and a custom display interface. Approximately $20,000 describes the assembled first system, not simply the price of its computer.</p>
+<p>A period photograph preserved in the Gametronics Proceedings shows players at the early angular cabinet. It supplies a valuable visual counterpart to the better-known blue machines. The exposure date is not established: the proceedings’ publication date must not be reused as the date of installation or photography.</p>
+<div class="visual-gallery one"><figure class="archive-figure"><img src="assets/computer-recreations/Gametronics_scan159_rotated-cw.jpg" alt="Period photograph of players at the angular early cabinet. The January 1977 publication date is not the exposure date." loading="lazy" width="1800" height="1309"><figcaption><strong>A06. Period photograph of players at the angular early cabinet. The January 1977 publication date is not the exposure date.</strong> Credit: Gametronics Proceedings, Electronic Engineering Times, January 1977; photographer unknown. <a href="https://archive.org/download/GamtronicsProceedings/page/n159.jpg" target="_blank" rel="noopener">Source / credit</a></figcaption></figure></div>
+<p>When did the public first encounter it? The often-repeated answer is September 1971, but the strongest evidence presently points to late November. Historian Keith Smith reported that Hugh Tuck’s early-1972 plan described development continuing through November and installation in the Chess Room at Tresidder Memorial Union late that month. Two Stanford Daily advertisements, identified with the November 29 issue, promote Galaxy Game and direct readers to the Chess Room. Their actual reproduced images have been preserved.</p>
+<div class="visual-gallery "><figure class="archive-figure"><img src="assets/computer-recreations/Galaxy_Game_Stanford_Daily_Ad_1.jpg" alt="Stanford Daily advertisement for Galaxy Game. The late-November issue identification comes from source context." loading="lazy" width="562" height="591"><figcaption><strong>A01. Stanford Daily advertisement for Galaxy Game. The late-November issue identification comes from source context.</strong> Credit: The Stanford Daily via The Golden Age Arcade Historian. <a href="https://allincolorforaquarter.blogspot.com/2016/08/new-info-on-galaxy-game.html" target="_blank" rel="noopener">Source / credit</a></figcaption></figure><figure class="archive-figure"><img src="assets/computer-recreations/Galaxy_Game_Stanford_Daily_Ad_2.jpg" alt="Second Stanford Daily advertisement directing players to the Chess Room." loading="lazy" width="595" height="574"><figcaption><strong>A02. Second Stanford Daily advertisement directing players to the Chess Room.</strong> Credit: The Stanford Daily via The Golden Age Arcade Historian. <a href="https://allincolorforaquarter.blogspot.com/2016/08/new-info-on-galaxy-game.html" target="_blank" rel="noopener">Source / credit</a></figcaption></figure></div>
+<p>The research has not inspected the original plan. Its chronology is known through the reported excerpt, supported by the newspaper evidence. November 29 is the advertisement date, not a proven day of installation. A responsible account therefore uses late November for the placement and explains the competing September recollection.</p>
+<p>This also changes how the machine’s priority is described. Galaxy Game was an exceptionally early coin-operated video game, but an unqualified claim that it was the first is not supported by the current chronology. Computer Space had its own earlier testing and public exhibition history. Neither project needs to be credited with the other’s work to explain the emergence of commercial video games.</p>
+<h2 id="playing-galaxy-game">Playing Galaxy Game</h2>
+<p>Galaxy Game brought computer-controlled space combat into a setting where players could pay for a turn without obtaining access to a laboratory computer. The familiar elements included maneuvering ships, firing at an opponent and dealing with the influence of a central sun. Its controls and selectable conditions made it a more demanding proposition than a game explained by a single obvious action.</p>
+<p>Pitts’s account describes hyperspace as another, invisible space rather than a random relocation. A pursuer could follow an opponent into it and continue firing, at substantial fuel risk. This is an important distinction from generic descriptions of Spacewar. Accounts of one implementation’s rules should not automatically become the rules of every related game.</p>
+<p>The advertised charge was a dime for one game or a quarter for three. Later preserved software views repeat those prices. Accounts also describe a survival-and-fuel-based free-game arrangement. Precise conditions should remain tied to the particular testimony or program version: a modern still image cannot establish a complete rule book.</p>
+<p>The available emulation images help show what the later preserved program looks like. One contains the title and pricing. Another displays a set of choices involving gravity, the sun, speed and two-player operation, with separate remaining-game counters. A third shows the ships, central sun and star field during play. They are MAME images supplied by the Interim Computer Museum, not photographs of a 1971 display.</p>
+<div class="visual-gallery "><figure class="archive-figure"><img src="assets/computer-recreations/ICM_MAME_galaxy_game1.jpg" alt="MAME title and pricing view. This is modern emulation, not a photograph of the original display." loading="lazy" width="512" height="512"><figcaption><strong>A08. MAME title and pricing view. This is modern emulation, not a photograph of the original display.</strong> Credit: Interim Computer Museum, Galaxy Game in MAME. <a href="https://icm.museum/blog/wp-content/uploads/2026/09/galaxy_game1.jpeg" target="_blank" rel="noopener">Source / credit</a></figcaption></figure><figure class="archive-figure"><img src="assets/computer-recreations/ICM_MAME_galaxy_game2.jpg" alt="MAME options/status view showing one selected configuration, not every game rule." loading="lazy" width="512" height="512"><figcaption><strong>A09. MAME options/status view showing one selected configuration, not every game rule.</strong> Credit: Interim Computer Museum, Galaxy Game in MAME. <a href="https://icm.museum/blog/wp-content/uploads/2026/09/galaxy_game2.jpeg" target="_blank" rel="noopener">Source / credit</a></figcaption></figure><figure class="archive-figure"><img src="assets/computer-recreations/ICM_MAME_galaxy_game_4.jpg" alt="MAME play still with ships, sun and star field. No motion or fuel behavior is inferred from this still." loading="lazy" width="512" height="512"><figcaption><strong>A10. MAME play still with ships, sun and star field. No motion or fuel behavior is inferred from this still.</strong> Credit: Interim Computer Museum, Galaxy Game in MAME. <a href="https://icm.museum/blog/wp-content/uploads/2026/09/galaxy_game_4.jpeg" target="_blank" rel="noopener">Source / credit</a></figcaption></figure></div>
+<p>The original printed instructions have not yet been recovered. Exact single-player behavior, every option, the full fuel calculation and all differences between the first and later programs remain subjects for primary documentation or controlled observation. This account does not pretend that the researcher has played the machine or run the emulation.</p>
+<h2 id="redesigning-the-system">Redesigning the system</h2>
+<p>The second Galaxy Game was a substantial engineering revision. Its blue fiberglass consoles were more than new packaging: the revised display architecture was intended to spread the cost of one computer across multiple playing positions.</p>
+<div class="visual-gallery one"><figure class="archive-figure"><img src="assets/computer-recreations/ICM_Galaxy_Display.jpg" alt="Oblique view of the later blue cabinets and controls. Reflections limit fine label reading." loading="lazy" width="1280" height="960"><figcaption><strong>A04. Oblique view of the later blue cabinets and controls. Reflections limit fine label reading.</strong> Credit: Interim Computer Museum. <a href="https://icm.museum/blog/wp-content/uploads/2026/09/IMG_9781-Large.jpeg" target="_blank" rel="noopener">Source / credit</a></figcaption></figure></div>
+<p>Pitts’s recollection identifies Tuck as the designer of the fiberglass cases, Peterson Products in San Carlos as their fabricator, and Ted Panofsky as the engineer hired for the later display processor. This gives the project a more specific production history than the shorthand that two men simply built an arcade machine. The outside contributors belong in the story even though there was no normal production line.</p>
+<p>The Stanford installation used two console/display positions. Accounts describe the possibility of separate games or combined multiplayer play, as well as plans for a larger number of displays. Their statements about maximum capacity are not fully consistent. Planned capacity, installed consoles, players per display and total systems are different quantities; combining them produces misleading machine counts.</p>
+<p>The two generations are consequently cataloged together as Galaxy Game, with separate version histories. Two database entries do not establish two distinct titles, and the number of console positions does not establish a production run.</p>
+<p>The preserved technical record also requires care. MAME’s galgame driver loads a listing identified with the later blue dual-cabinet revision. Its 1971 metadata does not transform that listing into a verified copy of the first machine’s program. Nor do the emulator’s processor core, clock settings or display dimensions establish the chips, exact speed or physical screen technology inside the original equipment.</p>
+<p>A preservation-page transcription introduces a further unresolved detail by calling the computer a PDP-11/15. Stronger accounts specify the PDP-11/20. Without the original placard or a hardware record explaining the discrepancy, the transcription is a conflict to preserve, not evidence for a newly discovered third version.</p>
+<h2 id="a-popular-installation-and-an-expensive-experiment">A popular installation and an expensive experiment</h2>
+<p>The machine’s local appeal and its commercial limitations can both be true. Stanford provided players willing to learn a complicated game and return to it. The installation became part of a particular community rather than evidence that the same equipment would work equally well at every coin-op location.</p>
+<p>The economics should be described with the same care. Approximately $60,000 is the stronger direct-interview figure for cumulative development spending; later summaries sometimes give $65,000. Neither figure is supported here by inspected accounts. The cost of the first machine, cumulative project investment and subsequent location receipts must remain separate.</p>
+<p>Pitts recalled that receipts eventually repaid the principal investment by the time he removed the equipment in 1979. That is not a statement that the company earned a documented net profit, paid the founders for their labor, or succeeded as a manufacturer. Equally, a later writer’s claim that the coins could never repay the hardware should not erase Pitts’s testimony without addressing it.</p>
+<p>Some accounts describe disappointing performance when another system was moved to other locations. The identity and travels of that equipment are not securely reconstructed. A neat story in which a particular cabinet followed a known itinerary would exceed the evidence.</p>
+<p>The Stanford installation was removed in May 1979 amid growing maintenance and display-processor reliability problems. This is an endpoint in the machine’s operating history, not a corporate dissolution record. The company’s legal end remains unknown.</p>
+<h2 id="survival-restoration-and-software-preservation">Survival, restoration and software preservation</h2>
+<p>Galaxy Game survived because its components were retained and later reconstructed as operating historical equipment. The recovered older account supports restoration activity in 1997, followed by display in Stanford’s Gates building and a museum move recorded for summer 2000. A later recollection gives a different approximate restoration date; The older written sequence is now the preferred working chronology.</p>
+<div class="visual-gallery "><figure class="archive-figure"><img src="assets/computer-recreations/ICM_Galaxy_Staged.jpg" alt="Staged view of the later blue consoles, showing front and side profiles." loading="lazy" width="1280" height="960"><figcaption><strong>A05. Staged view of the later blue consoles, showing front and side profiles.</strong> Credit: Interim Computer Museum. <a href="https://icm.museum/blog/wp-content/uploads/2026/09/IMG_9099-Large.jpeg" target="_blank" rel="noopener">Source / credit</a></figcaption></figure><figure class="archive-figure"><img src="assets/computer-recreations/Galaxy_Game_Ed_Thelen_preservation.jpg" alt="Older preservation view of the blue cabinet; small control labels are unreadable. Exposure date unknown." loading="lazy" width="674" height="906"><figcaption><strong>A07. Older preservation view of the blue cabinet; small control labels are unreadable. Exposure date unknown.</strong> Credit: Ed Thelen preservation page; photographer unknown. <a href="https://ed-thelen.org/comp-hist/vs-comp-rec-galaxy-game.jpg" target="_blank" rel="noopener">Source / credit</a></figcaption></figure><figure class="archive-figure"><img src="assets/computer-recreations/ICM_Galaxy_Cabinets.jpg" alt="Museum gallery view; the cabinets are small in the wide composition. Optional preservation context, not a hero image." loading="lazy" width="1280" height="960"><figcaption><strong>A03. Museum gallery view; the cabinets are small in the wide composition. Optional preservation context, not a hero image.</strong> Credit: Interim Computer Museum. <a href="https://icm.museum/blog/wp-content/uploads/2025/07/IMG_0316-2-Large.jpeg" target="_blank" rel="noopener">Source / credit</a></figcaption></figure></div>
+<p>The evidence notes below retain the restoration participants, reported component problems and distinctions between original testimony and later additions to the copied account.</p>
+<p>The restored system subsequently passed through the Computer History Museum and Google. Former player Jonathan Rosenberg’s renewed connection with Pitts is part of that preservation story. Conflicting statements about the precise timing of the Google move remain documented rather than hidden behind an artificially exact timeline.</p>
+<p>The latest institutional report places the equipment at the Interim Computer Museum for another restoration. The museum reports a rebuilt PDP-11 power supply and a running computer, with the HP 1300A displays still needing refurbishment. This describes a preservation project in progress; it is not a claim that the entire original system has already returned to full public operation.</p>
+<p>The surviving program listing offers another route to preservation. It makes software study and emulation possible even when the physical machine needs repair. Hardware restoration and emulation answer different questions, however. A runnable later listing cannot by itself establish every behavior of the first cabinet, while a photograph of a restored cabinet cannot establish its exact software state.</p>
+<h2 id="what-the-company-made-and-what-it-did-not">What the company made—and what it did not</h2>
+<p>The reconciled catalog contains one confirmed family, Galaxy Game, with the 1971 first system and the revised 1972 system treated separately within that entry. The venture’s supported roles are development, system integration, cabinet conception and location operation, alongside named outside engineering and fabrication.</p>
+<p>No evidence located in the bounded catalog review establishes a second arcade title, an export edition, a licensed commercial release or a mass-production distributor for this venture. Those are limits of the present evidence, not proof that no unrecorded proposal ever existed.</p>
+<p>Several misleading associations have been excluded. The MIT Spacewar is the antecedent, not a second company release. Computer Space belongs to the separate Bushnell–Dabney and Nutting history. The much later CES Galaxy Games is a namesake. Other companies called Computer Recreations and articles using that phrase are not automatically part of the Pitts–Tuck enterprise.</p>
+<p>The distinction between Computer Recreations and Mini-Computer Applications is still the consequential corporate question. A business-plan title, machine attribution and later database credit may describe different legal or operating relationships. None alone proves a rename, subsidiary, partnership conversion or incorporation date.</p>
+<p>The original business plan, player instructions and readable contemporary identifying material are therefore valuable next acquisitions. They could refine the company history and the game’s rules without changing the central conclusion already supported: Galaxy Game was one ambitious game, developed through materially different systems, whose historical significance extends beyond the success or failure of a manufacturing business.</p>
+<p>---</p>
+<h2 id="evidence-notes-and-complete-game-record">Evidence notes and complete game record</h2>
+<h2 id="company-identity-and-the-scope-of-the-catalog">Company identity and the scope of the catalog</h2>
+<p>The confirmed entry is <strong>Galaxy Game</strong>, also styled <strong>Galaxy-Game</strong>, a United States coin-operated space-combat game developed and operated by the Pitts–Tuck venture. Its first public installation is best placed in late November 1971. The second system belongs to 1972. The two generations have separate physical and technical histories but do not constitute two original game titles.</p>
+<p>The surviving evidence assigns software and electrical/system work primarily to Bill Pitts, mechanical and enclosure design to Hugh Tuck, and later display-processor engineering to Ted Panofsky. Peterson Products in San Carlos fabricated the later fiberglass cases. These are distinct roles. Calling the venture a manufacturer without describing its outside fabrication and location operation would conceal how the project actually worked.</p>
+<p>There is no documented arcade catalog beyond Galaxy Game. No title-specific licensing agreement, export edition, distributor arrangement or commercial conversion has been established for the venture. The original MIT Spacewar is a source-game relationship, not another Computer Recreations product. Computer Space is a separate project. The 1998 Creative Electronics &amp; Software Galaxy Games system is unrelated despite the similar name. Later New York/Nevada corporate references and a New Jersey Computer Recreations service must not be incorporated into the California company's biography without a direct connection.</p>
+<p>The headline start date is a reported venture formation in June 1971, not a verified incorporation date. The operating setting is Stanford and the surrounding California area; a registered office address has not been established. No corporate end date can responsibly be supplied. The 1979 removal of a machine is not a legal dissolution. Consequently, the article does not calculate a corporate lifespan from those two dates.</p>
+<h2 id="the-first-cabinet-and-the-revised-system">The first cabinet and the revised system</h2>
+<p>The early enclosure was described as walnut-veneered and accommodated seated play. The later consoles have conspicuous blue fiberglass bodies. Their visual difference is supported by the preserved period photograph and later preservation photographs. The period image establishes an appearance, not the complete internal specification or the date on which it was taken.</p>
+<p>The first installation used a separate PDP-11/20 computer, reportedly in the attic above Tresidder, with a cable connection to the console. The HP 1300A was an electrostatic X-Y display. Treating that equipment as an ordinary television would lose an important engineering distinction. The point-display interface linked the computer to the screen; its design and subsequent revision were central to making the installation practical.</p>
+<p>Pitts recalled that six to eight weeks of enthusiastic use encouraged a second system, followed by roughly another six months of work. Those remembered intervals are not a dated construction log. Historical accounts generally place the revised installation in June 1972, while a later talk supplied September. The difference remains recorded. A reported move from the upstairs Chess Room/listening area to the coffee-house setting around December 1971 is also a reconstruction, not an established exact movement date.</p>
+<p>The later design tried to share one computer across more display positions. Two consoles were installed at Stanford. Accounts variously describe a larger intended maximum and multiplayer arrangements. Four displays, eight players, two consoles and two prototype systems are not interchangeable counts. The installed configuration should be described separately from the design's proposed capacity.</p>
+<p>The recovered older account itemizes the first computer at $14,000 and the display at $3,000, with coin equipment and enclosure bringing the total to about $20,000. It specifies 8K bytes of core memory and an optional hardware multiply/divide unit. These are attributed specifications and recollected prices, not inspected invoices.</p>
+<p>The controls are another area where photographs and text serve different purposes. The preserved blue-cabinet images show joysticks, switches and coin mechanisms, but the small labels cannot be reliably transcribed. A database description of keyboard controls mixes earlier Spacewar context with Galaxy Game material. It is not accepted as a direct description of the surviving cabinet's controls.</p>
+<h2 id="financing-components-and-local-reception">Financing, components and local reception</h2>
+<p>The approximate first-system cost of $20,000 is well established in the accounts, but the source of that money is described differently. Some secondary accounts emphasize Tuck or his parents; Pitts described contributions involving himself, Tuck and Tuck's siblings. No inspected financial records resolve the proportions. The later project's approximately $60,000 direct-interview total and the $65,000 secondary figure likewise remain different estimates rather than a single exact audited total.</p>
+<p>Historical reconstruction reports coin equipment from Rowe International and military-surplus controls associated with B-52 hardware from J&amp;H Outlet in San Carlos. These supplier details are useful leads, but they have not been checked against invoices or contemporary procurement records. Peterson Products and Panofsky have stronger first-person support for their roles in the later system.</p>
+<p>The Stanford setting helps explain why the installation could attract people willing to learn a relatively complicated game. Reports of crowds and waits are evidence of remembered local reception, not sales statistics. Pitts's account of eventual principal repayment must also be kept separate from a calculation of profit: labor, maintenance, development costs and the period over which receipts accumulated are not established in a surviving balance sheet.</p>
+<p>One historical detail remains particularly easy to overstate. Keith Smith suggested that a personal advertisement signed “Atlas” was probably Hugh Tuck's, connecting the signature with the Tuck family's Atlas Heating and Ventilating business. The family-business connection does not prove who placed that advertisement. It has not been counted among the two preserved Galaxy Game advertisements.</p>
+<h2 id="how-the-playable-evidence-is-used">How the playable evidence is used</h2>
+<p>The currently available MAME driver is a preservation implementation. Its single registration, galgame, uses a listing described as belonging to the second, blue dual-cabinet hardware revision. That is valuable evidence of the later program, but it does not certify every behavior of the first installation. The metadata year and manufacturer string are not independent corporate records.</p>
+<p>The modeled controls include rotation, thrust, firing and hyperspace, along with selectable conditions involving gravity, a sun, speed and player count. Separate dime and quarter inputs are represented. The museum's options image shows one configuration of these choices. It does not show every switch position or prove how each choice changes play. Source-reported screen-edge behavior and separate ship/torpedo speed variations remain questions for the original instructions or controlled observation.</p>
+<p>MAME's T11 emulation core, clock value and display dimensions are implementation details. They do not establish that the historical machine contained a T11, used that exact clock, or had a physical raster screen of the same dimensions. Similarly, the driver's no-sound-hardware designation is retained as technical-preservation evidence; this research has not performed a physical sound investigation or a gameplay test.</p>
+<p>The three included emulation images have separate purposes. The title screen documents the preserved program's pricing presentation. The options screen documents its interface and counters. The active-play still illustrates the visual field. None establishes motion, collision timing, exact fuel arithmetic or the behavior of hyperspace. The publication therefore explains only the supported mechanics and leaves unverified details open.</p>
+<h2 id="preservation-chronology-and-attribution">Preservation chronology and attribution</h2>
+<p>The older account describes the computer and displays being stored in an office while the fiberglass cases remained outdoors for eighteen years. Renewed interest began when Pitts contacted Les Earnest while considering disposal of old equipment. Stanford’s interest in an operating exhibit turned that contact into a restoration opportunity.</p>
+<p>Restoration accounts name Panofsky alongside Pitts, with Doug Brentlinger, Paul Mancuso and Victor Scheinman also credited as helpers in the recovered account. That source describes reconstruction from original schematics and attributes reliability trouble to early wire-wrap IC sockets. These details are retained as testimony rather than results of a new hardware inspection.</p>
+<p>The copied Stanford account contains later additions beneath its 1997 attribution. Its statement about a subsequent museum move cannot all have been written at the date attached to the original account. The earlier written sequence nevertheless supports restoration in 1997 over the approximate 1998–1999 date in a much later recollection. The article preserves the editorial-layer issue instead of treating the copy as a single contemporaneous document.</p>
+<p>The Google episode also contains a timing difference: Pitts's later account places the move in spring 2010, while some preservation summaries use August. The main article uses the year and sequence without choosing an unsupported exact month. Former player Jonathan Rosenberg's reconnection with Pitts explains the human link in that episode; details of youthful play and assistance with the machine remain attributed recollections.</p>
+<p>The Interim Computer Museum's restoration report is strong evidence for its own current work and participants, including Pitts, Josh Dersch and Robert Schmuck. Its repetition of the older September installation date does not displace the newspaper and reported business-plan chronology. An institution can be a primary source for what it is doing now and still repeat a weaker account of events decades earlier.</p>
+<h2 id="questions-left-for-future-evidence">Questions left for future evidence</h2>
+<p>The legal relationship between Computer Recreations and Mini-Computer Applications is unknown. The original early-1972 business plan, particularly its identity and company-history pages, could clarify it. Neither a rename nor a separate-company structure is asserted. This uncertainty is non-blocking for publication because the article identifies the people, game and observed activities without claiming an unverified legal relationship.</p>
+<p>The original player instructions and readable contemporary labels would improve the gameplay account. Their absence is non-blocking because detailed unverified rules have not been filled in. The hardware-label conflict—PDP-11/15 in a preservation transcription against the stronger PDP-11/20 descriptions—needs an original label, hardware inventory or restoration record. It is not treated as another proven generation.</p>
+<p>The later fate and location history of the first system remain unresolved. Contradictory descriptions of another system being moved cannot be converted into a definite itinerary. Financial totals and maximum display capacity also remain qualified. An archive response or participant document could refine these issues without requiring the entire catalog to be researched again.</p>
+<p>The museum inquiry has not been sent. The unavailable records are not described as nonexistent, and the project has not declared every historical question exhausted. These are documented future-acquisition opportunities. The completed publication represents the evidence presently established, with the limits visible to readers.</p><section class="public-bibliography"><h2 id="sources">Sources and further reading</h2><p>This guide maps the principal evidence used in the article. Repeated database credits are not independent corroboration. The original business plan and player instructions have not been inspected.</p><ol><li>Origins, roles, financing, operation and later preservation: Stanford Magazine, Bill Pitts, ’68, <a href="https://stanfordmag.org/contents/bill-pitts-68" target="_blank" rel="noopener">https://stanfordmag.org/contents/bill-pitts-68</a> ; Keith Smith’s interview-based account, <a href="https://allincolorforaquarter.blogspot.com/2013/03/galaxy-game.html" target="_blank" rel="noopener">https://allincolorforaquarter.blogspot.com/2013/03/galaxy-game.html</a> . Attribute recollections and retain conflicts.</li><li>Business-plan report and late-November chronology: <a href="https://allincolorforaquarter.blogspot.com/2016/08/new-info-on-galaxy-game.html" target="_blank" rel="noopener">https://allincolorforaquarter.blogspot.com/2016/08/new-info-on-galaxy-game.html</a> . Original plan not inspected. The two advertisement reproductions are physically included. Cross-check chronology: <a href="https://mcurrent.name/atarihistory/syzygy.html" target="_blank" rel="noopener">https://mcurrent.name/atarihistory/syzygy.html</a> .</li><li>Two database version entries: <a href="https://www.arcade-history.com/game/26984/galaxy-game-first-version" target="_blank" rel="noopener">https://www.arcade-history.com/game/26984/galaxy-game-first-version</a> and <a href="https://www.arcade-history.com/game/4256/galaxy-game-second-version" target="_blank" rel="noopener">https://www.arcade-history.com/game/4256/galaxy-game-second-version</a> . Database wording is not a corporate filing or substitute for original labels; historical September and priority language not adopted.</li><li>MAME technical preservation: <a href="https://raw.githubusercontent.com/mamedev/mame/master/src/mame/misc/galgame.cpp" target="_blank" rel="noopener">https://raw.githubusercontent.com/mamedev/mame/master/src/mame/misc/galgame.cpp</a> ; local source copy included. No local emulation was performed.</li><li>Source-game lineage: <a href="https://computerhistory.org/profile/steve-russell/" target="_blank" rel="noopener">https://computerhistory.org/profile/steve-russell/</a> . Original MIT contributors are not company staff.</li><li>Current restoration and three MAME images: <a href="https://icm.museum/blog/?p=698" target="_blank" rel="noopener">https://icm.museum/blog/?p=698</a> . Primary for current museum work; older historical claims on that page do not override stronger chronology or principal-repayment testimony.</li><li>Older preservation photo/placard transcription: <a href="https://ed-thelen.org/comp-hist/vs-comp-rec-galaxy-game.html" target="_blank" rel="noopener">https://ed-thelen.org/comp-hist/vs-comp-rec-galaxy-game.html</a> . PDP-11/15 conflict and small-label limits explicitly retained.</li><li>Earlier Pitts account: <a href="https://ipmall.law.unh.edu/sites/default/files/hosted_resources/Activision_Readings/Real_inventorsofarcade_videogames.pdf" target="_blank" rel="noopener">https://ipmall.law.unh.edu/sites/default/files/hosted_resources/Activision_Readings/Real_inventorsofarcade_videogames.pdf</a> . Local PDF included as research documentation. It is a compilation with later editorial layers, not wholly a 1997 text.</li><li>Period photograph: <a href="https://archive.org/details/GamtronicsProceedings/page/n159/mode/2up" target="_blank" rel="noopener">https://archive.org/details/GamtronicsProceedings/page/n159/mode/2up</a> . Original scan included; publication date is not exposure date. Surrounding narrative is not accepted wholesale.</li><li>MOTG catalog: <a href="https://www.arcade-museum.com/Videogame/galaxy-game" target="_blank" rel="noopener">https://www.arcade-museum.com/Videogame/galaxy-game</a> . A database census is not a total of physically manufactured systems.</li></ol></section></article></main>
+<footer class="footer"><div class="rights"><strong>Arcade Side B</strong> — The Overlooked Side of Arcade History. Historical images remain credited to their identified sources and rights holders.</div></footer>
+</body></html>
