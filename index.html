@@ -492,6 +492,22 @@ main{padding:32px 0 62px}
 .row strong{display:block;font-family:Georgia,serif;font-size:17px}
 .row span{display:block;color:#88939a;font-size:11px}
 .row em{font-style:normal;color:#71808a;font-size:11px}
+.research-question{border-bottom:1px solid #26313b}
+.research-question:last-child{border-bottom:0}
+.research-question summary{list-style:none;cursor:pointer}
+.research-question summary::-webkit-details-marker{display:none}
+.research-question .row{border-bottom:0}
+.research-question summary:focus-visible{outline:2px solid var(--gold2);outline-offset:-2px}
+.research-question[open] .row{background:#151d25}
+.research-question[open] .marker{border-color:var(--gold);color:var(--gold2)}
+.question-detail{padding:0 15px 16px 65px;color:#aeb8be;font-size:12px;line-height:1.55}
+.question-detail p{margin:0 0 9px}
+.question-detail strong{color:#e8ecee;font-family:Arial,Helvetica,sans-serif;font-size:12px}
+.question-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.question-actions a{display:inline-block;padding:8px 10px;border:1px solid #46525d;color:#dfe5e8;text-decoration:none;font:800 9px Arial,sans-serif;letter-spacing:.06em;text-transform:uppercase}
+.question-actions a:hover,.question-actions a:focus{border-color:var(--gold);color:#fff;background:#18212c}
+.question-actions a.primary-question{background:var(--gold);border-color:#e1aa55;color:#11151a}
+@media(max-width:620px){.question-detail{padding-left:15px}}
 
 /* CONTRIBUTE */
 .contribute{
@@ -989,22 +1005,53 @@ footer strong{color:#dce2e5;font-family:Georgia,serif;font-size:16px}
 </div>
 </div>
 <div class="list">
-<div class="list-title">Open Research Questions</div>
-<div class="row">
+<div class="list-title">Open Research Questions <span style="color:#71808a;font-weight:400">— click a question to open it</span></div>
+<details class="research-question">
+<summary class="row">
 <div class="marker">?</div>
 <div><strong>Which people can still be identified behind lesser-known games?</strong><span>People</span></div>
-<em>Open</em>
+<em>Open ▾</em>
+</summary>
+<div class="question-detail">
+<p><strong>What we know:</strong> Company histories and game research already recover names from program credits, manuals, trade coverage, company records, surviving machines and firsthand accounts.</p>
+<p><strong>What is still missing:</strong> Credits, staff lists, correspondence, photographs with identified people, employment records, and firsthand memories that can connect specific programmers, artists, engineers, operators or executives to lesser-known games.</p>
+<div class="question-actions">
+<a href="#people">Related people</a>
+<a href="#games">Related games</a>
+<a class="primary-question" href="mailto:dde.biz@gmail.com?subject=Arcade%20Side%20B%20research%20lead%20-%20People">Contribute evidence</a>
 </div>
-<div class="row">
+</div>
+</details>
+<details class="research-question">
+<summary class="row">
 <div class="marker">?</div>
 <div><strong>What company documents or photographs remain in private collections?</strong><span>Companies</span></div>
-<em>Open</em>
+<em>Open ▾</em>
+</summary>
+<div class="question-detail">
+<p><strong>What we know:</strong> Many company histories survive only in scattered trade publications, manuals, public records, advertisements and photographs of surviving equipment.</p>
+<p><strong>What is still missing:</strong> Catalogs, price sheets, brochures, factory and operator photographs, internal memos, correspondence, employee material, service documents and other privately held records that can fill gaps in the public record.</p>
+<div class="question-actions">
+<a href="#companies">Related companies</a>
+<a class="primary-question" href="mailto:dde.biz@gmail.com?subject=Arcade%20Side%20B%20research%20lead%20-%20Company%20records">Contribute evidence</a>
 </div>
-<div class="row">
+</div>
+</details>
+<details class="research-question">
+<summary class="row">
 <div class="marker">?</div>
 <div><strong>Which unusual cabinets or prototypes still survive?</strong><span>Cabinets &amp; Oddities</span></div>
-<em>Open</em>
+<em>Open ▾</em>
+</summary>
+<div class="question-detail">
+<p><strong>What we know:</strong> Period documentation and surviving examples confirm a surprising range of unusual cabinets, conversion systems, kiosks and prototype hardware, but their present survival is often uncertain.</p>
+<p><strong>What is still missing:</strong> Current photographs, serial and identification plates, provenance, dimensions, restoration history, prototype markings, and reliable reports of where surviving examples have ended up.</p>
+<div class="question-actions">
+<a href="#hardware">Related hardware</a>
+<a class="primary-question" href="mailto:dde.biz@gmail.com?subject=Arcade%20Side%20B%20research%20lead%20-%20Cabinets%20and%20prototypes">Contribute evidence</a>
 </div>
+</div>
+</details>
 </div>
 </section>
 <section class="contribute" id="contribute">
