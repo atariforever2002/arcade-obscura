@@ -1099,6 +1099,70 @@ footer strong{color:#dce2e5;font-family:Georgia,serif;font-size:16px}
 </div>
 </section>
 </main>
+<script>
+(function(){
+  const openButton=document.getElementById('contribute-open');
+  const contributeDialog=document.getElementById('contribute-dialog');
+  const closeButton=document.getElementById('contribute-close');
+  const copyButton=document.getElementById('contribute-copy');
+  const copyStatus=document.getElementById('contribute-copy-status');
+  const email='dde.biz@gmail.com';
+
+  if(openButton && contributeDialog){
+    openButton.addEventListener('click',function(){
+      if(typeof contributeDialog.showModal==='function'){
+        if(!contributeDialog.open) contributeDialog.showModal();
+      }else{
+        contributeDialog.setAttribute('open','');
+      }
+    });
+  }
+
+  if(closeButton && contributeDialog){
+    closeButton.addEventListener('click',function(){
+      if(typeof contributeDialog.close==='function') contributeDialog.close();
+      else contributeDialog.removeAttribute('open');
+    });
+  }
+
+  if(contributeDialog){
+    contributeDialog.addEventListener('click',function(event){
+      const r=contributeDialog.getBoundingClientRect();
+      const inside=event.clientX>=r.left && event.clientX<=r.right && event.clientY>=r.top && event.clientY<=r.bottom;
+      if(!inside){
+        if(typeof contributeDialog.close==='function') contributeDialog.close();
+        else contributeDialog.removeAttribute('open');
+      }
+    });
+  }
+
+  if(copyButton){
+    copyButton.addEventListener('click',async function(){
+      let copied=false;
+      try{
+        if(navigator.clipboard && window.isSecureContext){
+          await navigator.clipboard.writeText(email);
+          copied=true;
+        }
+      }catch(e){}
+      if(!copied){
+        const area=document.createElement('textarea');
+        area.value=email;
+        area.setAttribute('readonly','');
+        area.style.position='fixed';
+        area.style.opacity='0';
+        document.body.appendChild(area);
+        area.select();
+        try{copied=document.execCommand('copy');}catch(e){}
+        area.remove();
+      }
+      if(copyStatus){
+        copyStatus.textContent=copied ? 'Email address copied.' : 'Copy did not work. Email: '+email;
+      }
+    });
+  }
+})();
+</script>
 <section class="full-article-review" id="evoga-full" data-page-url="evoga.html"><div class="review-head"><div><h2>EVOGA Entertainment — Company History</h2><p>Mexico’s brief bridge into Japanese arcade production.</p></div><a class="review-top" href="#companies">â†‘ Back to Companies</a></div><iframe class="article-frame auto-height" title="EVOGA full company history" srcdoc="&lt;!doctype html&gt;&lt;html lang=&quot;en&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1&quot;&gt;&lt;title&gt;EVOGA Entertainment | Arcade Side B&lt;/title&gt;&lt;meta name=&quot;description&quot; content=&quot;EVOGA Entertainment’s Mexican arcade history: Evolution Soccer, Rage of the Dragons, Japanese collaborations, unreleased projects and its later revival.&quot;&gt;&lt;link rel=&quot;canonical&quot; href=&quot;https://arcadesideb.com/evoga.html&quot;&gt;&lt;style&gt;
 :root{
   --bg:#090d12;--paper:#eee7d8;--paper2:#f5efe3;--ink:#232b30;--muted:#667075;
