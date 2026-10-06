@@ -1,6 +1,414 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Mirco Games | Arcade Side B</title><meta name="description" content="Mirco Games of Phoenix, Arizona: foosball, early video games, microprocessor experiments, pinball, card games and European arcade history."><link rel="canonical" href="https://arcadesideb.com/mirco-games.html"><style>:root{--bg:#090d12;--paper:#eee7d8;--ink:#232b30;--gold:#c28a32;--line:#c8beab}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:#dce2e5;font-family:Georgia,serif;line-height:1.7}.mast{border-bottom:4px solid var(--gold);padding:18px max(16px,calc((100% - 1180px)/2));font:bold 26px Georgia}.hero,.shell{width:min(calc(100% - 32px),1180px);margin:auto}.hero{padding:36px 0 28px}.eyebrow{font:800 11px Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#d4ad67}.hero h1{font-size:clamp(42px,8vw,78px);line-height:1;margin:8px 0;color:#f0ece4}.deck{max-width:900px;color:#c3ccd0;font-size:19px}.shell{padding:24px 0 60px}.article{background:var(--paper);color:var(--ink);padding:clamp(22px,5vw,62px);box-shadow:0 15px 38px #0008}.snapshot{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);margin:0 0 28px;background:#f3eddf}.snapshot div{padding:15px;border-right:1px solid var(--line)}.snapshot div:last-child{border:0}.label{display:block;font:800 9px Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#786f63}.value{display:block;font-size:18px;color:#1c2d37;margin-top:6px}.article h2{margin:42px 0 12px;padding-top:10px;border-top:3px solid #263a46;color:#172831;font-size:25px;line-height:1.2}.article p{font-size:17px}.footer{width:min(calc(100% - 32px),1180px);margin:auto;padding:0 0 30px;color:#9ba5aa;font:12px Arial,sans-serif}@media(max-width:760px){.snapshot{grid-template-columns:1fr 1fr}.snapshot div:nth-child(2){border-right:0}.snapshot div:nth-child(3),.snapshot div:nth-child(4){border-top:1px solid var(--line)}.article{padding:22px 17px}}</style></head><body><header class="mast">Arcade Side B</header><section class="hero"><div class="eyebrow">Company history · Phoenix, Arizona · 1973–1980 operational era</div><h1>Mirco Games</h1><p class="deck">The Phoenix company that tried almost everything: foosball, early video games, microprocessors, pinball, card games and European arcade distribution.</p></section><main class="shell"><article class="article"><div class="snapshot"><div><span class="label">Formation</span><span class="value">12/26/1973</span></div><div><span class="label">Location</span><span class="value">Phoenix, Arizona</span></div><div><span class="label">Video output</span><span class="value">12 core products</span></div><div><span class="label">Endpoint</span><span class="value">1980 U.S. games operation</span></div></div><h2>MIRCO GAMES</h2>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Mirco Games | Arcade Side B</title><meta name="description" content="Mirco Games of Phoenix, Arizona: early video games, microprocessor experiments, pinball, card games and European arcade history."><link rel="canonical" href="https://arcadesideb.com/mirco-games.html"><meta name="robots" content="index,follow"><style>
+:root{
+  --bg:#090d12;--paper:#eee7d8;--paper2:#f5efe3;--ink:#232b30;--muted:#667075;
+  --line:#c8beab;--darkline:#303b45;--gold:#c28a32;--gold2:#d8b36b;
+  --green:#557b63;--cyan:#6f99aa;--max:1180px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:
+  radial-gradient(circle at 82% 10%,rgba(111,153,170,.09),transparent 28%),
+  linear-gradient(rgba(255,255,255,.012) 1px,transparent 1px),#090d12;
+  background-size:auto,100% 4px,auto;color:#dce2e5;font-family:Georgia,"Times New Roman",serif;
+}
+a{color:#a96f21}
+.mast{border-bottom:4px solid var(--gold);background:linear-gradient(135deg,#0a0f14,#13202a)}
+.mast-inner{width:min(calc(100% - 32px),var(--max));margin:auto;padding:17px 0;display:flex;justify-content:space-between;gap:20px;align-items:center}
+.brand{font-size:26px;font-weight:700;color:#f0ece4}
+.motto{font:700 10px Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#9ca8af;text-align:right}
+.crumb,.hero,.rule,.shell{width:min(calc(100% - 32px),var(--max));margin-left:auto;margin-right:auto}
+.crumb{padding-top:18px;color:#93a0a8;font:700 11px Arial,sans-serif}
+.crumb a{color:#d4ad67;text-decoration:none}
+.hero{padding:30px 0 26px}
+.eyebrow{color:var(--gold2);font:800 10px Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase}
+.hero h1{margin:7px 0 10px;font-size:clamp(44px,7vw,78px);line-height:.95;color:#f0ece4}
+.deck{max-width:930px;color:#b9c4ca;font-size:20px;line-height:1.5;margin:0}
+.meta{display:flex;gap:12px;flex-wrap:wrap;margin-top:17px;color:#9aa6ad;font:700 11px Arial,sans-serif}
+.badge{padding:6px 9px;border:1px solid currentColor;border-radius:999px;text-transform:uppercase}
+.living{color:#78a6b8}
+.rule{height:1px;background:#29343e}
+.shell{display:grid;grid-template-columns:275px minmax(0,1fr);gap:22px;padding:26px 0 50px;align-items:start}
+.sidebar{position:sticky;top:10px}
+.toc{border:1px solid #34404b;background:#111820;max-height:82vh;overflow:auto}
+.toc-title{padding:13px 15px;color:#d8dfe2;font:800 11px Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase}
+.toc a{display:block;border-top:1px solid #29343e;padding:9px 13px;color:#aebbc2;text-decoration:none;font:13px/1.35 Arial,sans-serif}
+.toc a:hover{color:#f0c57e}
+.sidebar-note{margin-top:12px;border:1px solid #34404b;background:#111820;padding:13px;color:#94a0a7;font:13px/1.45 Arial,sans-serif}
+article{background:var(--paper);color:var(--ink);border:1px solid #b9ae9a;box-shadow:0 18px 42px rgba(0,0,0,.25);padding:26px 34px 40px;min-width:0}
+.backhome{display:inline-block;margin-bottom:18px;padding:8px 10px;border:1px solid #9e927e;color:#745322;text-decoration:none;font:800 10px Arial,sans-serif;text-transform:uppercase;letter-spacing:.08em}
+.company-identity{margin:0 0 28px;border:1px solid #b8ad98;background:linear-gradient(135deg,rgba(194,138,50,.08),transparent 48%),#f3eddf;overflow:hidden}
+.company-mark{padding:24px 26px 20px;border-bottom:1px solid var(--line);position:relative}
+.company-mark:after{content:"COMPANY PROFILE";position:absolute;right:22px;top:18px;color:#8c8272;font:700 9px Arial,sans-serif;letter-spacing:.16em}
+.legal{color:#746b5f;font:700 10px Arial,sans-serif;letter-spacing:.13em;text-transform:uppercase;margin-bottom:7px}
+.wordmark{font-size:clamp(34px,5vw,58px);line-height:.95;color:#122331}
+.wordmark span{display:block;margin-top:7px;color:#8a6429;font:700 13px Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase}
+.company-snapshot{display:grid;grid-template-columns:repeat(4,1fr)}
+.snapshot-cell{padding:17px 18px;border-right:1px solid var(--line)}
+.snapshot-cell:last-child{border-right:0}
+.snapshot-label{display:block;color:#786f63;font:700 9px Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;margin-bottom:5px}
+.snapshot-value{display:block;color:#1c2d37;font-size:19px;line-height:1.2}
+.snapshot-note{display:block;margin-top:5px;color:#6e726f;font:11px/1.35 Arial,sans-serif}
+.overview-box{padding:18px 20px;background:#f8f2e7;border:1px solid #d2c5af;margin:0 0 26px}
+.overview-box h2{margin-top:0!important}
+article h2{margin:38px 0 13px;color:#172a35;font-size:31px;border-bottom:2px solid #b57f31;padding-bottom:7px}
+article h2:first-of-type{margin-top:0}
+article h3{margin:27px 0 9px;color:#2b3a41;font-size:24px}
+article p{font-size:18px;line-height:1.7;margin:14px 0}
+article li{font-size:17px;line-height:1.6;margin:6px 0}
+article blockquote{margin:18px 0;padding:10px 17px;border-left:4px solid var(--gold);background:#f7f0e3;color:#465156}
+article table{width:100%;border-collapse:collapse;margin:18px 0;font:14px/1.45 Arial,sans-serif}
+article th,article td{border:1px solid #c8beab;padding:8px 9px;vertical-align:top}
+article th{background:#ddd3c1;color:#24323a;text-align:left}
+article code{font-size:.88em}
+.src-tag{display:inline-block;color:#76531e;font:700 10px Arial,sans-serif;white-space:nowrap}
+.public-note{margin:0 0 25px;padding:15px 17px;border-left:5px solid var(--green);background:#e7efe8;color:#33433a;font:15px/1.5 Arial,sans-serif}
+.footer{border-top:1px solid #29343e;background:#07090c}
+.footer-inner{width:min(calc(100% - 32px),var(--max));margin:auto;padding:21px 0 27px;display:flex;justify-content:space-between;align-items:flex-end;gap:20px;color:#7f8b92;font:12px Arial,sans-serif}
+.footer-inner strong{color:#d9dfe2;font-family:Georgia,serif;font-size:15px}
+.site-counter{text-align:right;font:800 9px Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#748089}
+.site-counter img{display:block;margin:5px 0 0 auto;border:1px solid #303944}
+@media(max-width:920px){
+ .shell{grid-template-columns:1fr} .sidebar{position:static} .toc{max-height:none}
+ .company-snapshot{grid-template-columns:1fr 1fr}
+ .snapshot-cell:nth-child(2){border-right:0}
+ .snapshot-cell{border-bottom:1px solid var(--line)}
+ .snapshot-cell:nth-child(3),.snapshot-cell:nth-child(4){border-bottom:0}
+}
+@media(max-width:600px){
+ .mast-inner{align-items:flex-start;flex-direction:column} .motto{text-align:left}
+ .company-snapshot{grid-template-columns:1fr} .snapshot-cell{border-right:0;border-bottom:1px solid var(--line)!important}
+ .snapshot-cell:last-child{border-bottom:0!important}
+ article{padding:20px 16px 28px} article p{font-size:17px} article h2{font-size:27px}
+ .footer-inner{align-items:flex-start;flex-direction:column} .site-counter{text-align:left} .site-counter img{margin-left:0}
+}
+
+.elcon-visuals{
+  margin:28px 0 34px;
+}
+.elcon-visuals h2{
+  margin-top:0;
+}
+.flyer-pair{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+  align-items:start;
+}
+.archive-figure{
+  margin:0;
+  padding:10px;
+  border:1px solid #b8ad98;
+  background:#f8f3e8;
+}
+.archive-figure img{
+  width:100%;
+  height:auto;
+  display:block;
+  border:1px solid #c8beab;
+  background:#e9dfce;
+}
+.archive-figure figcaption{
+  padding:9px 4px 2px;
+  color:#5e6668;
+  font:12px/1.5 Arial,Helvetica,sans-serif;
+}
+.rights-hold{
+  margin:24px 0;
+  padding:15px 17px;
+  border:1px dashed #b69d72;
+  background:#f7efe1;
+  color:#5b554c;
+  font:13px/1.55 Arial,Helvetica,sans-serif;
+}
+.rights-hold strong{
+  color:#65471e;
+}
+@media(max-width:700px){
+  .flyer-pair{grid-template-columns:1fr}
+}
+
+
+/* ELTON/ELCON PUBLICATION VISUALS */
+.visual-section{
+  margin:20px 0 32px;
+}
+.visual-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+  margin:18px 0 24px;
+  align-items:start;
+}
+.visual-grid.brochure{
+  grid-template-columns:1fr 1fr;
+}
+.archive-figure{
+  margin:0;
+  padding:10px;
+  border:1px solid #b8ad98;
+  background:#f8f3e8;
+}
+.archive-figure img{
+  width:100%;
+  height:auto;
+  display:block;
+  border:1px solid #c8beab;
+  background:#e9dfce;
+}
+.archive-figure figcaption{
+  padding:9px 4px 2px;
+  color:#5e6668;
+  font:12px/1.5 Arial,Helvetica,sans-serif;
+}
+.visual-note{
+  margin:18px 0;
+  padding:14px 16px;
+  border-left:4px solid #b57f31;
+  background:#f7efe1;
+  color:#5b554c;
+  font:13px/1.55 Arial,Helvetica,sans-serif;
+}
+@media(max-width:760px){
+  .visual-grid,.visual-grid.brochure{grid-template-columns:1fr}
+}
+
+
+/* CONTEXTUAL ARCHIVAL FIGURES */
+.inline-archive-figure{
+  margin:22px auto 27px;
+  max-width:780px;
+  padding:10px;
+  border:1px solid #b8ad98;
+  background:#f8f3e8;
+  box-shadow:0 8px 18px rgba(64,52,34,.08);
+}
+.inline-archive-figure.narrow{max-width:560px}
+.inline-archive-figure img{
+  width:100%;
+  height:auto;
+  display:block;
+  border:1px solid #c8beab;
+  background:#e9dfce;
+}
+.inline-archive-figure figcaption{
+  padding:9px 4px 2px;
+  color:#5e6668;
+  font:12px/1.55 Arial,Helvetica,sans-serif;
+}
+.inline-archive-figure figcaption strong{color:#334047}
+.derivative-note{
+  display:inline-block;
+  margin-left:5px;
+  padding:2px 5px;
+  border:1px solid #b89a66;
+  color:#76531e;
+  font:700 8px Arial,Helvetica,sans-serif;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.context-note{
+  margin:18px 0 22px;
+  padding:13px 15px;
+  border-left:4px solid #b57f31;
+  background:#f7efe1;
+  color:#5b554c;
+  font:13px/1.55 Arial,Helvetica,sans-serif;
+}
+
+
+
+/* Reader-facing source and table containment */
+article a, .source-list a, .footnotes a { overflow-wrap:anywhere; }
+.table-scroll {max-width:100%;overflow-x:auto;}
+.table-scroll:focus-visible {outline:2px solid #d7b56d;outline-offset:3px;}
+
+
+/* Exact shared company-profile presentation: Elcon is the house pattern. */
+.company-identity.company-profile-standard{
+  margin:0 0 28px!important;
+  padding:0!important;
+  border:1px solid #b8ad98!important;
+  border-radius:0!important;
+  background:linear-gradient(135deg,rgba(194,138,50,.08),transparent 48%),#f3eddf!important;
+  color:#20272c!important;
+  box-shadow:none!important;
+  overflow:hidden!important;
+  font-family:Georgia,"Times New Roman",serif!important;
+  font-size:16px!important;
+  line-height:normal!important;
+}
+.company-profile-standard .company-mark{
+  display:block!important;
+  position:relative!important;
+  padding:24px 26px 20px!important;
+  border:0!important;
+  border-bottom:1px solid #c8beab!important;
+  border-radius:0!important;
+  background:transparent!important;
+  color:#232b30!important;
+  font:400 16px/normal Georgia,"Times New Roman",serif!important;
+}
+.company-profile-standard .company-mark:after{
+  content:"COMPANY PROFILE"!important;
+  position:absolute!important;
+  right:22px!important;
+  top:18px!important;
+  display:block!important;
+  margin:0!important;
+  color:#8c8272!important;
+  font:700 9px/normal Arial,Helvetica,sans-serif!important;
+  letter-spacing:.16em!important;
+  text-transform:uppercase!important;
+}
+.company-profile-standard .legal{
+  display:block!important;
+  margin:0 0 7px!important;
+  padding:0!important;
+  color:#746b5f!important;
+  font:700 10px/11px Arial,Helvetica,sans-serif!important;
+  letter-spacing:.13em!important;
+  text-transform:uppercase!important;
+}
+.company-profile-standard .wordmark{
+  display:block!important;
+  margin:0!important;
+  padding:0!important;
+  color:#122331!important;
+  font:400 clamp(34px,5vw,58px)/.95 Georgia,"Times New Roman",serif!important;
+  letter-spacing:0!important;
+  text-transform:none!important;
+}
+.company-profile-standard .wordmark span{
+  display:block!important;
+  margin:7px 0 0!important;
+  padding:0!important;
+  color:#8a6429!important;
+  font:700 13px/normal Arial,Helvetica,sans-serif!important;
+  letter-spacing:.16em!important;
+  text-transform:uppercase!important;
+}
+.company-profile-standard .company-snapshot{
+  display:grid!important;
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  color:#232b30!important;
+  font:400 16px/normal Georgia,"Times New Roman",serif!important;
+}
+.company-profile-standard .snapshot-cell{
+  display:block!important;
+  min-width:0!important;
+  margin:0!important;
+  padding:17px 18px!important;
+  border:0!important;
+  border-right:1px solid #c8beab!important;
+  border-radius:0!important;
+  background:transparent!important;
+  color:#232b30!important;
+  font:400 16px/normal Georgia,"Times New Roman",serif!important;
+}
+.company-profile-standard .snapshot-cell:last-child{border-right:0!important}
+.company-profile-standard .snapshot-label{
+  display:block!important;
+  margin:0 0 5px!important;
+  padding:0!important;
+  color:#786f63!important;
+  font:700 9px/10px Arial,Helvetica,sans-serif!important;
+  letter-spacing:.12em!important;
+  text-transform:uppercase!important;
+}
+.company-profile-standard .snapshot-value{
+  display:block!important;
+  margin:0!important;
+  padding:0!important;
+  color:#1c2d37!important;
+  font:400 19px/22.8px Georgia,"Times New Roman",serif!important;
+}
+.company-profile-standard .snapshot-note{
+  display:block!important;
+  margin:5px 0 0!important;
+  padding:0!important;
+  color:#6e726f!important;
+  font:400 11px/14.85px Arial,Helvetica,sans-serif!important;
+}
+.hero .meta{
+  display:flex!important;
+  flex-direction:row!important;
+  flex-wrap:wrap!important;
+  align-items:center!important;
+  gap:10px!important;
+  margin:15px 0 0!important;
+  padding:0!important;
+}
+.hero .meta .badge,
+.hero .meta .updated{
+  display:inline-block!important;
+  position:static!important;
+  margin:0!important;
+  inset:auto!important;
+}
+.hero .meta .badge{
+  padding:6px 9px!important;
+  border:1px solid #78a6b8!important;
+  border-radius:999px!important;
+  background:transparent!important;
+  color:#9fc7d6!important;
+  font:700 11px/normal Arial,Helvetica,sans-serif!important;
+  letter-spacing:0!important;
+  text-transform:uppercase!important;
+}
+.hero .meta .updated{
+  padding:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  color:#9aa6ad!important;
+  font:700 11px/normal Arial,Helvetica,sans-serif!important;
+  letter-spacing:0!important;
+  text-transform:none!important;
+}
+@media(max-width:920px){
+  .company-profile-standard .company-snapshot{grid-template-columns:1fr 1fr!important}
+  .company-profile-standard .snapshot-cell{border-right:1px solid #c8beab!important;border-bottom:1px solid #c8beab!important}
+  .company-profile-standard .snapshot-cell:nth-child(2){border-right:0!important}
+  .company-profile-standard .snapshot-cell:nth-child(3),
+  .company-profile-standard .snapshot-cell:nth-child(4){border-bottom:0!important}
+  .company-profile-standard .snapshot-cell:last-child{border-right:0!important}
+}
+@media(max-width:600px){
+  .company-profile-standard .company-mark{
+    display:flex!important;
+    flex-direction:column!important;
+    padding:20px 18px 17px!important;
+  }
+  .company-profile-standard .company-mark:after{
+    position:static!important;
+    order:-1!important;
+    display:block!important;
+    margin:0 0 9px!important;
+  }
+  .company-profile-standard .wordmark{font-size:34px!important;overflow-wrap:anywhere!important}
+  .company-profile-standard .company-snapshot{grid-template-columns:1fr!important}
+  .company-profile-standard .snapshot-cell{
+    border-right:0!important;
+    border-bottom:1px solid #c8beab!important;
+  }
+  .company-profile-standard .snapshot-cell:nth-child(3){border-bottom:1px solid #c8beab!important}
+  .company-profile-standard .snapshot-cell:last-child{border-bottom:0!important}
+}
+
+article{min-width:0}article p{line-height:1.7}article h2{margin-top:2.3rem}.archive-figure{margin:1.5rem 0;padding:1rem;background:#111b25;border:1px solid #485461}.archive-figure button{display:block;width:100%;border:0;background:transparent;cursor:zoom-in}.archive-figure img{display:block;width:100%;height:auto;max-height:640px;object-fit:contain}.archive-figure figcaption{font:14px/1.5 Arial,sans-serif;color:#c8d0d6;padding-top:.7rem}.computran-snapshot{padding:1.2rem;border:1px solid #59728a;border-radius:12px;background:#152b40;color:#f1f5f9}.computran-snapshot h3{color:#f8fafc;font-size:26px;line-height:1.2;margin:0 0 1rem}.computran-snapshot p,.computran-snapshot .snapshot-row{color:#f1f5f9;font:17px/1.6 Arial,Helvetica,sans-serif}.computran-snapshot strong{color:#f0c77b}.computran-snapshot .snapshot-row{padding:.8rem 0;border-top:1px solid #456077}.computran-snapshot .snapshot-row:first-of-type{border-top:0}.computran-snapshot .snapshot-row>strong:first-child{display:block;margin-bottom:.25rem}.archive-figure figcaption,.archive-figure figcaption strong{color:#dce5ec}.archive-figure figcaption a{color:#f0c77b}.toc a{line-height:1.4}dialog{background:#0e1720;color:#eee;max-width:96vw;max-height:96vh}dialog img{max-width:90vw;max-height:84vh;object-fit:contain}.rights{font:12px/1.6 Arial,sans-serif;max-width:1000px;margin:1rem auto;padding:1rem}h1:first-child{display:none}@media(max-width:700px){.shell{display:block;padding:0 16px}.sidebar{position:static}.archive-figure{padding:.5rem}.hero{padding:24px 16px}}</style></head><body>
+<header class="mast"><div class="mast-inner"><div class="brand">Arcade Side B</div><div class="motto">The Overlooked Side of Arcade History</div></div></header>
+<div class="crumb">Arcade Side B / Company histories / Mirco Games</div>
+<section class="hero"><div class="eyebrow">Company history · Phoenix, Arizona · 1973–1980</div><h1>Mirco Games</h1><p class="deck">The Phoenix company that tried almost everything: foosball, early video games, microprocessors, pinball, card games and European arcade distribution.</p><div class="meta"><span class="badge">History &amp; sources</span><span class="updated">Publication profile</span></div></section>
+<div class="rule"></div>
+<main class="shell"><aside class="sidebar"><nav class="toc"><span class="toc-title">On this page</span><a href="#mirco-games">MIRCO GAMES</a><a href="#company-snapshot">COMPANY SNAPSHOT</a><a href="#introduction-a-company-between-eras">INTRODUCTION — A COMPANY BETWEEN ERAS</a><a href="#roots-arizona-automation-and-the-foosball-boom">ROOTS — ARIZONA AUTOMATION AND THE FOOSBALL BOOM</a><a href="#the-1973-merger-and-the-birth-of-mirco-games">THE 1973 MERGER AND THE BIRTH OF MIRCO GAMES</a><a href="#from-pong-clones-to-a-distinct-mirco-identity">FROM PONG CLONES TO A DISTINCT MIRCO IDENTITY</a><a href="#slam-and-the-search-for-something-different">SLAM AND THE SEARCH FOR SOMETHING DIFFERENT</a><a href="#the-microprocessor-gamble">THE MICROPROCESSOR GAMBLE</a><a href="#skywar-a-more-conventional-commercial-success">SKYWAR — A MORE CONVENTIONAL COMMERCIAL SUCCESS</a><a href="#the-card-game-niche-21-and-the-hit-me-lineage">THE CARD-GAME NICHE — 21 AND THE HIT ME LINEAGE</a><a href="#super-stud-poker-enters-the-line">SUPER STUD — POKER ENTERS THE LINE</a><a href="#formula-m-vrooom-a-cocktail-driving-game">FORMULA M VROOOM — A COCKTAIL DRIVING GAME</a><a href="#dawn-patrol-the-last-clear-traditional-action-game">DAWN PATROL — THE LAST CLEAR TRADITIONAL ACTION GAME</a><a href="#hold-and-draw-a-product-moving-between-europe-and-america">HOLD &amp; DRAW — A PRODUCT MOVING BETWEEN EUROPE AND AMERICA</a><a href="#block-buster-break-in-and-the-problem-of-regional-titles">BLOCK BUSTER, BREAK IN AND THE PROBLEM OF REGIONAL TITLES</a><a href="#zircus-a-name-without-enough-of-a-machine">ZIRCUS — A NAME WITHOUT ENOUGH OF A MACHINE</a><a href="#mirco-games-gmbh-the-european-arm">MIRCO GAMES GMBH — THE EUROPEAN ARM</a><a href="#japanese-games-in-the-german-catalog">JAPANESE GAMES IN THE GERMAN CATALOG</a><a href="#the-fairchild-home-video-project">THE FAIRCHILD HOME-VIDEO PROJECT</a><a href="#leadership-changes">LEADERSHIP CHANGES</a><a href="#the-amstar-transition">THE AMSTAR TRANSITION</a><a href="#the-twelve-core-marketed-video-products">THE TWELVE CORE MARKETED VIDEO PRODUCTS</a><a href="#what-mirco-actually-contributed">WHAT MIRCO ACTUALLY CONTRIBUTED</a><a href="#people-sales-and-service-how-mirco-actually-operated">PEOPLE, SALES AND SERVICE — HOW MIRCO ACTUALLY OPERATED</a><a href="#a-company-worth-remembering">A COMPANY WORTH REMEMBERING</a><a href="#unresolved-questions-and-research-boundaries">UNRESOLVED QUESTIONS AND RESEARCH BOUNDARIES</a><a href="#image-and-source-note">IMAGE AND SOURCE NOTE</a><a href="#end-of-substantive-narrative-draft">END OF SUBSTANTIVE NARRATIVE DRAFT</a></nav></aside><article class="article"><a class="backhome" href="index.html">← Arcade Side B home</a><div class="snapshot"><div><span class="label">Formation</span><span class="value">12/26/1973</span></div><div><span class="label">Location</span><span class="value">Phoenix, Arizona</span></div><div><span class="label">Video output</span><span class="value">12 core products</span></div><div><span class="label">Endpoint</span><span class="value">1980 U.S. games operation</span></div></div><h2 id="mirco-games">MIRCO GAMES</h2>
 <p>The Phoenix Company That Tried Almost Everything</p>
-<h2>COMPANY SNAPSHOT</h2>
+<h2 id="company-snapshot">COMPANY SNAPSHOT</h2>
 <p>Company: Mirco Games, Inc. / Mirco Games Division</p>
 <p>Location: Phoenix, Arizona, United States</p>
 <p>Precursor: Arizona Automation, Inc., operating circa 1969–1970</p>
@@ -11,14 +419,14 @@
 <p>Additional regional identity: Break In, sold in Germany but not counted separately because its underlying distinction from Block Buster remains unresolved</p>
 <p>Additional German regional/license credits: at least five late Japanese-origin titles, kept separate from Mirco’s core product count</p>
 <p>Formal legal dissolution date: not established</p>
-<h2>INTRODUCTION — A COMPANY BETWEEN ERAS</h2>
+<h2 id="introduction-a-company-between-eras">INTRODUCTION — A COMPANY BETWEEN ERAS</h2>
 <p>Mirco Games occupies an awkward and fascinating place in American arcade history. It was neither one of the great mass-market names of the golden age nor a tiny garage operation that produced a single obscure machine and disappeared. It stood in the middle: ambitious, technically capable, sometimes innovative, sometimes derivative, and constantly willing to move into whatever corner of the coin-operated business looked promising next.</p>
 <p>The company’s path ran through foosball, early Pong-style video games, cocktail cabinets, microprocessor experiments, pinball, driving games, air-combat games, blackjack and poker machines, European manufacturing, and eventually regional distribution of Japanese video games. That breadth makes Mirco difficult to summarize with a conventional arcade-company checklist. A flat list of game titles misses the larger story because Mirco’s role changed repeatedly. At different moments it developed games, manufactured them, marketed licensed designs, adapted existing concepts into new cabinets, and distributed other companies’ products in Europe.</p>
 <p>That is also why the number at the top of this profile needs a definition. Arcade Side B counts twelve confirmed core Mirco commercial arcade-video product identities. That is a count of products Mirco itself marketed as part of its principal game line, not a claim that Mirco invented twelve completely original game designs. The blackjack family alone demonstrates the difference: 21, Super 21 and Super Single Twenty One were all distinct Mirco commercial products, but their design lineage traces back to Ramtek’s Hit Me. Likewise, Mirco Games GmbH later handled Japanese-origin games in Germany; those regional credits are historically important, but folding them into Mirco’s original output would exaggerate what the Phoenix company actually created.</p>
 <p>Mirco is especially interesting because it was willing to experiment during a period when the arcade business itself was still deciding what it wanted to become. Its earliest roots predate the widespread video-game boom. Its predecessor, Arizona Automation, entered coin-op through table soccer. Mirco then embraced video almost as soon as Pong-style games proved commercially viable, promoted cocktail-table installations before that format had become conventional, and later pushed microprocessors into commercial amusement equipment at a remarkably early date.</p>
 <p>Some of those bets paid off. Others were expensive failures. The most damaging was a home-video-game project with Fairchild that never reached the market and helped push Mirco into a financial crisis. The company survived, changed leadership, continued selling games, and eventually saw its Phoenix game operation pass into Amstar Electronics in 1980. Even then the story did not end cleanly: the German Mirco Games GmbH name remained visible in industry directories into the following year.</p>
 <p>Mirco’s history is therefore not a straight rise-and-fall narrative. It is the history of a company repeatedly reinventing its place inside a young industry.</p>
-<h2>ROOTS — ARIZONA AUTOMATION AND THE FOOSBALL BOOM</h2>
+<h2 id="roots-arizona-automation-and-the-foosball-boom">ROOTS — ARIZONA AUTOMATION AND THE FOOSBALL BOOM</h2>
 <p>The story begins before Mirco Games existed.</p>
 <p>Richard N. “Dick” Raymond had worked in Europe and became familiar with table soccer at a time when foosball was still a novelty to much of the American public. Sources disagree slightly on the exact starting year of his Arizona venture. A 1976 RePlay retrospective places the beginning in 1969, while a later management case study gives 1970. The surviving record does not justify pretending that disagreement has been settled by a legal incorporation document, so the safest description is that Arizona Automation was operating in Phoenix by roughly 1969–1970.</p>
 <p>The timing was good. Foosball was poised to grow from an imported curiosity into a recognizable American coin-operated pastime. Arizona Automation initially worked with European tables and then increasingly with domestically produced equipment. Its best-known brand became Champion Soccer.</p>
@@ -27,7 +435,7 @@
 <p>That second point became especially important when the company moved into video. Early coin-op video games were crowded with Pong imitations, and conventional distributors had plenty of alternatives. Mirco found a way to place video games where the usual arcade route was less entrenched. Cocktail and tabletop machines could be sold into lounges, hotels, restaurants, airports and other locations where a full upright cabinet might look out of place.</p>
 <p>Bob Edgell later recalled that this nontraditional approach became an important part of Mirco’s business. Rather than relying only on established coin-machine distributors, the company sold territories to people from outside the normal amusement trade—professionals and entrepreneurs attracted by the new video-game boom. At the height of the tabletop Pong business, Edgell remembered Mirco shipping more than one hundred games a week at roughly one thousand dollars per table.</p>
 <p>Whatever the exact sales totals, the strategy explains why Mirco’s early video history cannot be separated from its foosball roots. The company did not enter video as a pure electronics laboratory trying to imitate Atari. It entered as a coin-operated equipment business that already understood locations, route economics and alternative sales channels.</p>
-<h2>THE 1973 MERGER AND THE BIRTH OF MIRCO GAMES</h2>
+<h2 id="the-1973-merger-and-the-birth-of-mirco-games">THE 1973 MERGER AND THE BIRTH OF MIRCO GAMES</h2>
 <p>The corporate transition is much clearer than the precursor’s exact founding year.</p>
 <p>Contemporary Cash Box reporting states that Arizona Automation, Inc. and Mirco, Inc. merged on December 26, 1973. The resulting coin-operated operation became Mirco Games, Inc. That date is the strongest practical starting point for the company profile and is more reliable than later summaries that compress earlier acquisition discussions into a vague “1971” or “1973” beginning.</p>
 <p>Mirco, Inc. itself was an electronics company whose work included automatic test equipment, computer programs and electronics distribution. Bringing Arizona Automation into that organization created an unusual combination. On one side was a company with established coin-op experience and a successful foosball business. On the other was an electronics group comfortable with test systems, digital logic and technical manufacturing.</p>
@@ -35,19 +443,19 @@
 <p>The merged company’s Phoenix operation became the base for a remarkably diverse amusement line. Mirco continued producing table soccer equipment while expanding its video work. By the mid-1970s its wider corporate structure included Mirco Systems, an electronics-distribution operation, the games division, and the West German subsidiary Mirco Games GmbH.</p>
 <p>The company was never just an arcade-game factory. That distinction helps explain both its strengths and its later problems. Technical resources from the parent electronics business gave Mirco capabilities that many small game companies lacked. But the company was also juggling several businesses, international expansion, product development and capital demands at once.</p>
 <p>In the short term, though, the combination looked promising. Mirco had entered video at almost exactly the moment the coin-operated industry was being transformed.</p>
-<h2>FROM PONG CLONES TO A DISTINCT MIRCO IDENTITY</h2>
+<h2 id="from-pong-clones-to-a-distinct-mirco-identity">FROM PONG CLONES TO A DISTINCT MIRCO IDENTITY</h2>
 <p>Mirco’s first video games did not arrive with a revolutionary new concept. Like many companies entering the field in 1973 and 1974, it began with the commercial language that Pong had already made understandable to operators and players.</p>
 <p>Champion Ping Pong came out of the Arizona Automation side of the business before the Mirco Games name was fully established. It was a cocktail-style Pong derivative and is best understood as the bridge between the precursor company and Mirco’s later video operations. Its significance is not that it reinvented electronic tennis. It did not. Its importance is that it gave the organization practical experience building, selling and servicing video machines at the exact moment the industry was exploding.</p>
 <p>That experience reinforced Mirco’s interest in tabletop cabinets. In a conventional upright arcade, Champion Ping Pong was one more paddle game in an increasingly crowded field. In a hotel lounge, restaurant or bar, however, a table that also happened to contain a video game could occupy a different commercial niche. Mirco pushed that distinction hard.</p>
 <p>Challenge followed in 1974 and showed the company beginning to search for features that could make its games stand out. It supported four players and also offered player-versus-machine play. Mirco promoted a free-game reward for beating the computer and represented the feature as unusual in the market. Whether every “first” claim in period advertising should be taken literally is another matter, but the product clearly shows Mirco trying to move beyond a basic two-player Pong formula.</p>
 <p>The company also offered Challenge in tabletop form. That decision was strategically important. Cocktail video games had not yet achieved the comfortable place in the industry that they would later enjoy, and some conventional distributors were skeptical of the format. Mirco responded by broadening its sales network instead of abandoning the idea. The company’s nontraditional territory-selling method, inherited from its earlier route strategy, allowed it to place video games in locations that standard amusement distributors sometimes overlooked.</p>
 <p>This willingness to sell around the established structure made Mirco unusual. It could look less like a traditional coin-machine manufacturer and more like a business-opportunity company, offering new operators access to a fashionable technology. That approach brought risks—quality of operators, inconsistent local support and unconventional partners among them—but it also helped Mirco establish a market position without having to beat Atari, Midway or Allied Leisure on their own distribution turf.</p>
-<h2>SLAM AND THE SEARCH FOR SOMETHING DIFFERENT</h2>
+<h2 id="slam-and-the-search-for-something-different">SLAM AND THE SEARCH FOR SOMETHING DIFFERENT</h2>
 <p>By 1975 the novelty of simply putting electronic paddles on a screen was fading. Mirco needed products that looked less interchangeable with the dozens of early video-tennis machines already circulating.</p>
 <p>Slam, marketed in 1975, belongs to this transitional period. Surviving trade material establishes it as a real marketed Mirco video product. It is one of the machines that often disappears in short modern company histories because later titles such as Skywar and the blackjack games are easier to document and more distinctive. Yet Slam matters because it shows Mirco continuing to support a conventional video-game line while its engineering group was simultaneously moving toward much more ambitious microprocessor projects.</p>
 <p>The timing is important. Mirco was not abandoning simpler games the moment microprocessors became interesting. Like most manufacturers, it needed products that could be built and sold while advanced development continued in parallel. The company was therefore operating on two tracks: incremental commercial video products on one side and high-risk technical experimentation on the other.</p>
 <p>That second track produced some of the most interesting work in Mirco’s history.</p>
-<h2>THE MICROPROCESSOR GAMBLE</h2>
+<h2 id="the-microprocessor-gamble">THE MICROPROCESSOR GAMBLE</h2>
 <p>In 1975 the microprocessor was still new enough in commercial amusement equipment that putting one into a game was a genuine engineering statement. Mirco’s electronics background made the technology an obvious area to explore.</p>
 <p>The company’s best-known result was not actually a video game. The Spirit of ’76 was an early commercial solid-state pinball machine built around microprocessor control. Its historical importance has made it far better known than most Mirco arcade videos, and it demonstrates the technical ambition that existed inside the organization. Mirco was willing to replace electromechanical logic with programmable electronics before that architecture became standard throughout pinball.</p>
 <p>The project also illustrates a recurring Mirco problem: technical innovation did not guarantee commercial success. Spirit of ’76 was expensive to develop, difficult to support and produced in limited numbers. Mirco was trying to learn how to build a new generation of amusement hardware while simultaneously educating operators and technicians who were accustomed to electromechanical machines.</p>
@@ -58,14 +466,14 @@
 <p>That may seem overly cautious, especially because a period flyer exists. But flyers alone can document intent as easily as completed distribution. The arcade business is full of games shown at conventions, advertised to operators and then altered or abandoned before meaningful production. PT-109 belongs in Mirco’s story precisely because it shows what the company was attempting, even if the final manufacturing outcome remains uncertain.</p>
 <p>The two surviving PT-109 promotional pieces preserved in the project archive are valuable for that reason. They show that Mirco had moved far beyond simply copying Pong. The company was trying to build a themed action game around programmable technology, specialized controls and more elaborate cabinet presentation.</p>
 <p>The failure to turn PT-109 into a clear commercial success did not end Mirco’s video ambitions. Instead, the company moved into a series of more practical games during 1976 and 1977.</p>
-<h2>SKYWAR — A MORE CONVENTIONAL COMMERCIAL SUCCESS</h2>
+<h2 id="skywar-a-more-conventional-commercial-success">SKYWAR — A MORE CONVENTIONAL COMMERCIAL SUCCESS</h2>
 <p>Skywar, released in 1976, is one of the clearest Mirco commercial video titles of the middle period. Contemporary Cash Box reporting in May announced its release and said the game was available through authorized Mirco distributors nationwide. Mirco offered it in both upright and tabletop forms.</p>
 <p>The game was a two-player aerial-combat design. Each player used two control sticks, and the controls included thumb-operated firing. The concept fit comfortably within the mid-1970s fascination with competitive combat games, but the dual-stick control arrangement and the availability of multiple cabinet styles gave Mirco something concrete to market.</p>
 <p>Skywar also demonstrates how the company’s cocktail strategy remained alive. Mirco did not treat tabletop video as an early experiment it had outgrown; it continued to offer the format alongside upright cabinets as the product line matured.</p>
 <p>The surviving Skywar flyer is especially useful because it supports both the title’s commercial status and Mirco’s cabinet strategy. For census purposes, however, the upright and tabletop forms are one game identity. Counting cabinet configurations as separate releases would artificially inflate output.</p>
 <p>By 1976 Mirco had therefore moved through several distinct stages in only a few years: a Pong-derived tabletop product, a four-player variation, additional conventional video games, ambitious microprocessor prototypes and a commercially documented combat release. The next step would be stranger and, in the long run, more important to Mirco’s business than any of those action games.</p>
 <p>The company found a niche in electronic card games.</p>
-<h2>THE CARD-GAME NICHE — 21 AND THE HIT ME LINEAGE</h2>
+<h2 id="the-card-game-niche-21-and-the-hit-me-lineage">THE CARD-GAME NICHE — 21 AND THE HIT ME LINEAGE</h2>
 <p>Mirco’s move into electronic card games is where a simple manufacturer list becomes especially misleading.</p>
 <p>The first major title in the line was 21, announced for production and shipment in August 1976. It presented blackjack against an electronic dealer and supported as many as four players. Operator settings could change aspects of play, making the machine adaptable to different locations.</p>
 <p>As a commercial Mirco product, 21 is not in doubt. The complication is authorship.</p>
@@ -76,28 +484,28 @@
 <p>Super Single Twenty One pushed the same idea into a new cabinet and marketing identity. In February 1978 Cash Box reported that Mirco was shipping display models of a single-player upright version of Super 21 to its distributors. The surviving Mirco flyer names it Super Single Twenty One.</p>
 <p>For the Arcade Side B count, Super Single Twenty One is included as a separate marketed product identity because Mirco gave it its own name, sales material and distributor rollout. It is not counted as a new underlying game design. This is why the Mirco snapshot shows twelve commercial marketed products but only eleven confirmed unique core designs. The difference is not a contradiction. It reflects two different questions: “How many products did Mirco market?” and “How many distinct games did Mirco design?”</p>
 <p>That role-aware approach also prevents Black Jack from becoming an extra phantom release. MAME and other preservation sources include a Mirco Black Jack identity associated with the Hit Me/21 hardware family, and operator classifieds sometimes used phrases such as “Black Jack 21.” What has not surfaced is Mirco manufacturer literature proving that Black Jack was another formally distinct commercial product name. Until such evidence appears, it belongs inside the 21 family, not as an additional title.</p>
-<h2>SUPER STUD — POKER ENTERS THE LINE</h2>
+<h2 id="super-stud-poker-enters-the-line">SUPER STUD — POKER ENTERS THE LINE</h2>
 <p>Mirco’s card-game interest was broader than blackjack.</p>
 <p>Super Stud was introduced at the 1976 AMOA exposition as an electronic five-card-stud game for two, three or four players. Cash Box described it as Mirco’s third microprocessor product developed to that point and said first production models would be available to distributors in late December.</p>
 <p>That wording is valuable because it places Super Stud firmly on the development side of the Mirco ledger rather than merely showing that the company distributed someone else’s machine. It also demonstrates how quickly Mirco was attempting to turn microprocessor technology from an expensive experiment into a repeatable product platform.</p>
 <p>The machine sits at an important intersection in the company’s history. Spirit of ’76 and PT-109 had shown what Mirco’s engineers wanted to do with programmable electronics. Super Stud shows that the same technical capability could be aimed at a simpler and potentially more dependable commercial category.</p>
 <p>Later databases connect Super Stud with Venture Line and sometimes with the title Ace High. Those relationships have not been primary-source locked strongly enough to rewrite the Mirco credit. The safe conclusion remains that Mirco developed and marketed Super Stud, while any later licensing, alternate-title or partner relationship should be identified only when supported by better period evidence.</p>
-<h2>FORMULA M VROOOM — A COCKTAIL DRIVING GAME</h2>
+<h2 id="formula-m-vrooom-a-cocktail-driving-game">FORMULA M VROOOM — A COCKTAIL DRIVING GAME</h2>
 <p>Not everything Mirco made in the late 1970s involved cards.</p>
 <p>Formula M Vrooom, introduced in 1977, is one of the company’s more unusual action products. Cash Box described it as Mirco’s first video driving game and reported both joystick and steering-wheel control arrangements. A surviving Mirco sales flyer uses the stylized Vrooom spelling.</p>
 <p>The game is especially characteristic of Mirco because it placed a driving game—normally associated with a dedicated upright cabinet—into the company’s familiar cocktail-table philosophy. That was an odd combination, but Mirco had spent years trying to prove that tabletop video could handle more than electronic tennis.</p>
 <p>Formula M therefore represents the mature version of an idea that had been present since the company’s first video efforts: the cabinet format itself could be a competitive advantage. Mirco did not have to invent a new genre if it could package a familiar genre for locations and operators that wanted something different from a standard upright.</p>
-<h2>DAWN PATROL — THE LAST CLEAR TRADITIONAL ACTION GAME</h2>
+<h2 id="dawn-patrol-the-last-clear-traditional-action-game">DAWN PATROL — THE LAST CLEAR TRADITIONAL ACTION GAME</h2>
 <p>Dawn Patrol arrived in 1978 and returned Mirco to aerial combat. It used a World War I biplane theme, shooting mechanics, sound effects and an overhead presentation. Period trade coverage states that Mirco was producing the game and that it was available through the company’s distributor network by April 22, 1978.</p>
 <p>That April date matters because later summaries sometimes place Dawn Patrol in June. The contemporary availability notice is the stronger anchor.</p>
 <p>Dawn Patrol is often described as Mirco’s last known conventional action video game. That characterization is useful as long as “conventional” is emphasized. Mirco did not stop dealing in video after Dawn Patrol. Instead, its catalog increasingly leaned toward card and gaming-style machines, while its German subsidiary became involved with regional products and licensed Japanese games.</p>
-<h2>HOLD &amp; DRAW — A PRODUCT MOVING BETWEEN EUROPE AND AMERICA</h2>
+<h2 id="hold-and-draw-a-product-moving-between-europe-and-america">HOLD &amp; DRAW — A PRODUCT MOVING BETWEEN EUROPE AND AMERICA</h2>
 <p>Hold &amp; Draw illustrates that transition better than almost any other Mirco title.</p>
 <p>Cash Box reported a new U.S. upright video-poker version in July 1978, but the article also explained that the game had already been manufactured and sold for European markets through Mirco’s West German operation. The European version included modifications intended for amusement-only use. The U.S. machine had been test-marketed in selected Mid-Atlantic and Pacific Northwest states before its broader introduction.</p>
 <p>That makes Hold &amp; Draw important for two reasons.</p>
 <p>First, it confirms that Mirco’s poker/card-game strategy was becoming central to the business. Second, it shows that Mirco Games GmbH was doing more than receiving finished Phoenix products and reselling them. The German operation participated in a regional product strategy with versions tailored to different legal and commercial environments.</p>
 <p>For the title count, the European and U.S. Hold &amp; Draw variants remain one product identity. Different settings or regional configurations do not automatically create a new game.</p>
-<h2>BLOCK BUSTER, BREAK IN AND THE PROBLEM OF REGIONAL TITLES</h2>
+<h2 id="block-buster-break-in-and-the-problem-of-regional-titles">BLOCK BUSTER, BREAK IN AND THE PROBLEM OF REGIONAL TITLES</h2>
 <p>Block Buster is a Mirco Breakout-style product supported by surviving U.S. sales literature from 1976. That is enough to retain it as a confirmed marketed game.</p>
 <p>Break In is more complicated.</p>
 <p>During the research, period trade coverage first established that Mirco displayed a game called Break In in upright and cocktail forms at the 1978 International Coin Machine Exhibition in Berlin. That proved the name existed in Mirco’s German product world but did not initially prove normal commercial marketing.</p>
@@ -105,14 +513,14 @@
 <p>That would appear, at first glance, to justify adding another title to the count. The problem is that other preservation evidence explicitly treats Break In as an alternate name for Block Buster. MobyGames lists Block Buster with Break In as an alias and credits both Mirco, Inc. and Mirco Games GmbH on the product.</p>
 <p>Without a period manual, board comparison, ROM comparison or manufacturer statement showing that Break In contained a different game rather than a German title or regional revision of Block Buster, counting both would create false precision.</p>
 <p>Arcade Side B therefore takes the conservative route. Block Buster is counted among the twelve core commercial Mirco products. Break In is acknowledged as a real separately marketed German name, but not as a thirteenth unique product identity unless future technical evidence proves that it was genuinely different underneath.</p>
-<h2>ZIRCUS — A NAME WITHOUT ENOUGH OF A MACHINE</h2>
+<h2 id="zircus-a-name-without-enough-of-a-machine">ZIRCUS — A NAME WITHOUT ENOUGH OF A MACHINE</h2>
 <p>Another German show title, Zircus or Zirkus, is even less certain.</p>
 <p>Play Meter and Cash Box both place a Mirco product called Zircus at the 1978 Berlin exhibition, offered in wall, cocktail and upright forms. That is strong evidence that Mirco displayed something under the name.</p>
 <p>What is missing is equally important: no shipment notice, confirmed sales flyer, board, cabinet survivor, manual or detailed gameplay description has been located. Later speculation that the title might have been related to Exidy’s Circus is plausible only as a guess from the name and period. It is not evidence.</p>
 <p>Zircus therefore remains in the documented-show-product category. It belongs in the Mirco story, but not in the confirmed commercial output count.</p>
 <p>By 1978 Mirco’s American catalog had become a strange mix: combat games, a cocktail driving game, a growing electronic-card line, Breakout-style products and regional variants. At the same time, the company had committed significant resources to a European subsidiary.</p>
 <p>That German operation would become increasingly important just as the parent company’s financial problems began to catch up with it.</p>
-<h2>MIRCO GAMES GMBH — THE EUROPEAN ARM</h2>
+<h2 id="mirco-games-gmbh-the-european-arm">MIRCO GAMES GMBH — THE EUROPEAN ARM</h2>
 <p>Mirco’s German subsidiary was not a footnote. By the second half of the 1970s it had become a substantial part of the company’s identity.</p>
 <p>Mirco announced the West German operation in 1975 as a wholly owned subsidiary intended to manufacture and market coin-operated amusement products in Europe. The company established Mirco Games GmbH in Neu-Isenburg, near Frankfurt. Period directories and company coverage continue to identify the operation through the end of the decade.</p>
 <p>Richard Raymond played an important role in the European business. When he later became president of Mirco in the United States, period reporting specifically noted that he continued to oversee the German operation.</p>
@@ -120,7 +528,7 @@
 <p>By 1979 an international trade directory listed Mirco Games GmbH at Dornhofstrasse 38 in Neu-Isenburg, with Richard N. Raymond as managing director and John H. Raymond as sales manager. The product categories included video and electronic games as well as pinball. A February 1980 Play Meter international directory still listed Dick Raymond and video cocktail tables at the same address.</p>
 <p>The German subsidiary also complicates any attempt to give Mirco a simple 1980 death date. A later international directory page carrying a March 1, 1981 footer still lists Mirco Games GmbH under the Mirco name at the Neu-Isenburg address. By then Hubertus Nowak was identified as general and sales manager, Karl Post as service manager, and the product line as video games.</p>
 <p>That does not by itself prove that the German company remained under exactly the same ownership structure. It does prove that the Mirco Games GmbH trade identity continued in industry use after the Phoenix game operation had shifted to Amstar.</p>
-<h2>JAPANESE GAMES IN THE GERMAN CATALOG</h2>
+<h2 id="japanese-games-in-the-german-catalog">JAPANESE GAMES IN THE GERMAN CATALOG</h2>
 <p>The late German catalog introduces another trap for company historians. Mirco Games GmbH appears in regional credits for Japanese-origin games, but those titles cannot be treated as Mirco inventions.</p>
 <p>The cleanest example is Space Invaders. For a 1980 German arcade release, the role record separates the companies: Taito developed the game, Nichibutsu U.K. published it, and Mirco Games GmbH distributed it in Germany. That is a genuine Mirco credit, but it is a distribution credit.</p>
 <p>A similar regional cluster includes Rolling Crash or Moon Base, Moon Alien, Moon Alien Part II and Moon Raker. Surviving German sales flyers identify Nichibutsu as the manufacturer of these games. Modern role-aware databases also connect Mirco Games GmbH to the releases, although the exact publisher-versus-distributor wording has not been primary-source locked equally well for every title.</p>
@@ -129,7 +537,7 @@
 <p>Hi-Lo Jack Pot sits between the categories.</p>
 <p>A specialist flyer archive recorded a surviving sales piece titled Hi-Lo Jack Pot under Mirco Games GmbH. That makes the product identity real enough to include in the German history. Modern compiled lists generally associate it with 1979, apparently using a November 1979 RePlay item as support. The actual flyer and cited RePlay page have not yet been directly recovered in the project, so its exact release date and design provenance remain unresolved.</p>
 <p>Hi-Lo Jack Pot is therefore treated as a Mirco Germany marketed product with uncertain development lineage. It is not silently promoted into the Phoenix company’s original-game count, but it is not discarded merely because its paperwork is incomplete.</p>
-<h2>THE FAIRCHILD HOME-VIDEO PROJECT</h2>
+<h2 id="the-fairchild-home-video-project">THE FAIRCHILD HOME-VIDEO PROJECT</h2>
 <p>While Mirco was expanding internationally, it was also pursuing a project that would become one of the most damaging episodes in the company’s history.</p>
 <p>In early 1976 Mirco entered an agreement with Fairchild Camera &amp; Instrument involving home video games and semiconductor technology. Contemporary electronics and amusement-industry reports confirm the relationship. Mirco was already using Fairchild’s F8 microprocessor in electronic-game development, and the companies expected to cooperate on home-video products.</p>
 <p>The project was ambitious. Mirco had experience with arcade hardware and game concepts; Fairchild had semiconductor expertise and was entering the consumer video-game business. In theory the combination could have given Mirco a path out of the coin-operated market and into the rapidly developing home field.</p>
@@ -142,7 +550,7 @@
 <p>The Fairchild episode is sometimes treated as a strange side story because the planned home game never became a familiar consumer product. In reality, it helps explain almost everything that followed. It drained capital at a moment when the arcade market itself was becoming more competitive, and it forced Mirco to depend more heavily on products that could be developed and sold with lower risk.</p>
 <p>That context makes the shift toward card games easier to understand. A poker or blackjack machine using known hardware and game logic was a very different financial proposition from a new microprocessor pinball architecture or a mass-market home-console commitment.</p>
 <p>Mirco did not stop innovating, but after the crisis it had less room for expensive mistakes.</p>
-<h2>LEADERSHIP CHANGES</h2>
+<h2 id="leadership-changes">LEADERSHIP CHANGES</h2>
 <p>The financial stress eventually reached the top of the company.</p>
 <p>John L. Walsh, one of the central figures in Mirco, resigned in May 1978. Cash Box reported in July that the board had named Richard N. Raymond president of Mirco, Inc. Raymond was a natural choice in one sense: he connected the company directly back to Arizona Automation and had already been responsible for European operations.</p>
 <p>The appointment also shows how tightly the U.S. and German sides of Mirco remained connected. Raymond did not simply leave Europe behind when he took the presidency. Period reporting said he retained responsibility for the West German operation while assuming broader domestic and international duties.</p>
@@ -150,7 +558,7 @@
 <p>Intermark is not counted as a Mirco continuation. It was Walsh’s separate company. But its product direction is revealing. A former Mirco leader immediately returned to the same general electronic-card-game market that had become important to Mirco itself.</p>
 <p>The late-1970s Mirco story can therefore be read as a narrowing of focus. The company still possessed engineering skill, a European operation and a recognizable coin-op name, but the aggressive diversification of the mid-decade had become harder to sustain.</p>
 <p>By 1980 the Phoenix games business was ready for another owner.</p>
-<h2>THE AMSTAR TRANSITION</h2>
+<h2 id="the-amstar-transition">THE AMSTAR TRANSITION</h2>
 <p>Mirco’s U.S. games operation did not simply vanish in 1980. The evidence points to a transfer of activity into another Phoenix company: Amstar Electronics.</p>
 <p>Later historical accounts, drawing on RePlay’s November 1980 coverage, describe Amstar as purchasing Mirco’s games division. The original transaction documents have not been recovered in the project, so an exact closing date and legal asset schedule should not be invented. Period operating evidence nevertheless makes the continuity hard to miss.</p>
 <p>In the July 1980 Cash Box industry directory, Amstar Electronics Corp. is listed at 1960 W. North Lane in Phoenix with telephone number 602/997-5931. That address and telephone number are associated with Mirco’s earlier games operation. Amstar is described as making video amusement and gaming devices and video arcade machines.</p>
@@ -162,7 +570,7 @@
 <p>If the question is “When did Mirco stop operating its Phoenix arcade-game business under the Mirco name?” the answer is 1980.</p>
 <p>If the question is “When did every legal entity or trade name called Mirco Games cease to exist?” the available research does not provide a single verified date.</p>
 <p>That is less tidy than a conventional company profile, but it is more accurate.</p>
-<h2>THE TWELVE CORE MARKETED VIDEO PRODUCTS</h2>
+<h2 id="the-twelve-core-marketed-video-products">THE TWELVE CORE MARKETED VIDEO PRODUCTS</h2>
 <p>The role-aware research supports twelve confirmed core commercial Mirco arcade-video product identities. They are best understood as a product catalog, not as twelve claims of independent original invention.</p>
 <p>Champion Ping Pong came from the Arizona Automation lineage and represents the organization’s first step into video. It is the bridge between the foosball company and Mirco Games.</p>
 <p>Challenge expanded the paddle-game formula and became a key early tabletop product. Its importance lies as much in Mirco’s alternative sales strategy as in the game itself.</p>
@@ -184,7 +592,7 @@
 <p>Black Jack survives as a board/ROM/operator identity within the 21 family without enough manufacturer evidence to justify another separate Mirco product.</p>
 <p>Hi-Lo Jack Pot belongs to the Mirco Games GmbH regional history because a sales flyer under that name has been documented, but its exact date and development lineage remain open.</p>
 <p>The late Japanese-origin German titles—Space Invaders, Rolling Crash/Moon Base, Moon Alien, Moon Alien Part II and Moon Raker—are genuine Mirco Games GmbH regional credits, not Mirco originals. They should be visible in the catalog without being used to inflate the Phoenix company’s design output.</p>
-<h2>WHAT MIRCO ACTUALLY CONTRIBUTED</h2>
+<h2 id="what-mirco-actually-contributed">WHAT MIRCO ACTUALLY CONTRIBUTED</h2>
 <p>Mirco’s place in arcade history is easy to underestimate if significance is measured only by famous game titles.</p>
 <p>It did not create a Pac-Man, Space Invaders or Asteroids. None of its core video games became a universal cultural reference. Most arcade players today would struggle to name even one Mirco title.</p>
 <p>Yet the company participated in several important transitions.</p>
@@ -193,7 +601,7 @@
 <p>The microprocessor work is the clearest example. Spirit of ’76, although a pinball rather than a video game, placed Mirco near the front edge of the solid-state transition. PT-109 shows the company attempting to extend similar programmable thinking into video at a time when microprocessor-based arcade design was still new.</p>
 <p>Mirco also illustrates how quickly originality, licensing and adaptation blended together in the 1970s arcade industry. The 21 family grew from a Ramtek design lineage yet became a meaningful Mirco product business. German Mirco later participated in distribution and regional marketing for Japanese games. Those activities were not aberrations; they were normal survival strategies in a young market whose legal, technical and distribution rules were still forming.</p>
 <p>Finally, Mirco’s history shows the danger of expanding too fast. The company pursued advanced amusement electronics, international manufacturing and a home-video partnership nearly simultaneously. When the Fairchild project failed, Mirco did not have the financial cushion to absorb the damage comfortably. The layoffs and pay cuts that followed were a reminder that technical ambition had to be financed by actual product success.</p>
-<h2>PEOPLE, SALES AND SERVICE — HOW MIRCO ACTUALLY OPERATED</h2>
+<h2 id="people-sales-and-service-how-mirco-actually-operated">PEOPLE, SALES AND SERVICE — HOW MIRCO ACTUALLY OPERATED</h2>
 <p>The machines alone do not explain Mirco. Much of the company’s character came from the people who carried practices from foosball, electronics and unconventional route sales into the video-game business.</p>
 <p>Richard Raymond was the clearest bridge across the entire story. He belonged to the Arizona Automation era, remained central through the Mirco merger, took responsibility for the European operation, and eventually became Mirco president after John Walsh’s departure. His career makes the company’s continuity easier to see: Arizona Automation was not simply purchased and erased. Its people, products, customers and coin-op knowledge became part of Mirco Games.</p>
 <p>John Walsh represented the electronics and corporate-development side of the organization. His later move into Intermark and draw-poker equipment shows how strongly the electronic card-game market had become associated with the experience accumulated at Mirco.</p>
@@ -206,7 +614,7 @@
 <p>That combination—coin-op experience, electronics knowledge, alternative distribution and promotional flair—helped Mirco survive longer than many other small companies that entered the Pong boom. It also explains why the company could move from foosball to video, from video to microprocessor pinball, from action games to card games, and from Phoenix into a European manufacturing operation without those changes seeming completely disconnected inside the organization.</p>
 <p>Mirco’s weakness was the other side of the same trait. A company willing to pursue many opportunities could also spread itself too thin. The Fairchild project, German expansion and advanced amusement development all demanded capital and management attention. Mirco’s flexibility kept creating new possibilities, but it also made disciplined focus difficult.</p>
 <p>The company’s history is therefore not just a catalog of machines. It is a case study in how a technically ambitious regional manufacturer tried to build a national and international amusement business during a period when nobody yet knew which part of the new video-game industry would matter most.</p>
-<h2>A COMPANY WORTH REMEMBERING</h2>
+<h2 id="a-company-worth-remembering">A COMPANY WORTH REMEMBERING</h2>
 <p>Mirco Games is precisely the kind of company that can disappear between the better-known chapters of arcade history.</p>
 <p>Its foosball roots belong to the pre-video coin-op world. Its first video products belong to the Pong-clone explosion. Its microprocessor experiments point toward the solid-state future. Its card games reflect the gray area between amusement and gambling-style play. Its German operation shows the increasingly international nature of the business. Its sale to Amstar leads directly into another obscure but important Phoenix arcade story.</p>
 <p>Those transitions make Mirco more interesting than a simple twelve-game list.</p>
@@ -215,7 +623,7 @@
 <p>Mirco’s story is strongest when those complications are left visible.</p>
 <p>The company began in the culture of Arizona foosball, entered video while the medium was still being invented, experimented aggressively with new electronics, found a practical niche in card games, expanded into Europe, survived a damaging corporate crisis and finally passed its Phoenix game operation into Amstar.</p>
 <p>It did not dominate the arcade industry. It did something more representative of the era: it adapted, improvised, took risks and tried almost everything.</p>
-<h2>UNRESOLVED QUESTIONS AND RESEARCH BOUNDARIES</h2>
+<h2 id="unresolved-questions-and-research-boundaries">UNRESOLVED QUESTIONS AND RESEARCH BOUNDARIES</h2>
 <p>Several questions remain open after the closure pass.</p>
 <p>The exact legal formation date of Arizona Automation has not been recovered from a primary corporate filing. Historical sources disagree between 1969 and 1970, so the profile uses circa 1969–1970 for the precursor.</p>
 <p>The precise original incorporation record for Mirco, Inc. has not been directly verified. A November 1971 date appears in secondary research but is not used as a central Arcade Side B snapshot date.</p>
@@ -224,8 +632,10 @@
 <p>The exact legal scope and closing date of the Amstar transaction have not been established from the sale documents themselves. The 1980 operational transition is strongly supported by trade reporting, address and telephone continuity, and continuation of the card-game product family.</p>
 <p>Formal dissolution dates for the Mirco entities remain unverified.</p>
 <p>These gaps do not prevent publication. They simply define where the evidence stops.</p>
-<h2>IMAGE AND SOURCE NOTE</h2>
+<h2 id="image-and-source-note">IMAGE AND SOURCE NOTE</h2>
 <p>The project preserves fourteen historical image files in the Mirco Games research folder. They include company and personnel photography plus sales material for Champion Ping Pong, Challenge, Spirit of ’76, PT-109, Formula M Vrooom, Block Buster, Skywar and Super Single Twenty One. The files were extracted as embedded archival reproductions from the project’s Golden Age Arcade Historian archive and are accompanied by a dedicated provenance document.</p>
 <p>The image archive is intended for historical research and website preparation. Original flyers, advertisements and photographs may remain copyrighted by their creators, publishers, manufacturers, estates or successors. Public use should retain appropriate source credit and receive a final rights review when practical.</p>
 <p>For textual evidence, the project prioritizes contemporary trade reporting from Cash Box, Play Meter, RePlay and other period sources; museum and flyer archives; surviving company literature; and clearly labeled secondary historical reconstructions. Modern game databases are used primarily for discovery, technical cross-checks and role comparison, not as substitutes for period evidence when the sources disagree.</p>
-<h2>END OF SUBSTANTIVE NARRATIVE DRAFT</h2></article></main><footer class="footer">Arcade Side B — Historical images and sources remain credited to their identified rights holders.</footer></body></html>
+<h2 id="end-of-substantive-narrative-draft">END OF SUBSTANTIVE NARRATIVE DRAFT</h2></article></main>
+<footer class="footer"><div class="rights"><strong>Arcade Side B</strong> — The Overlooked Side of Arcade History. Historical images remain credited to their identified sources and rights holders.</div></footer>
+</body></html>
