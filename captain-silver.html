@@ -443,294 +443,40 @@ article{min-width:0}article a{color:#79511c}h2{overflow-wrap:anywhere}.technical
 <p>An experienced player's account describes the boss's feet as safe on Loop 1 and dangerous on Loop 2. Program analysis finds state-dependent body contact but no clean loop-only foot-hitbox switch.</p>
 <p><strong>Publication wording:</strong> the boss's contact is animation and attack-state dependent; a distinct Loop 2-only foot hitbox is not confirmed.</p>
 <h2>Japanese controller data</h2>
-<p>Modern MAME treats the World protection-controller dump as corrected and verified but marks the Japanese controller data as a reconstructed bad dump. Static main-program findings remain strong. Claims about Japanese protection or coin handling should not depend on that controller emulation alone.</p></section><section class="section sources" id="source-notes"><h2>Sources &amp; research notes</h2><p>The following records preserve the evidence trail and detailed program-analysis findings behind this article.</p><details><summary>Evidence and source register</summary><h1>Captain Silver Evidence and Source Register</h1>
-<p>This register separates reader-facing claims from their supporting trail. Confidence refers to the specific claim, not to every statement on the linked page. Console sources were used only to identify and quarantine console-only names or claims.</p>
-<h2>Primary and near-primary documentary sources</h2>
-<h3>Data East Japanese flyer and instruction material</h3>
+<p>Modern MAME treats the World protection-controller dump as corrected and verified but marks the Japanese controller data as a reconstructed bad dump. Static main-program findings remain strong. Claims about Japanese protection or coin handling should not depend on that controller emulation alone.</p></section><section class="section sources" id="source-notes"><h2>Sources &amp; research notes</h2>
+<p>This history draws on period Data East material, contemporary Japanese and British coverage, preservation records, surviving program data, and later first-person or specialist research. Where sources conflict or remain incomplete, the article keeps that uncertainty visible rather than forcing a single answer.</p>
+
+<h3>Primary and near-primary material</h3>
 <ul>
-<li><strong>Supports:</strong> 1987 Data East presentation; eight-way lever; A attack and B jump; six levels of fairy-assisted magic; sword, boots, protection, clock, key, and letter functions; full CAPTAIN SILVER letter set awards an extra life; sword and boots last until defeat.</li>
-<li><strong>Confidence:</strong> High for the rules explicitly printed by Data East.</li>
-<li><strong>Source record:</strong> <a href="https://flyers.arcade-museum.com/videogames/show/5525" rel="noopener" target="_blank">https://flyers.arcade-museum.com/videogames/show/5525</a></li>
-<li><strong>Preserved files:</strong> <code>Images/01_publication_candidates/CAPTAIN_SILVER_JAPAN_FLYER_FRONT_ORIGINAL.jpg</code>, <code>CAPTAIN_SILVER_JAPAN_FLYER_BACK_ORIGINAL.jpg</code>, and <code>CAPTAIN_SILVER_JAPAN_INSTRUCTION_CARDS_ORIGINAL.jpg</code>.</li>
-<li><strong>Boundary:</strong> Promotional and instruction descriptions are corroboration, not a substitute for program behavior where the two can be compared.</li>
+<li><strong>Data East Japanese flyer and instruction material.</strong> Used for the 1987 presentation, controls, magic system, item functions, and the CAPTAIN SILVER extra-life mechanic. <a href="https://flyers.arcade-museum.com/videogames/show/5525" rel="noopener" target="_blank">Arcade Flyer Archive record</a>.</li>
+<li><strong><em>Beep</em>, September 1987.</strong> Contemporary Japanese coverage of the town, pirate ship, treasure island, shop, letters, and principal items. <a href="https://beepindex.blog.jp/archives/32380995.html" rel="noopener" target="_blank">Issue index</a>.</li>
+<li><strong><em>GAMEST</em> No. 20.</strong> A March 1988 TTM advertisement lists <em>Captain Silver</em> at 70,000 yen among serviced 14-inch table machines. This documents a later Japanese table installation, not a factory-dedicated cabinet. <a href="https://archive.org/details/gamest0020/page/n88/mode/1up" rel="noopener" target="_blank">View the issue</a>.</li>
+<li><strong>Akira Sakuma retrospective statement, June 17, 2021.</strong> Supports the account that Akiyama planned the game, Sakuma designed the two-6809 communication procedure and system, and practical implementation was contracted to Jorudan Information Service. As retrospective testimony, it is treated with normal memory caveats. <a href="https://web.archive.org/web/20210617134445/https://twitter.com/reddrag64988892/status/1405520648634388484" rel="noopener" target="_blank">Archived statement</a>.</li>
 </ul>
-<h3>Beep September 1987 Video Game Lab</h3>
+
+<h3>Program and preservation records</h3>
 <ul>
-<li><strong>Supports:</strong> Contemporary Japanese coverage; town, pirate ship, treasure island, shop, letters, and principal items; independent statement that sword and boots last until defeat.</li>
-<li><strong>Confidence:</strong> High.</li>
-<li><strong>Index:</strong> <a href="https://beepindex.blog.jp/archives/32380995.html" rel="noopener" target="_blank">https://beepindex.blog.jp/archives/32380995.html</a></li>
-<li><strong>Recovered scan:</strong> <a href="https://cdn-ak.f.st-hatena.com/images/fotolife/M/MULTi88/20190804/20190804172954.jpg" rel="noopener" target="_blank">https://cdn-ak.f.st-hatena.com/images/fotolife/M/MULTi88/20190804/20190804172954.jpg</a></li>
-<li><strong>Preserved file:</strong> <code>Images/01_publication_candidates/BEEP_1987_09_VIDEO_GAME_LAB_CAPTAIN_SILVER_SPREAD_ORIGINAL.jpg</code>.</li>
-<li><strong>Boundary:</strong> The preserved image is a complete spread; <em>Captain Silver</em> occupies the right-hand page.</li>
+<li><strong>MAME release history and current source.</strong> Official records place first support in MAME 0.35b3 on February 15, 1999; Japan revision 1 was added in 0.186; later releases improved protection-controller handling. MAME marks Japanese controller data as a reconstructed bad dump, so protection and coin behavior are treated cautiously. <a href="https://www.mamedev.org/oldrel.html" rel="noopener" target="_blank">MAME release history</a> · <a href="https://www.mamedev.org/releases/whatsnew_035b3.txt" rel="noopener" target="_blank">0.35b3 notes</a> · <a href="https://www.mamedev.org/releases/whatsnew_0186.txt" rel="noopener" target="_blank">0.186 notes</a> · <a href="https://www.mamedev.org/?p=483" rel="noopener" target="_blank">0.222 update</a>.</li>
+<li><strong>Arcade program comparison.</strong> The World program and both Japanese revisions were compared directly for shop behavior, Continue rules, inventory handling, letter retention, checkpoints, collision state, and revision differences. Static main-program findings are strong; claims involving reconstructed controller data remain qualified. The ROM archive itself is not redistributed by Arcade Side B.</li>
+<li><strong>Coin-Op Collection FPGA work.</strong> A working DECO-8 FPGA beta was shown in June 2026, followed by a public <em>Captain Silver</em> release in August 2026. This is useful preservation evidence but does not by itself establish perfect hardware accuracy. <a href="https://www.patreon.com/atrac17/posts/coin-op-presents-158279548" rel="noopener" target="_blank">Beta update</a> · <a href="https://www.youtube.com/watch?v=xNkUTHIG4z0" rel="noopener" target="_blank">Demonstration</a> · <a href="https://www.patreon.com/atrac17/posts/coin-op-presents-165528115" rel="noopener" target="_blank">Public release announcement</a>.</li>
 </ul>
-<h3>GAMEST No. 20 TTM advertisement</h3>
+
+<h3>Secondary and specialist research</h3>
 <ul>
-<li><strong>Supports:</strong> March 1988 Japanese resale offer; Captain Silver listed at 70,000 yen; advertisement describes serviced, working 14-inch table machines.</li>
-<li><strong>Confidence:</strong> High for the listing and machine description.</li>
-<li><strong>Viewer:</strong> <a href="https://archive.org/details/gamest0020/page/n88/mode/1up" rel="noopener" target="_blank">https://archive.org/details/gamest0020/page/n88/mode/1up</a></li>
-<li><strong>Preserved file:</strong> <code>Images/01_publication_candidates/GAMEST_0020_TTM_CAPTAIN_SILVER_CLEARANCE_PAGE_ORIGINAL.jpg</code>.</li>
-<li><strong>Boundary:</strong> Evidence of a complete converted or aftermarket table installation, not a factory-dedicated Captain Silver cabinet.</li>
+<li><strong>Game Developer Research Institute — Jorudan.</strong> Useful specialist synthesis of the contract-development relationship and staff roles, anchored to linked primary references. <a href="https://gdri.smspower.org/wiki/index.php/Jorudan" rel="noopener" target="_blank">GDRI entry</a>.</li>
+<li><strong><em>CRASH</em>, October 1987.</strong> Documents British availability and contemporary reception; the review incorrectly calls the player character Captain Silver. <a href="https://archive.org/stream/Crash36Jan87/Crash/Crash45-Oct87_djvu.txt" rel="noopener" target="_blank">Read the issue text</a>.</li>
+<li><strong><em>Play Meter</em>, 1987.</strong> Checked American coverage documents other Data East USA titles but did not yield a contemporary Captain Silver announcement. That supports treating the often-repeated July 1987 North American date as unverified, not disproven. <a href="https://archive.org/stream/play-meter-volume-13-number-8-august-1987/Play%20Meter%20-%20Volume%2013%2C%20Number%208%20-%20August%201987_djvu.txt" rel="noopener" target="_blank">August 1987</a> · <a href="https://archive.org/stream/play-meter-volume-13-number-12-december-1987/Play%20Meter%20-%20Volume%2013%2C%20Number%2012%20-%20December%201987_djvu.txt" rel="noopener" target="_blank">December 1987 index</a>.</li>
+<li><strong>Hardcore Gaming 101.</strong> Corroborates Continue returning the player to a stage beginning or midpoint, consistent with the program-defined checkpoint system. Console material is kept separate from the arcade profile. <a href="https://www.hardcoregaming101.net/captain-silver/" rel="noopener" target="_blank">Article</a>.</li>
+<li><strong>Data East staff roundtable translation.</strong> Provides retrospective context that the game sold poorly and circulated in limited numbers; it is not treated as a substitute for sales records. <a href="https://shmuplations.com/dataeast/" rel="noopener" target="_blank">Translation</a>.</li>
 </ul>
-<h3>Akira Sakuma preserved statement</h3>
+
+<h3>Image and preservation references</h3>
 <ul>
-<li><strong>Supports:</strong> Akiyama planned the game; Sakuma designed the two-6809 communication procedure and system; practical work was contracted to Jordan Information Service.</li>
-<li><strong>Confidence:</strong> High as a first-person former Data East staff statement, with normal memory caveats for a retrospective account.</li>
-<li><strong>Preserved post:</strong> <a href="https://web.archive.org/web/20210617134445/https://twitter.com/reddrag64988892/status/1405520648634388484" rel="noopener" target="_blank">https://web.archive.org/web/20210617134445/https://twitter.com/reddrag64988892/status/1405520648634388484</a></li>
-<li><strong>Date:</strong> June 17, 2021.</li>
-<li><strong>Boundary:</strong> Do not expand Akiyama's identity or name an alleged Jorudan programmer without stronger evidence.</li>
+<li><a href="https://flyers.arcade-museum.com/videogames/show/5525" rel="noopener" target="_blank">Arcade Flyer Archive — Captain Silver</a></li>
+<li><a href="https://adb.arcadeitalia.net/?mame=csilver" rel="noopener" target="_blank">Arcade Database / MAME captures</a></li>
+<li><a href="https://www.arcade-museum.com/Videogame/captain-silver" rel="noopener" target="_blank">Museum of the Game — Captain Silver</a></li>
+<li><a href="https://gamesdb.launchbox-app.com/games/images/28861-captain-silver" rel="noopener" target="_blank">LaunchBox Games Database image record</a></li>
 </ul>
-<h3>Official MAME release records</h3>
-<ul>
-<li><strong>Supports:</strong> First MAME support in 0.35b3 on February 15, 1999; Bryan McPhail credited; Japan revision 1 added in 0.186; later protection-controller emulation update; current set definitions and ROM identifiers.</li>
-<li><strong>Confidence:</strong> High for MAME history and MAME's own set metadata.</li>
-<li><strong>Release history:</strong> <a href="https://www.mamedev.org/oldrel.html" rel="noopener" target="_blank">https://www.mamedev.org/oldrel.html</a></li>
-<li><strong>MAME 0.35b3 notes:</strong> <a href="https://www.mamedev.org/releases/whatsnew_035b3.txt" rel="noopener" target="_blank">https://www.mamedev.org/releases/whatsnew_035b3.txt</a></li>
-<li><strong>MAME 0.186 notes:</strong> <a href="https://www.mamedev.org/releases/whatsnew_0186.txt" rel="noopener" target="_blank">https://www.mamedev.org/releases/whatsnew_0186.txt</a></li>
-<li><strong>MAME 0.222 update:</strong> <a href="https://www.mamedev.org/?p=483" rel="noopener" target="_blank">https://www.mamedev.org/?p=483</a></li>
-<li><strong>Current driver source used in closeout:</strong> <a href="https://raw.githubusercontent.com/mamedev/mame/refs/tags/mame0289/src/mame/dataeast/dec8.cpp" rel="noopener" target="_blank">https://raw.githubusercontent.com/mamedev/mame/refs/tags/mame0289/src/mame/dataeast/dec8.cpp</a></li>
-<li><strong>Boundary:</strong> MAME marks Japanese controller data as reconstructed bad dump. MAME metadata is not independent proof of Japanese protection or coin behavior.</li>
-</ul>
-<h3>Supplied modern merged ROM archive</h3>
-<ul>
-<li><strong>Supports:</strong> Presence and direct comparison of World <code>dx03-12.18d</code>, Japan revision 1 <code>dx03-1.18d</code> CRC <code>d42905be</code>, and Japan revision 2 <code>dx03-2.18d</code> CRC <code>02dd8cfc</code>; shop, Continue, inventory, letter, checkpoint, collision-state, and revision findings.</li>
-<li><strong>Confidence:</strong> High for static main-program conclusions after cross-set comparison.</li>
-<li><strong>Source:</strong> A research copy of the modern merged <code>csilver.7z</code>, identified against current MAME definitions.</li>
-<li><strong>Boundary:</strong> The ROM archive was used only as research input and is not redistributed here. Protection and coin behavior were not promoted beyond the quality of the available controller dump.</li>
-</ul>
-<h3>Coin-Op Collection FPGA announcements</h3>
-<ul>
-<li><strong>Supports:</strong> Working DECO-8 FPGA beta in June 2026; public Captain Silver release announced August 2, 2026 for GitHub, <code>update_all</code>, and <code>pupdate</code> distribution.</li>
-<li><strong>Confidence:</strong> High for the developer's release status.</li>
-<li><strong>Beta update:</strong> <a href="https://www.patreon.com/atrac17/posts/coin-op-presents-158279548" rel="noopener" target="_blank">https://www.patreon.com/atrac17/posts/coin-op-presents-158279548</a></li>
-<li><strong>Demonstration:</strong> <a href="https://www.youtube.com/watch?v=xNkUTHIG4z0" rel="noopener" target="_blank">https://www.youtube.com/watch?v=xNkUTHIG4z0</a></li>
-<li><strong>Public release post:</strong> <a href="https://www.patreon.com/atrac17/posts/coin-op-presents-165528115" rel="noopener" target="_blank">https://www.patreon.com/atrac17/posts/coin-op-presents-165528115</a></li>
-<li><strong>Boundary:</strong> Public release does not by itself establish perfect hardware accuracy.</li>
-</ul>
-<h2>Secondary and specialist sources</h2>
-<h3>Game Developer Research Institute Jorudan entry</h3>
-<ul>
-<li><strong>Supports:</strong> Contract-development synthesis: Jorudan programming; Data East hardware, planning, graphics, and sound; identifies Sakuma and Akiyama roles with linked sources.</li>
-<li><strong>Confidence:</strong> Medium to high as a specialist secondary source anchored to primary references.</li>
-<li><strong>Source:</strong> <a href="https://gdri.smspower.org/wiki/index.php/Jorudan" rel="noopener" target="_blank">https://gdri.smspower.org/wiki/index.php/Jorudan</a></li>
-<li><strong>Boundary:</strong> Use it to structure credits, while relying on Sakuma's preserved statement for the central first-person claim.</li>
-</ul>
-<h3>CRASH October 1987 arcade review</h3>
-<ul>
-<li><strong>Supports:</strong> British availability by October 1987; period reception; printed score of 7; praise for playability; criticism of blurry-looking graphics, early difficulty, and initially awkward controls.</li>
-<li><strong>Confidence:</strong> High for the review's existence and opinions.</li>
-<li><strong>Source:</strong> <a href="https://archive.org/stream/Crash36Jan87/Crash/Crash45-Oct87_djvu.txt" rel="noopener" target="_blank">https://archive.org/stream/Crash36Jan87/Crash/Crash45-Oct87_djvu.txt</a></li>
-<li><strong>Boundary:</strong> The reviewer incorrectly identifies the player character as Captain Silver.</li>
-</ul>
-<h3>Play Meter 1987 issues and index</h3>
-<ul>
-<li><strong>Supports:</strong> Absence of Captain Silver from checked American coverage while other current Data East USA titles were documented; weakens the unsupported July 1987 North American date.</li>
-<li><strong>Confidence:</strong> High for the checked issues and index; absence is not proof that no board reached the country.</li>
-<li><strong>August 1987:</strong> <a href="https://archive.org/stream/play-meter-volume-13-number-8-august-1987/Play%20Meter%20-%20Volume%2013%2C%20Number%208%20-%20August%201987_djvu.txt" rel="noopener" target="_blank">https://archive.org/stream/play-meter-volume-13-number-8-august-1987/Play%20Meter%20-%20Volume%2013%2C%20Number%208%20-%20August%201987_djvu.txt</a></li>
-<li><strong>December 1987 year-end index:</strong> <a href="https://archive.org/stream/play-meter-volume-13-number-12-december-1987/Play%20Meter%20-%20Volume%2013%2C%20Number%2012%20-%20December%201987_djvu.txt" rel="noopener" target="_blank">https://archive.org/stream/play-meter-volume-13-number-12-december-1987/Play%20Meter%20-%20Volume%2013%2C%20Number%2012%20-%20December%201987_djvu.txt</a></li>
-<li><strong>Boundary:</strong> Supports “unverified,” not “never released.”</li>
-</ul>
-<h3>Jim Hernandez coin-op database</h3>
-<ul>
-<li><strong>Supports:</strong> Later trade-memory classification as a Data East kit dated September 1987.</li>
-<li><strong>Confidence:</strong> Medium; compiled in September 1999 rather than contemporary with release.</li>
-<li><strong>Source:</strong> <a href="https://www.mikesarcade.com/cgi-bin/spies.cgi?action=url&amp;page=JimsDB.txt&amp;type=info" rel="noopener" target="_blank">https://www.mikesarcade.com/cgi-bin/spies.cgi?action=url&amp;page=JimsDB.txt&amp;type=info</a></li>
-<li><strong>Boundary:</strong> Supporting clue only; not a period U.S. release announcement.</li>
-</ul>
-<h3>Experienced-player comparison</h3>
-<ul>
-<li><strong>Supports:</strong> Player testimony that the Captain Silver encounter feels different at foot level in the second loop.</li>
-<li><strong>Confidence:</strong> Medium for the reported experience; low for the inferred universal hitbox cause.</li>
-<li><strong>Source:</strong> <a href="https://bgm.sub.jp/CON/OLDSEGAANKE.html" rel="noopener" target="_blank">https://bgm.sub.jp/CON/OLDSEGAANKE.html</a></li>
-<li><strong>Boundary:</strong> ROM analysis did not find a Loop 2-only foot-hitbox switch.</li>
-</ul>
-<h3>Hardcore Gaming 101</h3>
-<ul>
-<li><strong>Supports:</strong> Independent description of Continue returning the player to a stage beginning or midpoint depending on progress.</li>
-<li><strong>Confidence:</strong> Medium; corroborates the seven ROM-defined checkpoints.</li>
-<li><strong>Source:</strong> <a href="https://www.hardcoregaming101.net/captain-silver/" rel="noopener" target="_blank">https://www.hardcoregaming101.net/captain-silver/</a></li>
-<li><strong>Boundary:</strong> Console material on the same page must not be imported into the arcade profile without explicit labeling.</li>
-</ul>
-<h3>Data East staff roundtable</h3>
-<ul>
-<li><strong>Supports:</strong> Retrospective context that the game sold poorly and few boards circulated.</li>
-<li><strong>Confidence:</strong> Medium as translated retrospective testimony.</li>
-<li><strong>Source:</strong> <a href="https://shmuplations.com/dataeast/" rel="noopener" target="_blank">https://shmuplations.com/dataeast/</a></li>
-<li><strong>Boundary:</strong> Context for scarcity, not a substitute for sales records.</li>
-</ul>
-<h2>Image-source records</h2>
-<ul>
-<li><strong>Arcade Flyer Archive:</strong> <a href="https://flyers.arcade-museum.com/videogames/show/5525" rel="noopener" target="_blank">https://flyers.arcade-museum.com/videogames/show/5525</a></li>
-<li><strong>Arcade Database World-set captures:</strong> <a href="https://adb.arcadeitalia.net/?mame=csilver" rel="noopener" target="_blank">https://adb.arcadeitalia.net/?mame=csilver</a></li>
-<li><strong>Arcade Museum marquee and screen context:</strong> <a href="https://www.arcade-museum.com/Videogame/captain-silver" rel="noopener" target="_blank">https://www.arcade-museum.com/Videogame/captain-silver</a></li>
-<li><strong>LaunchBox image records used during staging:</strong> <a href="https://gamesdb.launchbox-app.com/games/images/28861-captain-silver" rel="noopener" target="_blank">https://gamesdb.launchbox-app.com/games/images/28861-captain-silver</a></li>
-</ul>
-<p>See <code>Images/source_manifests/</code> for retrieval-specific notes, file dimensions, rights cautions, and source attribution. Inclusion in the research ZIP does not grant publication rights.</p>
-<h2>Claim matrix</h2>
-<table>
-<thead>
-<tr>
-<th>Claim</th>
-<th>Best evidence</th>
-<th>Status</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Data East planned and published; Jorudan implemented</td>
-<td>Sakuma statement plus GDRI synthesis</td>
-<td>Confirmed</td>
-</tr>
-<tr>
-<td>Three principal scenes and a second loop</td>
-<td>Beep, flyer, program</td>
-<td>Confirmed</td>
-</tr>
-<tr>
-<td>Shop has six fixed slots and rising prices</td>
-<td>Main-program analysis</td>
-<td>Confirmed</td>
-</tr>
-<tr>
-<td>Continue retains GOLD and letters but clears equipment</td>
-<td>Main-program analysis</td>
-<td>Confirmed</td>
-</tr>
-<tr>
-<td>Seven Continue checkpoints</td>
-<td>Main-program analysis; HG101 corroboration</td>
-<td>Confirmed</td>
-</tr>
-<tr>
-<td>Japan revisions differ in gameplay</td>
-<td>Direct program comparison</td>
-<td>Not supported</td>
-</tr>
-<tr>
-<td>Loop 2 activates a universal foot hitbox</td>
-<td>State and collision analysis</td>
-<td>Not supported</td>
-</tr>
-<tr>
-<td>July 1987 North American release</td>
-<td>No contemporary citation found</td>
-<td>Unverified</td>
-</tr>
-<tr>
-<td>Factory-dedicated cabinet</td>
-<td>No supporting factory evidence</td>
-<td>Unverified</td>
-</tr>
-<tr>
-<td>70,000-yen serviced table installation in March 1988</td>
-<td>GAMEST TTM advertisement</td>
-<td>Confirmed</td>
-</tr>
-<tr>
-<td>First MAME support February 15, 1999</td>
-<td>Official MAME notes</td>
-<td>Confirmed</td>
-</tr>
-<tr>
-<td>Public FPGA release August 2, 2026</td>
-<td>Developer announcement</td>
-<td>Confirmed</td>
-</tr>
-</tbody>
-</table></details><details><summary>Full ROM-analysis technical notes</summary><h1>Captain Silver ROM Analysis Technical Notes</h1>
-<h2>Scope</h2>
-<p>ROM work began only after documentary research could no longer settle the shop, Continue, collision, and Japanese-revision questions. The analysis stayed targeted. It did not attempt a complete disassembly of the game or promote unused bytes into speculative features.</p>
-<p>The supplied modern merged archive was identified against current MAME definitions and contained the World main program plus both Japanese main-program revisions:</p>
-<ul>
-<li>World: <code>dx03-12.18d</code></li>
-<li>Japan revision 1: <code>dx03-1.18d</code>, CRC <code>d42905be</code></li>
-<li>Japan revision 2: <code>dx03-2.18d</code>, CRC <code>02dd8cfc</code></li>
-</ul>
-<p>The archive is not included in the website package. These notes preserve findings, not copyrighted ROM data.</p>
-<h2>Continue state</h2>
-<p>The Continue path is distinct from the new-game path and deliberately bypasses the large new-game memory clear. An accepted Continue restores the DIP-selected starting number of lives and chooses one of seven restart states. Scene 1 has early, middle, and late checkpoints; Scene 2 has a beginning checkpoint; Scene 3 has early, middle, and late checkpoints.</p>
-<p>The packed score or GOLD fields are not cleared by the Continue route. The CAPTAIN SILVER letter bitfield also sits outside the death-cleared equipment block and survives. A new game clears the letters. Completing all thirteen letter bits clears the set and awards one life.</p>
-<p>The final-life death route clears the active equipment and temporary-inventory block before the player accepts or declines Continue. Confirmed cleared fields are sword upgrade, boots, protection medicine, clock effect, key, and all fairy or magic levels. Item type 7 sets the key flag; locked-door and shop-related routines test and consume it, confirming that the field is a key rather than an unidentified inventory bit.</p>
-<p>These paths are shared by the World and Japan revision 2 programs. Direct comparison with Japan revision 1 found no altered Continue design.</p>
-<h2>Shop data</h2>
-<p>The shop uses six purchasable display slots with fixed identities:</p>
-<ol>
-<li>sword upgrade</li>
-<li>sword upgrade</li>
-<li>extra life</li>
-<li>protection medicine</li>
-<li>fairy or magic upgrade</li>
-<li>fairy or magic upgrade</li>
-</ol>
-<p>Stock does not change. Price records are selected by progression state:</p>
-<table>
-<thead>
-<tr>
-<th>Progression state</th>
-<th style="text-align: right;">Sword</th>
-<th style="text-align: right;">Extra life</th>
-<th style="text-align: right;">Protection</th>
-<th style="text-align: right;">Fairy or magic</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Loop 1 Scene 1</td>
-<td style="text-align: right;">10,000</td>
-<td style="text-align: right;">20,000</td>
-<td style="text-align: right;">10,000</td>
-<td style="text-align: right;">10,000</td>
-</tr>
-<tr>
-<td>Loop 1 Scene 3</td>
-<td style="text-align: right;">20,000</td>
-<td style="text-align: right;">30,000</td>
-<td style="text-align: right;">20,000</td>
-<td style="text-align: right;">20,000</td>
-</tr>
-<tr>
-<td>Loop 2 Scene 1</td>
-<td style="text-align: right;">20,000</td>
-<td style="text-align: right;">30,000</td>
-<td style="text-align: right;">20,000</td>
-<td style="text-align: right;">20,000</td>
-</tr>
-<tr>
-<td>Loop 2 Scene 3</td>
-<td style="text-align: right;">30,000</td>
-<td style="text-align: right;">30,000</td>
-<td style="text-align: right;">20,000</td>
-<td style="text-align: right;">20,000</td>
-</tr>
-<tr>
-<td>Final embedded state</td>
-<td style="text-align: right;">50,000</td>
-<td style="text-align: right;">50,000</td>
-<td style="text-align: right;">30,000</td>
-<td style="text-align: right;">30,000</td>
-</tr>
-</tbody>
-</table>
-<p>Two items occupying separate slots share the sword price, and two share the fairy price. The final table is present for a post-Loop 2 state, but an ordinary subsequent shop visit was not proven.</p>
-<p>GOLD is stored in packed decimal. The shop comparison and deduction operates on the high-value portion relevant to the inventory, which explains the clean 10,000-point price increments.</p>
-<h2>Magic and letters</h2>
-<p>The value that rises through six steps is fairy or magic level, not a hidden letter counter. The letter system uses a separate thirteen-bit progress structure corresponding to CAPTAIN SILVER. The two systems must not be conflated in captions or gameplay explanation.</p>
-<h2>Captain Silver contact behavior</h2>
-<p>The boss's contact rectangle is controlled by animation and attack state. State changes enable and suppress body contact without testing the loop or global difficulty value in the relevant path. No clean instruction or data switch was found that turns on a special foot-only contact area for Loop 2.</p>
-<p>This does not prove that both loops feel identical. Enemy timing, attack-state frequency, or overall loop pressure can change the practical encounter. It does mean that “his feet become dangerous on Loop 2” is not a confirmed universal program rule.</p>
-<h2>Japan revision 1 and revision 2</h2>
-<p>The two Japanese sets differ only in the main program ROM. Graphics, sound, secondary code, shop data, Continue rules, enemies, scoring, difficulty data, and ending content are shared.</p>
-<p>The only active main-program change located is in display initialization during the Game Over and Continue transition. Japan revision 2 applies the operator flip-screen setting before checking whether Continue is enabled, matching the World program. Revision 1 performs the Continue check first. With Continue enabled in the ordinary configuration, both reach the same result.</p>
-<p>The remaining raw byte differences are mostly unreferenced values in empty ROM space. Revision 1 retains editor-like or development residue; revision 2 zero-fills much of it. No running code reference was established. These bytes are not evidence of removed stages, enemies, items, or alternate gameplay.</p>
-<h2>Protection and coin caveat</h2>
-<p>Newer MAME replaced the protection simulation used in older versions with controller-program emulation. MAME treats the World controller dump as corrected and verified, while the Japanese controller data remains marked as a reconstructed bad dump. Static conclusions from the main programs are unaffected. Japanese protection and coin-handling conclusions require more care.</p>
-<p>MAME currently maps Japan revision 2 to Japanese coinage behavior and Japan revision 1 to a World-style coinage table. Record that as a MAME-side revision observation, not as final original-board proof until the Japanese controller data is verified.</p>
-<h2>Publication-safe summary</h2>
-<ul>
-<li>Continue keeps GOLD and letters, restores configured lives, and uses seven checkpoints.</li>
-<li>Death clears every active equipment and temporary-inventory category identified in the program.</li>
-<li>The shop always offers the same six slots; prices rise by tier.</li>
-<li>The fourth shop price table exists, but normal access is unconfirmed.</li>
-<li>Boss contact is state-dependent; a Loop 2-only foot hitbox is not confirmed.</li>
-<li>Japanese revisions 1 and 2 do not contain a discovered gameplay difference.</li>
-<li>Do not describe unused ROM-space residue as hidden content.</li>
-</ul></details></section><section class="section"><h2>Help keep the record open</h2><p>Have a correction, original board or kit documentation, a cabinet photograph, or firsthand memories of Captain Silver? <a href="mailto:dde.biz@gmail.com?subject=Arcade%20Side%20B%20-%20Captain%20Silver">Contribute information</a>. Submissions are reviewed before publication. Contributors may be credited with permission or remain anonymous.</p><a class="backhome" href="https://arcadesideb.com/#games" target="_parent">← Back to Games</a></section></article></div></main><footer><div class="footer-inner"><strong>Rights &amp; Archival Material Notice</strong><p class="rights">Arcade Side B is a noncommercial historical research and preservation project. Some archival images, scans, publications, advertisements, artwork, screenshots, manuals, trademarks, and other materials presented or linked here may remain protected by copyright or other rights. Unless specifically stated otherwise, Arcade Side B does not claim ownership of third-party material and may not have a redistribution agreement with the applicable rights holder. Materials are presented in the interest of historical documentation, research, criticism, education, and preservation. Rights holders who have concerns about material appearing here are welcome to contact Arcade Side B to request attribution, correction, restriction, or removal.</p></div></footer><dialog class="image-dialog"><button class="close-image" type="button">Close ×</button><p></p><img alt=""/></dialog><script>const box=document.querySelector('.image-dialog');document.querySelectorAll('.enlarge').forEach(b=>b.addEventListener('click',()=>{const i=b.querySelector('img');if(window.parent!==window && window.parent.openArchiveImage){window.parent.openArchiveImage(i.src,i.alt);return;}box.querySelector('img').src=i.src;box.querySelector('img').alt=i.alt;box.querySelector('p').textContent=i.alt;box.showModal()}));box.querySelector('button').onclick=()=>box.close();box.addEventListener('click',e=>{if(e.target===box)box.close()});</script></body></html>
+
+<p><strong>Research boundary:</strong> A specific 1987 North American arcade release remains unverified; no factory-dedicated cabinet has been established; and Japanese protection or coin behavior should not be inferred from reconstructed controller data alone.</p>
+</section><section class="section"><h2>Help keep the record open</h2><p>Have a correction, original board or kit documentation, a cabinet photograph, or firsthand memories of Captain Silver? <a href="mailto:dde.biz@gmail.com?subject=Arcade%20Side%20B%20-%20Captain%20Silver">Contribute information</a>. Submissions are reviewed before publication. Contributors may be credited with permission or remain anonymous.</p><a class="backhome" href="https://arcadesideb.com/#games" target="_parent">← Back to Games</a></section></article></div></main><footer><div class="footer-inner"><strong>Rights &amp; Archival Material Notice</strong><p class="rights">Arcade Side B is a noncommercial historical research and preservation project. Some archival images, scans, publications, advertisements, artwork, screenshots, manuals, trademarks, and other materials presented or linked here may remain protected by copyright or other rights. Unless specifically stated otherwise, Arcade Side B does not claim ownership of third-party material and may not have a redistribution agreement with the applicable rights holder. Materials are presented in the interest of historical documentation, research, criticism, education, and preservation. Rights holders who have concerns about material appearing here are welcome to contact Arcade Side B to request attribution, correction, restriction, or removal.</p></div></footer><dialog class="image-dialog"><button class="close-image" type="button">Close ×</button><p></p><img alt=""/></dialog><script>const box=document.querySelector('.image-dialog');document.querySelectorAll('.enlarge').forEach(b=>b.addEventListener('click',()=>{const i=b.querySelector('img');if(window.parent!==window && window.parent.openArchiveImage){window.parent.openArchiveImage(i.src,i.alt);return;}box.querySelector('img').src=i.src;box.querySelector('img').alt=i.alt;box.querySelector('p').textContent=i.alt;box.showModal()}));box.querySelector('button').onclick=()=>box.close();box.addEventListener('click',e=>{if(e.target===box)box.close()});</script></body></html>
