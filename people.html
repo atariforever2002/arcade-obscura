@@ -67,15 +67,15 @@ main{padding:30px 0 64px}
 }
 .section-head h2{margin:0;font:700 30px Georgia,serif}
 .section-head p{margin:0;color:#8d989f;font-size:12px}
-.people-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.people-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
 .person-card{
-  position:relative;display:block;min-height:185px;padding:20px;
+  position:relative;display:block;min-height:132px;padding:14px 15px;
   border:1px solid var(--line);background:linear-gradient(145deg,#131b23,#10161d);
   text-decoration:none;overflow:hidden;
 }
 .person-card:after{
-  content:"";position:absolute;width:150px;height:150px;right:-55px;bottom:-62px;
-  border:1px solid rgba(255,255,255,.05);border-radius:50%;
+  content:"";position:absolute;width:110px;height:110px;right:-46px;bottom:-52px;
+  border:1px solid rgba(255,255,255,.045);border-radius:50%;
 }
 .person-card:hover,.person-card:focus-visible{
   border-color:#53616d;background:#16202a;outline:none;
@@ -85,14 +85,14 @@ main{padding:30px 0 64px}
   letter-spacing:.14em;text-transform:uppercase;
 }
 .person-card h3{
-  margin:9px 0 8px;font:700 28px Georgia,serif;
+  margin:6px 0 5px;font:700 21px Georgia,serif;
 }
 .person-card p{
-  margin:0;color:#aeb8be;font-size:13px;max-width:620px;
+  margin:0;color:#aeb8be;font-size:12px;line-height:1.45;max-width:620px;
 }
 .person-card .source{
-  display:block;margin-top:16px;color:var(--gold2);
-  font:800 10px Arial,sans-serif;letter-spacing:.06em;text-transform:uppercase;
+  display:block;margin-top:9px;color:var(--gold2);
+  font:800 9px Arial,sans-serif;letter-spacing:.06em;text-transform:uppercase;
 }
 .qualified{color:#c7b07c}
 .note{
@@ -104,6 +104,7 @@ main{padding:30px 0 64px}
 .note a{color:var(--gold2)}
 footer{border-top:1px solid var(--line);background:#07090c;padding:24px 0 34px;color:#7d8990;font-size:12px}
 footer strong{color:#dce2e5;font-family:Georgia,serif;font-size:16px}
+@media(max-width:960px){.people-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:720px){
   .toprail{flex-direction:column;gap:3px}
   .intro,.people-grid{grid-template-columns:1fr}
@@ -131,7 +132,7 @@ footer strong{color:#dce2e5;font-family:Georgia,serif;font-size:16px}
 <section class="intro">
 <div class="intro-card">
 <strong>What this page is</strong>
-This is a growing index of people already identified in published Arcade Side B research. Click a name to jump to the company history where the evidence for that person is discussed.
+This is a growing index of people already identified in published Arcade Side B research. The directory now spans several companies and game-development teams. Click a name to jump to the company history where the evidence for that person is discussed.
 </div>
 <div class="intro-card">
 <strong>What this page is not</strong>
@@ -218,6 +219,156 @@ An entry here does not imply that a full biography exists yet. Roles are kept as
 <h3>Don Suwinski</h3>
 <p>Listed as Elcon’s general manager by <em>Play Meter</em> in March 1982, during the company’s later documented operating period.</p>
 <span class="source">Read in Elcon Industries →</span>
+</a>
+</section>
+
+
+<div class="section-head">
+<h2>Ramtek Corporation</h2>
+<p>California · 1970s</p>
+</div>
+<section class="people-grid" aria-label="People connected with Ramtek Corporation">
+<a class="person-card" href="ramtek.html#the-company-before-the-arcade">
+<div class="role">Founder · President of Ramtek Games</div>
+<h3>Charles McEwan</h3>
+<p>Consistently identified with Ramtek’s formation and named president of Ramtek Games in 1976 trade reporting.</p>
+<span class="source">Read in Ramtek →</span>
+</a>
+
+<a class="person-card" href="ramtek.html#the-company-before-the-arcade">
+<div class="role">Founder</div>
+<h3>John Metzler</h3>
+<p>Identified with Charles McEwan in Ramtek’s formation as the company emerged from the Bay Area display-electronics business.</p>
+<span class="source">Read in Ramtek →</span>
+</a>
+
+<a class="person-card" href="ramtek.html#the-company-before-the-arcade">
+<div class="role">Founder · Attorney</div>
+<h3>Jack Teeters</h3>
+<p>Named among Ramtek’s founders in the company’s early formation history.</p>
+<span class="source">Read in Ramtek →</span>
+</a>
+
+<a class="person-card" href="ramtek.html">
+<div class="role">Vice-president · Marketing / Games</div>
+<h3>Chuck Arnold</h3>
+<p>Identified in a May 1976 <em>Play Meter</em> report as Ramtek Games’ vice-president of marketing/games.</p>
+<span class="source">Read in Ramtek →</span>
+</a>
+</section>
+
+<div class="section-head">
+<h2>Data East</h2>
+<p>Japan / United States · 1976–2003</p>
+</div>
+<section class="people-grid" aria-label="People connected with Data East">
+<a class="person-card" href="data-east.html#company-snapshot">
+<div class="role">Founder · Engineer · President</div>
+<h3>Tetsuo Fukuda</h3>
+<p>Engineer who founded Data East on April 20, 1976; contemporary retrospective reporting also identifies him as company president.</p>
+<span class="source">Read in Data East →</span>
+</a>
+
+<a class="person-card" href="data-east.html">
+<div class="role">President · Data East USA</div>
+<h3>Bob Lloyd</h3>
+<p>Named Data East USA president in 1985 trade coverage while discussing the early performance of <em>Commando</em>.</p>
+<span class="source">Read in Data East →</span>
+</a>
+
+<a class="person-card" href="data-east.html">
+<div class="role">Marketing Manager · Data East USA</div>
+<h3>Jay Malpas</h3>
+<p>Game credits and later reporting identify him as Data East USA’s marketing manager during the company’s final U.S. years.</p>
+<span class="source">Read in Data East →</span>
+</a>
+
+<a class="person-card" href="data-east.html">
+<div class="role">U.S. Product Development</div>
+<h3>Michael Meyers</h3>
+<p>Independent game credits place him at the head of U.S. product development during the 1994–1996 period.</p>
+<span class="source">Read in Data East →</span>
+</a>
+</section>
+
+<div class="section-head">
+<h2>Mirco Games</h2>
+<p>United States / West Germany · 1970s–early 1980s</p>
+</div>
+<section class="people-grid" aria-label="People connected with Mirco Games">
+<a class="person-card" href="mirco-games.html">
+<div class="role">President · Managing Director</div>
+<h3>Richard N. Raymond</h3>
+<p>Later became Mirco president in the United States while continuing to oversee the German operation; listed as managing director of Mirco Games GmbH in 1979.</p>
+<span class="source">Read in Mirco Games →</span>
+</a>
+
+<a class="person-card" href="mirco-games.html">
+<div class="role">Sales Manager · Mirco Games GmbH</div>
+<h3>John H. Raymond</h3>
+<p>Listed as sales manager of the Neu-Isenburg, West Germany operation in a 1979 international trade directory.</p>
+<span class="source">Read in Mirco Games →</span>
+</a>
+</section>
+
+<div class="section-head">
+<h2>For-Play Manufacturing</h2>
+<p>California · 1972–1975 documented product activity</p>
+</div>
+<section class="people-grid" aria-label="People connected with For-Play Manufacturing">
+<a class="person-card" href="for-play.html#a-manufacturer-enters-the-trade">
+<div class="role">President · Industrial Engineer</div>
+<h3>William D. Lewis</h3>
+<p>A contemporary 1972 <em>Cash Box</em> report identifies him as For-Play president and an industrial engineer.</p>
+<span class="source">Read in For-Play →</span>
+</a>
+
+<a class="person-card" href="for-play.html#a-manufacturer-enters-the-trade">
+<div class="role">Design Engineer</div>
+<h3>Robert Harp</h3>
+<p>Named as a design engineer when For-Play’s organization was reported in 1972.</p>
+<span class="source">Read in For-Play →</span>
+</a>
+
+<a class="person-card" href="for-play.html#a-manufacturer-enters-the-trade">
+<div class="role">Design Engineer</div>
+<h3>Harry Bieker</h3>
+<p>Named alongside Robert Harp as a design engineer in contemporary coverage of For-Play’s formation.</p>
+<span class="source">Read in For-Play →</span>
+</a>
+</section>
+
+<div class="section-head">
+<h2>SEMiCOM</h2>
+<p>South Korea · 1990s–2001 conventional arcade line</p>
+</div>
+<section class="people-grid" aria-label="People connected with SEMiCOM">
+<a class="person-card" href="semicom.html">
+<div class="role">Representative · Executive Producer / Director</div>
+<h3>Jeon Jae-yeon</h3>
+<p>Contemporary Korean trade reporting identifies him as SEMiCOM’s representative; game credits repeatedly place him in executive-producer and director roles.</p>
+<span class="source">Read in SEMiCOM →</span>
+</a>
+
+<a class="person-card" href="semicom.html">
+<div class="role">Game Design · Illustration</div>
+<h3>Han Seung Hoon</h3>
+<p>Recurring SEMiCOM credit across design and illustration work, including game design on <em>Hatch Catch</em>.</p>
+<span class="source">Read in SEMiCOM →</span>
+</a>
+
+<a class="person-card" href="semicom.html">
+<div class="role">Programmer</div>
+<h3>Baek Seung Ki</h3>
+<p>Credited as main programmer on <em>Hatch Catch</em> and in programming on the first <em>Cookie &amp; Bibi</em>.</p>
+<span class="source">Read in SEMiCOM →</span>
+</a>
+
+<a class="person-card" href="semicom.html">
+<div class="role">Programmer</div>
+<h3>Kim Jin Woo</h3>
+<p>Credited in programming on <em>Hatch Catch</em> and among the programmers preserved in <em>Hyper Pacman</em>’s staff list.</p>
+<span class="source">Read in SEMiCOM →</span>
 </a>
 </section>
 
