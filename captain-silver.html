@@ -684,16 +684,16 @@ article{min-width:0}article a{color:#79511c}h2{overflow-wrap:anywhere}.technical
 <td>Confirmed</td>
 </tr>
 </tbody>
-</table></details><details><summary>Full ROM-analysis technical notes</summary><h1>Captain Silver ROM Analysis Technical Notes</h1>
+</table></details><details><summary>Full ROM-analysis technical notes</summary><h2>Captain Silver ROM analysis technical notes</h2>
 <h2>Scope</h2>
 <p>ROM work began only after documentary research could no longer settle the shop, Continue, collision, and Japanese-revision questions. The analysis stayed targeted. It did not attempt a complete disassembly of the game or promote unused bytes into speculative features.</p>
-<p>The supplied modern merged archive was identified against current MAME definitions and contained the World main program plus both Japanese main-program revisions:</p>
+<p>The preserved merged program set was identified against current MAME definitions and contained the World main program plus both Japanese main-program revisions:</p>
 <ul>
 <li>World: <code>dx03-12.18d</code></li>
 <li>Japan revision 1: <code>dx03-1.18d</code>, CRC <code>d42905be</code></li>
 <li>Japan revision 2: <code>dx03-2.18d</code>, CRC <code>02dd8cfc</code></li>
 </ul>
-<p>The archive is not included in the website package. These notes preserve findings, not copyrighted ROM data.</p>
+<p>The ROM archive is not redistributed on the public page. These notes preserve the research findings, not copyrighted ROM data.</p>
 <h2>Continue state</h2>
 <p>The Continue path is distinct from the new-game path and deliberately bypasses the large new-game memory clear. An accepted Continue restores the DIP-selected starting number of lives and chooses one of seven restart states. Scene 1 has early, middle, and late checkpoints; Scene 2 has a beginning checkpoint; Scene 3 has early, middle, and late checkpoints.</p>
 <p>The packed score or GOLD fields are not cleared by the Continue route. The CAPTAIN SILVER letter bitfield also sits outside the death-cleared equipment block and survives. A new game clears the letters. Completing all thirteen letter bits clears the set and awards one life.</p>
