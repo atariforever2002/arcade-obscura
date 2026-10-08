@@ -1,0 +1,13 @@
+/* Arcade Side B shared site search/navigation strip */
+.asb-global-search{position:relative;z-index:1000;width:100%;border-bottom:1px solid #293543;background:#0a0f15;color:#f2eee6;font-family:Arial,Helvetica,sans-serif}
+.asb-global-inner{width:min(calc(100% - 32px),1180px);margin:0 auto;padding:9px 0;display:flex;align-items:center;gap:14px}
+.asb-global-brand{flex:0 0 auto;color:#f0c57e;text-decoration:none;font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:17px;white-space:nowrap}
+.asb-global-links{display:flex;gap:3px;flex:0 0 auto}
+.asb-global-links a{padding:7px 8px;color:#b9c4ca;text-decoration:none;font-size:10px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;border:1px solid transparent}
+.asb-global-links a:hover,.asb-global-links a:focus{color:#fff;border-color:#394855}
+.asb-global-form{min-width:220px;margin-left:auto;display:flex;gap:6px}
+.asb-global-form input{width:100%;min-width:0;padding:8px 10px;border:1px solid #394855;background:#10161d;color:#f2eee6;font:13px Arial,Helvetica,sans-serif}
+.asb-global-form input::placeholder{color:#7f8b93}
+.asb-global-form button{padding:8px 11px;border:1px solid #d39a42;background:#d39a42;color:#101317;cursor:pointer;font:800 9px Arial,Helvetica,sans-serif;letter-spacing:.07em;text-transform:uppercase}
+.asb-sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+@media(max-width:760px){.asb-global-inner{flex-wrap:wrap;gap:6px 10px}.asb-global-brand{font-size:16px}.asb-global-links{margin-left:auto}.asb-global-links a{padding:5px 6px;font-size:9px}.asb-global-form{flex:1 0 100%;min-width:0;margin-left:0}.asb-global-form input{padding:10px 11px;font-size:14px}.asb-global-form button{padding:10px 13px}}

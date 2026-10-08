@@ -113,8 +113,22 @@ footer strong{color:#dce2e5;font-family:Georgia,serif;font-size:16px}
   .person-card{min-height:auto}
 }
 </style>
+<link rel="stylesheet" href="site-search.css">
 </head>
 <body>
+
+<div class="asb-global-search" aria-label="Arcade Side B site navigation and search">
+  <div class="asb-global-inner">
+    <a class="asb-global-brand" href="index.html">Arcade Side B</a>
+    <nav class="asb-global-links" aria-label="Archive indexes">
+      <a href="companies.html">Companies</a><a href="games.html">Games</a><a href="people.html">People</a>
+    </nav>
+    <form class="asb-global-form" action="search.html" method="get" role="search">
+      <label class="asb-sr-only" for="asb-global-search-input">Search Arcade Side B</label>
+      <input id="asb-global-search-input" name="q" type="search" placeholder="Search Arcade Side B…" autocomplete="off"><button type="submit">Search</button>
+    </form>
+  </div>
+</div>
 <header>
 <div class="wrap toprail">
 <span>Arcade History · Research · Preservation</span>
