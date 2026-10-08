@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Companies | Arcade Side B</title>
+<meta name="description" content="Browse Arcade Side B company histories: manufacturers, developers, distributors, assemblers and short-lived arcade ventures.">
+<link rel="canonical" href="https://arcadesideb.com/companies.html">
+<style>
+:root{
+  --bg:#080b10;--panel:#121922;--ink:#f2eee6;--muted:#9ba7b0;
+  --line:#293543;--gold:#d39a42;--gold2:#f0c57e;--cyan:#70a4b8;
+  --green:#7ea07f;--max:1180px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:
+    radial-gradient(circle at 85% 12%,rgba(112,164,184,.11),transparent 30%),
+    radial-gradient(circle at 12% 28%,rgba(211,154,66,.07),transparent 24%),
+    var(--bg);
+  color:var(--ink);
+  font-family:Arial,Helvetica,sans-serif;
+  line-height:1.5;
+}
+a{color:inherit}
+.wrap{width:min(calc(100% - 32px),var(--max));margin:auto}
+header{
+  border-bottom:1px solid var(--line);
+  background:linear-gradient(180deg,#0a0e13,#101720 80%);
+}
+.toprail{
+  display:flex;justify-content:space-between;gap:16px;
+  padding:12px 0;color:#a9b1b7;
+  font:700 10px Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase;
+}
+.mast{padding:28px 0 34px}
+.crumb{margin-bottom:18px}
+.crumb a{
+  color:var(--gold2);text-decoration:none;
+  font:800 10px Arial,sans-serif;letter-spacing:.1em;text-transform:uppercase;
+}
+.eyebrow{color:var(--gold);font:800 10px Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase}
+h1{
+  margin:7px 0 12px;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(48px,8vw,82px);
+  line-height:.95;
+}
+.deck{
+  max-width:860px;margin:0;color:#b9c4ca;
+  font:20px/1.55 Georgia,"Times New Roman",serif;
+}
+main{padding:30px 0 64px}
+.summary{
+  display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:34px;
+}
+.stat{
+  border:1px solid var(--line);background:#10161d;padding:15px 17px;
+}
+.stat strong{display:block;font:700 27px Georgia,serif;color:#eee8df}
+.stat span{display:block;color:#8f9aa2;font-size:11px;margin-top:2px}
+.section-head{
+  display:flex;justify-content:space-between;align-items:end;gap:20px;
+  margin:34px 0 12px;padding-bottom:9px;border-bottom:1px solid var(--line);
+}
+.section-head h2{margin:0;font:700 30px Georgia,serif}
+.section-head p{margin:0;color:#8d989f;font-size:12px}
+.company-grid{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;
+}
+.company-card{
+  position:relative;display:block;min-height:154px;padding:14px 15px;
+  border:1px solid var(--line);
+  background:linear-gradient(145deg,#131b23,#10161d);
+  text-decoration:none;overflow:hidden;
+}
+.company-card:after{
+  content:"";position:absolute;width:112px;height:112px;right:-48px;bottom:-53px;
+  border:1px solid rgba(255,255,255,.045);border-radius:50%;
+}
+.company-card:hover,.company-card:focus-visible{
+  border-color:#53616d;background:#16202a;outline:none;
+}
+.meta{
+  color:var(--gold);font:800 9px Arial,sans-serif;
+  letter-spacing:.11em;text-transform:uppercase;
+}
+.company-card h3{margin:7px 0 5px;font:700 22px Georgia,serif}
+.company-card p{margin:0;color:#aeb8be;font-size:12px;line-height:1.43}
+.company-card .source{
+  display:block;margin-top:9px;color:var(--gold2);
+  font:800 9px Arial,sans-serif;letter-spacing:.05em;text-transform:uppercase;
+}
+.note{
+  margin-top:28px;padding:18px 20px;border:1px solid #5f4b2e;
+  background:linear-gradient(130deg,rgba(211,154,66,.12),transparent 45%),#141a20;
+}
+.note h2{margin:0 0 7px;font:700 24px Georgia,serif}
+.note p{margin:0;color:#bdc5ca;font-size:13px}
+.note a{color:var(--gold2)}
+footer{
+  border-top:1px solid var(--line);background:#07090c;
+  padding:24px 0 34px;color:#7d8990;font-size:12px;
+}
+footer strong{color:#dce2e5;font-family:Georgia,serif;font-size:16px}
+@media(max-width:960px){
+  .company-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:720px){
+  .toprail{flex-direction:column;gap:3px}
+  .summary,.company-grid{grid-template-columns:1fr}
+  .section-head{display:block}
+  .section-head p{margin-top:5px}
+  .company-card{min-height:auto}
+}
+</style>
+</head>
+<body>
+<header>
+<div class="wrap toprail">
+<span>Arcade History · Research · Preservation</span>
+<span>A living archive of arcade history</span>
+</div>
+<div class="wrap mast">
+<div class="crumb"><a href="index.html">← Back to Arcade Side B</a></div>
+<div class="eyebrow">Companies Index</div>
+<h1>Companies</h1>
+<p class="deck">Manufacturers, developers, distributors, assemblers and short-lived ventures whose arcade histories deserve more than a database line.</p>
+</div>
+</header>
+
+<main class="wrap">
+<section class="summary" aria-label="Companies index summary">
+<div class="stat"><strong>14</strong><span>published company histories</span></div>
+<div class="stat"><strong>Growing</strong><span>new histories join the directory as they are published</span></div>
+</section>
+
+<div class="section-head">
+<h2>Published Histories</h2>
+<p>Alphabetical company directory</p>
+</div>
+<section class="company-grid" aria-label="Published Arcade Side B company histories">
+
+<a class="company-card" href="amenip.html">
+<div class="meta">1981–early Oct. 1982 documented · address unresolved</div>
+<h3>Amenip Corporation</h3>
+<p>An early-1980s software and rights holder whose five known game families reached arcades through a network of manufacturers, licensees and regional distributors.</p>
+<span class="source">Read company history →</span>
+</a>
+
+<a class="company-card" href="computer-recreations.html">
+<div class="meta">California · start reported June 1971</div>
+<h3>Computer Recreations and Galaxy Game</h3>
+<p>The Pitts–Tuck venture behind one of the earliest coin-operated <em>Spacewar</em> descendants and two major generations of the Stanford Galaxy Game system.</p>
+<span class="source">Read company history →</span>
+</a>
+
+<a class="company-card" href="computran.html">
+<div class="meta">New Jersey · 1981–Mar. 1983 documented</div>
+<h3>Computran Industries</h3>
+<p>An operator-led company linking imported games, licensed manufacture and company-branded presentations around Super Tank, Port Man and Triple Punch.</p>
+<span class="source">Read company history →</span>
+</a>
+
+<a class="company-card" href="data-east.html">
+<div class="meta">Japan · 1976–2003</div>
+<h3>Data East Corporation</h3>
+<p>A developer, hardware maker, publisher, licensor and distributor whose arcade story runs from DECO Cassette through a 128-family development catalog.</p>
+<span class="source">Read company history →</span>
+</a>
+
+<a class="company-card" href="elcon.html">
+<div class="meta">Michigan · 1975–1982 documented</div>
+<h3>Elcon Industries</h3>
+<p>Cabinet builder, systems integrator, assembler, conversion specialist and marketer behind an unusually varied collection of cabinets and game packages.</p>
+<span class="source">Read company history →</span>
+</a>
+
+<a class="company-card" href="evoga.html">
+<div class="meta">Mexico · 2000–2002 original development</div>
+<h3>EVOGA Entertainment</h3>
+<p>The Mexican creative team that entered Japanese arcade production through projects including <em>Evolution Soccer</em> and <em>Rage of the Dragons</em>.</p>
+<span class="source">Read company history →</span>
+</a>
+
+<a class="company-card" href="for-play.html">
+<div class="meta">California · spring 1972–1975+ documented</div>
+<h3>For-Play Manufacturing</h3>
+<p>An early electronic-amusement manufacturer behind Star Trek, Rally and Sport Center, plus the unusual ZX-1040 Bio-Computer.</p>
+<span class="source">Read company history →</span>
+</a>
+
+<a class="company-card" href="lewlesal.html">
+<div class="meta">South Africa · 1972–1997 verified trade presence</div>
+<h3>Lewlesal (Pty.) Ltd.</h3>
+<p>A Johannesburg Atari distributor and video-amusement manufacturer whose commercial presence is clear even though its specific locally built machines remain unidentified.</p>
+<span class="source">Read company history →</span>
+</a>
+
+<a class="company-card" href="mirco-games.html">
+<div class="meta">Arizona · 1973–1980 U.S. games operation</div>
+<h3>Mirco Games</h3>
+<p>The Phoenix company that moved from foosball into early video games, microprocessors, pinball, card games and a West German arcade operation.</p>
+<span class="source">Read company history →</span>
+</a>
+
+<a class="company-card" href="pacific-novelty.html">
+<div class="meta">California · Oct. 1980–at least Feb. 1983</div>
+<h3>Pacific Novelty</h3>
+<p>A short-lived manufacturer whose games used recorded sound, unusual premises and strong cabinet presentation to build a distinctive catalog.</p>
+<span class="source">Read company history →</span>
+</a>
+
+<a class="company-card" href="ramtek.html">
+<div class="meta">California · started Sept. 1971 · video exit 1979</div>
+<h3>Ramtek Corporation</h3>
+<p>A display-equipment company that turned television engineering into a thirteen-game arcade-video program before leaving the field in 1979.</p>
+<span class="source">Read company history →</span>
+</a>
+
+<a class="company-card" href="semicom.html">
+<div class="meta">South Korea · 1994–2001 conventional arcade line</div>
+<h3>SEMiCOM</h3>
+<p>An overlooked Korean studio behind 38 conventional arcade releases, recurring internal teams, protected hardware and a visible development lineage.</p>
+<span class="source">Read company history →</span>
+</a>
+
+<a class="company-card" href="techstar.html">
+<div class="meta">Florida · 1981–1988 corporation</div>
+<h3>Techstar, Inc.</h3>
+<p>Rights holder, licensor, cabinet vendor, conversion specialist and game operation behind Eyes, Macho Mouse, Mr. TNT and several nearly lost projects.</p>
+<span class="source">Read company history →</span>
+</a>
+
+<a class="company-card" href="yachiyo.html">
+<div class="meta">Japan · reported start 1972 · collapse 1984</div>
+<h3>Yachiyo Electronics</h3>
+<p>A Japanese electronics manufacturer, arcade subcontractor, assembler and technical collaborator whose role changes from product to product.</p>
+<span class="source">Read company history →</span>
+</a>
+
+</section>
+
+<section class="note">
+<h2>The directory will grow with the research queue.</h2>
+<p>This page contains only company histories already published on Arcade Side B. Companies still in research or awaiting publication will be added here once their public article is ready.</p>
+</section>
+</main>
+
+<footer>
+<div class="wrap">
+<strong>Arcade Side B</strong><br>
+The Overlooked Side of Arcade History · Living research, subject to correction when better evidence appears.
+</div>
+</footer>
+</body>
+</html>
