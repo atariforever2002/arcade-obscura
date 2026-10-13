@@ -561,19 +561,17 @@ footer{border-top:1px solid var(--line);background:#07090c;padding:25px 0 35px;c
   color:#7f8b93;
 }
 .site-counter .counter-label{margin-bottom:5px}
-.site-counter img{
+.counter-value{
   display:block;
-  margin-left:auto;
-  min-width:112px;
-  height:auto;
-  image-rendering:auto;
-  border:1px solid #303944;
-  box-shadow:0 4px 12px rgba(0,0,0,.28);
+  color:var(--gold2);
+  font:800 22px/1 Arial,sans-serif;
+  letter-spacing:.08em;
+  min-width:4ch;
 }
 @media(max-width:620px){
   .footer-row{align-items:flex-start;flex-direction:column}
   .site-counter{text-align:left}
-  .site-counter img{margin-left:0}
+  .counter-value{text-align:left}
 }
 footer strong{color:#dce2e5;font-family:Georgia,serif;font-size:16px}
 
@@ -1115,7 +1113,7 @@ footer strong{color:#dce2e5;font-family:Georgia,serif;font-size:16px}
     <div><strong>Arcade Side B</strong> · The Overlooked Side of Arcade History</div>
     <div class="site-counter">
       <div class="counter-label">Site hits</div>
-      <img alt="Arcade Side B site hit counter" loading="eager" src="https://hitscounter.dev/api/hit?color=%23c9973a&amp;icon=123&amp;label=SITE%20HITS&amp;url=https%3A%2F%2Farcadesideb.com%2F"/>
+      <output aria-label="Arcade Side B site hit total" class="counter-value" id="site-hit-total">—</output>
     </div>
   </div>
 </footer>
@@ -1180,6 +1178,14 @@ footer strong{color:#dce2e5;font-family:Georgia,serif;font-size:16px}
         copyStatus.textContent=copied ? 'Email address copied.' : 'Copy did not work. Email: '+email;
       }
     });
+  }
+
+  const siteHitTotal=document.getElementById('site-hit-total');
+  if(siteHitTotal){
+    fetch('https://hitscounter.dev/api/hit?url=https%3A%2F%2Farcadesideb.com%2F&output=json&tz=America%2FChicago',{cache:'no-store',credentials:'omit'})
+      .then(function(response){return response.ok ? response.json() : Promise.reject(new Error('Counter unavailable'));})
+      .then(function(data){siteHitTotal.textContent=Number(data.total_hits).toLocaleString('en-US');})
+      .catch(function(){siteHitTotal.textContent='—';});
   }
 })();
 </script>
