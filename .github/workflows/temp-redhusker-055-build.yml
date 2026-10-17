@@ -69,6 +69,10 @@ jobs:
           m=m.replace('#ASM = @nasm\nASM = @nasmw', 'ASM = @nasm\n#ASM = @nasmw')
           m=m.replace('\tupx -9 $(EMULATOR)', '\t@echo UPX skipped for test build')
           m=m.replace('\t$(MD) $@', '\t$(MD) $(subst /,\\\\,$@)')
+          genold='$(CC) $(CDEFS) $(CFLAGSPEDANTIC) -DDOS -o $(OBJ)/cpu/m68000/m68kmake$(EXE) $<'
+          gennew='$(CC) $(CDEFS) $(CFLAGSPEDANTIC) -march=i386 -O0 -DDOS -o $(OBJ)/cpu/m68000/m68kmake$(EXE) $<'
+          assert m.count(genold)==1, 'M68K temporary code generator compiler line changed'
+          m=m.replace(genold,gennew)
           mk.write_text(m,encoding='latin1')
           print('NoNag source checks patched. Original version/ROM/input/sound code retained.')
       - name: Build DOS EXE inside DOSBox using DJGPP 2.03 and GCC 2.95
