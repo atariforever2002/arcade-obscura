@@ -24,7 +24,7 @@ jobs:
           for f in djdev203.zip bnu281b.zip gcc2952b.zip mak3781b.zip all3932.zip zlib113.zip mameseal.zip; do
             curl -L --fail --retry 3 "$BASE/$f" -o "kit/$f"
           done
-          curl -L --fail --retry 3 "$MBASE/mame055s.zip" -o kit/mame055s.zip
+          curl -L --fail --retry 3 "$MBASE/mame055s.zip" -o kit/mame055s.zip || curl -L --fail --connect-timeout 12 --max-time 75 "https://sourceforge.net/projects/mame/files/mame/0.55/mame055s.zip/download" -o kit/mame055s.zip
           curl -L --fail --retry 3 'https://apajalista.net/tiedostot/PC/Ohjelmointi/DOS-ohjelmointi_Assembler/NASM098P.ZIP' -o kit/nasm098p.zip
           curl -L --fail --connect-timeout 15 --retry 2 'https://djgpp.mirror.garr.it/current/v2misc/csdpmi5b.zip' -o kit/csdpmi5b.zip || curl -L --fail --connect-timeout 15 --retry 2 'https://ftp.zx.net.nz/pub/archive/ftp.delorie.com/pub/djgpp/current/v2misc/csdpmi5b.zip' -o kit/csdpmi5b.zip
       - name: Assemble vintage DOS development drive
