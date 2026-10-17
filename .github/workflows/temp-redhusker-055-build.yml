@@ -86,11 +86,7 @@ jobs:
           # DOS COMMAND.COM has a short command tail; archive 2 objects at a time.
           old_rule='\t$(AR) cr $@ $^'
           assert m.count(old_rule)==1, 'Expected original long ar command once'
-          ar_lines=[]
-          for start in range(1, 401, 2):
-              end=start+1
-              ar_lines.append('\t$(if $(word %d,$^),$(AR) cr $@ $(wordlist %d,%d,$^))' % (start,start,end))
-          m=m.replace(old_rule, '\n'.join(ar_lines))
+          m=m.replace(old_rule, '\\t@echo ARCHIVE DEBUG first prereq: $(word 1,$^)\\n\\t$(AR) cr $@ $(word 1,$^)')
           # Make a failed compilation conspicuous despite DOSBox's exit behavior.
           mk.write_text(m,encoding='latin1')
           print('NoNag source checks patched. Original version/ROM/input/sound code retained.')
