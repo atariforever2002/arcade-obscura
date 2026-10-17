@@ -81,6 +81,15 @@ jobs:
           cfg=cfg.replace(entries[0], '#ifdef JOY_TYPE_SIDEWINDER_AG\n'+entries[0]+'#endif\n')
           cp.write_text(cfg,encoding='latin1')
           m=m.replace('-Werror ', '')
+          # DOS COMMAND.COM has a short command tail; archive 2 objects at a time.
+          old_rule='\\t$(AR) cr $@ $^'
+          assert m.count(old_rule)==1, 'Expected original long ar command once'
+          ar_lines=[]
+          for start in range(1, 401, 2):
+              end=start+1
+              ar_lines.append('\\t$(if $(word %d,$^),$(AR) cr $@ $(wordlist %d,%d,$^))' % (start,start,end))
+          m=m.replace(old_rule, '\\n'.join(ar_lines))
+          # Make a failed compilation conspicuous despite DOSBox's exit behavior.
           mk.write_text(m,encoding='latin1')
           print('NoNag source checks patched. Original version/ROM/input/sound code retained.')
       - name: Build DOS EXE inside DOSBox using DJGPP 2.03 and GCC 2.95
