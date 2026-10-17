@@ -20,6 +20,7 @@ jobs:
           unzip -Z1 mame055s.zip | head -65
           mkdir src_unpack
           unzip -q mame055s.zip -d src_unpack
+          unzip -q src_unpack/MAME055.ZIP -d src_unpack
           find src_unpack -maxdepth 4 -iname '*mame.c' -o -iname 'makefile*' -o -iname 'version.c' | head -45
           find src_unpack -type f -iname 'mame.c' -print | while read p; do
             echo "=== $p ==="
