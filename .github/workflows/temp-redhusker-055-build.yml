@@ -1,0 +1,45 @@
+name: Red Husker DOS MAME 0.55 diagnostic build
+on:
+  push:
+    branches: [temp-redhusker-055-build]
+    paths: [".github/workflows/temp-redhusker-055-build.yml"]
+  workflow_dispatch:
+jobs:
+  diagnose:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch and inspect original MAME 0.55 sources
+        shell: bash
+        run: |
+          set -euxo pipefail
+          BASE='https://arcarc.xmission.com/Web%20Archives/ionpool.net%20%28Dec-31-2020%29/arcade/mame/zips'
+          curl -L --fail --connect-timeout 12 --max-time 75 "$BASE/mame055s.zip" -o mame055s.zip || curl -L --fail --connect-timeout 12 --max-time 75 'https://sourceforge.net/projects/mame/files/mame/0.55/mame055s.zip/download' -o mame055s.zip
+          unzip -tq mame055s.zip | tail -3
+          unzip -Z1 mame055s.zip | head -65
+          mkdir src_unpack
+          unzip -q mame055s.zip -d src_unpack
+          find src_unpack -maxdepth 4 -iname '*mame.c' -o -iname 'makefile*' -o -iname 'version.c' | head -45
+          find src_unpack -type f -iname 'mame.c' -print | while read p; do
+            echo "=== $p ==="
+            grep -n -E 'showcopyright|showgamewarnings|showgameinfo|settingsloaded|userquit' "$p" | head -35 || true
+          done
+          find src_unpack -maxdepth 3 -iname 'makefile*' -type f | while read p; do
+            echo "=== makefile $p ==="
+            grep -inE 'MAMEOS|msdos|EMULATOR_EXE|I686|DEFS|UPX|ASM|zlib' "$p" | head -60 || true
+          done
+      - name: Save diagnostic source excerpts
+        if: always()
+        shell: bash
+        run: |
+          mkdir -p artifact
+          find src_unpack -type f -iname 'mame.c' -print -quit | xargs -r -I@ cp @ artifact/mame.c
+          find src_unpack -type f -iname 'makefile' -print -quit | xargs -r -I@ cp @ artifact/makefile
+          find src_unpack -type f -iname 'version.c' -print -quit | xargs -r -I@ cp @ artifact/version.c
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: red-husker-055-diagnostic
+          path: artifact/
+          if-no-files-found: warn
