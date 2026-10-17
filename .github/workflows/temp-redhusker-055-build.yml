@@ -73,6 +73,14 @@ jobs:
           gennew='$(CC) $(CDEFS) $(CFLAGSPEDANTIC) -march=i386 -O0 -DDOS -o $(OBJ)/cpu/m68000/m68kmake$(EXE) $<'
           assert m.count(genold)==1, 'M68K temporary code generator compiler line changed'
           m=m.replace(genold,gennew)
+          # Optional joystick type does not exist in Allegro 3.9.32.
+          cp=root/'src/msdos/config.c'
+          cfg=cp.read_text(encoding='latin1')
+          entries=[line for line in cfg.splitlines(keepends=True) if 'JOY_TYPE_SIDEWINDER_AG' in line]
+          assert len(entries)==1, 'Expected exactly one Sidewinder Aggressive row'
+          cfg=cfg.replace(entries[0], '#ifdef JOY_TYPE_SIDEWINDER_AG\n'+entries[0]+'#endif\n')
+          cp.write_text(cfg,encoding='latin1')
+          m=m.replace('-Werror ', '')
           mk.write_text(m,encoding='latin1')
           print('NoNag source checks patched. Original version/ROM/input/sound code retained.')
       - name: Build DOS EXE inside DOSBox using DJGPP 2.03 and GCC 2.95
