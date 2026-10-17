@@ -81,6 +81,8 @@ jobs:
           cfg=cfg.replace(entries[0], '#ifdef JOY_TYPE_SIDEWINDER_AG\n'+entries[0]+'#endif\n')
           cp.write_text(cfg,encoding='latin1')
           m=m.replace('-Werror ', '')
+          m=m.replace('AR = @ar','AR = ar')
+          m=m.replace('RM = @rm -f','RM = rm -f')
           # DOS COMMAND.COM has a short command tail; archive 2 objects at a time.
           old_rule='\t$(AR) cr $@ $^'
           assert m.count(old_rule)==1, 'Expected original long ar command once'
@@ -127,7 +129,7 @@ jobs:
           copy zconf.h C:\\DJGPP\\INCLUDE\\ >> C:\\BUILD.LOG
           echo === Build MAME 0.55 NoNag for Pentium II === >> C:\\BUILD.LOG
           cd \\DJGPP\\MAME
-          redir -o C:\\MAME.LOG -eo make I686=1 MAMEOS=msdos
+          redir -o C:\\MAME.LOG -eo make I686=1 MAMEOS=msdos obj/dmamepp/pacman.a
           exit
           EOF
           SDL_AUDIODRIVER=dummy xvfb-run -a dosbox -conf build.conf -exit || true
@@ -148,7 +150,7 @@ jobs:
             sha256sum artifact/MAMENN.EXE > artifact/MAMENN_SHA256.txt
             grep -qi 'DOS' artifact/MAMENN_FILETYPE.txt || echo 'WARNING: binary type needs inspection'
           else
-            echo 'NO DOS MAME executable produced; do not deploy' > artifact/BUILD_FAILED.txt
+            echo 'DIAGNOSTIC RUN ONLY: tested pacman.a archive, no EXE expected' > artifact/BUILD_FAILED.txt
           fi
       - name: Upload build output
         if: always()
