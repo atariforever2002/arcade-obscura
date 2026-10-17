@@ -68,6 +68,7 @@ jobs:
           m=mk.read_text(encoding='latin1')
           m=m.replace('#ASM = @nasm\nASM = @nasmw', 'ASM = @nasm\n#ASM = @nasmw')
           m=m.replace('\tupx -9 $(EMULATOR)', '\t@echo UPX skipped for test build')
+          m=m.replace('\t$(MD) $@', '\t$(MD) $(subst /,\\\\,$@)')
           mk.write_text(m,encoding='latin1')
           print('NoNag source checks patched. Original version/ROM/input/sound code retained.')
       - name: Build DOS EXE inside DOSBox using DJGPP 2.03 and GCC 2.95
