@@ -124,7 +124,7 @@ jobs:
           cp dosroot/djgpp/mame/src/mame.c artifact/mame-patched.c 2>/dev/null || true
           cp dosroot/djgpp/mame/makefile artifact/makefile 2>/dev/null || true
           find dosroot/djgpp/mame -maxdepth 1 -type f -iname '*.exe' -printf '%f %s bytes\n' > artifact/executable-list.txt
-          EXE=$(find dosroot/djgpp/mame -maxdepth 1 -type f \( -iname 'dmame.exe' -o -iname 'mame.exe' \) -print -quit)
+          EXE=$(find dosroot/djgpp/mame -maxdepth 1 -type f \( -iname 'dmamepp.exe' -o -iname 'dmame.exe' -o -iname 'mame.exe' \) -print -quit)
           if [ -n "$EXE" ]; then
             cp "$EXE" artifact/MAMENN.EXE
             file artifact/MAMENN.EXE > artifact/MAMENN_FILETYPE.txt
