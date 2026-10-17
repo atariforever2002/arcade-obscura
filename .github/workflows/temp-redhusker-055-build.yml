@@ -1,46 +1,137 @@
-name: Red Husker DOS MAME 0.55 diagnostic build
+name: Red Husker DOS MAME 0.55 NoNag test build
 on:
   push:
     branches: [temp-redhusker-055-build]
     paths: [".github/workflows/temp-redhusker-055-build.yml"]
   workflow_dispatch:
 jobs:
-  diagnose:
+  build:
     runs-on: ubuntu-24.04
-    timeout-minutes: 10
+    timeout-minutes: 120
     steps:
       - uses: actions/checkout@v4
-      - name: Fetch and inspect original MAME 0.55 sources
+      - name: Install vintage DOS build host utilities
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y dosbox xvfb unzip curl
+      - name: Download MAME 0.55 and exact DJGPP-era toolchain
         shell: bash
         run: |
           set -euxo pipefail
-          BASE='https://arcarc.xmission.com/Web%20Archives/ionpool.net%20%28Dec-31-2020%29/arcade/mame/zips'
-          curl -L --fail --connect-timeout 12 --max-time 75 "$BASE/mame055s.zip" -o mame055s.zip || curl -L --fail --connect-timeout 12 --max-time 75 'https://sourceforge.net/projects/mame/files/mame/0.55/mame055s.zip/download' -o mame055s.zip
-          unzip -tq mame055s.zip | tail -3
-          unzip -Z1 mame055s.zip | head -65
-          mkdir src_unpack
-          unzip -q mame055s.zip -d src_unpack
-          unzip -q src_unpack/MAME055.ZIP -d src_unpack
-          find src_unpack -maxdepth 4 -iname '*mame.c' -o -iname 'makefile*' -o -iname 'version.c' | head -45
-          find src_unpack -type f -iname 'mame.c' -print | while read p; do
-            echo "=== $p ==="
-            grep -n -E 'showcopyright|showgamewarnings|showgameinfo|settingsloaded|userquit' "$p" | head -35 || true
+          BASE='https://arcarc.xmission.com/Web%20Archives/ionpool.net%20%28Dec-31-2020%29/arcade/mame/zips/compilefinal'
+          MBASE='https://arcarc.xmission.com/Web%20Archives/ionpool.net%20%28Dec-31-2020%29/arcade/mame/zips'
+          mkdir -p kit
+          for f in djdev203.zip bnu281b.zip gcc2952b.zip mak3781b.zip all3932.zip zlib113.zip mameseal.zip; do
+            curl -L --fail --retry 3 "$BASE/$f" -o "kit/$f"
           done
-          find src_unpack -maxdepth 3 -iname 'makefile*' -type f | while read p; do
-            echo "=== makefile $p ==="
-            grep -inE 'MAMEOS|msdos|EMULATOR_EXE|I686|DEFS|UPX|ASM|zlib' "$p" | head -60 || true
-          done
-      - name: Save diagnostic source excerpts
+          curl -L --fail --retry 3 "$MBASE/mame055s.zip" -o kit/mame055s.zip
+          curl -L --fail --retry 3 'https://apajalista.net/tiedostot/PC/Ohjelmointi/DOS-ohjelmointi_Assembler/NASM098P.ZIP' -o kit/nasm098p.zip
+          curl -L --fail --connect-timeout 15 --retry 2 'https://djgpp.mirror.garr.it/current/v2misc/csdpmi5b.zip' -o kit/csdpmi5b.zip || curl -L --fail --connect-timeout 15 --retry 2 'https://ftp.zx.net.nz/pub/archive/ftp.delorie.com/pub/djgpp/current/v2misc/csdpmi5b.zip' -o kit/csdpmi5b.zip
+      - name: Assemble vintage DOS development drive
+        shell: bash
+        run: |
+          set -euxo pipefail
+          mkdir -p dosroot/djgpp/bin dosroot/djgpp/mame dosroot/djgpp/zlib
+          unzip -q kit/djdev203.zip -d dosroot/djgpp
+          unzip -q kit/bnu281b.zip -d dosroot/djgpp
+          unzip -q kit/gcc2952b.zip -d dosroot/djgpp
+          unzip -q kit/mak3781b.zip -d dosroot/djgpp
+          unzip -q kit/all3932.zip -d dosroot/djgpp
+          unzip -q kit/mameseal.zip -d dosroot/djgpp
+          mkdir -p nasm_tmp
+          unzip -q kit/nasm098p.zip -d nasm_tmp
+          NASM_DOS=$(find nasm_tmp -type f -iname 'nasm.exe' -print -quit)
+          test -n "$NASM_DOS"
+          cp "$NASM_DOS" dosroot/djgpp/bin/nasm.exe
+          unzip -q -j kit/csdpmi5b.zip -d dosroot/djgpp/bin
+          unzip -q kit/zlib113.zip -d dosroot/djgpp/zlib
+          unzip -q kit/mame055s.zip -d dosroot/djgpp/mame
+          unzip -q -o dosroot/djgpp/mame/MAME055.ZIP -d dosroot/djgpp/mame
+          test -f dosroot/djgpp/mame/src/mame.c
+      - name: Carefully bypass only two NoNag startup checks
+        shell: python
+        run: |
+          from pathlib import Path
+          root=Path('dosroot/djgpp/mame')
+          p=root/'src/mame.c'
+          s=p.read_text(encoding='latin1')
+          old='if (showcopyright(real_scrbitmap)) goto userquit;'
+          new='if (0 && showcopyright(real_scrbitmap)) goto userquit;'
+          assert s.count(old)==1, 'Expected exactly one copyright prompt call'
+          s=s.replace(old,new)
+          old='if (showgamewarnings(real_scrbitmap) == 0)'
+          new='if (1)  /* Red Husker NoNag: skip warning and info screen */'
+          assert s.count(old)==1, 'Expected exactly one warning prompt call'
+          s=s.replace(old,new)
+          p.write_text(s, encoding='latin1')
+          mk=root/'makefile'
+          m=mk.read_text(encoding='latin1')
+          m=m.replace('#ASM = @nasm\nASM = @nasmw', 'ASM = @nasm\n#ASM = @nasmw')
+          m=m.replace('\tupx -9 $(EMULATOR)', '\t@echo UPX skipped for test build')
+          mk.write_text(m,encoding='latin1')
+          print('NoNag source checks patched. Original version/ROM/input/sound code retained.')
+      - name: Build DOS EXE inside DOSBox using DJGPP 2.03 and GCC 2.95
+        shell: bash
+        run: |
+          cat > build.conf <<EOF
+          [sdl]
+          fullscreen=false
+          output=surface
+
+          [dosbox]
+          memsize=63
+
+          [cpu]
+          core=dynamic
+          cycles=max
+
+          [mixer]
+          nosound=true
+
+          [autoexec]
+          mount c "$GITHUB_WORKSPACE/dosroot"
+          c:
+          set PATH=C:\\DJGPP\\BIN;%PATH%
+          set DJGPP=C:\\DJGPP\\DJGPP.ENV
+          echo === Install Allegro 3.9.32 === > C:\\BUILD.LOG
+          cd \\DJGPP\\ALLEGRO
+          make lib >> C:\\BUILD.LOG
+          make install >> C:\\BUILD.LOG
+          echo === Install zlib 1.1.3 === >> C:\\BUILD.LOG
+          cd \\DJGPP\\ZLIB
+          make -fmsdos\\makefile.dj2 >> C:\\BUILD.LOG
+          copy libz.a C:\\DJGPP\\LIB\\ >> C:\\BUILD.LOG
+          copy zlib.h C:\\DJGPP\\INCLUDE\\ >> C:\\BUILD.LOG
+          copy zconf.h C:\\DJGPP\\INCLUDE\\ >> C:\\BUILD.LOG
+          echo === Build MAME 0.55 NoNag for Pentium II === >> C:\\BUILD.LOG
+          cd \\DJGPP\\MAME
+          redir -o C:\\MAME.LOG -eo make I686=1 MAMEOS=msdos
+          exit
+          EOF
+          SDL_AUDIODRIVER=dummy xvfb-run -a dosbox -conf build.conf -exit || true
+      - name: Collect results and verify DOS binary type
         if: always()
         shell: bash
         run: |
           mkdir -p artifact
-          find src_unpack -type f -iname 'mame.c' -print -quit | xargs -r -I@ cp @ artifact/mame.c
-          find src_unpack -type f -iname 'makefile' -print -quit | xargs -r -I@ cp @ artifact/makefile
-          find src_unpack -type f -iname 'version.c' -print -quit | xargs -r -I@ cp @ artifact/version.c
-      - uses: actions/upload-artifact@v4
+          cp dosroot/BUILD.LOG artifact/BUILD.LOG 2>/dev/null || true
+          cp dosroot/MAME.LOG artifact/MAME.LOG 2>/dev/null || true
+          cp dosroot/djgpp/mame/src/mame.c artifact/mame-patched.c 2>/dev/null || true
+          cp dosroot/djgpp/mame/makefile artifact/makefile 2>/dev/null || true
+          find dosroot/djgpp/mame -maxdepth 1 -type f -iname '*.exe' -printf '%f %s bytes\n' > artifact/executable-list.txt
+          EXE=$(find dosroot/djgpp/mame -maxdepth 1 -type f \( -iname 'dmame.exe' -o -iname 'mame.exe' \) -print -quit)
+          if [ -n "$EXE" ]; then
+            cp "$EXE" artifact/MAMENN.EXE
+            file artifact/MAMENN.EXE > artifact/MAMENN_FILETYPE.txt
+            sha256sum artifact/MAMENN.EXE > artifact/MAMENN_SHA256.txt
+            grep -qi 'DOS' artifact/MAMENN_FILETYPE.txt || echo 'WARNING: binary type needs inspection'
+          else
+            echo 'NO DOS MAME executable produced; do not deploy' > artifact/BUILD_FAILED.txt
+          fi
+      - name: Upload build output
         if: always()
+        uses: actions/upload-artifact@v4
         with:
-          name: red-husker-055-diagnostic
+          name: RED-HUSKER-MAME055-NONAG-TEST
           path: artifact/
-          if-no-files-found: warn
+          if-no-files-found: error
