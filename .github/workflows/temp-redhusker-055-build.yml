@@ -83,10 +83,10 @@ jobs:
           m=m.replace('-Werror ', '')
           m=m.replace('AR = @ar','AR = ar')
                     # P200 MAME 0.36 archiver does not run RM before ar.
-                    # Diagnose Red Husker's failing rm command by removing it only for the archive recipe.
-                    old_rm='\\t$(RM) $@'
-                    assert m.count(old_rm)==1, 'Expected one library rm command'
-                    m=m.replace(old_rm, '\\t@echo Red Husker no pre-archive rm')
+          # Diagnose Red Husker's failing rm command by removing it only for the archive recipe.
+          old_rm='\t$(RM) $@'
+          assert m.count(old_rm)==1, 'Expected one library rm command'
+          m=m.replace(old_rm, '\t@echo Red Husker no pre-archive rm')
           m=m.replace('RM = @rm -f','RM = rm -f')
           # DOS COMMAND.COM has a short command tail; archive 2 objects at a time.
           old_rule='\t$(AR) cr $@ $^'
