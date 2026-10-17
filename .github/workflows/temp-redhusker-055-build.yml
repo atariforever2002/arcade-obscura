@@ -129,6 +129,7 @@ jobs:
           copy zconf.h C:\\DJGPP\\INCLUDE\\ >> C:\\BUILD.LOG
           echo === Build MAME 0.55 NoNag for Pentium II === >> C:\\BUILD.LOG
           cd \\DJGPP\\MAME
+          make I686=1 MAMEOS=msdos maketree >> C:\\BUILD.LOG
           redir -o C:\\MAME.LOG -eo make I686=1 MAMEOS=msdos obj/dmamepp/pacman.a
           exit
           EOF
