@@ -84,10 +84,10 @@ jobs:
           # Match the successful P200 MAME 0.36 DJGPP makefile.
           m=m.replace('AR = @ar','AR = @ar')
           m=m.replace('RM = @rm -f','RM = rm -f')
-          old_rule='\\t$(AR) cr $@ $^'
+          old_rule='\t$(AR) cr $@ $^'
           assert m.count(old_rule)==1, 'Expected original long ar command once'
           # Direct DOS tests confirmed that ar works; retain the original recipe.
-          m=m.replace(old_rule, '\\t$(AR) cr $@ $^')
+          m=m.replace(old_rule, '\t$(AR) cr $@ $^')
           # Make a failed compilation conspicuous despite DOSBox's exit behavior.
           mk.write_text(m,encoding='latin1')
           print('NoNag source checks patched. Original version/ROM/input/sound code retained.')
@@ -127,8 +127,8 @@ jobs:
           echo === Build MAME 0.55 NoNag for Pentium II === >> C:\\BUILD.LOG
           cd \\DJGPP\\MAME
           make I686=1 MAMEOS=msdos maketree >> C:\\BUILD.LOG
-          echo === Full MAME build (direct DOS redirection) === > C:\\\\MAME.LOG
-          make I686=1 MAMEOS=msdos >> C:\\\\MAME.LOG
+          echo === Full MAME build (direct DOS redirection) === > C:\\MAME.LOG
+          make I686=1 MAMEOS=msdos >> C:\\MAME.LOG
           if errorlevel 1 echo BUILD_MAKE_FAILED >> C:\\\\BUILD.LOG
           if exist dmamepp.exe echo BUILD_EXE_FOUND >> C:\\\\BUILD.LOG
           if not exist dmamepp.exe echo BUILD_EXE_MISSING >> C:\\\\BUILD.LOG
@@ -146,7 +146,7 @@ jobs:
           cp dosroot/djgpp/mame/src/mame.c artifact/mame-patched.c 2>/dev/null || true
           cp dosroot/djgpp/mame/makefile artifact/makefile 2>/dev/null || true
           find dosroot/djgpp/mame -maxdepth 1 -type f -iname '*.exe' -printf '%f %s bytes\n' > artifact/executable-list.txt
-          EXE=$(find dosroot/djgpp/mame -maxdepth 1 -type f \\( -iname 'dmamepp.exe' -o -iname 'dmame.exe' -o -iname 'mame.exe' \\) -print -quit)
+          EXE=$(find dosroot/djgpp/mame -maxdepth 1 -type f \( -iname 'dmamepp.exe' -o -iname 'dmame.exe' -o -iname 'mame.exe' \) -print -quit)
           if [ -z "$EXE" ]; then
             echo 'No DOS executable was produced.' > artifact/BUILD_FAILED.txt
             echo 'The build is not being treated as successful.' >> artifact/BUILD_FAILED.txt
