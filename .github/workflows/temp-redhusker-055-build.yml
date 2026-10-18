@@ -84,6 +84,10 @@ jobs:
           # Match the successful P200 MAME 0.36 DJGPP makefile.
           m=m.replace('AR = @ar','AR = @ar')
           m=m.replace('RM = @rm -f','RM = rm -f')
+          old_rm='\t$(RM) $@'
+          assert m.count(old_rm)==1, 'Expected one library pre-archive delete command'
+          # P200 succeeds without deleting the archive before ar recreates it.
+          m=m.replace(old_rm, '')
           old_rule='\t$(AR) cr $@ $^'
           assert m.count(old_rule)==1, 'Expected original long ar command once'
           # Direct DOS tests confirmed that ar works; retain the original recipe.
