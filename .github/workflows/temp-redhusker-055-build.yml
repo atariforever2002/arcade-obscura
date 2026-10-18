@@ -131,7 +131,34 @@ jobs:
           echo === Build MAME 0.55 NoNag for Pentium II === >> C:\\BUILD.LOG
           cd \\DJGPP\\MAME
           make I686=1 MAMEOS=msdos maketree >> C:\\BUILD.LOG
-          redir -o C:\\MAME.LOG -eo make I686=1 MAMEOS=msdos obj/dmamepp/pacman.a
+          echo === DJGPP AR DIAGNOSTICS === > C:\\ARTEST.LOG
+          ver >> C:\\ARTEST.LOG
+          echo PATH=%PATH% >> C:\\ARTEST.LOG
+          dir C:\\DJGPP\\BIN\\AR.EXE >> C:\\ARTEST.LOG
+          dir C:\\DJGPP\\BIN\\RM.EXE >> C:\\ARTEST.LOG
+          ar --version >> C:\\ARTEST.LOG
+          if errorlevel 1 echo AR_VERSION_FAILED >> C:\\ARTEST.LOG
+          if not errorlevel 1 echo AR_VERSION_SUCCEEDED >> C:\\ARTEST.LOG
+          echo int redhusker_test_object; > C:\\ARTEST.C
+          gcc -c C:\\ARTEST.C -o C:\\ARTEST.O >> C:\\ARTEST.LOG
+          if errorlevel 1 echo GCC_TEST_FAILED >> C:\\ARTEST.LOG
+          make I686=1 MAMEOS=msdos obj/dmamepp/drivers/pacman.o >> C:\\BUILD.LOG
+          if errorlevel 1 echo PACMAN_OBJECT_BUILD_FAILED >> C:\\ARTEST.LOG
+          md C:\\ARTEST 2>nul
+          copy C:\\ARTEST.O C:\\ARTEST\\TEST.O >> C:\\ARTEST.LOG
+          ar cr C:\\ARTEST\\TEST.A C:\\ARTEST\\TEST.O >> C:\\ARTEST.LOG
+          if errorlevel 1 echo SHORT_AR_FAILED >> C:\\ARTEST.LOG
+          if not errorlevel 1 echo SHORT_AR_SUCCEEDED >> C:\\ARTEST.LOG
+          ar cr C:\\DJGPP\\MAME\\OBJ\\DMAMEPP\\PACMAN.A C:\\DJGPP\\MAME\\OBJ\\DMAMEPP\\DRIVERS\\PACMAN.O >> C:\\ARTEST.LOG
+          if errorlevel 1 echo ABSOLUTE_AR_FAILED >> C:\\ARTEST.LOG
+          if not errorlevel 1 echo ABSOLUTE_AR_SUCCEEDED >> C:\\ARTEST.LOG
+          cd \\DJGPP\\MAME
+          ar cr obj/dmamepp/pacman.a obj/dmamepp/drivers/pacman.o >> C:\\ARTEST.LOG
+          if errorlevel 1 echo RELATIVE_AR_FAILED >> C:\\ARTEST.LOG
+          if not errorlevel 1 echo RELATIVE_AR_SUCCEEDED >> C:\\ARTEST.LOG
+          dir C:\\ARTEST >> C:\\ARTEST.LOG
+          dir C:\\DJGPP\\MAME\\OBJ\\DMAMEPP >> C:\\ARTEST.LOG
+          dir C:\\DJGPP\\MAME\\OBJ\\DMAMEPP\\PACMAN.A >> C:\\ARTEST.LOG
           exit
           EOF
           SDL_AUDIODRIVER=dummy xvfb-run -a dosbox -conf build.conf -exit || true
