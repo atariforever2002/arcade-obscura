@@ -1,8 +1,8 @@
 name: Linux DOS Lab — pinned MAME 0.55 reproduction
 on:
   push:
-    branches: [temp-redhusker-055-build]
-    paths: [".github/workflows/temp-redhusker-055-build.yml"]
+    branches: [lab-build-mame055-pinned-20261018]
+    paths: [".github/workflows/lab-build-mame055-pinned.yml"]
   workflow_dispatch:
 jobs:
   build:
@@ -198,6 +198,6 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: RED-HUSKER-MAME055-NONAG-TEST
+          name: LINUX-DOS-LAB-MAME055-PINNED-REBUILD
           path: artifact/
           if-no-files-found: error
