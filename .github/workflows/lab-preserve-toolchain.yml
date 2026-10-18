@@ -35,13 +35,22 @@ jobs:
           for f in djdev203.zip bnu281b.zip gcc2952b.zip mak3781b.zip all3932.zip zlib113.zip mameseal.zip; do
             fetch "$f" "$BASE/$f"
           done
-          fetch mame055s.zip "$MBASE/mame055s.zip"
+          if ! fetch mame055s.zip "$MBASE/mame055s.zip"; then
+            # SourceForge's browser page returns HTML to curl; use its direct file endpoint.
+            fetch mame055s.zip 'https://downloads.sourceforge.net/project/mame/mame/0.55/mame055s.zip'
+          fi
           fetch nasm098p.zip 'https://apajalista.net/tiedostot/PC/Ohjelmointi/DOS-ohjelmointi_Assembler/NASM098P.ZIP'
           fetch csdpmi5b.zip 'https://djgpp.mirror.garr.it/current/v2misc/csdpmi5b.zip'
           (cd kit && sha256sum *.zip > ../reports/SHA256SUMS.txt)
           (cd kit && file *.zip > ../reports/filetypes.txt)
           find kit -type f -printf '%f\t%s bytes\n' | sort > reports/sizes.txt
           cat reports/status.txt
+          expected=10
+          verified=$(grep -c '^VERIFIED ZIP:' reports/status.txt || true)
+          if [[ "$verified" -ne "$expected" ]]; then
+            echo "ERROR: expected $expected verified ZIPs; got $verified" | tee reports/verification-error.txt
+            exit 1
+          fi
       - name: Upload complete toolkit and reports for preservation
         if: always()
         uses: actions/upload-artifact@v4
