@@ -1,0 +1,54 @@
+name: Linux DOS Lab — preserve period compiler kits
+on:
+  push:
+    branches: [lab-toolchain-inventory-20261018]
+    paths: [".github/workflows/lab-preserve-toolchain.yml"]
+  workflow_dispatch:
+jobs:
+  preserve:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - name: Collect historical packages with evidence
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+          mkdir -p kit reports
+          BASE='https://arcarc.xmission.com/Web%20Archives/ionpool.net%20%28Dec-31-2020%29/arcade/mame/zips/compilefinal'
+          MBASE='https://arcarc.xmission.com/Web%20Archives/ionpool.net%20%28Dec-31-2020%29/arcade/mame/zips'
+          printf 'Source inventory — %s\n' "$(date -u +%Y-%m-%dT%H:%M:%SZ)" > reports/source-manifest.txt
+          fetch() {
+            local name="$1" url="$2"
+            printf '%s\t%s\n' "$name" "$url" >> reports/source-manifest.txt
+            if curl --location --fail --retry 2 --connect-timeout 20 --max-time 180 "$url" -o "kit/$name.part"; then
+              mv "kit/$name.part" "kit/$name"
+              if unzip -tqq "kit/$name" > "reports/$name.ziptest.txt" 2>&1; then
+                echo "VERIFIED ZIP: $name" >> reports/status.txt
+              else
+                echo "FAILED ZIP INTEGRITY: $name" >> reports/status.txt
+              fi
+            else
+              rm -f "kit/$name.part"
+              echo "DOWNLOAD FAILED: $name" >> reports/status.txt
+            fi
+          }
+          for f in djdev203.zip bnu281b.zip gcc2952b.zip mak3781b.zip all3932.zip zlib113.zip mameseal.zip; do
+            fetch "$f" "$BASE/$f"
+          done
+          fetch mame055s.zip "$MBASE/mame055s.zip"
+          fetch nasm098p.zip 'https://apajalista.net/tiedostot/PC/Ohjelmointi/DOS-ohjelmointi_Assembler/NASM098P.ZIP'
+          fetch csdpmi5b.zip 'https://djgpp.mirror.garr.it/current/v2misc/csdpmi5b.zip'
+          (cd kit && sha256sum *.zip > ../reports/SHA256SUMS.txt)
+          (cd kit && file *.zip > ../reports/filetypes.txt)
+          find kit -type f -printf '%f\t%s bytes\n' | sort > reports/sizes.txt
+          cat reports/status.txt
+      - name: Upload complete toolkit and reports for preservation
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: LINUX-DOS-LAB-PERIOD-COMPILER-KIT-20261018
+          path: |
+            kit/
+            reports/
+          retention-days: 90
+          if-no-files-found: error
