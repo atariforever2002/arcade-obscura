@@ -26,19 +26,19 @@ jobs:
                 echo "VERIFIED ZIP: $name" >> reports/status.txt
               else
                 echo "FAILED ZIP INTEGRITY: $name" >> reports/status.txt
+                rm -f "kit/$name"
+                return 1
               fi
             else
               rm -f "kit/$name.part"
               echo "DOWNLOAD FAILED: $name" >> reports/status.txt
+              return 1
             fi
           }
           for f in djdev203.zip bnu281b.zip gcc2952b.zip mak3781b.zip all3932.zip zlib113.zip mameseal.zip; do
             fetch "$f" "$BASE/$f" || true
           done
-          if ! fetch mame055s.zip "$MBASE/mame055s.zip"; then
-            # SourceForge's browser page returns HTML to curl; use its direct file endpoint.
-            fetch mame055s.zip 'https://downloads.sourceforge.net/project/mame/mame/0.55/mame055s.zip'
-          fi
+          fetch mame055s.zip "$MBASE/mame055s.zip" || fetch mame055s.zip 'https://downloads.sourceforge.net/project/mame/mame/0.55/mame055s.zip' || true
           fetch nasm098p.zip 'https://apajalista.net/tiedostot/PC/Ohjelmointi/DOS-ohjelmointi_Assembler/NASM098P.ZIP' || true
           fetch csdpmi5b.zip 'https://djgpp.mirror.garr.it/current/v2misc/csdpmi5b.zip' || fetch csdpmi5b.zip 'https://ftp.zx.net.nz/pub/archive/ftp.delorie.com/pub/djgpp/current/v2misc/csdpmi5b.zip' || true
           (cd kit && sha256sum *.zip > ../reports/SHA256SUMS.txt)
