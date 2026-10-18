@@ -47,7 +47,9 @@ jobs:
           for f in kit/*.zip; do unzip -tqq "$f"; done
           test "$(find kit -maxdepth 1 -type f -name '*.zip' | wc -l)" -eq 10
           cp expected.sha256 artifact-inputs.sha256
-          cp pinned-inputs/reports/VERIFIED-MANIFEST.csv toolchain-manifest.csv
+          cp pinned-inputs/reports/source-manifest.txt toolchain-source-manifest.txt
+          cp pinned-inputs/reports/status.txt toolchain-status.txt
+          cp pinned-inputs/reports/SHA256SUMS.txt toolchain-sha256sums.txt
           echo "All 10 preserved archives match their pinned SHA-256 fingerprints and pass ZIP integrity tests."
 
       - name: Assemble vintage DOS development drive
@@ -168,7 +170,9 @@ jobs:
         run: |
           mkdir -p artifact
           cp expected.sha256 artifact/INPUT_SHA256SUMS.txt 2>/dev/null || true
-          cp toolchain-manifest.csv artifact/TOOLCHAIN_MANIFEST.csv 2>/dev/null || true
+          cp toolchain-source-manifest.txt artifact/TOOLCHAIN_SOURCE_MANIFEST.txt 2>/dev/null || true
+          cp toolchain-status.txt artifact/TOOLCHAIN_STATUS.txt 2>/dev/null || true
+          cp toolchain-sha256sums.txt artifact/TOOLCHAIN_SHA256SUMS.txt 2>/dev/null || true
           cp dosroot/BUILD.LOG artifact/BUILD.LOG 2>/dev/null || true
           cp dosroot/MAME.LOG artifact/MAME.LOG 2>/dev/null || true
           cp dosroot/ARTEST.LOG artifact/ARTEST.LOG 2>/dev/null || true
