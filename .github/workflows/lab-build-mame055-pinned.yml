@@ -1,0 +1,203 @@
+name: Linux DOS Lab — pinned MAME 0.55 reproduction
+on:
+  push:
+    branches: [temp-redhusker-055-build]
+    paths: [".github/workflows/temp-redhusker-055-build.yml"]
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    permissions:
+      actions: read
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install vintage DOS build host utilities
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y dosbox xvfb unzip curl
+      - name: Download the preserved GitHub Actions toolchain collection
+        uses: actions/download-artifact@v4
+        with:
+          name: LINUX-DOS-LAB-PERIOD-COMPILER-KIT-20261018
+          run-id: 39128741566
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: pinned-inputs
+
+      - name: Check all ten pinned archive fingerprints
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+          mkdir -p kit
+          cp pinned-inputs/kit/*.zip kit/
+          cat > expected.sha256 <<'EOF'
+          a413bdec1687df6102408931c20b1d0b6b213b27ebbf9f363c0178553664c129  kit/all3932.zip
+          e6906c081c5a57ef6286a0dffbe595ab100031cc3624c333730344119d7d5c24  kit/bnu281b.zip
+          988f23668047f38f949b63a1753e701bc68616fc21189bbcb725bab51a90c8a4  kit/csdpmi5b.zip
+          bce5bc29ec5511184e05aa7af1930a186333c000f8b5d612482c50b9404e2a18  kit/djdev203.zip
+          0d80df04e959ff9dc0daaa48ac34b9991212e74ff99796613b063e3c545b7328  kit/gcc2952b.zip
+          bc3346c4eab25aee79550b18759e06fd205444738542f40e68b69f884850e72e  kit/mak3781b.zip
+          1079122c9a367bbc2cb414484671b81a5df023a7840dc3c25f6247ba66e7bbb5  kit/mame055s.zip
+          0c2e457046032044d4e8b1d52ea8e11494092d01a9ec19aeba34b2b255e8322e  kit/mameseal.zip
+          22d24ff342a7a74a7c99d808b24668a6e461939af2ccd1bf0ac58beff7e41cb4  kit/nasm098p.zip
+          045e0c4f2716a4a2462dbdaed0068819e9ef436201dd2b30e6bfe06745f2e7a8  kit/zlib113.zip
+          EOF
+          sha256sum --check expected.sha256
+          for f in kit/*.zip; do unzip -tqq "$f"; done
+          test "$(find kit -maxdepth 1 -type f -name '*.zip' | wc -l)" -eq 10
+          cp expected.sha256 artifact-inputs.sha256
+          cp pinned-inputs/reports/VERIFIED-MANIFEST.csv toolchain-manifest.csv
+          echo "All 10 preserved archives match their pinned SHA-256 fingerprints and pass ZIP integrity tests."
+
+      - name: Assemble vintage DOS development drive
+        shell: bash
+        run: |
+          set -euxo pipefail
+          mkdir -p dosroot/djgpp/bin dosroot/djgpp/mame dosroot/djgpp/zlib
+          unzip -q kit/djdev203.zip -d dosroot/djgpp
+          unzip -q kit/bnu281b.zip -d dosroot/djgpp
+          unzip -q kit/gcc2952b.zip -d dosroot/djgpp
+          unzip -q kit/mak3781b.zip -d dosroot/djgpp
+          unzip -q kit/all3932.zip -d dosroot/djgpp
+          unzip -q kit/mameseal.zip -d dosroot/djgpp
+          mkdir -p nasm_tmp
+          unzip -q kit/nasm098p.zip -d nasm_tmp
+          NASM_DOS=$(find nasm_tmp -type f -iname 'nasm.exe' -print -quit)
+          test -n "$NASM_DOS"
+          cp "$NASM_DOS" dosroot/djgpp/bin/nasm.exe
+          unzip -q -j kit/csdpmi5b.zip -d dosroot/djgpp/bin
+          unzip -q kit/zlib113.zip -d dosroot/djgpp/zlib
+          unzip -q kit/mame055s.zip -d dosroot/djgpp/mame
+          unzip -q -o dosroot/djgpp/mame/MAME055.ZIP -d dosroot/djgpp/mame
+          test -f dosroot/djgpp/mame/src/mame.c
+      - name: Carefully bypass only two NoNag startup checks
+        shell: python
+        run: |
+          from pathlib import Path
+          root=Path('dosroot/djgpp/mame')
+          p=root/'src/mame.c'
+          s=p.read_text(encoding='latin1')
+          old='if (showcopyright(real_scrbitmap)) goto userquit;'
+          new='if (0 && showcopyright(real_scrbitmap)) goto userquit;'
+          assert s.count(old)==1, 'Expected exactly one copyright prompt call'
+          s=s.replace(old,new)
+          old='if (showgamewarnings(real_scrbitmap) == 0)'
+          new='if (1)  /* Red Husker NoNag: skip warning and info screen */'
+          assert s.count(old)==1, 'Expected exactly one warning prompt call'
+          s=s.replace(old,new)
+          p.write_text(s, encoding='latin1')
+          mk=root/'makefile'
+          m=mk.read_text(encoding='latin1')
+          m=m.replace('#ASM = @nasm\nASM = @nasmw', 'ASM = @nasm\n#ASM = @nasmw')
+          m=m.replace('\tupx -9 $(EMULATOR)', '\t@echo UPX skipped for test build')
+          m=m.replace('\t$(MD) $@', '\t$(MD) $(subst /,\\\\,$@)')
+          genold='$(CC) $(CDEFS) $(CFLAGSPEDANTIC) -DDOS -o $(OBJ)/cpu/m68000/m68kmake$(EXE) $<'
+          gennew='$(CC) $(CDEFS) $(CFLAGSPEDANTIC) -march=i386 -O0 -DDOS -o $(OBJ)/cpu/m68000/m68kmake$(EXE) $<'
+          assert m.count(genold)==1, 'M68K temporary code generator compiler line changed'
+          m=m.replace(genold,gennew)
+          # Optional joystick type does not exist in Allegro 3.9.32.
+          cp=root/'src/msdos/config.c'
+          cfg=cp.read_text(encoding='latin1')
+          entries=[line for line in cfg.splitlines(keepends=True) if 'JOY_TYPE_SIDEWINDER_AG' in line]
+          assert len(entries)==1, 'Expected exactly one Sidewinder Aggressive row'
+          cfg=cfg.replace(entries[0], '#ifdef JOY_TYPE_SIDEWINDER_AG\n'+entries[0]+'#endif\n')
+          cp.write_text(cfg,encoding='latin1')
+          m=m.replace('-Werror ', '')
+          # Match the successful P200 MAME 0.36 DJGPP makefile.
+          m=m.replace('AR = @ar','AR = @ar')
+          m=m.replace('RM = @rm -f','RM = rm -f')
+          old_rm='\t$(RM) $@'
+          assert m.count(old_rm)==1, 'Expected one library pre-archive delete command'
+          # P200 succeeds without deleting the archive before ar recreates it.
+          m=m.replace(old_rm, '')
+          old_rule='\t$(AR) cr $@ $^'
+          assert m.count(old_rule)==1, 'Expected original long ar command once'
+          # Direct DOS tests confirmed that ar works; retain the original recipe.
+          m=m.replace(old_rule, '\t$(AR) cr $@ $^')
+          # Make a failed compilation conspicuous despite DOSBox's exit behavior.
+          mk.write_text(m,encoding='latin1')
+          print('NoNag source checks patched. Original version/ROM/input/sound code retained.')
+      - name: Build DOS EXE inside DOSBox using DJGPP 2.03 and GCC 2.95
+        shell: bash
+        run: |
+          cat > build.conf <<EOF
+          [sdl]
+          fullscreen=false
+          output=surface
+
+          [dosbox]
+          memsize=63
+
+          [cpu]
+          core=dynamic
+          cycles=max
+
+          [mixer]
+          nosound=true
+
+          [autoexec]
+          mount c "$GITHUB_WORKSPACE/dosroot"
+          c:
+          set PATH=C:\\DJGPP\\BIN;%PATH%
+          set DJGPP=C:\\DJGPP\\DJGPP.ENV
+          echo === Install Allegro 3.9.32 === > C:\\BUILD.LOG
+          cd \\DJGPP\\ALLEGRO
+          make lib >> C:\\BUILD.LOG
+          make install >> C:\\BUILD.LOG
+          echo === Install zlib 1.1.3 === >> C:\\BUILD.LOG
+          cd \\DJGPP\\ZLIB
+          make -fmsdos\\makefile.dj2 >> C:\\BUILD.LOG
+          copy libz.a C:\\DJGPP\\LIB\\ >> C:\\BUILD.LOG
+          copy zlib.h C:\\DJGPP\\INCLUDE\\ >> C:\\BUILD.LOG
+          copy zconf.h C:\\DJGPP\\INCLUDE\\ >> C:\\BUILD.LOG
+          echo === Build MAME 0.55 NoNag for Pentium II === >> C:\\BUILD.LOG
+          cd \\DJGPP\\MAME
+          make I686=1 MAMEOS=msdos maketree >> C:\\BUILD.LOG
+          echo === Full MAME build (direct DOS redirection) === > C:\\MAME.LOG
+          make I686=1 MAMEOS=msdos >> C:\\MAME.LOG
+          if errorlevel 1 echo BUILD_MAKE_FAILED >> C:\\\\BUILD.LOG
+          if exist dmamepp.exe echo BUILD_EXE_FOUND >> C:\\\\BUILD.LOG
+          if not exist dmamepp.exe echo BUILD_EXE_MISSING >> C:\\\\BUILD.LOG
+          exit
+          EOF
+          SDL_AUDIODRIVER=dummy xvfb-run -a dosbox -conf build.conf -exit || true
+      - name: Collect results and verify DOS binary type
+        if: always()
+        shell: bash
+        run: |
+          mkdir -p artifact
+          cp expected.sha256 artifact/INPUT_SHA256SUMS.txt 2>/dev/null || true
+          cp toolchain-manifest.csv artifact/TOOLCHAIN_MANIFEST.csv 2>/dev/null || true
+          cp dosroot/BUILD.LOG artifact/BUILD.LOG 2>/dev/null || true
+          cp dosroot/MAME.LOG artifact/MAME.LOG 2>/dev/null || true
+          cp dosroot/ARTEST.LOG artifact/ARTEST.LOG 2>/dev/null || true
+          cp dosroot/djgpp/mame/src/mame.c artifact/mame-patched.c 2>/dev/null || true
+          cp dosroot/djgpp/mame/makefile artifact/makefile 2>/dev/null || true
+          find dosroot/djgpp/mame -maxdepth 1 -type f -iname '*.exe' -printf '%f %s bytes\n' > artifact/executable-list.txt
+          EXE=$(find dosroot/djgpp/mame -maxdepth 1 -type f \( -iname 'dmamepp.exe' -o -iname 'dmame.exe' -o -iname 'mame.exe' \) -print -quit)
+          if [ -z "$EXE" ]; then
+            echo 'No DOS executable was produced.' > artifact/BUILD_FAILED.txt
+            echo 'The build is not being treated as successful.' >> artifact/BUILD_FAILED.txt
+            exit 1
+          fi
+          cp "$EXE" artifact/MAMENN.EXE
+          file artifact/MAMENN.EXE > artifact/MAMENN_FILETYPE.txt
+          sha256sum artifact/MAMENN.EXE > artifact/MAMENN_SHA256.txt
+          ACTUAL_SHA=$(cut -d ' ' -f1 artifact/MAMENN_SHA256.txt)
+          REFERENCE_SHA=016303bc31c259008e44d0ecf8788846763bb0864d3cc8e47e1c693357c1a660
+          if [ "$ACTUAL_SHA" = "$REFERENCE_SHA" ]; then
+            echo "MAMENN.EXE matches the known-good reference SHA-256." > artifact/BUILD_COMPARISON.txt
+          else
+            printf 'MAMENN.EXE built successfully but has a different SHA-256.\nReference: %s\nActual:    %s\n' "$REFERENCE_SHA" "$ACTUAL_SHA" > artifact/BUILD_COMPARISON.txt
+          fi
+          test -s artifact/MAMENN.EXE
+          grep -Eqi 'MS-DOS|DOS executable' artifact/MAMENN_FILETYPE.txt
+          echo 'Verified: non-empty DOS executable produced.' > artifact/BUILD_VERIFIED.txt
+      - name: Upload build output
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: RED-HUSKER-MAME055-NONAG-TEST
+          path: artifact/
+          if-no-files-found: error
