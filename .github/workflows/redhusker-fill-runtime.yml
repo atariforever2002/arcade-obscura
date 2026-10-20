@@ -151,6 +151,9 @@ jobs:
           cp -a /usr/lib/x86_64-linux-gnu/qemu local-emulator/modules
           find local-emulator/modules -name '*.so' -exec ldd '{}' \; | awk '/=> \// {print $3}' | sort -u | xargs -r -I '{}' cp -L '{}' local-emulator/lib/
           cp boot.img hdd.img local-emulator/
+          mkdir -p local-emulator/share/vgabios-current
+          curl -fL --retry 2 https://github.com/bochs-emu/VGABIOS/releases/download/v0_9d/vgabios-0.9d-bin.tgz -o vgabios-current.tgz
+          tar -xzf vgabios-current.tgz -C local-emulator/share/vgabios-current
           tar -czf local-emulator.tar.gz local-emulator
       - uses: actions/upload-artifact@v4
         with:
