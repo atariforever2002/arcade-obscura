@@ -1,0 +1,91 @@
+name: Red Husker DOS runtime validation
+on:
+  push:
+    branches: [redhusker-filltest-20261019]
+    paths: [".github/workflows/redhusker-fill-runtime.yml"]
+jobs:
+  runtime:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    permissions:
+      actions: read
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install DOSBox
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y dosbox xvfb
+      - uses: actions/download-artifact@v4
+        with:
+          name: REDHUSKER-FILLTEST-20261019
+          run-id: 39339615718
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: compiled
+      - uses: actions/download-artifact@v4
+        with:
+          name: LINUX-DOS-LAB-PERIOD-COMPILER-KIT-20261018
+          run-id: 39128741566
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: preserved
+      - name: Assemble isolated DOS runtime
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p runtime/djgpp runtime/rygar
+          echo 'f62e5feaf2ea1dd86902528996bd27a4ed0a5dce96218b36fbcb6de313f3f85a  compiled/MAMEFILL.EXE' | sha256sum -c -
+          cp compiled/MAMEFILL.EXE runtime/
+          unzip -q preserved/kit/djdev203.zip -d runtime/djgpp
+          unzip -q preserved/kit/bnu281b.zip -d runtime/djgpp
+          unzip -q preserved/kit/gcc2952b.zip -d runtime/djgpp
+          unzip -q -j preserved/kit/csdpmi5b.zip -d runtime/djgpp/bin
+          cp tests/redhusker-fill/test_fill.c runtime/testfill.c
+          cp tests/redhusker-fill/filltest.c runtime/filltest.c
+          python3 - <<'PY'
+          from pathlib import Path
+          v=Path('compiled/video-filltest.c').read_text()
+          c=Path('tests/redhusker-fill/filltest.c').read_text()
+          assert c.strip() in v, 'Test harness must use the exact compiled scaler source'
+          root=Path('runtime').resolve()
+          commands=[
+          'mount c "'+str(root)+'"', 'c:',
+          'set PATH=C:\\DJGPP\\BIN;%PATH%',
+          'set DJGPP=C:\\DJGPP\\DJGPP.ENV',
+          'gcc -x c -O2 -Wall testfill.c -o testfill.exe > COMPILE.TXT',
+          'if not exist testfill.exe goto finish',
+          'testfill.exe > PIXEL.TXT',
+          'MAMEFILL.EXE -listfull > GAMES.TXT',
+          'MAMEFILL.EXE rygar -listroms > ROMLIST.TXT',
+          'MAMEFILL.EXE rygar -filltest -soundcard 0 > STARTUP.TXT',
+          'echo DOS_RUNTIME_RETURNED > RETURNED.TXT',
+          ':finish', 'exit']
+          Path('runtime.conf').write_text('[sdl]\noutput=surface\n[dosbox]\nmemsize=63\n[cpu]\ncore=dynamic\ncycles=max\n[mixer]\nnosound=true\n[autoexec]\n'+'\n'.join(commands)+'\n')
+          PY
+      - name: Execute DOS smoke and scaler tests
+        run: |
+          SDL_AUDIODRIVER=dummy timeout 180s xvfb-run -a dosbox -conf runtime.conf -exit
+      - name: Verify actual DOS results
+        shell: python
+        run: |
+          from pathlib import Path
+          r=Path('runtime')
+          def read(name): return (r/name).read_text(errors='replace')
+          assert 'PASS:' in read('PIXEL.TXT'), read('COMPILE.TXT')
+          games=read('GAMES.TXT').lower()
+          for game in ['rygar','rastan','blktiger']: assert game in games, game
+          assert 'cpu_5m.bin' in read('ROMLIST.TXT').lower()
+          startup=read('STARTUP.TXT').lower()
+          assert 'required files are missing' in startup, startup
+          assert 'DOS_RUNTIME_RETURNED' in read('RETURNED.TXT')
+          cfg=read('mame.cfg').lower()
+          assert 'filltest = yes' in cfg, cfg
+          (r/'VERIFIED.TXT').write_text('PASS: exact compiled MAMEFILL starts in DOS; driver and ROM lists execute; Rygar startup parses -filltest and returns cleanly on expected absent ROMs. Exact scaler source passes 8/16-bit pixel harness under DJGPP/DOS. No real game ROM or actual VESA rendering tested. Cabinet speed/sound/controls remain unverified.\n')
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: REDHUSKER-FILLTEST-DOS-RUNTIME
+          path: |
+            runtime/*.TXT
+            runtime/*.cfg
+            runtime/testfill.exe
+          if-no-files-found: error
