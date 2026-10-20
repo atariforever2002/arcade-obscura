@@ -138,3 +138,19 @@ jobs:
             runtime/*.CFG
             qemu-results/*
           if-no-files-found: error
+
+      - name: Package local isolated emulator for private ROM testing
+        if: success()
+        run: |
+          mkdir -p local-emulator/bin local-emulator/lib local-emulator/share
+          cp /usr/bin/qemu-system-i386 /usr/bin/mcopy /usr/bin/mdir local-emulator/bin/
+          for program in /usr/bin/qemu-system-i386 /usr/bin/mcopy /usr/bin/mdir; do
+            ldd "$program" | awk '/=> \// {print $3}' | xargs -r -I '{}' cp -L '{}' local-emulator/lib/
+          done
+          cp -a /usr/share/qemu /usr/share/seabios local-emulator/share/
+          cp boot.img hdd.img local-emulator/
+          tar -czf local-emulator.tar.gz local-emulator
+      - uses: actions/upload-artifact@v4
+        with:
+          name: REDHUSKER-PRIVATE-TEST-EMULATOR
+          path: local-emulator.tar.gz
