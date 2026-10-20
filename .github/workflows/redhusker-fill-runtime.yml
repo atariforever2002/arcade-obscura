@@ -115,7 +115,7 @@ jobs:
         run: |
           from pathlib import Path
           r=Path('runtime')
-          def read(name): return (r/name).read_text(errors='replace')
+          def read(name): return next(p for p in r.iterdir() if p.name.lower()==name.lower()).read_text(errors='replace')
           assert 'PASS:' in read('PIXEL.TXT'), read('COMPILE.TXT')
           games=read('GAMES.TXT').lower()
           for game in ['rygar','rastan','blktiger']: assert game in games, game
@@ -125,7 +125,7 @@ jobs:
           assert 'DOS_RUNTIME_RETURNED' in read('RETURNED.TXT')
           cfg=read('mame.cfg').lower()
           assert 'filltest = no' in cfg, cfg
-          (r/'VERIFIED.TXT').write_text('PASS: exact compiled MAMEFILL starts in DOS; driver and ROM lists execute; Rygar startup parses -filltest and returns cleanly on expected absent ROMs. Exact scaler source passes 8/16-bit pixel harness under DJGPP/DOS. No real game ROM or actual VESA rendering tested. Cabinet speed/sound/controls remain unverified.\n')
+          (r/'VERIFIED.TXT').write_text('PASS: exact compiled MAMEFILL starts in DOS; driver and ROM lists execute; Rygar startup parses -filltest and returns cleanly on expected absent ROMs. Exact scaler source passes 8/16-bit pixel harness under DJGPP/FreeDOS on a QEMU Pentium II. No real game ROM or actual VESA rendering tested. Cabinet speed/sound/controls remain unverified.\n')
       - uses: actions/upload-artifact@v4
         if: always()
         with:
