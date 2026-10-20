@@ -15,7 +15,7 @@ jobs:
       - name: Install DOSBox
         run: |
           sudo apt-get update
-          sudo apt-get install -y dosbox xvfb qemu-system-x86 mtools dosfstools fdisk curl
+          sudo apt-get install -y dosbox xvfb qemu-system-x86 mtools dosfstools fdisk curl vgabios
       - uses: actions/download-artifact@v4
         with:
           name: REDHUSKER-FILLTEST-20261019
@@ -147,7 +147,7 @@ jobs:
           for program in /usr/bin/qemu-system-i386 /usr/bin/mcopy /usr/bin/mdir; do
             ldd "$program" | awk '/=> \// {print $3}' | xargs -r -I '{}' cp -L '{}' local-emulator/lib/
           done
-          cp -a /usr/share/qemu /usr/share/seabios local-emulator/share/
+          cp -a /usr/share/vgabios /usr/share/qemu /usr/share/seabios local-emulator/share/
           cp -a /usr/lib/x86_64-linux-gnu/qemu local-emulator/modules
           find local-emulator/modules -name '*.so' -exec ldd '{}' \; | awk '/=> \// {print $3}' | sort -u | xargs -r -I '{}' cp -L '{}' local-emulator/lib/
           cp boot.img hdd.img local-emulator/
