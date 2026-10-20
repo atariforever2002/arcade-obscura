@@ -1,4 +1,4 @@
-name: Red Husker DOS runtime validation
+name: Red Husker Pentium II DOS runtime validation
 on:
   push:
     branches: [redhusker-filltest-20261019]
@@ -15,7 +15,7 @@ jobs:
       - name: Install DOSBox
         run: |
           sudo apt-get update
-          sudo apt-get install -y dosbox xvfb imagemagick xdotool
+          sudo apt-get install -y dosbox xvfb qemu-system-x86 mtools dosfstools fdisk curl
       - uses: actions/download-artifact@v4
         with:
           name: REDHUSKER-FILLTEST-20261019
@@ -58,20 +58,58 @@ jobs:
           'MAMEFILL.EXE rygar -listroms > ROMLIST.TXT',
           'MAMEFILL.EXE rygar -filltest -soundcard 0 > STARTUP.TXT',
           'echo DOS_RUNTIME_RETURNED > RETURNED.TXT',
-          ':finish']
+          ':finish', 'exit']
           Path('runtime.conf').write_text('[sdl]\noutput=surface\n[dosbox]\nmemsize=63\n[cpu]\ncore=dynamic\ncycles=max\n[mixer]\nnosound=true\n[autoexec]\n'+'\n'.join(commands)+'\n')
           PY
-      - name: Execute DOS smoke and scaler tests
+      - name: Boot FreeDOS with a Pentium II CPU
+        shell: bash
         run: |
-          SDL_AUDIODRIVER=dummy timeout 180s xvfb-run -a bash -c '
-            dosbox -conf runtime.conf > runtime/DOSBOX-HOST.TXT 2>&1 &
-            task_pid=$!
-            sleep 15
-            import -window root runtime/DOS-SCREEN.png
-            xdotool search --class dosbox windowfocus --sync type --clearmodifiers "exit"
-            xdotool search --class dosbox key Return
-            wait "$task_pid"
-          '
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('runtime/exitvm.c')
+          p.write_text('#include <pc.h>\nint main(void) { outportw(0xf4,0x10); return 0; }\n')
+          c=Path('runtime.conf').read_text()
+          c=c[:c.index("MAMEFILL.EXE -listfull")]+"gcc -x c -O2 exitvm.c -o exitvm.exe\nexit\n"
+          Path('compile.conf').write_text(c)
+          PY
+          SDL_AUDIODRIVER=dummy timeout 90s xvfb-run -a dosbox -conf compile.conf -exit
+          curl -fL --retry 2 https://www.ibiblio.org/pub/micro/pc-stuff/freedos/files/distributions/1.3/official/FD13-FloppyEdition.zip -o freedos.zip
+          unzip -q freedos.zip -d freedos
+          python3 - <<'PY'
+          from pathlib import Path
+          import subprocess,shutil
+          candidates=[p for p in Path('freedos').rglob('*') if p.is_file() and p.suffix.lower() in ['.img','.ima'] and 'boot' in p.name.lower()]
+          assert candidates, list(Path('freedos').rglob('*'))
+          candidates.sort(key=lambda p: (p.stat().st_size!=1474560,p.stat().st_size))
+          boot=candidates[0]
+          shutil.copyfile(boot,'boot.img')
+          names=subprocess.check_output(['mdir','-i','boot.img','-/','-b','::'],text=True)
+          print(names)
+          commands=[n for n in names.splitlines() if n.upper().endswith('/COMMAND.COM') or n.upper().endswith('::COMMAND.COM')]
+          assert commands,names
+          command=commands[0].replace('::','').replace('/','\\')
+          if not command.startswith('\\'): command='\\'+command
+          Path('fdconfig.sys').write_bytes(('DOS=LOW\r\nFILES=40\r\nBUFFERS=20\r\nLASTDRIVE=Z\r\nSHELL=A:'+command+' /E:1024 /P=A:\\FDAUTO.BAT\r\n').encode())
+          Path('fdauto.bat').write_bytes(('@echo off\r\nC:\r\nCD \\\r\nSET PATH=C:\\DJGPP\\BIN\r\nTESTFILL.EXE > PIXEL.TXT\r\nMAMEFILL.EXE -listfull > GAMES.TXT\r\nMAMEFILL.EXE rygar -listroms > ROMLIST.TXT\r\nMAMEFILL.EXE rygar -filltest -soundcard 0 > STARTUP.TXT\r\necho DOS_RUNTIME_RETURNED > RETURNED.TXT\r\nEXITVM.EXE\r\n').encode())
+          PY
+          mcopy -o -i boot.img fdconfig.sys ::FDCONFIG.SYS
+          mcopy -o -i boot.img fdauto.bat ::FDAUTO.BAT
+          truncate -s 128M hdd.img
+          echo 'label: dos
+          start=2048,type=6,bootable' | sfdisk hdd.img
+          mkfs.fat -F 16 --offset 2048 hdd.img
+          mcopy -s -i hdd.img@@1048576 runtime/* ::
+          set +e
+          timeout 120s qemu-system-i386 -machine pc -cpu pentium2 -m 64 -vga std -display none -monitor none -serial none -no-reboot -device isa-debug-exit,iobase=0xf4,iosize=0x04 -drive file=boot.img,format=raw,if=floppy -drive file=hdd.img,format=raw,if=ide -boot a
+          result=$?
+          set -e
+          echo "QEMU exit: $result"
+          mkdir -p qemu-results
+          mcopy -i hdd.img@@1048576 '::*.TXT' qemu-results/
+          mcopy -i hdd.img@@1048576 '::*.CFG' qemu-results/ || true
+          test "$result" -eq 33
+          cp qemu-results/* runtime/
       - name: Verify actual DOS results
         shell: python
         run: |
@@ -86,7 +124,7 @@ jobs:
           assert 'required files are missing' in startup, startup
           assert 'DOS_RUNTIME_RETURNED' in read('RETURNED.TXT')
           cfg=read('mame.cfg').lower()
-          assert 'filltest = yes' in cfg, cfg
+          assert 'filltest = no' in cfg, cfg
           (r/'VERIFIED.TXT').write_text('PASS: exact compiled MAMEFILL starts in DOS; driver and ROM lists execute; Rygar startup parses -filltest and returns cleanly on expected absent ROMs. Exact scaler source passes 8/16-bit pixel harness under DJGPP/DOS. No real game ROM or actual VESA rendering tested. Cabinet speed/sound/controls remain unverified.\n')
       - uses: actions/upload-artifact@v4
         if: always()
@@ -98,4 +136,5 @@ jobs:
             runtime/*.exe
             runtime/*.png
             runtime/*.CFG
+            qemu-results/*
           if-no-files-found: error
