@@ -148,6 +148,8 @@ jobs:
             ldd "$program" | awk '/=> \// {print $3}' | xargs -r -I '{}' cp -L '{}' local-emulator/lib/
           done
           cp -a /usr/share/qemu /usr/share/seabios local-emulator/share/
+          cp -a /usr/lib/x86_64-linux-gnu/qemu local-emulator/modules
+          find local-emulator/modules -name '*.so' -exec ldd '{}' \; | awk '/=> \// {print $3}' | sort -u | xargs -r -I '{}' cp -L '{}' local-emulator/lib/
           cp boot.img hdd.img local-emulator/
           tar -czf local-emulator.tar.gz local-emulator
       - uses: actions/upload-artifact@v4
