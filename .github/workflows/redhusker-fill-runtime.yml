@@ -15,7 +15,7 @@ jobs:
       - name: Install DOSBox
         run: |
           sudo apt-get update
-          sudo apt-get install -y dosbox xvfb
+          sudo apt-get install -y dosbox xvfb imagemagick xdotool
       - uses: actions/download-artifact@v4
         with:
           name: REDHUSKER-FILLTEST-20261019
@@ -58,12 +58,20 @@ jobs:
           'MAMEFILL.EXE rygar -listroms > ROMLIST.TXT',
           'MAMEFILL.EXE rygar -filltest -soundcard 0 > STARTUP.TXT',
           'echo DOS_RUNTIME_RETURNED > RETURNED.TXT',
-          ':finish', 'exit']
+          ':finish']
           Path('runtime.conf').write_text('[sdl]\noutput=surface\n[dosbox]\nmemsize=63\n[cpu]\ncore=dynamic\ncycles=max\n[mixer]\nnosound=true\n[autoexec]\n'+'\n'.join(commands)+'\n')
           PY
       - name: Execute DOS smoke and scaler tests
         run: |
-          SDL_AUDIODRIVER=dummy timeout 180s xvfb-run -a dosbox -conf runtime.conf -exit
+          SDL_AUDIODRIVER=dummy timeout 180s xvfb-run -a bash -c '
+            dosbox -conf runtime.conf > runtime/DOSBOX-HOST.TXT 2>&1 &
+            task_pid=$!
+            sleep 15
+            import -window root runtime/DOS-SCREEN.png
+            xdotool search --class dosbox windowfocus --sync type --clearmodifiers "exit"
+            xdotool search --class dosbox key Return
+            wait "$task_pid"
+          '
       - name: Verify actual DOS results
         shell: python
         run: |
@@ -87,5 +95,7 @@ jobs:
           path: |
             runtime/*.TXT
             runtime/*.cfg
-            runtime/testfill.exe
+            runtime/*.exe
+            runtime/*.png
+            runtime/*.CFG
           if-no-files-found: error
