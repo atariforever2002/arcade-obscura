@@ -1,0 +1,166 @@
+name: Red Husker Pentium II DOS runtime validation
+on:
+  push:
+    branches: [redhusker-diagnostics-20261025]
+    paths: [".github/workflows/redhusker-diag-runtime.yml"]
+jobs:
+  runtime:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 130
+    permissions:
+      actions: read
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Wait for diagnostic build
+        uses: actions/github-script@v7
+        with:
+          script: |
+            for (let i=0;i<110;i++) {
+              const r=await github.rest.actions.getWorkflowRun({...context.repo,run_id:40221423027});
+              if(r.data.status==='completed') {
+                if(r.data.conclusion!=='success') throw new Error('Build failed');
+                return;
+              }
+              await new Promise(resolve=>setTimeout(resolve,60000));
+            }
+            throw new Error('Build wait timed out');
+      - name: Install DOSBox
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y dosbox xvfb qemu-system-x86 mtools dosfstools fdisk curl vgabios
+      - uses: actions/download-artifact@v4
+        with:
+          name: REDHUSKER-DIAGNOSTICS-20261025
+          run-id: 40221423027
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: compiled
+      - uses: actions/download-artifact@v4
+        with:
+          name: LINUX-DOS-LAB-PERIOD-COMPILER-KIT-20261018
+          run-id: 39128741566
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: preserved
+      - name: Assemble isolated DOS runtime
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p runtime/djgpp runtime/rygar
+          sed 's@artifact/@compiled/@' compiled/MAMEDIG_SHA256.txt | sha256sum -c -
+          cp compiled/MAMEDIG.EXE runtime/
+          unzip -q preserved/kit/djdev203.zip -d runtime/djgpp
+          unzip -q preserved/kit/bnu281b.zip -d runtime/djgpp
+          unzip -q preserved/kit/gcc2952b.zip -d runtime/djgpp
+          unzip -q -j preserved/kit/csdpmi5b.zip -d runtime/djgpp/bin
+          cp tests/redhusker-fill/test_fill.c runtime/testfill.c
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path("runtime/testfill.c")
+          p.write_text(p.read_text().replace('#include "filltest.c"', 'typedef long TICKER;\nstatic unsigned long rh_calls,rh_samples;\nstatic TICKER rh_prepare,rh_transfer;\nstatic int rh_depth,rh_sw,rh_sh;\nstatic TICKER ticker(void) { static TICKER t; return ++t; }\n#include "filltest.c"'))
+          PY
+          cp tests/redhusker-fill/filldiag.c runtime/filltest.c
+          python3 - <<'PY'
+          from pathlib import Path
+          v=Path('compiled/video-filltest.c').read_text()
+          c=Path('tests/redhusker-fill/filldiag.c').read_text()
+          assert c.strip() in v, 'Test harness must use the exact compiled scaler source'
+          root=Path('runtime').resolve()
+          commands=[
+          'mount c "'+str(root)+'"', 'c:',
+          'set PATH=C:\\DJGPP\\BIN;%PATH%',
+          'set DJGPP=C:\\DJGPP\\DJGPP.ENV',
+          'gcc -x c -O2 -Wall testfill.c -o testfill.exe > COMPILE.TXT',
+          'if not exist testfill.exe goto finish',
+          'testfill.exe > PIXEL.TXT',
+          'MAMEDIG.EXE -listfull > GAMES.TXT',
+          'MAMEDIG.EXE rygar -listroms > ROMLIST.TXT',
+          'MAMEDIG.EXE rygar -filltest -soundcard 0 > STARTUP.TXT',
+          'echo DOS_RUNTIME_RETURNED > RETURNED.TXT',
+          ':finish', 'exit']
+          Path('runtime.conf').write_text('[sdl]\noutput=surface\n[dosbox]\nmemsize=63\n[cpu]\ncore=dynamic\ncycles=max\n[mixer]\nnosound=true\n[autoexec]\n'+'\n'.join(commands)+'\n')
+          PY
+      - uses: actions/download-artifact@v4
+        with:
+          name: REDHUSKER-PRIVATE-TEST-EMULATOR
+          run-id: 39351774713
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: saved-emulator
+      - name: Boot FreeDOS with a Pentium II CPU
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('runtime/exitvm.c')
+          p.write_text('#include <pc.h>\nint main(void) { outportw(0xf4,0x10); return 0; }\n')
+          c=Path('runtime.conf').read_text()
+          c=c[:c.index("MAMEDIG.EXE -listfull")]+"gcc -x c -O2 exitvm.c -o exitvm.exe\nexit\n"
+          Path('compile.conf').write_text(c)
+          PY
+          SDL_AUDIODRIVER=dummy timeout 90s xvfb-run -a dosbox -conf compile.conf -exit
+          mkdir -p freedos
+          tar -xzf saved-emulator/local-emulator.tar.gz -C freedos local-emulator/boot.img
+          python3 - <<'PY'
+          from pathlib import Path
+          import subprocess,shutil
+          candidates=[p for p in Path('freedos').rglob('*') if p.is_file() and p.suffix.lower() in ['.img','.ima'] and 'boot' in p.name.lower()]
+          assert candidates, list(Path('freedos').rglob('*'))
+          candidates.sort(key=lambda p: (p.stat().st_size!=1474560,p.stat().st_size))
+          boot=candidates[0]
+          shutil.copyfile(boot,'boot.img')
+          names=subprocess.check_output(['mdir','-i','boot.img','-/','-b','::'],text=True)
+          print(names)
+          commands=[n for n in names.splitlines() if n.upper().endswith('/COMMAND.COM') or n.upper().endswith('::COMMAND.COM')]
+          assert commands,names
+          command=commands[0].replace('::','').replace('/','\\')
+          if not command.startswith('\\'): command='\\'+command
+          Path('fdconfig.sys').write_bytes(('DOS=LOW\r\nFILES=40\r\nBUFFERS=20\r\nLASTDRIVE=Z\r\nSHELL=A:'+command+' /E:1024 /P=A:\\FDAUTO.BAT\r\n').encode())
+          Path('fdauto.bat').write_bytes(('@echo off\r\nC:\r\nCD \\\r\nSET PATH=C:\\DJGPP\\BIN\r\nTESTFILL.EXE > PIXEL.TXT\r\nMAMEDIG.EXE -listfull > GAMES.TXT\r\nMAMEDIG.EXE rygar -listroms > ROMLIST.TXT\r\nMAMEDIG.EXE rygar -filltest -soundcard 0 > STARTUP.TXT\r\necho DOS_RUNTIME_RETURNED > RETURNED.TXT\r\nEXITVM.EXE\r\n').encode())
+          PY
+          mcopy -o -i boot.img fdconfig.sys ::FDCONFIG.SYS
+          mcopy -o -i boot.img fdauto.bat ::FDAUTO.BAT
+          truncate -s 128M hdd.img
+          echo 'label: dos
+          start=2048,type=6,bootable' | sfdisk hdd.img
+          mkfs.fat -F 16 --offset 2048 hdd.img
+          mcopy -s -i hdd.img@@1048576 runtime/* ::
+          set +e
+          timeout 120s qemu-system-i386 -machine pc -cpu pentium2 -m 64 -vga std -display none -monitor none -serial none -no-reboot -device isa-debug-exit,iobase=0xf4,iosize=0x04 -drive file=boot.img,format=raw,if=floppy -drive file=hdd.img,format=raw,if=ide -boot a
+          result=$?
+          set -e
+          echo "QEMU exit: $result"
+          mkdir -p qemu-results
+          mcopy -i hdd.img@@1048576 '::*.TXT' qemu-results/
+          mcopy -i hdd.img@@1048576 '::*.CFG' qemu-results/ || true
+          test "$result" -eq 33
+          cp qemu-results/* runtime/
+      - name: Verify actual DOS results
+        shell: python
+        run: |
+          from pathlib import Path
+          r=Path('runtime')
+          def read(name): return next(p for p in r.iterdir() if p.name.lower()==name.lower()).read_text(errors='replace')
+          assert 'PASS:' in read('PIXEL.TXT'), read('COMPILE.TXT')
+          games=read('GAMES.TXT').lower()
+          for game in ['rygar','rastan','blktiger']: assert game in games, game
+          assert 'cpu_5m.bin' in read('ROMLIST.TXT').lower()
+          startup=read('STARTUP.TXT').lower()
+          assert 'required files are missing' in startup, startup
+          assert 'DOS_RUNTIME_RETURNED' in read('RETURNED.TXT')
+          cfg=read('mame.cfg').lower()
+          assert 'filltest = no' in cfg, cfg
+          (r/'VERIFIED.TXT').write_text('PASS: exact compiled MAMEDIG starts in DOS; driver and ROM lists execute; Rygar startup parses -filltest and returns cleanly on expected absent ROMs. Exact scaler source passes 8/16-bit pixel harness under DJGPP/FreeDOS on a QEMU Pentium II. No real game ROM or actual VESA rendering tested. Cabinet speed/sound/controls remain unverified.\n')
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: REDHUSKER-DIAG-PENTIUM2-VALIDATION
+          path: |
+            runtime/*.TXT
+            runtime/*.cfg
+            runtime/*.exe
+            runtime/*.png
+            runtime/*.CFG
+            qemu-results/*
+          if-no-files-found: error
+
+
