@@ -1,7 +1,7 @@
-name: Red Husker — isolated optimized raster bulk copy
+name: Red Husker — isolated packed raster experiment
 on:
   push:
-    branches: [redhusker-bulkfill-20261024]
+    branches: [redhusker-packedfill-20261025]
     paths: [".github/workflows/redhusker-filltest.yml"]
   workflow_dispatch:
 jobs:
@@ -120,7 +120,7 @@ jobs:
           # Make a failed compilation conspicuous despite DOSBox's exit behavior.
           mk.write_text(m,encoding='latin1')
           print('NoNag source checks patched. Original version/ROM/input/sound code retained.')
-      - name: Add default-off experimental full-screen scaler
+      - name: Add default-off packed scaler
         shell: python
         run: |
           from pathlib import Path
@@ -133,7 +133,7 @@ jobs:
           v = v.replace("#include <sys/farptr.h>", "#include <sys/farptr.h>\n#include <sys/movedata.h>")
           anchor = "static void update_screen_dummy(struct osd_bitmap *bitmap)\n{"
           assert v.count(anchor) == 1
-          v = v.replace(anchor, "/* Opt-in Red Husker experiment: standard linear VESA, 8/16-bit only.\n * Return 0 for unsupported cases so the original renderer stays active.\n * No custom CRT timings, cropping, ROM, input, or audio changes.\n */\nstatic int redhusker_fill_screen(struct osd_bitmap *bitmap)\n{\n    static int xmap[1024];\n    static int cached_width, cached_source_width;\n    static UINT32 row[512];\n    int x,y,sy,last_sy,bpp,bytes,source_width,source_height;\n    unsigned long address;\n    unsigned char *out;\n\n    if (!filltest || !use_vesa || vector_game || scanrate15KHz ||\n        use_triplebuf || scanlines ||\n        (gfx_mode != GFX_VESA2L && gfx_mode != GFX_VESA3) ||\n        gfx_width < 1 || gfx_width > 1024 || gfx_height < 1 ||\n        (video_attributes & (VIDEO_RGB_DIRECT | VIDEO_DUAL_MONITOR)))\n        return 0;\n    bpp = bitmap_color_depth(screen);\n    if (!((bitmap->depth == 8 && bpp == 8) ||\n          ((bitmap->depth == 15 || bitmap->depth == 16) &&\n           (bpp == 15 || bpp == 16) && palette_16bit_lookup)))\n        return 0;\n    source_width = vis_max_x - vis_min_x + 1;\n    source_height = vis_max_y - vis_min_y + 1;\n    if (source_width < 1 || source_height < 1 || vis_min_x < 0 ||\n        vis_min_y < 0 || vis_max_x >= bitmap->width ||\n        vis_max_y >= bitmap->height)\n        return 0;\n    if (cached_width != gfx_width || cached_source_width != source_width)\n    {\n        for (x=0; x<gfx_width; x++)\n            xmap[x] = (unsigned long)x * source_width / gfx_width;\n        cached_width = gfx_width;\n        cached_source_width = source_width;\n    }\n    bytes = gfx_width * (bpp == 8 ? 1 : 2);\n    out = (unsigned char *)row;\n    last_sy = -1;\n    for (y=0; y<gfx_height; y++)\n    {\n        sy = vis_min_y + (unsigned long)y * source_height / gfx_height;\n        if (sy != last_sy)\n        {\n            if (bpp == 8)\n            {\n                const UINT8 *src = (const UINT8 *)bitmap->line[sy] + vis_min_x;\n                for (x=0; x<gfx_width; x++) out[x] = src[xmap[x]];\n            }\n            else\n            {\n                const UINT16 *src = (const UINT16 *)bitmap->line[sy] + vis_min_x;\n                UINT16 *dst = (UINT16 *)row;\n                for (x=0; x<gfx_width; x++)\n                    dst[x] = (UINT16)palette_16bit_lookup[src[xmap[x]]];\n            }\n            last_sy = sy;\n        }\n        address = bmp_write_line(screen,y);\n        /* Selector-to-selector bulk move: same row bytes, fewer writes. */\n        movedata(_my_ds(), (unsigned long)row, screen->seg, address, bytes);\n    }\n    bmp_unwrite_line(screen);\n    return 1;\n}\n" + "\n" + anchor)
+          v = v.replace(anchor, Path("tests/redhusker-fill/fillfast.c").read_text() + "\n" + anchor)
           anchor = "\t\t\tupdate_screen(bitmap);"
           assert v.count(anchor) == 1
           v = v.replace(anchor, "\t\t\tif (!redhusker_fill_screen(bitmap))\n\t\t\t\tupdate_screen(bitmap);")
@@ -147,7 +147,11 @@ jobs:
           c = c.replace(anchor, anchor + '\n\tfilltest = get_bool ("config", "filltest", NULL, 0);')
           cp.write_text(c, encoding="latin1")
           print("Opt-in -filltest added. Original renderer retained as fallback.")
-          
+
+      - name: Verify production scaler pixel parity
+        run: |
+          gcc -std=c89 -pedantic -Wall -Wextra -O2 tests/redhusker-fill/test_fast.c -o /tmp/test-fast
+          /tmp/test-fast
       - name: Build DOS EXE inside DOSBox using DJGPP 2.03 and GCC 2.95
         shell: bash
         run: |
@@ -213,25 +217,25 @@ jobs:
             echo 'The build is not being treated as successful.' >> artifact/BUILD_FAILED.txt
             exit 1
           fi
-          cp "$EXE" artifact/MAMEOPT.EXE
+          cp "$EXE" artifact/MAMEPKD.EXE
           cp dosroot/djgpp/mame/src/msdos/video.c artifact/video-filltest.c
           cp dosroot/djgpp/mame/src/msdos/config.c artifact/config-filltest.c
-          file artifact/MAMEOPT.EXE > artifact/MAMEOPT_FILETYPE.txt
-          sha256sum artifact/MAMEOPT.EXE > artifact/MAMEOPT_SHA256.txt
-          ACTUAL_SHA=$(cut -d ' ' -f1 artifact/MAMEOPT_SHA256.txt)
+          file artifact/MAMEPKD.EXE > artifact/MAMEPKD_FILETYPE.txt
+          sha256sum artifact/MAMEPKD.EXE > artifact/MAMEPKD_SHA256.txt
+          ACTUAL_SHA=$(cut -d ' ' -f1 artifact/MAMEPKD_SHA256.txt)
           REFERENCE_SHA=f62e5feaf2ea1dd86902528996bd27a4ed0a5dce96218b36fbcb6de313f3f85a
           if [ "$ACTUAL_SHA" = "$REFERENCE_SHA" ]; then
-            echo "MAMEOPT.EXE unexpectedly matches previous MAMEFILL SHA-256." > artifact/BUILD_COMPARISON.txt
+            echo "MAMEPKD.EXE unexpectedly matches previous MAMEFILL SHA-256." > artifact/BUILD_COMPARISON.txt
           else
-            printf 'MAMEOPT.EXE built and differs from previous MAMEFILL SHA-256 (expected for optimized code).\nReference: %s\nActual:    %s\n' "$REFERENCE_SHA" "$ACTUAL_SHA" > artifact/BUILD_COMPARISON.txt
+            printf 'MAMEPKD.EXE built and differs from previous MAMEFILL SHA-256 (expected for optimized code).\nReference: %s\nActual:    %s\n' "$REFERENCE_SHA" "$ACTUAL_SHA" > artifact/BUILD_COMPARISON.txt
           fi
-          test -s artifact/MAMEOPT.EXE
-          grep -Eqi 'MS-DOS|DOS executable' artifact/MAMEOPT_FILETYPE.txt
+          test -s artifact/MAMEPKD.EXE
+          grep -Eqi 'MS-DOS|DOS executable' artifact/MAMEPKD_FILETYPE.txt
           echo 'Verified: non-empty DOS executable produced.' > artifact/BUILD_VERIFIED.txt
       - name: Upload build output
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: REDHUSKER-BULKFILL-20261024
+          name: REDHUSKER-PACKEDFILL-20261025
           path: artifact/
           if-no-files-found: error
